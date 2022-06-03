@@ -24,7 +24,8 @@ public enum Theme {
     RESEARCH(ChatColor.of("#a60e03"), "Research"),
     CRAFTING(ChatColor.of("#dbcea9"), "Crafting Material"),
     RECIPE_TYPE(ChatColor.of("#ffe89c"), "Recipe Type"),
-    MACHINE(ChatColor.of("#3295a8"), "Machine");
+    MACHINE(ChatColor.of("#3295a8"), "Machine"),
+    SEED(ChatColor.of("#a241bf"), "Seed");
 
     private static final Theme[] cachedValues = values();
     private final ChatColor color;
@@ -101,22 +102,6 @@ public enum Theme {
             Theme.applyThemeToString(themeType, name),
             finalLore.toArray(new String[finalLore.size() - 1])
         );
-    }
-
-    public static String producesIntro() {
-        return Theme.SUCCESS + "Produces (per universe tick)";
-    }
-
-    public static String consumesIntro() {
-        return Theme.ERROR + "Consumes (per universe tick)";
-    }
-
-    public static String modifiesIntro() {
-        return Theme.SUCCESS + "Applies Modifiers";
-    }
-
-    public static String infoLinePassive(@Nonnull String title, @Nonnull String content) {
-        return Theme.CLICK_INFO + title + ": " + Theme.PASSIVE + content;
     }
 
     public ChatColor getColor() {

@@ -44,10 +44,6 @@
               <pattern>co.aikar.commands</pattern>
               <shadedPattern>io.github.sefiraat.emctech.acf</shadedPattern>
             </relocation>
-            <relocation>
-              <pattern>com.github.simplix-softworks</pattern>
-              <shadedPattern>io.github.sefiraat.emctech.simplexstorage</shadedPattern>
-            </relocation>
           </relocations>
           <filters>
             <filter>

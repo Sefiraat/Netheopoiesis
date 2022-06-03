@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.Pair;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemStack;
 
 public class NpsSlimefunItemStacks {
 
@@ -14,18 +13,15 @@ public class NpsSlimefunItemStacks {
         throw new IllegalStateException("Utility class");
     }
 
-    // Vanilla
-    public static final ItemStack VANILLA_COAL = new ItemStack(Material.COAL);
-
-    // Materials
-    public static final SlimefunItemStack UNORTHODOX_COAL;
+    // Seeds
+    public static final SlimefunItemStack PURIFICATION_SEED;
 
     static {
 
-        // region Crafting Materials
+        // region Seeds
 
-        UNORTHODOX_COAL = Theme.themedSlimefunItemStack(
-            "ETC_UNORTHODOX_COAL",
+        PURIFICATION_SEED = Theme.themedSlimefunItemStack(
+            "NPS_PURIFICATION_SEED",
             ItemStackUtils.enchantedItemStack(Material.COAL, true, new Pair<>(Enchantment.LURE, 1)),
             Theme.CRAFTING,
             "Unorthodox Coal",

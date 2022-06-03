@@ -1,15 +1,18 @@
 package dev.sefiraat.netheopoiesis.managers;
 
-import io.github.sefiraat.emctech.EmcTech;
+import dev.sefiraat.netheopoiesis.Netheopoiesis;
+import dev.sefiraat.netheopoiesis.listeners.VanillaDropListener;
 import org.bukkit.event.Listener;
+
+import javax.annotation.Nonnull;
 
 public class ListenerManager {
 
     public ListenerManager() {
-
+        addListener(new VanillaDropListener());
     }
 
-    private void addListener(Listener listener) {
-        EmcTech.getPluginManager().registerEvents(listener, EmcTech.getInstance());
+    private void addListener(@Nonnull Listener listener) {
+        Netheopoiesis.getPluginManager().registerEvents(listener, Netheopoiesis.getInstance());
     }
 }

@@ -27,11 +27,10 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
     private ListenerManager listenerManager;
     private SupportedPluginManager supportedPluginManager;
     private RunnableManager runnableManager;
-    private PaperCommandManager commandManager;
 
     public Netheopoiesis() {
         this.username = "Sefiraat";
-        this.repo = "EMCTech";
+        this.repo = "Netheopoiesis";
         this.branch = "master";
     }
 
@@ -48,13 +47,13 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
 
         this.supportedPluginManager = new SupportedPluginManager();
         this.runnableManager = new RunnableManager();
-        this.commandManager = new PaperCommandManager(this);
+        PaperCommandManager commandManager = new PaperCommandManager(this);
 
         commandManager.registerCommand(new CommandMain());
 
         NpsSlimefunItems.setup();
 
-        setupBstats();
+        setupStats();
     }
 
     @Override
@@ -84,8 +83,8 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
         return MessageFormat.format("https://github.com/{0}/{1}/issues/", this.username, this.repo);
     }
 
-    private void setupBstats() {
-        Metrics metrics = new Metrics(this, 15351);
+    private void setupStats() {
+        Metrics metrics = new Metrics(this, 15374);
     }
 
     public static Netheopoiesis getInstance() {
