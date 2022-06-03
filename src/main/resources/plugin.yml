@@ -1,0 +1,13 @@
+name: Netheopoiesis
+author: Sefiraat, J3fftw
+description: Addon Jam 2022 Entry - Terraform the Nether!
+main: io.github.sefiraat.netheopoiesis.Netheopoiesis
+website: https://github.com/Sefiraat/Netheopoiesis
+version: ${project.version}
+api-version: 1.18
+depend:
+  - Slimefun
+commands:
+  netheopoiesis:
+    description: /netheopoiesis
+    usage: /netheopoiesis <sub>
