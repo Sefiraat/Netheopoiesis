@@ -34,15 +34,19 @@
           <relocations>
             <relocation>
               <pattern>org.bstats</pattern>
-              <shadedPattern>io.github.sefiraat.emctech.bstats</shadedPattern>
-            </relocation>
-            <relocation>
-              <pattern>io.github.sefiraat.sefilib</pattern>
-              <shadedPattern>io.github.sefiraat.emctech.sefilib</shadedPattern>
+              <shadedPattern>dev.sefiraat.netheopoiesis.bstats</shadedPattern>
             </relocation>
             <relocation>
               <pattern>co.aikar.commands</pattern>
-              <shadedPattern>io.github.sefiraat.emctech.acf</shadedPattern>
+              <shadedPattern>dev.sefiraat.netheopoiesis.acf</shadedPattern>
+            </relocation>
+            <relocation>
+              <pattern>io.github.bakedlibs.dough</pattern>
+              <shadedPattern>dev.sefiraat.netheopoiesis.dough</shadedPattern>
+            </relocation>
+            <relocation>
+              <pattern>io.papermc.lib</pattern>
+              <shadedPattern>dev.sefiraat.netheopoiesi.paperlib</shadedPattern>
             </relocation>
           </relocations>
           <filters>
@@ -66,6 +70,14 @@
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
     </repository>
+    <repository>
+      <id>aikar</id>
+      <url>https://repo.aikar.co/content/groups/aikar/</url>
+    </repository>
+    <repository>
+      <id>papermc</id>
+      <url>https://papermc.io/repo/repository/maven-public/</url>
+    </repository>
   </repositories>
   <dependencies>
     <dependency>
@@ -78,12 +90,6 @@
       <groupId>com.github.Slimefun</groupId>
       <artifactId>Slimefun4</artifactId>
       <version>b8f7dc</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.18.22</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
