@@ -1,6 +1,7 @@
 package dev.sefiraat.netheopoiesis.slimefun;
 
 import dev.sefiraat.netheopoiesis.utils.Keys;
+import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import org.bukkit.Material;
@@ -12,6 +13,31 @@ public final class NpsRecipeTypes {
     private NpsRecipeTypes() {
         throw new IllegalStateException("Utility class");
     }
+
+    @Nonnull
+    public static final RecipeType NETHER_PURIFICATION = new RecipeType(
+        Keys.newKey("nether_purification"),
+        Theme.themedItemStack(
+            Material.WITHER_ROSE,
+            Theme.RECIPE_TYPE,
+            "Nether Purification",
+            "These items are made by purifying the Nether",
+            "Planting certain Nether Plants may help."
+        )
+    );
+
+    @Nonnull
+    public static final RecipeType PLANT_BREEDING = new RecipeType(
+        Keys.newKey("plant_breeding"),
+        Theme.themedItemStack(
+            Material.FLOWER_POT,
+            Theme.RECIPE_TYPE,
+            "Plant Breeding",
+            "This seed is found via breeding.",
+            "The breeding dictionary can be used",
+            "to track your discoveries."
+        )
+    );
 
     @Nonnull
     public static final RecipeType VANILLA_BLOCK_DROP = new RecipeType(

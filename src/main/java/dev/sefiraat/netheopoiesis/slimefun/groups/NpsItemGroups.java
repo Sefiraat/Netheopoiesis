@@ -21,6 +21,14 @@ public final class NpsItemGroups {
         )
     );
 
+    public static final DummyItemGroup CRAFTING = new DummyItemGroup(
+        Keys.newKey("crafting"),
+        new CustomItemStack(
+            new ItemStack(Material.STICK),
+            Theme.MAIN.color("Netheopoiesis Seeds")
+        )
+    );
+
     public static final DummyItemGroup SEEDS = new DummyItemGroup(
         Keys.newKey("seeds"),
         new CustomItemStack(

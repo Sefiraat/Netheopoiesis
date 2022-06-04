@@ -1,8 +1,11 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItemStacks;
+import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
+import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -18,8 +21,10 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -48,11 +53,12 @@ public class PurificationSeed extends NetherSeed {
     }
 
     @Override
-    public void onTickFullyGrown(@Nonnull Location location, @Nonnull Config data) {
+    @ParametersAreNonnullByDefault
+    public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
         if (randomChance <= 0.1) {
             final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
-            final double randomZ = ThreadLocalRandom.current().nextDouble(-3, 4);
+            final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
             // For loop to make sure the purification can creep up and down.
             for (int i = -1; i < 2; i++) {
                 final Block block = location.clone().add(randomX, i, randomZ).getBlock();
@@ -66,13 +72,21 @@ public class PurificationSeed extends NetherSeed {
         }
     }
 
+    @Nonnull
     @Override
-    protected void whenPlaced(@Nonnull BlockPlaceEvent event) {
+    public Theme getTheme() {
+        return Theme.SEED_BLUE;
+    }
+
+    @Override
+    public void whenPlaced(@Nonnull BlockPlaceEvent event) {
+        // We override this as this is the only one able to be placed on both vanilla and crux'
         final Block block = event.getBlock();
-        final Location location = block.getLocation();
         final Block blockBelow = block.getRelative(BlockFace.DOWN);
+        final SlimefunItem possibleCrux = BlockStorage.check(blockBelow);
+        final Location location = block.getLocation();
         if (location.getWorld().getEnvironment() == World.Environment.NETHER
-            && materials.contains(blockBelow.getType())
+            && (materials.contains(blockBelow.getType()) || possibleCrux instanceof NetherSeedCrux)
         ) {
             BlockStorage.addBlockInfo(location, Keys.SEED_GROWTH_STAGE, "0");
         } else {
@@ -82,18 +96,18 @@ public class PurificationSeed extends NetherSeed {
 
     @Nonnull
     @Override
-    public Set<SlimefunItem> getValidPlaces() {
+    public Set<NetherSeedCrux> getValidPlaces() {
         // Purification is the odd one out as it has to be on a vanilla block to begin the cycle
         return Collections.emptySet();
     }
 
     @Override
     public double getGrowthRate() {
-        return 0.1;
+        return 0.9;
     }
 
     @Override
-    public LinkedList<Skulls> getGrowthPhases() {
+    public List<Skulls> getGrowthPhases() {
         return this.growthPhases;
     }
 }

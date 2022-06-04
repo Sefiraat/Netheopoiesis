@@ -40,7 +40,7 @@ public class VanillaDropListener implements Listener {
         DROP_MAP.put(material, new BlockDrop(stackToDrop, material, dropChance));
         return new ItemStack[]{
             null, null, null,
-            stackToDrop, null, dropFrom,
+            null, dropFrom, null,
             null, null, null
         };
     }

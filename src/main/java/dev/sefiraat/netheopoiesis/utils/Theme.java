@@ -14,25 +14,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Theme {
+    // Main Theme
+    MAIN(ChatColor.of("#290612"), "Netheopoiesis"),
+    // Basic chat elements
     WARNING(ChatColor.YELLOW, "Warning"),
     ERROR(ChatColor.RED, "Error"),
     NOTICE(ChatColor.WHITE, "Notice"),
-    PASSIVE(ChatColor.GRAY, ""),
+    PASSIVE(ChatColor.GRAY),
     SUCCESS(ChatColor.GREEN, "Success"),
-    MAIN(ChatColor.of("#21588f"), "Netheopoiesis"),
+    // Item and SlimefunItem lore/themes
     CLICK_INFO(ChatColor.of("#e4ed32"), "Click here"),
     RESEARCH(ChatColor.of("#a60e03"), "Research"),
     CRAFTING(ChatColor.of("#dbcea9"), "Crafting Material"),
     RECIPE_TYPE(ChatColor.of("#ffe89c"), "Recipe Type"),
     MACHINE(ChatColor.of("#3295a8"), "Machine"),
     SEED(ChatColor.of("#a241bf"), "Seed"),
-    CRUX(ChatColor.of("#a241bf"), "Crux");
+    CRUX(ChatColor.of("#a241bf"), "Crux"),
+    // Seeds
+    SEED_RED(ChatColor.of("#c41d1d")),
+    SEED_ORANGE(ChatColor.of("#c4761d")),
+    SEED_YELLOW(ChatColor.of("#c4b31d")),
+    SEED_GREEN(ChatColor.of("#4ac41d")),
+    SEED_BLUE(ChatColor.of("#1d36c4")),
+    SEED_INDIGO(ChatColor.of("#551dc4")),
+    SEED_VIOLET(ChatColor.of("#811dc4"));
 
     private static final Theme[] cachedValues = values();
     private final ChatColor color;
     private final String loreLine;
 
-    @ParametersAreNonnullByDefault
+    Theme(@Nonnull ChatColor color) {
+        this(color, "");
+    }
+
     Theme(@Nonnull ChatColor color, @Nonnull String loreLine) {
         this.color = color;
         this.loreLine = loreLine;
@@ -49,7 +63,6 @@ public enum Theme {
      * @return Returns the string provides preceded by the color
      */
     @Nonnull
-    @ParametersAreNonnullByDefault
     public String applyToString(@Nonnull Object value) {
         return this.color + String.valueOf(value);
     }
@@ -62,7 +75,6 @@ public enum Theme {
      * @return Returns the string provides preceded by the color
      */
     @Nonnull
-    @ParametersAreNonnullByDefault
     public String applyAsTitle(@Nonnull Object value1, @Nonnull Object value2) {
         return this.color + String.valueOf(value1) + ": " + Theme.PASSIVE + value2;
     }
@@ -83,11 +95,11 @@ public enum Theme {
      */
     @Nonnull
     @ParametersAreNonnullByDefault
-    public static SlimefunItemStack themedSlimefunItemStack(@Nonnull String id,
-                                                            @Nonnull ItemStack itemStack,
-                                                            @Nonnull Theme themeType,
-                                                            @Nonnull String name,
-                                                            @Nonnull String... lore
+    public static SlimefunItemStack themedSlimefunItemStack(String id,
+                                                            ItemStack itemStack,
+                                                            Theme themeType,
+                                                            String name,
+                                                            String... lore
     ) {
         ChatColor passiveColor = Theme.PASSIVE.getColor();
         List<String> finalLore = new ArrayList<>();
@@ -117,11 +129,11 @@ public enum Theme {
      */
     @Nonnull
     @ParametersAreNonnullByDefault
-    public static SlimefunItemStack themedSlimefunItemStack(@Nonnull String id,
-                                                            @Nonnull Material material,
-                                                            @Nonnull Theme themeType,
-                                                            @Nonnull String name,
-                                                            @Nonnull String... lore
+    public static SlimefunItemStack themedSlimefunItemStack(String id,
+                                                            Material material,
+                                                            Theme themeType,
+                                                            String name,
+                                                            String... lore
     ) {
         ChatColor passiveColor = Theme.PASSIVE.getColor();
         List<String> finalLore = new ArrayList<>();
@@ -152,12 +164,12 @@ public enum Theme {
      */
     @Nonnull
     @ParametersAreNonnullByDefault
-    public static SlimefunItemStack themedSeed(@Nonnull String id,
-                                               @Nonnull ItemStack seedStack,
-                                               @Nonnull Theme themeType,
-                                               @Nonnull String name,
-                                               @Nonnull String[] lore,
-                                               @Nonnull String[] validPlacements
+    public static SlimefunItemStack themedSeed(String id,
+                                               ItemStack seedStack,
+                                               Theme themeType,
+                                               String name,
+                                               String[] lore,
+                                               String[] validPlacements
     ) {
         ChatColor passiveColor = Theme.PASSIVE.getColor();
         List<String> finalLore = new ArrayList<>();
@@ -166,7 +178,7 @@ public enum Theme {
             finalLore.add(passiveColor + s);
         }
         for (String s : validPlacements) {
-            finalLore.add(s);
+            finalLore.add(passiveColor + s);
         }
         finalLore.add("");
         finalLore.add(applyThemeToString(Theme.CLICK_INFO, themeType.getLoreLine()));
@@ -190,7 +202,6 @@ public enum Theme {
      * @return Returns the string provides preceded by the color
      */
     @Nonnull
-    @ParametersAreNonnullByDefault
     public static String applyThemeToString(@Nonnull Theme themeType, @Nonnull Object value) {
         return themeType.getColor() + String.valueOf(value);
     }
@@ -205,7 +216,7 @@ public enum Theme {
      */
     @Nonnull
     @ParametersAreNonnullByDefault
-    public static String applyThemeAsTitle(@Nonnull Theme themeType, @Nonnull String string1, Object value) {
+    public static String applyThemeAsTitle(Theme themeType, String string1, Object value) {
         return themeType.getColor() + string1 + ": " + Theme.PASSIVE + value;
     }
 
@@ -224,10 +235,10 @@ public enum Theme {
      */
     @Nonnull
     @ParametersAreNonnullByDefault
-    public static ItemStack themedItemStack(@Nonnull Material material,
-                                            @Nonnull Theme themeType,
-                                            @Nonnull String name,
-                                            @Nonnull String... lore
+    public static ItemStack themedItemStack(Material material,
+                                            Theme themeType,
+                                            String name,
+                                            String... lore
     ) {
         ChatColor passiveColor = Theme.PASSIVE.getColor();
         List<String> finalLore = new ArrayList<>();
@@ -257,6 +268,7 @@ public enum Theme {
     }
 
     @Override
+    @Nonnull
     public String toString() {
         return this.color.toString();
     }
