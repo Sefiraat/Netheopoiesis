@@ -38,7 +38,7 @@ public class HarvestingTool extends LimitedUseItem {
         return this::onUse;
     }
 
-    private void onUse(PlayerRightClickEvent e) {
+    private void onUse(@Nonnull PlayerRightClickEvent e) {
         e.cancel();
         final Optional<Block> optional = e.getClickedBlock();
         if (optional.isPresent()) {

@@ -1,7 +1,9 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
+import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.breeding.BreedResult;
 import dev.sefiraat.netheopoiesis.breeding.BreedingDefinitions;
+import dev.sefiraat.netheopoiesis.slimefun.flora.PurifyingObject;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Particles;
@@ -88,6 +90,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         } else {
             tryGrow(block, seed, data, location, growthStage);
         }
+        registerPurificationValue(block);
     }
 
     @ParametersAreNonnullByDefault

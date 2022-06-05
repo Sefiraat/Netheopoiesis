@@ -27,6 +27,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
     private ListenerManager listenerManager;
     private SupportedPluginManager supportedPluginManager;
     private RunnableManager runnableManager;
+    private PurificationMemory purificationMemory;
 
     public Netheopoiesis() {
         this.username = "Sefiraat";
@@ -48,6 +49,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
         this.supportedPluginManager = new SupportedPluginManager();
         this.runnableManager = new RunnableManager();
         this.listenerManager = new ListenerManager();
+        this.purificationMemory = new PurificationMemory();
         PaperCommandManager commandManager = new PaperCommandManager(this);
 
         commandManager.registerCommand(new CommandMain());
@@ -107,5 +109,9 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
 
     public static RunnableManager getRunnableManager() {
         return Netheopoiesis.getInstance().runnableManager;
+    }
+
+    public static PurificationMemory getPurificationMemory() {
+        return Netheopoiesis.getInstance().purificationMemory;
     }
 }

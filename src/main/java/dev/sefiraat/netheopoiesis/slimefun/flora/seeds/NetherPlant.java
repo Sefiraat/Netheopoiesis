@@ -1,5 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
+import dev.sefiraat.netheopoiesis.slimefun.flora.PurifyingObject;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
@@ -18,7 +19,7 @@ import java.util.Set;
  * This interface represents a plant in the Nether, and it's behavior as it ticks and grows
  * including information about how it grows and develops
  */
-public interface NetherPlant {
+public interface NetherPlant extends PurifyingObject {
 
     /**
      * This method will fire every single time the NetherPlant ticks

@@ -43,6 +43,15 @@ public class StoneySeed extends NetherSeed {
         growthPhases.add(Skulls.PLANT_HARDY_GROWTH_5);
     }
 
+    @Override
+    @ParametersAreNonnullByDefault
+    public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
+        double randomChance = ThreadLocalRandom.current().nextDouble();
+        if (randomChance <= 0.005) {
+            location.getWorld().dropItem(location, new ItemStack(Material.COBBLESTONE));
+        }
+    }
+
     @Nonnull
     @Override
     public Theme getTheme() {
@@ -61,12 +70,6 @@ public class StoneySeed extends NetherSeed {
         );
     }
 
-    @Nullable
-    @Override
-    public ItemStack getHarvestingResult() {
-        return new ItemStack(Material.COBBLESTONE);
-    }
-
     @Override
     public double getGrowthRate() {
         return 0.09;
@@ -75,5 +78,10 @@ public class StoneySeed extends NetherSeed {
     @Override
     public List<Skulls> getGrowthPhases() {
         return this.growthPhases;
+    }
+
+    @Override
+    public int purificationValue() {
+        return 1;
     }
 }

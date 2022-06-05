@@ -118,7 +118,7 @@ public class NpsSlimefunItemStacks {
             Skulls.SEED_VIOLET.getPlayerHead(),
             Theme.SEED,
             "Stoney Seed",
-            new String[]{"This seed, when fully grown,", "can be harvested with a tool for", "cobblestone."},
+            new String[]{"This seed, when fully grown,", "will slowly produce small amounts of", "cobblestone."},
             getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
         );
 

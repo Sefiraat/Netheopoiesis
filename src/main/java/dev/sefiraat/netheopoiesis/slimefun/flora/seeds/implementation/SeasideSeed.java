@@ -72,4 +72,9 @@ public class SeasideSeed extends NetherSeed {
     public List<Skulls> getGrowthPhases() {
         return this.growthPhases;
     }
+
+    @Override
+    public int purificationValue() {
+        return 1;
+    }
 }
