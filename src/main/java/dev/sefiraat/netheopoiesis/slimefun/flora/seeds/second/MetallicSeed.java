@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -17,28 +17,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class CombustibleSeed extends NetherSeed {
+public class MetallicSeed extends NetherSeed {
 
     private final List<Skulls> growthPhases = new ArrayList<>();
 
-    public CombustibleSeed(@Nonnull ItemGroup itemGroup,
-                           @Nonnull SlimefunItemStack item,
-                           @Nonnull RecipeType recipeType,
-                           @Nonnull ItemStack[] recipe
+    public MetallicSeed(@Nonnull ItemGroup itemGroup,
+                        @Nonnull SlimefunItemStack item,
+                        @Nonnull RecipeType recipeType,
+                        @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_INDIGO);
-        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_1);
-        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_2);
-        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_3);
-        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_4);
-        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_5);
+        growthPhases.add(Skulls.SEED_BLUE);
+        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_1);
+        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_2);
+        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_3);
+        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_4);
+        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_5);
     }
 
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_INDIGO;
+        return Theme.SEED_BLUE;
     }
 
     @Nonnull
@@ -55,12 +55,12 @@ public class CombustibleSeed extends NetherSeed {
     @Nullable
     @Override
     public ItemStack getHarvestingResult() {
-        return new ItemStack(Material.COAL);
+        return new ItemStack(Material.IRON_NUGGET);
     }
 
     @Override
     public double getGrowthRate() {
-        return 0.07;
+        return 0.08;
     }
 
     @Override
@@ -70,6 +70,6 @@ public class CombustibleSeed extends NetherSeed {
 
     @Override
     public int purificationValue() {
-        return 3;
+        return 2;
     }
 }

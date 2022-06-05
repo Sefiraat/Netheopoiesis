@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -17,22 +17,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class DustySeed extends NetherSeed {
+public class MoldableSeed extends NetherSeed {
 
     private final List<Skulls> growthPhases = new ArrayList<>();
 
-    public DustySeed(@Nonnull ItemGroup itemGroup,
-                     @Nonnull SlimefunItemStack item,
-                     @Nonnull RecipeType recipeType,
-                     @Nonnull ItemStack[] recipe
+    public MoldableSeed(@Nonnull ItemGroup itemGroup,
+                        @Nonnull SlimefunItemStack item,
+                        @Nonnull RecipeType recipeType,
+                        @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
         growthPhases.add(Skulls.SEED_INDIGO);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_1);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_2);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_3);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_4);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_5);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_1);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_2);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_3);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_4);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_5);
     }
 
     @Nonnull
@@ -56,7 +56,7 @@ public class DustySeed extends NetherSeed {
     @Nullable
     @Override
     public ItemStack getHarvestingResult() {
-        return new ItemStack(Material.GRAVEL);
+        return new ItemStack(Material.CLAY_BALL);
     }
 
     @Override

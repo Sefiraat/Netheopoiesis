@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.third;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -6,14 +6,16 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.TreeType;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -23,29 +25,29 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ProtectiveSeed extends NetherSeed {
+public class OakendranSeed extends NetherSeed {
 
     private final List<Skulls> growthPhases = new ArrayList<>();
 
-    public ProtectiveSeed(@Nonnull ItemGroup itemGroup,
-                          @Nonnull SlimefunItemStack item,
-                          @Nonnull RecipeType recipeType,
-                          @Nonnull ItemStack[] recipe
+    public OakendranSeed(@Nonnull ItemGroup itemGroup,
+                         @Nonnull SlimefunItemStack item,
+                         @Nonnull RecipeType recipeType,
+                         @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_YELLOW);
-        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_1);
-        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_2);
-        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_3);
-        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_4);
-        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_5);
+        growthPhases.add(Skulls.SEED_ORANGE);
+        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_1);
+        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_2);
+        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_3);
+        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_4);
+        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_5);
     }
 
     @Override
     @ParametersAreNonnullByDefault
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
-        if (randomChance <= 0.02) {
+        if (randomChance <= 0.5) {
             final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
             final double randomY = ThreadLocalRandom.current().nextInt(-2, 3);
             final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
@@ -57,26 +59,26 @@ public class ProtectiveSeed extends NetherSeed {
             }
 
             final Block blockBelow = block.getRelative(BlockFace.DOWN);
+            final SlimefunItem possibleCrux = BlockStorage.check(blockBelow);
 
-            // And we need a solid floor
-            if (blockBelow.getType() == Material.AIR) {
-                return;
+            // And the block below must be a valid crux
+            if (possibleCrux instanceof NetherSeedCrux crux && getValidPlaces().contains(crux)) {
+                block.getWorld().generateTree(block.getLocation(), TreeType.TREE);
             }
-
-            blockBelow.getWorld().spawnEntity(block.getLocation(), EntityType.IRON_GOLEM);
         }
     }
 
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_YELLOW;
+        return Theme.SEED_ORANGE;
     }
 
     @Nonnull
     @Override
     public Set<NetherSeedCrux> getValidPlaces() {
         return Set.of(
+            NpsSlimefunItems.BASIC_PURIFIED_NETHERRACK,
             NpsSlimefunItems.PURIFIED_NETHERRACK,
             NpsSlimefunItems.VORACIOUS_DIRT,
             NpsSlimefunItems.NETHER_DIRT,
@@ -86,7 +88,7 @@ public class ProtectiveSeed extends NetherSeed {
 
     @Override
     public double getGrowthRate() {
-        return 0.03;
+        return 0.09;
     }
 
     @Override
@@ -96,6 +98,6 @@ public class ProtectiveSeed extends NetherSeed {
 
     @Override
     public int purificationValue() {
-        return 5;
+        return 6;
     }
 }

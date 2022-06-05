@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -23,17 +23,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RottenSeed extends NetherSeed {
+public class ProtectiveSeed extends NetherSeed {
 
     private final List<Skulls> growthPhases = new ArrayList<>();
 
-    public RottenSeed(@Nonnull ItemGroup itemGroup,
-                      @Nonnull SlimefunItemStack item,
-                      @Nonnull RecipeType recipeType,
-                      @Nonnull ItemStack[] recipe
+    public ProtectiveSeed(@Nonnull ItemGroup itemGroup,
+                          @Nonnull SlimefunItemStack item,
+                          @Nonnull RecipeType recipeType,
+                          @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_GREEN);
+        growthPhases.add(Skulls.SEED_YELLOW);
         growthPhases.add(Skulls.PLANT_GROSS_GROWTH_1);
         growthPhases.add(Skulls.PLANT_GROSS_GROWTH_2);
         growthPhases.add(Skulls.PLANT_GROSS_GROWTH_3);
@@ -45,7 +45,7 @@ public class RottenSeed extends NetherSeed {
     @ParametersAreNonnullByDefault
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
-        if (randomChance <= 0.05) {
+        if (randomChance <= 0.02) {
             final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
             final double randomY = ThreadLocalRandom.current().nextInt(-2, 3);
             final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
@@ -63,21 +63,20 @@ public class RottenSeed extends NetherSeed {
                 return;
             }
 
-            blockBelow.getWorld().spawnEntity(block.getLocation(), EntityType.ZOMBIE);
+            blockBelow.getWorld().spawnEntity(block.getLocation(), EntityType.IRON_GOLEM);
         }
     }
 
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_GREEN;
+        return Theme.SEED_YELLOW;
     }
 
     @Nonnull
     @Override
     public Set<NetherSeedCrux> getValidPlaces() {
         return Set.of(
-            NpsSlimefunItems.BASIC_PURIFIED_NETHERRACK,
             NpsSlimefunItems.PURIFIED_NETHERRACK,
             NpsSlimefunItems.VORACIOUS_DIRT,
             NpsSlimefunItems.NETHER_DIRT,
@@ -87,7 +86,7 @@ public class RottenSeed extends NetherSeed {
 
     @Override
     public double getGrowthRate() {
-        return 0.09;
+        return 0.03;
     }
 
     @Override
@@ -97,6 +96,6 @@ public class RottenSeed extends NetherSeed {
 
     @Override
     public int purificationValue() {
-        return 1;
+        return 5;
     }
 }

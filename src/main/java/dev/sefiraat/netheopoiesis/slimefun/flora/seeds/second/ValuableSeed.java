@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -17,28 +17,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class MetallicSeed extends NetherSeed {
+public class ValuableSeed extends NetherSeed {
 
     private final List<Skulls> growthPhases = new ArrayList<>();
 
-    public MetallicSeed(@Nonnull ItemGroup itemGroup,
+    public ValuableSeed(@Nonnull ItemGroup itemGroup,
                         @Nonnull SlimefunItemStack item,
                         @Nonnull RecipeType recipeType,
                         @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_BLUE);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_1);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_2);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_3);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_4);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_5);
+        growthPhases.add(Skulls.SEED_GREEN);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_1);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_2);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_3);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_4);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_5);
     }
 
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_BLUE;
+        return Theme.SEED_GREEN;
     }
 
     @Nonnull
@@ -55,12 +55,12 @@ public class MetallicSeed extends NetherSeed {
     @Nullable
     @Override
     public ItemStack getHarvestingResult() {
-        return new ItemStack(Material.IRON_NUGGET);
+        return new ItemStack(Material.EMERALD);
     }
 
     @Override
     public double getGrowthRate() {
-        return 0.08;
+        return 0.07;
     }
 
     @Override
@@ -70,6 +70,6 @@ public class MetallicSeed extends NetherSeed {
 
     @Override
     public int purificationValue() {
-        return 2;
+        return 3;
     }
 }

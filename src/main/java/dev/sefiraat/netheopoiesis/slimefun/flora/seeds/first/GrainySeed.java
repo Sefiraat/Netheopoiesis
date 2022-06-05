@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -8,26 +8,29 @@ import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class ValuableSeed extends NetherSeed {
+public class GrainySeed extends NetherSeed {
 
     private final List<Skulls> growthPhases = new ArrayList<>();
 
-    public ValuableSeed(@Nonnull ItemGroup itemGroup,
-                        @Nonnull SlimefunItemStack item,
-                        @Nonnull RecipeType recipeType,
-                        @Nonnull ItemStack[] recipe
+    public GrainySeed(@Nonnull ItemGroup itemGroup,
+                      @Nonnull SlimefunItemStack item,
+                      @Nonnull RecipeType recipeType,
+                      @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_GREEN);
+        growthPhases.add(Skulls.SEED_RED);
         growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_1);
         growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_2);
         growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_3);
@@ -35,16 +38,26 @@ public class ValuableSeed extends NetherSeed {
         growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_5);
     }
 
+    @Override
+    @ParametersAreNonnullByDefault
+    public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
+        double randomChance = ThreadLocalRandom.current().nextDouble();
+        if (randomChance <= 0.005) {
+            location.getWorld().dropItem(location, new ItemStack(Material.REDSTONE));
+        }
+    }
+
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_GREEN;
+        return Theme.SEED_RED;
     }
 
     @Nonnull
     @Override
     public Set<NetherSeedCrux> getValidPlaces() {
         return Set.of(
+            NpsSlimefunItems.BASIC_PURIFIED_NETHERRACK,
             NpsSlimefunItems.PURIFIED_NETHERRACK,
             NpsSlimefunItems.VORACIOUS_DIRT,
             NpsSlimefunItems.NETHER_DIRT,
@@ -52,15 +65,9 @@ public class ValuableSeed extends NetherSeed {
         );
     }
 
-    @Nullable
-    @Override
-    public ItemStack getHarvestingResult() {
-        return new ItemStack(Material.EMERALD);
-    }
-
     @Override
     public double getGrowthRate() {
-        return 0.07;
+        return 0.09;
     }
 
     @Override
@@ -70,6 +77,6 @@ public class ValuableSeed extends NetherSeed {
 
     @Override
     public int purificationValue() {
-        return 3;
+        return 1;
     }
 }

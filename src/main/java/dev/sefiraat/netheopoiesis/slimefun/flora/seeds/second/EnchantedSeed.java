@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -17,17 +17,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class MoldableSeed extends NetherSeed {
+public class EnchantedSeed extends NetherSeed {
 
     private final List<Skulls> growthPhases = new ArrayList<>();
 
-    public MoldableSeed(@Nonnull ItemGroup itemGroup,
-                        @Nonnull SlimefunItemStack item,
-                        @Nonnull RecipeType recipeType,
-                        @Nonnull ItemStack[] recipe
+    public EnchantedSeed(@Nonnull ItemGroup itemGroup,
+                         @Nonnull SlimefunItemStack item,
+                         @Nonnull RecipeType recipeType,
+                         @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_INDIGO);
+        growthPhases.add(Skulls.SEED_BLUE);
         growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_1);
         growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_2);
         growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_3);
@@ -38,14 +38,13 @@ public class MoldableSeed extends NetherSeed {
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_INDIGO;
+        return Theme.SEED_BLUE;
     }
 
     @Nonnull
     @Override
     public Set<NetherSeedCrux> getValidPlaces() {
         return Set.of(
-            NpsSlimefunItems.BASIC_PURIFIED_NETHERRACK,
             NpsSlimefunItems.PURIFIED_NETHERRACK,
             NpsSlimefunItems.VORACIOUS_DIRT,
             NpsSlimefunItems.NETHER_DIRT,
@@ -56,12 +55,12 @@ public class MoldableSeed extends NetherSeed {
     @Nullable
     @Override
     public ItemStack getHarvestingResult() {
-        return new ItemStack(Material.CLAY_BALL);
+        return new ItemStack(Material.LAPIS_LAZULI);
     }
 
     @Override
     public double getGrowthRate() {
-        return 0.09;
+        return 0.07;
     }
 
     @Override
@@ -71,6 +70,6 @@ public class MoldableSeed extends NetherSeed {
 
     @Override
     public int purificationValue() {
-        return 1;
+        return 3;
     }
 }

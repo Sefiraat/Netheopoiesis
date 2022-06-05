@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -17,17 +17,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class ShinySeed extends NetherSeed {
+public class CombustibleSeed extends NetherSeed {
 
     private final List<Skulls> growthPhases = new ArrayList<>();
 
-    public ShinySeed(@Nonnull ItemGroup itemGroup,
-                     @Nonnull SlimefunItemStack item,
-                     @Nonnull RecipeType recipeType,
-                     @Nonnull ItemStack[] recipe
+    public CombustibleSeed(@Nonnull ItemGroup itemGroup,
+                           @Nonnull SlimefunItemStack item,
+                           @Nonnull RecipeType recipeType,
+                           @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_YELLOW);
+        growthPhases.add(Skulls.SEED_INDIGO);
         growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_1);
         growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_2);
         growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_3);
@@ -38,7 +38,7 @@ public class ShinySeed extends NetherSeed {
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_YELLOW;
+        return Theme.SEED_INDIGO;
     }
 
     @Nonnull
@@ -55,12 +55,12 @@ public class ShinySeed extends NetherSeed {
     @Nullable
     @Override
     public ItemStack getHarvestingResult() {
-        return new ItemStack(Material.GOLD_NUGGET);
+        return new ItemStack(Material.COAL);
     }
 
     @Override
     public double getGrowthRate() {
-        return 0.08;
+        return 0.07;
     }
 
     @Override
@@ -70,6 +70,6 @@ public class ShinySeed extends NetherSeed {
 
     @Override
     public int purificationValue() {
-        return 2;
+        return 3;
     }
 }

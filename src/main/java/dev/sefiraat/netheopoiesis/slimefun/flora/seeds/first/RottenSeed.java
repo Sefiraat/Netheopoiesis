@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -23,14 +23,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SplinteredSeed extends NetherSeed {
+public class RottenSeed extends NetherSeed {
 
     private final List<Skulls> growthPhases = new ArrayList<>();
 
-    public SplinteredSeed(@Nonnull ItemGroup itemGroup,
-                          @Nonnull SlimefunItemStack item,
-                          @Nonnull RecipeType recipeType,
-                          @Nonnull ItemStack[] recipe
+    public RottenSeed(@Nonnull ItemGroup itemGroup,
+                      @Nonnull SlimefunItemStack item,
+                      @Nonnull RecipeType recipeType,
+                      @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
         growthPhases.add(Skulls.SEED_GREEN);
@@ -63,7 +63,7 @@ public class SplinteredSeed extends NetherSeed {
                 return;
             }
 
-            blockBelow.getWorld().spawnEntity(block.getLocation(), EntityType.SKELETON);
+            blockBelow.getWorld().spawnEntity(block.getLocation(), EntityType.ZOMBIE);
         }
     }
 
