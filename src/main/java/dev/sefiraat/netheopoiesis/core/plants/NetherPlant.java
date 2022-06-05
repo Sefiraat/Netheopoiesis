@@ -1,7 +1,8 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
+package dev.sefiraat.netheopoiesis.core.plants;
 
-import dev.sefiraat.netheopoiesis.slimefun.flora.PurifyingObject;
+import dev.sefiraat.netheopoiesis.core.purification.PurifyingObject;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -12,8 +13,6 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.List;
-import java.util.Set;
 
 /**
  * This interface represents a plant in the Nether, and it's behavior as it ticks and grows
@@ -106,7 +105,7 @@ public interface NetherPlant extends PurifyingObject {
      * @return The set of {@link NetherSeedCrux} that are valid for placement
      */
     @Nonnull
-    Set<NetherSeedCrux> getValidPlaces();
+    Placement getPlacement();
 
     /**
      * Defines the chance at which this plant will grow each tick, between 0 (0%) and 1 (100%)
@@ -121,5 +120,5 @@ public interface NetherPlant extends PurifyingObject {
      *
      * @return The list of {@link Skulls} of valid growth stages (including the Seed)
      */
-    List<Skulls> getGrowthPhases();
+    GrowthDescription getGrowthDescription();
 }

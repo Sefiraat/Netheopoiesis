@@ -1,35 +1,25 @@
 package dev.sefiraat.netheopoiesis.slimefun;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
+import dev.sefiraat.netheopoiesis.core.plants.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plants.Placement;
 import dev.sefiraat.netheopoiesis.listeners.VanillaDropListener;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first.DustySeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first.GrainySeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first.MoldableSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first.PurificationSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first.RottenSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first.SeasideSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first.SpindleSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first.SplinteredSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first.StoneySeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first.StringySeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second.CombustibleSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second.EnchantedSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second.MetallicSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second.PerfectionSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second.ProtectiveSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second.ShinySeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second.SmoothSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second.SoulSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.second.ValuableSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.third.OakendranSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.third.SpiritSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.DroppingSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.EntitySpawningPlant;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.GenericTickingMethods;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.GenericTickingPlant;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.HarvestableSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.PurificationSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.SoulSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.SpiritSeed;
 import dev.sefiraat.netheopoiesis.slimefun.groups.NpsItemGroups;
 import dev.sefiraat.netheopoiesis.slimefun.tools.HarvestingTool;
 import dev.sefiraat.netheopoiesis.slimefun.tools.PurificationBarometer;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
 public class NpsSlimefunItems {
@@ -57,28 +47,28 @@ public class NpsSlimefunItems {
     public static final SpiritSeed SPIRIT_SEED;
 
     // First Stage
-    public static final SpindleSeed SPINDLE_SEED;
-    public static final GrainySeed GRAINY_SEED;
-    public static final StringySeed STRINGY_SEED;
-    public static final StoneySeed STONEY_SEED;
-    public static final DustySeed DUSTY_SEED;
-    public static final SeasideSeed SEASIDE_SEED;
-    public static final MoldableSeed MOLDABLE_SEED;
-    public static final SplinteredSeed SPLINTERED_SEED;
-    public static final RottenSeed ROTTEN_SEED;
+    public static final GenericTickingPlant SPINDLE_SEED;
+    public static final DroppingSeed GRAINY_SEED;
+    public static final DroppingSeed STRINGY_SEED;
+    public static final DroppingSeed STONEY_SEED;
+    public static final HarvestableSeed DUSTY_SEED;
+    public static final HarvestableSeed SEASIDE_SEED;
+    public static final HarvestableSeed MOLDABLE_SEED;
+    public static final EntitySpawningPlant SPLINTERED_SEED;
+    public static final EntitySpawningPlant ROTTEN_SEED;
 
     // Second Stage
-    public static final MetallicSeed METALLIC_SEED;
-    public static final ShinySeed SHINY_SEED;
-    public static final SmoothSeed SMOOTH_SEED;
-    public static final EnchantedSeed ENCHANTED_SEED;
-    public static final CombustibleSeed COMBUSTIBLE_SEED;
-    public static final ProtectiveSeed PROTECTIVE_SEED;
-    public static final ValuableSeed VALUABLE_SEED;
-    public static final PerfectionSeed PERFECTION_SEED;
+    public static final HarvestableSeed METALLIC_SEED;
+    public static final HarvestableSeed SHINY_SEED;
+    public static final HarvestableSeed SMOOTH_SEED;
+    public static final HarvestableSeed ENCHANTED_SEED;
+    public static final HarvestableSeed COMBUSTIBLE_SEED;
+    public static final EntitySpawningPlant PROTECTIVE_SEED;
+    public static final HarvestableSeed VALUABLE_SEED;
+    public static final HarvestableSeed PERFECTION_SEED;
 
     // Third Stage
-    public static final OakendranSeed OAKENDRAN_SEED;
+    public static final GenericTickingPlant OAKENDRAN_SEED;
 
     // Crux'
     public static final NetherSeedCrux BASIC_PURIFIED_NETHERRACK;
@@ -142,147 +132,203 @@ public class NpsSlimefunItems {
                 NpsSlimefunItemStacks.PURIFICATION_SEED,
                 new ItemStack(Material.SOUL_SOIL),
                 0.05
-            )
+            ),
+            GrowthDescription.HARDY_BLUE,
+            Placement.NULL
         );
 
         SOUL_SEED = new SoulSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SOUL_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_BLUE,
+            Placement.ALL
         );
 
         SPIRIT_SEED = new SpiritSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SPIRIT_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_BLUE,
+            Placement.PURIFIED_AND_UP
         );
 
-        SPINDLE_SEED = new SpindleSeed(
+        SPINDLE_SEED = new GenericTickingPlant(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SPINDLE_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_ORANGE,
+            Placement.ALL,
+            GenericTickingMethods::onTickSpindleSeed,
+            0.09,
+            1
         );
 
-        GRAINY_SEED = new GrainySeed(
+        GRAINY_SEED = new DroppingSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.GRAINY_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_RED,
+            Placement.ALL,
+            new ItemStack(Material.REDSTONE),
+            0.09,
+            1
         );
 
-        STRINGY_SEED = new StringySeed(
+        STRINGY_SEED = new DroppingSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.STRINGY_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_GREEN,
+            Placement.ALL,
+            new ItemStack(Material.STRING),
+            0.09,
+            1
         );
 
-        STONEY_SEED = new StoneySeed(
+        STONEY_SEED = new DroppingSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.STONEY_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_INDIGO,
+            Placement.ALL,
+            new ItemStack(Material.COBBLESTONE),
+            0.09,
+            1
         );
 
-        DUSTY_SEED = new DustySeed(
+        DUSTY_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.DUSTY_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_INDIGO,
+            Placement.ALL,
+            new ItemStack(Material.GRAVEL),
+            0.09,
+            1
         );
 
-        SEASIDE_SEED = new SeasideSeed(
+        SEASIDE_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SEASIDE_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_YELLOW,
+            Placement.ALL,
+            new ItemStack(Material.SAND),
+            0.09,
+            1
         );
 
-        MOLDABLE_SEED = new MoldableSeed(
+        MOLDABLE_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.MOLDABLE_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_INDIGO,
+            Placement.ALL,
+            new ItemStack(Material.CLAY_BALL),
+            0.09,
+            1
         );
 
-        SPLINTERED_SEED = new SplinteredSeed(
+        SPLINTERED_SEED = new EntitySpawningPlant(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SPLINTERED_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_ORANGE,
+            Placement.ALL,
+            EntityType.SKELETON,
+            0.08,
+            2
         );
 
-        ROTTEN_SEED = new RottenSeed(
+        ROTTEN_SEED = new EntitySpawningPlant(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.ROTTEN_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_GREEN,
+            Placement.ALL,
+            EntityType.ZOMBIE,
+            0.08,
+            2
         );
 
-        METALLIC_SEED = new MetallicSeed(
+        METALLIC_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.METALLIC_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_RED,
+            Placement.PURIFIED_AND_UP,
+            new ItemStack(Material.IRON_NUGGET),
+            0.08,
+            2
         );
 
-        SHINY_SEED = new ShinySeed(
+        SHINY_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SHINY_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_YELLOW,
+            Placement.PURIFIED_AND_UP,
+            new ItemStack(Material.GOLD_NUGGET),
+            0.08,
+            2
         );
 
-        SMOOTH_SEED = new SmoothSeed(
+        SMOOTH_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SMOOTH_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_VIOLET,
+            Placement.PURIFIED_AND_UP,
+            new ItemStack(Material.AMETHYST_SHARD),
+            0.08,
+            2
         );
 
-        ENCHANTED_SEED = new EnchantedSeed(
+        ENCHANTED_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.ENCHANTED_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_BLUE,
+            Placement.PURIFIED_AND_UP,
+            new ItemStack(Material.LAPIS_LAZULI),
+            0.07,
+            3
         );
 
-        COMBUSTIBLE_SEED = new CombustibleSeed(
+        COMBUSTIBLE_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.COMBUSTIBLE_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_VIOLET,
+            Placement.PURIFIED_AND_UP,
+            new ItemStack(Material.COAL),
+            0.07,
+            3
         );
 
-        PROTECTIVE_SEED = new ProtectiveSeed(
+        PROTECTIVE_SEED = new EntitySpawningPlant(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.PROTECTIVE_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_YELLOW,
+            Placement.ALL,
+            EntityType.IRON_GOLEM,
+            0.03,
+            5
         );
 
-        VALUABLE_SEED = new ValuableSeed(
+        VALUABLE_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.VALUABLE_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_VIOLET,
+            Placement.PURIFIED_AND_UP,
+            new ItemStack(Material.EMERALD),
+            0.07,
+            3
         );
 
-        PERFECTION_SEED = new PerfectionSeed(
+        PERFECTION_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.PERFECTION_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_BLUE,
+            Placement.PURIFIED_AND_UP,
+            new ItemStack(Material.DIAMOND),
+            0.07,
+            5
         );
 
-        OAKENDRAN_SEED = new OakendranSeed(
+        OAKENDRAN_SEED = new GenericTickingPlant(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.OAKENDRAN_SEED,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0]
+            GrowthDescription.HARDY_RED,
+            Placement.VORACIOUS_AND_UP,
+            GenericTickingMethods::onTickOakendranSeed,
+            0.04,
+            12
         );
 
         // endregion

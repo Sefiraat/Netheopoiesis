@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.breeding;
+package dev.sefiraat.netheopoiesis.core.plants.breeding;
 
 import javax.annotation.Nonnull;
 

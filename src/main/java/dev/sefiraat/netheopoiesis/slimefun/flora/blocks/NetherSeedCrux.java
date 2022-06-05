@@ -1,6 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.blocks;
 
-import dev.sefiraat.netheopoiesis.slimefun.flora.PurifyingObject;
+import dev.sefiraat.netheopoiesis.core.purification.PurifyingObject;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -65,7 +65,7 @@ public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
     }
 
     @Override
-    public int purificationValue() {
+    public int getPurificationValue() {
         return purificationValue;
     }
 }

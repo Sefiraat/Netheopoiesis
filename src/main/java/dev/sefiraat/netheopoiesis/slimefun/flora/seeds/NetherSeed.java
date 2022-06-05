@@ -1,13 +1,17 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.Netheopoiesis;
-import dev.sefiraat.netheopoiesis.breeding.BreedResult;
-import dev.sefiraat.netheopoiesis.breeding.BreedingDefinitions;
+import dev.sefiraat.netheopoiesis.core.plants.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plants.NetherPlant;
+import dev.sefiraat.netheopoiesis.core.plants.Placement;
+import dev.sefiraat.netheopoiesis.core.plants.breeding.BreedResult;
+import dev.sefiraat.netheopoiesis.core.plants.breeding.BreedingDefinitions;
 import dev.sefiraat.netheopoiesis.events.NetherPlantBeforeGrowthEvent;
+import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Particles;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
+import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.bakedlibs.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -47,21 +51,32 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         BlockFace.WEST
     );
 
+    private final GrowthDescription growthStages;
+    private final Placement placement;
+
     protected NetherSeed(@Nonnull ItemGroup itemGroup,
                          @Nonnull SlimefunItemStack item,
                          @Nonnull RecipeType recipeType,
-                         @Nonnull ItemStack[] recipe
+                         @Nonnull ItemStack[] recipe,
+                         @Nonnull GrowthDescription growthDescription,
+                         @Nonnull Placement placement
     ) {
         super(itemGroup, item, recipeType, recipe);
+        this.growthStages = growthDescription;
+        this.placement = placement;
     }
 
     protected NetherSeed(@Nonnull ItemGroup itemGroup,
                          @Nonnull SlimefunItemStack item,
                          @Nonnull RecipeType recipeType,
                          @Nonnull ItemStack[] recipe,
-                         @Nullable ItemStack recipeOutput
+                         @Nullable ItemStack recipeOutput,
+                         @Nonnull GrowthDescription growthDescription,
+                         @Nonnull Placement placement
     ) {
         super(itemGroup, item, recipeType, recipe, recipeOutput);
+        this.growthStages = growthDescription;
+        this.placement = placement;
     }
 
     @Override
@@ -95,7 +110,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         final Location location = block.getLocation();
         int growthStage = Integer.parseInt(data.getString(Keys.SEED_GROWTH_STAGE));
         onTickAlways(location, seed, data);
-        if (growthStage >= getGrowthPhases().size()) {
+        if (growthStage >= getGrowthDescription().stages()) {
             onTickFullyGrown(location, seed, data);
             tryBreed(block, seed);
         } else {
@@ -107,14 +122,14 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     @ParametersAreNonnullByDefault
     private void tryGrow(Block block, NetherSeed seed, Config data, Location location, int growthStage) {
         final double growthRandom = ThreadLocalRandom.current().nextDouble();
-        if (growthRandom <= getGrowthRate() && getGrowthPhases().size() > growthStage) {
+        if (growthRandom <= getGrowthRate() && getGrowthDescription().stages() > growthStage) {
             NetherPlantBeforeGrowthEvent event = new NetherPlantBeforeGrowthEvent(location, seed, growthStage);
             Bukkit.getPluginManager().callEvent(event);
             if (event.isCancelled()) {
                 return;
             }
             updateGrowthStage(block, growthStage + 1);
-            if (getGrowthPhases().size() == growthStage) {
+            if (getGrowthDescription().stages() == growthStage) {
                 onFullyMatures(location, seed, data);
             }
         }
@@ -148,7 +163,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
 
     private void trySetChildSeed(Block cloneBlock, NetherSeed childSeed) {
         cloneBlock.setType(Material.PLAYER_HEAD);
-        PlayerHead.setSkin(cloneBlock, childSeed.getGrowthPhases().get(0).getPlayerSkin(), false);
+        PlayerHead.setSkin(cloneBlock, childSeed.getGrowthDescription().get(0).getPlayerSkin(), false);
         PaperLib.getBlockState(cloneBlock, false).getState().update(true, false);
         BlockStorage.store(cloneBlock, childSeed.getId());
         BlockStorage.addBlockInfo(cloneBlock, Keys.SEED_GROWTH_STAGE, "0");
@@ -164,7 +179,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
             return false;
         }
         final int growthStage = Integer.parseInt(stageString);
-        return growthStage >= getGrowthPhases().size();
+        return growthStage >= getGrowthDescription().stages();
     }
 
     public void updateGrowthStage(@Nonnull Location location, int growthStage) {
@@ -173,7 +188,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
 
     public void updateGrowthStage(@Nonnull Block block, int growthStage) {
         final Location location = block.getLocation().clone().add(0.5, 0.5, 0.5);
-        final Skulls nextTexture = getGrowthPhases().get(growthStage - 1);
+        final Skulls nextTexture = getGrowthDescription().get(growthStage - 1);
         PlayerHead.setSkin(block, nextTexture.getPlayerSkin(), false);
         PaperLib.getBlockState(block, false).getState().update(true, false);
         BlockStorage.addBlockInfo(block, Keys.SEED_GROWTH_STAGE, String.valueOf(growthStage));
@@ -193,13 +208,30 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         final SlimefunItem itemBelow = BlockStorage.check(blockBelow);
 
         if (itemBelow instanceof NetherSeedCrux crux
-            && location.getWorld().getEnvironment() == World.Environment.NETHER && getValidPlaces().contains(crux)
+            && location.getWorld().getEnvironment() == World.Environment.NETHER && getPlacement().contains(crux)
         ) {
             BlockStorage.addBlockInfo(location, Keys.SEED_GROWTH_STAGE, "0");
             return;
         }
         // Wasn't placable, so cancel the event
         event.setCancelled(true);
+    }
+
+    @Override
+    public GrowthDescription getGrowthDescription() {
+        return growthStages;
+    }
+
+    @Nonnull
+    @Override
+    public Theme getTheme() {
+        return growthStages.getTheme();
+    }
+
+    @Nonnull
+    @Override
+    public Placement getPlacement() {
+        return this.placement;
     }
 
     private void displayGrowthParticles(@Nonnull Location location) {

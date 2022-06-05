@@ -1,5 +1,8 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.third;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression;
 
+import dev.sefiraat.netheopoiesis.core.plants.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plants.Placement;
+import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItemStacks;
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -25,20 +28,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SpiritSeed extends NetherSeed {
 
-    private final List<Skulls> growthPhases = new ArrayList<>();
-
     public SpiritSeed(@Nonnull ItemGroup itemGroup,
                       @Nonnull SlimefunItemStack item,
-                      @Nonnull RecipeType recipeType,
-                      @Nonnull ItemStack[] recipe
+                      @Nonnull GrowthDescription growthDescription,
+                      @Nonnull Placement placement
     ) {
-        super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_ORANGE);
-        growthPhases.add(Skulls.PLANT_VINES_GROWTH_1);
-        growthPhases.add(Skulls.PLANT_VINES_GROWTH_2);
-        growthPhases.add(Skulls.PLANT_VINES_GROWTH_3);
-        growthPhases.add(Skulls.PLANT_VINES_GROWTH_4);
-        growthPhases.add(Skulls.PLANT_VINES_GROWTH_5);
+        super(itemGroup, item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], growthDescription, placement);
     }
 
     @Override
@@ -52,7 +47,7 @@ public class SpiritSeed extends NetherSeed {
             for (int i = -1; i < 2; i++) {
                 final Block block = location.clone().add(randomX, i, randomZ).getBlock();
                 final SlimefunItem possibleCrux = BlockStorage.check(block);
-                if (possibleCrux instanceof NetherSeedCrux crux && getValidPlaces().contains(crux)) {
+                if (possibleCrux instanceof NetherSeedCrux crux && getPlacement().contains(crux)) {
                     block.setType(NpsSlimefunItemStacks.VORACIOUS_DIRT.getType());
                     BlockStorage.store(block, NpsSlimefunItemStacks.VORACIOUS_DIRT.getItemId());
                     // Return so we only effect the one block per valid tick
@@ -68,29 +63,13 @@ public class SpiritSeed extends NetherSeed {
         return Theme.SEED_ORANGE;
     }
 
-    @Nonnull
-    @Override
-    public Set<NetherSeedCrux> getValidPlaces() {
-        return Set.of(
-            NpsSlimefunItems.PURIFIED_NETHERRACK,
-            NpsSlimefunItems.VORACIOUS_DIRT,
-            NpsSlimefunItems.NETHER_DIRT,
-            NpsSlimefunItems.NETHER_GRASS
-        );
-    }
-
     @Override
     public double getGrowthRate() {
         return 0.6;
     }
 
     @Override
-    public List<Skulls> getGrowthPhases() {
-        return this.growthPhases;
-    }
-
-    @Override
-    public int purificationValue() {
+    public int getPurificationValue() {
         return 4;
     }
 }

@@ -44,7 +44,7 @@ public class HarvestingTool extends LimitedUseItem {
             final Block block = optional.get();
             final SlimefunItem slimefunItem = BlockStorage.check(block);
             if (slimefunItem instanceof NetherSeed seed && seed.isHarvestable() && seed.isMature(block)) {
-                final ItemStack stackToDrop = seed.getHarvestingResult().clone();
+                final ItemStack stackToDrop = seed.getHarvestingResult();
                 seed.updateGrowthStage(block, 0);
                 block.getWorld().dropItem(block.getLocation(), stackToDrop);
                 damageItem(e.getPlayer(), e.getItem());

@@ -1,10 +1,11 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.first;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression;
 
+import dev.sefiraat.netheopoiesis.core.plants.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plants.Placement;
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItemStacks;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Keys;
-import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -22,23 +23,21 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PurificationSeed extends NetherSeed {
 
     private final Set<Material> materials;
-    private final List<Skulls> growthPhases = new ArrayList<>();
 
     public PurificationSeed(@Nonnull ItemGroup itemGroup,
                             @Nonnull SlimefunItemStack item,
                             @Nonnull RecipeType recipeType,
-                            @Nonnull ItemStack[] recipe
+                            @Nonnull ItemStack[] recipe,
+                            @Nonnull GrowthDescription growthDescription,
+                            @Nonnull Placement placement
     ) {
-        super(itemGroup, item, recipeType, recipe);
+        super(itemGroup, item, recipeType, recipe, growthDescription, placement);
         materials = Set.of(
             Material.NETHERRACK,
             Material.CRIMSON_NYLIUM,
@@ -46,12 +45,6 @@ public class PurificationSeed extends NetherSeed {
             Material.NETHER_QUARTZ_ORE,
             Material.NETHER_GOLD_ORE
         );
-        growthPhases.add(Skulls.SEED_BLUE);
-        growthPhases.add(Skulls.PLANT_VINES_GROWTH_1);
-        growthPhases.add(Skulls.PLANT_VINES_GROWTH_2);
-        growthPhases.add(Skulls.PLANT_VINES_GROWTH_3);
-        growthPhases.add(Skulls.PLANT_VINES_GROWTH_4);
-        growthPhases.add(Skulls.PLANT_VINES_GROWTH_5);
     }
 
     @Override
@@ -96,25 +89,13 @@ public class PurificationSeed extends NetherSeed {
         }
     }
 
-    @Nonnull
-    @Override
-    public Set<NetherSeedCrux> getValidPlaces() {
-        // Purification is the odd one out as it has to be on a vanilla block to begin the cycle
-        return Collections.emptySet();
-    }
-
     @Override
     public double getGrowthRate() {
         return 0.15;
     }
 
     @Override
-    public List<Skulls> getGrowthPhases() {
-        return this.growthPhases;
-    }
-
-    @Override
-    public int purificationValue() {
+    public int getPurificationValue() {
         return 1;
     }
 }

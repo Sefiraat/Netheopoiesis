@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora;
+package dev.sefiraat.netheopoiesis.core.purification;
 
 import dev.sefiraat.netheopoiesis.PurificationMemory;
 import org.bukkit.block.Block;
@@ -14,13 +14,13 @@ public interface PurifyingObject {
      *
      * @return The value that this item will increment the purification amount
      */
-    int purificationValue();
+    int getPurificationValue();
 
     /**
      * Adds the purification value to the {@link PurificationMemory} instance.
      */
     default void registerPurificationValue(@Nonnull Block block) {
-        PurificationMemory.getInstance().addPurifyingValue(block, purificationValue());
+        PurificationMemory.getInstance().addPurifyingValue(block, getPurificationValue());
     }
 
     /**

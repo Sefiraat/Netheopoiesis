@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.breeding;
+package dev.sefiraat.netheopoiesis.core.plants.breeding;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
