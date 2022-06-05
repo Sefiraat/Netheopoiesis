@@ -1,7 +1,9 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
+import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.breeding.BreedResult;
 import dev.sefiraat.netheopoiesis.breeding.BreedingDefinitions;
+import dev.sefiraat.netheopoiesis.events.NetherPlantBeforeGrowthEvent;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Particles;
@@ -16,6 +18,7 @@ import io.papermc.lib.PaperLib;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -105,6 +108,11 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     private void tryGrow(Block block, NetherSeed seed, Config data, Location location, int growthStage) {
         final double growthRandom = ThreadLocalRandom.current().nextDouble();
         if (growthRandom <= getGrowthRate() && getGrowthPhases().size() > growthStage) {
+            NetherPlantBeforeGrowthEvent event = new NetherPlantBeforeGrowthEvent(location, seed, growthStage);
+            Bukkit.getPluginManager().callEvent(event);
+            if (event.isCancelled()) {
+                return;
+            }
             updateGrowthStage(block, growthStage + 1);
             if (getGrowthPhases().size() == growthStage) {
                 onFullyMatures(location, seed, data);

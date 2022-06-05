@@ -24,10 +24,6 @@ public class VanillaDropListener implements Listener {
         if (blockDrop == null) {
             return;
         }
-
-        event.setCancelled(true);
-        event.setExpToDrop(0);
-        event.setDropItems(false);
         blockDrop.rollDrop(event);
     }
 
