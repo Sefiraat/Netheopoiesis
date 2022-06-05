@@ -51,8 +51,11 @@ public class BreedingPair {
     public boolean isBreedPossible(@Nonnull NetherSeed seed1, @Nonnull NetherSeed seed2) {
         final String id1 = seed1.getId();
         final String id2 = seed2.getId();
-        if (id1.equals(motherSeed.getId()) || id1.equals(fatherSeed.getId())) {
-            return id2.equals(motherSeed.getId()) || id2.equals(fatherSeed.getId());
+
+        if (id1.equals(motherSeed.getId())) {
+            return id2.equals(fatherSeed.getId());
+        } else if (id1.equals(fatherSeed.getId())) {
+            return id2.equals(motherSeed.getId());
         }
         return false;
     }

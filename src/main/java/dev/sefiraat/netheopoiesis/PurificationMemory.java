@@ -40,6 +40,11 @@ public class PurificationMemory {
         this.purifyingObjectValues.put(blockPosition, value);
     }
 
+    public void removePurifyingValue(@Nonnull Block block) {
+        final BlockPosition blockPosition = new BlockPosition(block);
+        this.purifyingObjectValues.remove(blockPosition);
+    }
+
     public int getPurificationValue(@Nonnull Block block) {
         return purifyingObjectValues.getOrDefault(new BlockPosition(block), 0);
     }

@@ -16,7 +16,9 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.StoneySeed
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.StringySeed;
 import dev.sefiraat.netheopoiesis.slimefun.groups.NpsItemGroups;
 import dev.sefiraat.netheopoiesis.slimefun.tools.HarvestingTool;
+import dev.sefiraat.netheopoiesis.slimefun.tools.PurificationBarometer;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -27,12 +29,15 @@ public class NpsSlimefunItems {
     }
 
     // Vanilla Materials
-    public static final ItemStack OAK_PLANK = new ItemStack(Material.OAK_PLANKS);
+    private static final ItemStack OAK_PLANK = new ItemStack(Material.OAK_PLANKS);
+    private static final ItemStack GLASS = new ItemStack(Material.GLASS);
+    private static final ItemStack REDSTONE = new ItemStack(Material.REDSTONE);
 
     // Crafting
 
     // Tools
     public static final HarvestingTool CRUDE_HARVESTING_TOOL;
+    public static final PurificationBarometer PURIFICATION_BAROMETER;
 
     // Seeds
     public static final PurificationSeed PURIFICATION_SEED;
@@ -75,6 +80,17 @@ public class NpsSlimefunItems {
                 OAK_PLANK, OAK_PLANK, null,
             },
             25
+        );
+
+        PURIFICATION_BAROMETER = new PurificationBarometer(
+            NpsItemGroups.TOOLS,
+            NpsSlimefunItemStacks.PURIFICATION_BAROMETER,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[]{
+                SlimefunItems.ZINC_INGOT, GLASS, SlimefunItems.ZINC_INGOT,
+                GLASS, REDSTONE, GLASS,
+                SlimefunItems.ZINC_INGOT, GLASS, SlimefunItems.ZINC_INGOT,
+            }
         );
 
         // endregion
@@ -211,6 +227,7 @@ public class NpsSlimefunItems {
 
         // Tools
         CRUDE_HARVESTING_TOOL.register(plugin);
+        PURIFICATION_BAROMETER.register(plugin);
 
         // Seeds
         PURIFICATION_SEED.register(plugin);

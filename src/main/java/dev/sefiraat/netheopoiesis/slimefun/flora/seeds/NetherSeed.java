@@ -1,9 +1,7 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.breeding.BreedResult;
 import dev.sefiraat.netheopoiesis.breeding.BreedingDefinitions;
-import dev.sefiraat.netheopoiesis.slimefun.flora.PurifyingObject;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Particles;
@@ -13,6 +11,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.papermc.lib.PaperLib;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
@@ -22,12 +21,14 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -74,6 +75,13 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
                     if (item instanceof NetherSeed seed) {
                         onTick(block, seed, data);
                     }
+                }
+            },
+            new BlockBreakHandler(false, false) {
+                @Override
+                @ParametersAreNonnullByDefault
+                public void onPlayerBreak(BlockBreakEvent blockBreakEvent, ItemStack itemStack, List<ItemStack> list) {
+                    removePurificationRegistry(blockBreakEvent.getBlock());
                 }
             }
         );

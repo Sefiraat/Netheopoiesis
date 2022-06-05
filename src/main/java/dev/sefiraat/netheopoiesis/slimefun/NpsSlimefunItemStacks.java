@@ -19,6 +19,7 @@ public class NpsSlimefunItemStacks {
 
     // Tools
     public static final SlimefunItemStack CRUDE_HARVESTING_TOOL;
+    public static final SlimefunItemStack PURIFICATION_BAROMETER;
 
     // Seeds
     public static final SlimefunItemStack PURIFICATION_SEED;
@@ -62,6 +63,15 @@ public class NpsSlimefunItemStacks {
             "last long",
             "",
             LoreBuilder.usesLeft(25)
+        );
+
+        PURIFICATION_BAROMETER = Theme.themedSlimefunItemStack(
+            "NPS_PURIFICATION_BAROMETER",
+            Material.CLOCK,
+            Theme.TOOL,
+            "Purification Barometer",
+            "When used, this tool will tell you",
+            "how purified the current chunk is."
         );
 
         // endregion

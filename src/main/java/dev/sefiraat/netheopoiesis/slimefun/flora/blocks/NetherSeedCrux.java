@@ -15,6 +15,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
@@ -56,7 +57,14 @@ public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
 
                 @Override
                 public void tick(Block block, SlimefunItem slimefunItem, Config config) {
-                    registerPurificationValue(block);
+                    removePurificationRegistry(block);
+                }
+            },
+            new BlockBreakHandler(false, false) {
+                @Override
+                @ParametersAreNonnullByDefault
+                public void onPlayerBreak(BlockBreakEvent blockBreakEvent, ItemStack itemStack, List<ItemStack> list) {
+                    removePurificationRegistry(blockBreakEvent.getBlock());
                 }
             }
         );
