@@ -27,6 +27,17 @@ public final class NpsRecipeTypes {
     );
 
     @Nonnull
+    public static final RecipeType PLANT_HARVEST = new RecipeType(
+        Keys.newKey("plant_harvest"),
+        Theme.themedItemStack(
+            Material.PRISMARINE_SHARD,
+            Theme.RECIPE_TYPE,
+            "Plant Harvesting",
+            "This item can be harvested from a plant."
+        )
+    );
+
+    @Nonnull
     public static final RecipeType PLANT_BREEDING = new RecipeType(
         Keys.newKey("plant_breeding"),
         Theme.themedItemStack(

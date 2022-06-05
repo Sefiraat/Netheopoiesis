@@ -93,21 +93,10 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     @ParametersAreNonnullByDefault
     private void tryGrow(Block block, NetherSeed seed, Config data, Location location, int growthStage) {
         final double growthRandom = ThreadLocalRandom.current().nextDouble();
-        if (growthRandom <= getGrowthRate()) {
-            growthStage++;
-            BlockStorage.addBlockInfo(
-                location,
-                Keys.SEED_GROWTH_STAGE,
-                String.valueOf(growthStage)
-            );
-            if (getGrowthPhases().size() >= growthStage) {
-                final Skulls nextTexture = getGrowthPhases().get(growthStage);
-                PlayerHead.setSkin(block, nextTexture.getPlayerSkin(), false);
-                PaperLib.getBlockState(block, false).getState().update(true, false);
-                displayGrowthParticles(location);
-                if (getGrowthPhases().size() == growthStage) {
-                    onFullyMatures(location, seed, data);
-                }
+        if (growthRandom <= getGrowthRate() && getGrowthPhases().size() > growthStage) {
+            updateGrowthStage(block, growthStage + 1);
+            if (getGrowthPhases().size() == growthStage) {
+                onFullyMatures(location, seed, data);
             }
         }
     }
@@ -144,6 +133,32 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         PaperLib.getBlockState(cloneBlock, false).getState().update(true, false);
         BlockStorage.store(cloneBlock, childSeed.getId());
         BlockStorage.addBlockInfo(cloneBlock, Keys.SEED_GROWTH_STAGE, "0");
+    }
+
+    public boolean isMature(@Nonnull Block block) {
+        return isMature(block.getLocation());
+    }
+
+    public boolean isMature(@Nonnull Location location) {
+        final String stageString = BlockStorage.getLocationInfo(location, Keys.SEED_GROWTH_STAGE);
+        if (stageString == null) {
+            return false;
+        }
+        final int growthStage = Integer.parseInt(stageString);
+        return growthStage >= getGrowthPhases().size();
+    }
+
+    public void updateGrowthStage(@Nonnull Location location, int growthStage) {
+        updateGrowthStage(location.getBlock(), growthStage);
+    }
+
+    public void updateGrowthStage(@Nonnull Block block, int growthStage) {
+        final Location location = block.getLocation().clone().add(0.5, 0.5, 0.5);
+        final Skulls nextTexture = getGrowthPhases().get(growthStage - 1);
+        PlayerHead.setSkin(block, nextTexture.getPlayerSkin(), false);
+        PaperLib.getBlockState(block, false).getState().update(true, false);
+        BlockStorage.addBlockInfo(block, Keys.SEED_GROWTH_STAGE, String.valueOf(growthStage));
+        displayGrowthParticles(location);
     }
 
     /**

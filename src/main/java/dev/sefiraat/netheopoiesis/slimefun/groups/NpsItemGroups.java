@@ -25,7 +25,15 @@ public final class NpsItemGroups {
         Keys.newKey("crafting"),
         new CustomItemStack(
             new ItemStack(Material.STICK),
-            Theme.MAIN.color("Netheopoiesis Seeds")
+            Theme.MAIN.color("Netheopoiesis Crafting Items")
+        )
+    );
+
+    public static final DummyItemGroup TOOLS = new DummyItemGroup(
+        Keys.newKey("tools"),
+        new CustomItemStack(
+            new ItemStack(Material.COMPASS),
+            Theme.MAIN.color("Netheopoiesis Tools")
         )
     );
 
@@ -50,6 +58,8 @@ public final class NpsItemGroups {
 
         // Slimefun Registry
         MAIN.register(plugin);
+        CRAFTING.register(plugin);
+        TOOLS.register(plugin);
         SEEDS.register(plugin);
         CRUX.register(plugin);
     }

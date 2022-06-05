@@ -28,6 +28,7 @@ public enum Theme {
     CRAFTING(ChatColor.of("#dbcea9"), "Crafting Material"),
     RECIPE_TYPE(ChatColor.of("#ffe89c"), "Recipe Type"),
     MACHINE(ChatColor.of("#3295a8"), "Machine"),
+    TOOL(ChatColor.of("#3295a8"), "Tool"),
     SEED(ChatColor.of("#a241bf"), "Seed"),
     CRUX(ChatColor.of("#a241bf"), "Crux"),
     // Seeds

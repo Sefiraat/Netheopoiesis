@@ -18,23 +18,24 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SpindleSeed extends NetherSeed {
+public class StoneySeed extends NetherSeed {
 
     private final LinkedList<Skulls> growthPhases = new LinkedList<>();
 
-    public SpindleSeed(@Nonnull ItemGroup itemGroup,
-                       @Nonnull SlimefunItemStack item,
-                       @Nonnull RecipeType recipeType,
-                       @Nonnull ItemStack[] recipe
+    public StoneySeed(@Nonnull ItemGroup itemGroup,
+                      @Nonnull SlimefunItemStack item,
+                      @Nonnull RecipeType recipeType,
+                      @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_ORANGE);
+        growthPhases.add(Skulls.SEED_VIOLET);
         growthPhases.add(Skulls.PLANT_HARDY_GROWTH_1);
         growthPhases.add(Skulls.PLANT_HARDY_GROWTH_2);
         growthPhases.add(Skulls.PLANT_HARDY_GROWTH_3);
@@ -42,35 +43,10 @@ public class SpindleSeed extends NetherSeed {
         growthPhases.add(Skulls.PLANT_HARDY_GROWTH_5);
     }
 
-    @Override
-    @ParametersAreNonnullByDefault
-    public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
-        double randomChance = ThreadLocalRandom.current().nextDouble();
-        if (randomChance <= 0.05) {
-            final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
-            final double randomY = ThreadLocalRandom.current().nextInt(-2, 3);
-            final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
-            final Block block = location.clone().add(randomX, randomY, randomZ).getBlock();
-
-            // the first block we spawn on needs to be AIR
-            if (block.getType() != Material.AIR) {
-                return;
-            }
-
-            final Block blockBelow = block.getRelative(BlockFace.DOWN);
-            final SlimefunItem possibleCrux = BlockStorage.check(blockBelow);
-
-            // And the block below must be a valid crux
-            if (possibleCrux instanceof NetherSeedCrux crux && getValidPlaces().contains(crux)) {
-                block.setType(Material.OAK_LOG);
-            }
-        }
-    }
-
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_ORANGE;
+        return Theme.SEED_VIOLET;
     }
 
     @Nonnull
@@ -83,6 +59,12 @@ public class SpindleSeed extends NetherSeed {
             NpsSlimefunItems.NETHER_DIRT,
             NpsSlimefunItems.NETHER_GRASS
         );
+    }
+
+    @Nullable
+    @Override
+    public ItemStack getHarvestingResult() {
+        return new ItemStack(Material.COBBLESTONE);
     }
 
     @Override

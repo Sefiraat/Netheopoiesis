@@ -13,7 +13,7 @@ public final class BreedingDefinitions {
         throw new IllegalStateException("Utility class");
     }
 
-    private static final BreedingPair SPINDLE_PAIR = new BreedingPair(
+    private static final BreedingPair SPINDLE = new BreedingPair(
         NpsSlimefunItems.SPINDLE_SEED,
         NpsSlimefunItems.PURIFICATION_SEED,
         NpsSlimefunItems.PURIFICATION_SEED,
@@ -21,8 +21,80 @@ public final class BreedingDefinitions {
         0.2
     );
 
+    private static final BreedingPair GRAINY = new BreedingPair(
+        NpsSlimefunItems.GRAINY_SEED,
+        NpsSlimefunItems.PURIFICATION_SEED,
+        NpsSlimefunItems.PURIFICATION_SEED,
+        0.1,
+        0.2
+    );
+
+    private static final BreedingPair STRINGY = new BreedingPair(
+        NpsSlimefunItems.STRINGY_SEED,
+        NpsSlimefunItems.PURIFICATION_SEED,
+        NpsSlimefunItems.PURIFICATION_SEED,
+        0.1,
+        0.2
+    );
+
+    private static final BreedingPair STONEY = new BreedingPair(
+        NpsSlimefunItems.STONEY_SEED,
+        NpsSlimefunItems.SPINDLE_SEED,
+        NpsSlimefunItems.GRAINY_SEED,
+        0.1,
+        0.2
+    );
+
+    private static final BreedingPair DUSTY = new BreedingPair(
+        NpsSlimefunItems.DUSTY_SEED,
+        NpsSlimefunItems.STONEY_SEED,
+        NpsSlimefunItems.GRAINY_SEED,
+        0.1,
+        0.2
+    );
+
+    private static final BreedingPair SEASIDE = new BreedingPair(
+        NpsSlimefunItems.SEASIDE_SEED,
+        NpsSlimefunItems.SPINDLE_SEED,
+        NpsSlimefunItems.DUSTY_SEED,
+        0.05,
+        0.2
+    );
+
+    private static final BreedingPair SPLINTERED = new BreedingPair(
+        NpsSlimefunItems.SPLINTERED_SEED,
+        NpsSlimefunItems.SPINDLE_SEED,
+        NpsSlimefunItems.STRINGY_SEED,
+        0.05,
+        0.2
+    );
+
+    private static final BreedingPair ROTTEN = new BreedingPair(
+        NpsSlimefunItems.ROTTEN_SEED,
+        NpsSlimefunItems.SPLINTERED_SEED,
+        NpsSlimefunItems.DUSTY_SEED,
+        0.05,
+        0.2
+    );
+
+    private static final BreedingPair SOUL = new BreedingPair(
+        NpsSlimefunItems.SOUL_SEED,
+        NpsSlimefunItems.ROTTEN_SEED,
+        NpsSlimefunItems.PURIFICATION_SEED,
+        0.05,
+        0.2
+    );
+
     private static final Set<BreedingPair> BREEDING_PAIRS = Set.of(
-        SPINDLE_PAIR
+        SPINDLE,
+        GRAINY,
+        STRINGY,
+        STONEY,
+        DUSTY,
+        SEASIDE,
+        SPLINTERED,
+        ROTTEN,
+        SOUL
     );
 
     public static Set<BreedingPair> getBreedingPairs() {

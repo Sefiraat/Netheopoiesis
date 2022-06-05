@@ -24,7 +24,7 @@ public interface NetherPlant {
      * This method will fire every single time the NetherPlant ticks
      *
      * @param location The location of the plant being ticked
-     * @param item     The {@link SlimefunItem} being ticked
+     * @param seed     The {@link SlimefunItem} being ticked
      * @param data     The {@link Config} from BlockStorage for the location
      */
     @ParametersAreNonnullByDefault
@@ -36,7 +36,7 @@ public interface NetherPlant {
      * This method will fire when the NetherPlant ticks when fully grown
      *
      * @param location The location of the plant being ticked
-     * @param item     The {@link SlimefunItem} being ticked
+     * @param seed     The {@link SlimefunItem} being ticked
      * @param data     The {@link Config} from BlockStorage for the location
      */
     @ParametersAreNonnullByDefault
@@ -48,7 +48,7 @@ public interface NetherPlant {
      * This method will fire each time the plant grows a single step
      *
      * @param location The location of the plant being ticked
-     * @param item     The {@link SlimefunItem} being ticked
+     * @param seed     The {@link SlimefunItem} being ticked
      * @param data     The {@link Config} from BlockStorage for the location
      */
     @ParametersAreNonnullByDefault
@@ -60,7 +60,7 @@ public interface NetherPlant {
      * This method will fire once when the plant reaches full maturity
      *
      * @param location The location of the plant being ticked
-     * @param item     The {@link SlimefunItem} being ticked
+     * @param seed     The {@link SlimefunItem} being ticked
      * @param data     The {@link Config} from BlockStorage for the location
      */
     @ParametersAreNonnullByDefault
