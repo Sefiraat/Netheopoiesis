@@ -70,14 +70,8 @@ public class MobSpawnListener implements Listener {
                 return;
             }
             event.setCancelled(true);
-
-            final String overworldString = world.getName().replace("_nether", "");
-            final World overworld = Bukkit.getWorld(overworldString);
-            if (overworld == null) {
-                return;
-            }
-
-            final boolean isDay = TimePeriod.isDay(overworld);
+            
+            final boolean isDay = TimePeriod.isDay(world);
             if (entity.getType() == EntityType.GHAST) {
                 world.spawnEntity(location, isDay ? EntityType.BAT : EntityType.PHANTOM);
             } else {
