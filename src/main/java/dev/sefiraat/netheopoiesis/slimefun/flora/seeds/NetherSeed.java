@@ -37,7 +37,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
 
-    public static Set<BlockFace> BREEDING_DIRECTIONS = Set.of(
+    public static final Set<BlockFace> BREEDING_DIRECTIONS = Set.of(
         BlockFace.NORTH,
         BlockFace.SOUTH,
         BlockFace.EAST,

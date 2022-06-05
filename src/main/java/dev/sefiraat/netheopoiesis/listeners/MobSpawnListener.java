@@ -3,7 +3,6 @@ package dev.sefiraat.netheopoiesis.listeners;
 import dev.sefiraat.netheopoiesis.PurificationMemory;
 import dev.sefiraat.netheopoiesis.utils.TimePeriod;
 import io.github.bakedlibs.dough.collections.RandomizedSet;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;

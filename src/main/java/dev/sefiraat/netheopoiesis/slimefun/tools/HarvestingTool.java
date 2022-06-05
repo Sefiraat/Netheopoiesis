@@ -12,7 +12,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.LimitedUseItem;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;

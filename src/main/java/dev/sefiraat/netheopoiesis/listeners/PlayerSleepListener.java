@@ -2,7 +2,6 @@ package dev.sefiraat.netheopoiesis.listeners;
 
 import dev.sefiraat.netheopoiesis.PurificationMemory;
 import dev.sefiraat.netheopoiesis.utils.TimePeriod;
-import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import org.bukkit.ChatColor;
 import org.bukkit.World;

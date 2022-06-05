@@ -13,6 +13,7 @@ public class SupportedPluginManager {
     }
 
     private void setup() {
+
     }
 
     public static SupportedPluginManager getInstance() {

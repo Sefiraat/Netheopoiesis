@@ -14,9 +14,7 @@ import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import javax.swing.plaf.SpinnerUI;
 import java.util.List;
 
 public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
