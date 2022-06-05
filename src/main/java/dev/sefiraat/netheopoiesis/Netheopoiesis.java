@@ -40,7 +40,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
         instance = this;
 
         getLogger().info("########################################");
-        getLogger().info("        Netheopoiesis by Sefiraat       ");
+        getLogger().info("    Netheopoiesis by Sefiraat, J3fftw   ");
         getLogger().info("########################################");
 
         saveDefaultConfig();
