@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GrowthDescription {
 
-    public static GrowthDescription HARDY_RED = new GrowthDescription(
+    public static final GrowthDescription HARDY_RED = new GrowthDescription(
         Theme.SEED_RED,
         List.of(
             Skulls.SEED_RED,
@@ -20,7 +20,7 @@ public class GrowthDescription {
         )
     );
 
-    public static GrowthDescription HARDY_ORANGE = new GrowthDescription(
+    public static final GrowthDescription HARDY_ORANGE = new GrowthDescription(
         Theme.SEED_ORANGE,
         List.of(
             Skulls.SEED_ORANGE,
@@ -32,7 +32,7 @@ public class GrowthDescription {
         )
     );
 
-    public static GrowthDescription HARDY_YELLOW = new GrowthDescription(
+    public static final GrowthDescription HARDY_YELLOW = new GrowthDescription(
         Theme.SEED_YELLOW,
         List.of(
             Skulls.SEED_YELLOW,
@@ -44,7 +44,7 @@ public class GrowthDescription {
         )
     );
 
-    public static GrowthDescription HARDY_GREEN = new GrowthDescription(
+    public static final GrowthDescription HARDY_GREEN = new GrowthDescription(
         Theme.SEED_GREEN,
         List.of(
             Skulls.SEED_GREEN,
@@ -56,7 +56,7 @@ public class GrowthDescription {
         )
     );
 
-    public static GrowthDescription HARDY_BLUE = new GrowthDescription(
+    public static final GrowthDescription HARDY_BLUE = new GrowthDescription(
         Theme.SEED_BLUE,
         List.of(
             Skulls.SEED_BLUE,
@@ -68,7 +68,7 @@ public class GrowthDescription {
         )
     );
 
-    public static GrowthDescription HARDY_INDIGO = new GrowthDescription(
+    public static final GrowthDescription HARDY_INDIGO = new GrowthDescription(
         Theme.SEED_INDIGO,
         List.of(
             Skulls.SEED_INDIGO,
@@ -80,7 +80,7 @@ public class GrowthDescription {
         )
     );
 
-    public static GrowthDescription HARDY_VIOLET = new GrowthDescription(
+    public static final GrowthDescription HARDY_VIOLET = new GrowthDescription(
         Theme.SEED_VIOLET,
         List.of(
             Skulls.SEED_VIOLET,
@@ -92,18 +92,29 @@ public class GrowthDescription {
         )
     );
 
+    @Nonnull
     private final Theme theme;
+    @Nonnull
     private final List<Skulls> growthStages;
 
+    /**
+     * This class is used to store the possible stages of growth a plant can go through
+     * starting with a seed to its final step.
+     *
+     * @param theme        The {@link Theme} that will be used for particle effects and other appropriate needs
+     * @param growthStages The {@link List} of Skulls that will be used as textures for each stage
+     */
     public GrowthDescription(@Nonnull Theme theme, @Nonnull List<Skulls> growthStages) {
         this.theme = theme;
         this.growthStages = growthStages;
     }
 
+    @Nonnull
     public Theme getTheme() {
         return theme;
     }
 
+    @Nonnull
     public List<Skulls> getGrowthStages() {
         return growthStages;
     }
@@ -112,6 +123,7 @@ public class GrowthDescription {
         return growthStages.size();
     }
 
+    @Nonnull
     public Skulls get(int index) {
         return growthStages.get(index);
     }

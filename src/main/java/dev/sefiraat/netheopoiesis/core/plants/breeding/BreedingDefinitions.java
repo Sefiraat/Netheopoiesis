@@ -6,8 +6,10 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+/**
+ * This Enum holds the possible breeding possibilities available in the addon
+ */
 public enum BreedingDefinitions {
-
 
     SPINDLE(new BreedingPair(
         NpsSlimefunItems.SPINDLE_SEED,

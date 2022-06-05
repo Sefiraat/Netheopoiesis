@@ -11,6 +11,9 @@ import org.bukkit.block.BlockFace;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Holds the methods for the {@link GenericTickingPlant}'s consumer
+ */
 public final class GenericTickingMethods {
 
     private GenericTickingMethods() {

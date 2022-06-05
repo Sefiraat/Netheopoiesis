@@ -14,6 +14,15 @@ public class BreedingPair {
     private final double breedChance;
     private final double spreadChance;
 
+    /**
+     * This class defines a possible breeding pair, the chance of success or spread
+     *
+     * @param childPlant   The {@link NetherSeed} that will grow as a result of a successful breed
+     * @param motherSeed   The {@link NetherSeed} representing one of the parents (the one initiating the breed)
+     * @param fatherSeed   The {@link NetherSeed} representing the other parent
+     * @param breedChance  The chance for the breed to be successful (spawning a child)
+     * @param spreadChance The chance that, should a true breed fail, a spread can occur (spawning a copy of the mother)
+     */
     @ParametersAreNonnullByDefault
     public BreedingPair(NetherSeed childPlant,
                         NetherSeed motherSeed,
