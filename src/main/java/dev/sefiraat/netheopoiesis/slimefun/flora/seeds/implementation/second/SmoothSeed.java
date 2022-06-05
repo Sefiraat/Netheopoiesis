@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -17,35 +17,34 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class DustySeed extends NetherSeed {
+public class SmoothSeed extends NetherSeed {
 
     private final LinkedList<Skulls> growthPhases = new LinkedList<>();
 
-    public DustySeed(@Nonnull ItemGroup itemGroup,
-                     @Nonnull SlimefunItemStack item,
-                     @Nonnull RecipeType recipeType,
-                     @Nonnull ItemStack[] recipe
+    public SmoothSeed(@Nonnull ItemGroup itemGroup,
+                      @Nonnull SlimefunItemStack item,
+                      @Nonnull RecipeType recipeType,
+                      @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_INDIGO);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_1);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_2);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_3);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_4);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_5);
+        growthPhases.add(Skulls.SEED_VIOLET);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_1);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_2);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_3);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_4);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_5);
     }
 
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_INDIGO;
+        return Theme.SEED_VIOLET;
     }
 
     @Nonnull
     @Override
     public Set<NetherSeedCrux> getValidPlaces() {
         return Set.of(
-            NpsSlimefunItems.BASIC_PURIFIED_NETHERRACK,
             NpsSlimefunItems.PURIFIED_NETHERRACK,
             NpsSlimefunItems.VORACIOUS_DIRT,
             NpsSlimefunItems.NETHER_DIRT,
@@ -56,12 +55,12 @@ public class DustySeed extends NetherSeed {
     @Nullable
     @Override
     public ItemStack getHarvestingResult() {
-        return new ItemStack(Material.GRAVEL);
+        return new ItemStack(Material.AMETHYST_SHARD);
     }
 
     @Override
     public double getGrowthRate() {
-        return 0.09;
+        return 0.08;
     }
 
     @Override

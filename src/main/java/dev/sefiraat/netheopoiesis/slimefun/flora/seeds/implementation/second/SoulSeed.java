@@ -1,5 +1,6 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second;
 
+import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItemStacks;
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
@@ -14,8 +15,6 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -25,54 +24,55 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SplinteredSeed extends NetherSeed {
+public class SoulSeed extends NetherSeed {
 
+    private final Set<Material> materials;
     private final LinkedList<Skulls> growthPhases = new LinkedList<>();
 
-    public SplinteredSeed(@Nonnull ItemGroup itemGroup,
-                          @Nonnull SlimefunItemStack item,
-                          @Nonnull RecipeType recipeType,
-                          @Nonnull ItemStack[] recipe
+    public SoulSeed(@Nonnull ItemGroup itemGroup,
+                    @Nonnull SlimefunItemStack item,
+                    @Nonnull RecipeType recipeType,
+                    @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_GREEN);
-        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_1);
-        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_2);
-        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_3);
-        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_4);
-        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_5);
+        materials = Set.of(
+            Material.NETHERRACK,
+            Material.CRIMSON_NYLIUM,
+            Material.WARPED_NYLIUM
+        );
+        growthPhases.add(Skulls.SEED_BLUE);
+        growthPhases.add(Skulls.PLANT_VINES_GROWTH_1);
+        growthPhases.add(Skulls.PLANT_VINES_GROWTH_2);
+        growthPhases.add(Skulls.PLANT_VINES_GROWTH_3);
+        growthPhases.add(Skulls.PLANT_VINES_GROWTH_4);
+        growthPhases.add(Skulls.PLANT_VINES_GROWTH_5);
     }
 
     @Override
     @ParametersAreNonnullByDefault
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
-        if (randomChance <= 0.05) {
+        if (randomChance <= 0.1) {
             final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
-            final double randomY = ThreadLocalRandom.current().nextInt(-2, 3);
             final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
-            final Block block = location.clone().add(randomX, randomY, randomZ).getBlock();
-
-            // the first block we spawn on needs to be AIR
-            if (block.getType() != Material.AIR) {
-                return;
+            // For loop to make sure the purification can creep up and down.
+            for (int i = -1; i < 2; i++) {
+                final Block block = location.clone().add(randomX, i, randomZ).getBlock();
+                final SlimefunItem possibleCrux = BlockStorage.check(block);
+                if (materials.contains(block.getType()) || possibleCrux instanceof NetherSeedCrux) {
+                    block.setType(NpsSlimefunItemStacks.PURIFIED_NETHERRACK.getType());
+                    BlockStorage.store(block, NpsSlimefunItemStacks.PURIFIED_NETHERRACK.getItemId());
+                    // Return so we only effect the one block per valid tick
+                    return;
+                }
             }
-
-            final Block blockBelow = block.getRelative(BlockFace.DOWN);
-
-            // And we need a solid floor
-            if (blockBelow.getType() == Material.AIR) {
-                return;
-            }
-
-            blockBelow.getWorld().spawnEntity(block.getLocation(), EntityType.SKELETON);
         }
     }
 
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_GREEN;
+        return Theme.SEED_BLUE;
     }
 
     @Nonnull
@@ -89,7 +89,7 @@ public class SplinteredSeed extends NetherSeed {
 
     @Override
     public double getGrowthRate() {
-        return 0.09;
+        return 0.7;
     }
 
     @Override

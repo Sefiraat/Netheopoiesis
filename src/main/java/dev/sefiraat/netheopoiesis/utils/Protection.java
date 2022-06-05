@@ -17,11 +17,17 @@ public final class Protection {
         throw new IllegalStateException("Utility class");
     }
 
-    public static boolean hasPermission(@Nonnull Player player, @Nonnull Block block, @Nonnull Interaction interaction) {
+    public static boolean hasPermission(@Nonnull Player player,
+                                        @Nonnull Block block,
+                                        @Nonnull Interaction interaction
+    ) {
         return hasPermission(player.getUniqueId(), block.getLocation(), interaction);
     }
 
-    public static boolean hasPermission(@Nonnull Player player, @Nonnull Location location, @Nonnull Interaction interaction) {
+    public static boolean hasPermission(@Nonnull Player player,
+                                        @Nonnull Location location,
+                                        @Nonnull Interaction interaction
+    ) {
         return hasPermission(player.getUniqueId(), location, interaction);
     }
 
@@ -29,7 +35,10 @@ public final class Protection {
         return hasPermission(player, block.getLocation(), interaction);
     }
 
-    public static boolean hasPermission(@Nonnull UUID player, @Nonnull Location location, @Nonnull Interaction interaction) {
+    public static boolean hasPermission(@Nonnull UUID player,
+                                        @Nonnull Location location,
+                                        @Nonnull Interaction interaction
+    ) {
         OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player);
         return Slimefun.getProtectionManager().hasPermission(offlinePlayer, location, interaction);
     }

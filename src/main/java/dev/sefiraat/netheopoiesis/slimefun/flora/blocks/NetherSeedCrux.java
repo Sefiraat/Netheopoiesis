@@ -16,25 +16,21 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+import javax.swing.plaf.SpinnerUI;
 import java.util.List;
 
 public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
 
-    public NetherSeedCrux(ItemGroup itemGroup,
-                          SlimefunItemStack item,
-                          RecipeType recipeType,
-                          ItemStack[] recipe
-    ) {
-        super(itemGroup, item, recipeType, recipe);
-    }
+    private final int purificationValue;
 
     public NetherSeedCrux(ItemGroup itemGroup,
                           SlimefunItemStack item,
                           RecipeType recipeType,
                           ItemStack[] recipe,
-                          @Nullable ItemStack recipeOutput
+                          int purificationValue
     ) {
-        super(itemGroup, item, recipeType, recipe, recipeOutput);
+        super(itemGroup, item, recipeType, recipe);
+        this.purificationValue = purificationValue;
     }
 
     @Override
@@ -57,7 +53,7 @@ public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
 
                 @Override
                 public void tick(Block block, SlimefunItem slimefunItem, Config config) {
-                    removePurificationRegistry(block);
+                    registerPurificationValue(block);
                 }
             },
             new BlockBreakHandler(false, false) {
@@ -72,6 +68,6 @@ public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
 
     @Override
     public int purificationValue() {
-        return 1;
+        return purificationValue;
     }
 }

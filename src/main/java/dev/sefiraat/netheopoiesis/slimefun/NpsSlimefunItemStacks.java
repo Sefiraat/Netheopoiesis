@@ -19,12 +19,15 @@ public class NpsSlimefunItemStacks {
 
     // Tools
     public static final SlimefunItemStack CRUDE_HARVESTING_TOOL;
+    public static final SlimefunItemStack HARVESTING_TOOL;
     public static final SlimefunItemStack PURIFICATION_BAROMETER;
 
     // Seeds
+    // Main
     public static final SlimefunItemStack PURIFICATION_SEED;
     public static final SlimefunItemStack SOUL_SEED;
 
+    // First Stage
     public static final SlimefunItemStack SPINDLE_SEED;
     public static final SlimefunItemStack GRAINY_SEED;
     public static final SlimefunItemStack STRINGY_SEED;
@@ -34,6 +37,10 @@ public class NpsSlimefunItemStacks {
     public static final SlimefunItemStack SPLINTERED_SEED;
     public static final SlimefunItemStack ROTTEN_SEED;
 
+    // Second Stage
+    public static final SlimefunItemStack METALLIC_SEED;
+    public static final SlimefunItemStack SHINY_SEED;
+    public static final SlimefunItemStack SMOOTH_SEED;
 
     public static final SlimefunItemStack OAKENDRAN_SEED;
 
@@ -57,12 +64,25 @@ public class NpsSlimefunItemStacks {
             Material.PRISMARINE_SHARD,
             Theme.TOOL,
             "Crude Harvesting Tool",
-            "This tools will harvest plants",
+            "This tool will harvest plants",
             "where possible.",
             "This one is very shoddy and won't",
             "last long",
             "",
             LoreBuilder.usesLeft(25)
+        );
+
+        HARVESTING_TOOL = Theme.themedSlimefunItemStack(
+            "NPS_HARVESTING_TOOL",
+            Material.PRISMARINE_SHARD,
+            Theme.TOOL,
+            "Harvesting Tool",
+            "This tool will harvest plants",
+            "where possible.",
+            "This one is sturdier but still won't",
+            "last long",
+            "",
+            LoreBuilder.usesLeft(150)
         );
 
         PURIFICATION_BAROMETER = Theme.themedSlimefunItemStack(
@@ -166,6 +186,33 @@ public class NpsSlimefunItemStacks {
             "Rotten Seed",
             new String[]{"This seed, when fully grown,", "will sometimes cause zombies to", "spawn in the surrounding area."},
             getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
+        );
+
+        METALLIC_SEED = Theme.themedSeed(
+            "NPS_METALLIC_SEED",
+            Skulls.SEED_GREEN.getPlayerHead(),
+            Theme.SEED,
+            "Metallic Seed",
+            new String[]{"This seed, when fully grown,", "can be harvested with a tool for", "iron nuggets."},
+            getCanBePlacedOnLore("Purified Netherrack (or better)")
+        );
+
+        SHINY_SEED = Theme.themedSeed(
+            "NPS_SHINY_SEED",
+            Skulls.SEED_YELLOW.getPlayerHead(),
+            Theme.SEED,
+            "Shiny Seed",
+            new String[]{"This seed, when fully grown,", "can be harvested with a tool for", "gold nuggets."},
+            getCanBePlacedOnLore("Purified Netherrack (or better)")
+        );
+
+        SMOOTH_SEED = Theme.themedSeed(
+            "NPS_SMOOTH_SEED",
+            Skulls.SEED_VIOLET.getPlayerHead(),
+            Theme.SEED,
+            "Smooth Seed",
+            new String[]{"This seed, when fully grown,", "can be harvested with a tool for", "amethyst shards."},
+            getCanBePlacedOnLore("Purified Netherrack (or better)")
         );
 
         OAKENDRAN_SEED = Theme.themedSeed(

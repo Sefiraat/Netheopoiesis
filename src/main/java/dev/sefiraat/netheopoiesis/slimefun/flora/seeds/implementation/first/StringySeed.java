@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -14,29 +14,37 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SeasideSeed extends NetherSeed {
+public class StringySeed extends NetherSeed {
 
     private final LinkedList<Skulls> growthPhases = new LinkedList<>();
 
-    public SeasideSeed(@Nonnull ItemGroup itemGroup,
+    public StringySeed(@Nonnull ItemGroup itemGroup,
                        @Nonnull SlimefunItemStack item,
                        @Nonnull RecipeType recipeType,
                        @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_YELLOW);
-        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_1);
-        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_2);
-        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_3);
-        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_4);
-        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_5);
+        growthPhases.add(Skulls.SEED_GREEN);
+        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_1);
+        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_2);
+        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_3);
+        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_4);
+        growthPhases.add(Skulls.PLANT_GROSS_GROWTH_5);
+    }
+
+    @Override
+    @ParametersAreNonnullByDefault
+    public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
+        double randomChance = ThreadLocalRandom.current().nextDouble();
+        if (randomChance <= 0.005) {
+            location.getWorld().dropItem(location, new ItemStack(Material.STRING));
+        }
     }
 
     @Nonnull
@@ -55,12 +63,6 @@ public class SeasideSeed extends NetherSeed {
             NpsSlimefunItems.NETHER_DIRT,
             NpsSlimefunItems.NETHER_GRASS
         );
-    }
-
-    @Nullable
-    @Override
-    public ItemStack getHarvestingResult() {
-        return new ItemStack(Material.SAND);
     }
 
     @Override

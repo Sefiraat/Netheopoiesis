@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -25,22 +25,22 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class StoneySeed extends NetherSeed {
+public class GrainySeed extends NetherSeed {
 
     private final LinkedList<Skulls> growthPhases = new LinkedList<>();
 
-    public StoneySeed(@Nonnull ItemGroup itemGroup,
+    public GrainySeed(@Nonnull ItemGroup itemGroup,
                       @Nonnull SlimefunItemStack item,
                       @Nonnull RecipeType recipeType,
                       @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_VIOLET);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_1);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_2);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_3);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_4);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_5);
+        growthPhases.add(Skulls.SEED_RED);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_1);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_2);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_3);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_4);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_5);
     }
 
     @Override
@@ -48,14 +48,14 @@ public class StoneySeed extends NetherSeed {
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
         if (randomChance <= 0.005) {
-            location.getWorld().dropItem(location, new ItemStack(Material.COBBLESTONE));
+            location.getWorld().dropItem(location, new ItemStack(Material.REDSTONE));
         }
     }
 
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_VIOLET;
+        return Theme.SEED_RED;
     }
 
     @Nonnull

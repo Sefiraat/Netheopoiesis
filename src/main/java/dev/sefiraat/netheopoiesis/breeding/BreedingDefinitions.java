@@ -85,6 +85,30 @@ public final class BreedingDefinitions {
         0.2
     );
 
+    private static final BreedingPair METALLIC = new BreedingPair(
+        NpsSlimefunItems.METALLIC_SEED,
+        NpsSlimefunItems.SOUL_SEED,
+        NpsSlimefunItems.SOUL_SEED,
+        0.05,
+        0.2
+    );
+
+    private static final BreedingPair SHINY = new BreedingPair(
+        NpsSlimefunItems.SHINY_SEED,
+        NpsSlimefunItems.SOUL_SEED,
+        NpsSlimefunItems.SOUL_SEED,
+        0.05,
+        0.2
+    );
+
+    private static final BreedingPair SMOOTH = new BreedingPair(
+        NpsSlimefunItems.SMOOTH_SEED,
+        NpsSlimefunItems.SOUL_SEED,
+        NpsSlimefunItems.SOUL_SEED,
+        0.05,
+        0.2
+    );
+
     private static final Set<BreedingPair> BREEDING_PAIRS = Set.of(
         SPINDLE,
         GRAINY,
@@ -94,7 +118,10 @@ public final class BreedingDefinitions {
         SEASIDE,
         SPLINTERED,
         ROTTEN,
-        SOUL
+        SOUL,
+        METALLIC,
+        SHINY,
+        SMOOTH
     );
 
     public static Set<BreedingPair> getBreedingPairs() {
