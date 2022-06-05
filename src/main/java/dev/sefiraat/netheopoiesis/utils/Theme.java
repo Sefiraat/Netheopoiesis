@@ -157,7 +157,7 @@ public enum Theme {
      * for the plantable items/materials for seeds
      *
      * @param id        The ID for the new {@link SlimefunItemStack}
-     * @param seedStack  The vanilla {@link ItemStack} used to base the {@link SlimefunItemStack} on
+     * @param seedStack The vanilla {@link ItemStack} used to base the {@link SlimefunItemStack} on
      * @param themeType The {@link Theme} {@link ChatColor} to apply to the {@link SlimefunItemStack} name
      * @param name      The name to apply to the {@link SlimefunItemStack}
      * @param lore      The lore lines for the {@link SlimefunItemStack}. Lore is book-ended with empty strings.

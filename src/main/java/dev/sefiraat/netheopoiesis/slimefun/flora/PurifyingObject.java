@@ -11,6 +11,7 @@ import javax.annotation.Nonnull;
 public interface PurifyingObject {
     /**
      * The amount that this object in the world will
+     *
      * @return The value that this item will increment the purification amount
      */
     int purificationValue();

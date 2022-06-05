@@ -8,49 +8,37 @@ import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
-import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
 
-public class StoneySeed extends NetherSeed {
+public class MoldableSeed extends NetherSeed {
 
     private final List<Skulls> growthPhases = new ArrayList<>();
 
-    public StoneySeed(@Nonnull ItemGroup itemGroup,
-                      @Nonnull SlimefunItemStack item,
-                      @Nonnull RecipeType recipeType,
-                      @Nonnull ItemStack[] recipe
+    public MoldableSeed(@Nonnull ItemGroup itemGroup,
+                        @Nonnull SlimefunItemStack item,
+                        @Nonnull RecipeType recipeType,
+                        @Nonnull ItemStack[] recipe
     ) {
         super(itemGroup, item, recipeType, recipe);
-        growthPhases.add(Skulls.SEED_VIOLET);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_1);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_2);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_3);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_4);
-        growthPhases.add(Skulls.PLANT_HARDY_GROWTH_5);
-    }
-
-    @Override
-    @ParametersAreNonnullByDefault
-    public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
-        double randomChance = ThreadLocalRandom.current().nextDouble();
-        if (randomChance <= 0.005) {
-            location.getWorld().dropItem(location, new ItemStack(Material.COBBLESTONE));
-        }
+        growthPhases.add(Skulls.SEED_INDIGO);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_1);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_2);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_3);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_4);
+        growthPhases.add(Skulls.PLANT_DELICATE_GROWTH_5);
     }
 
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_VIOLET;
+        return Theme.SEED_INDIGO;
     }
 
     @Nonnull
@@ -63,6 +51,12 @@ public class StoneySeed extends NetherSeed {
             NpsSlimefunItems.NETHER_DIRT,
             NpsSlimefunItems.NETHER_GRASS
         );
+    }
+
+    @Nullable
+    @Override
+    public ItemStack getHarvestingResult() {
+        return new ItemStack(Material.CLAY_BALL);
     }
 
     @Override

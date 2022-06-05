@@ -60,8 +60,7 @@ public class MobSpawnListener implements Listener {
         final Entity entity = event.getEntity();
         final World world = entity.getWorld();
         if (entity instanceof Monster
-            && world.getEnvironment() == World.Environment.NETHER)
-        {
+            && world.getEnvironment() == World.Environment.NETHER) {
             final int requiredValue = MAP.getOrDefault(entity.getType(), -1);
             final Location location = entity.getLocation();
             final int value = PurificationMemory.getInstance().getPurificationValue(location.getChunk());
@@ -69,7 +68,7 @@ public class MobSpawnListener implements Listener {
                 return;
             }
             event.setCancelled(true);
-            
+
             final boolean isDay = TimePeriod.isDay(world);
             if (entity.getType() == EntityType.GHAST) {
                 world.spawnEntity(location, isDay ? EntityType.BAT : EntityType.PHANTOM);

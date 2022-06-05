@@ -106,14 +106,14 @@ public enum TimePeriod {
     public static boolean naturalMobsCanSpawn(World world) {
         long time = world.getTime();
         return world.isClearWeather()
-            ? naturalMobsCanSpawn(time, false)
-            : naturalMobsCanSpawn(time, true);
+               ? naturalMobsCanSpawn(time, false)
+               : naturalMobsCanSpawn(time, true);
     }
 
     public static boolean naturalMobsCanSpawn(long time, boolean rain) {
         return rain
-            ? time >= MOB_SPAWN_RAIN.getStart() && time <= MOB_SPAWN_RAIN.getEnd()
-            : time >= MOB_SPAWN_CLEAR.getStart() && time <= MOB_SPAWN_CLEAR.getEnd();
+               ? time >= MOB_SPAWN_RAIN.getStart() && time <= MOB_SPAWN_RAIN.getEnd()
+               : time >= MOB_SPAWN_CLEAR.getStart() && time <= MOB_SPAWN_CLEAR.getEnd();
     }
 
     /**

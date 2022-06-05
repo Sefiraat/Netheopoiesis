@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.third;
 
 import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
@@ -20,14 +20,14 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class OakendranSeed extends NetherSeed {
 
-    private final LinkedList<Skulls> growthPhases = new LinkedList<>();
+    private final List<Skulls> growthPhases = new ArrayList<>();
 
     public OakendranSeed(@Nonnull ItemGroup itemGroup,
                          @Nonnull SlimefunItemStack item,
@@ -98,6 +98,6 @@ public class OakendranSeed extends NetherSeed {
 
     @Override
     public int purificationValue() {
-        return 1;
+        return 6;
     }
 }

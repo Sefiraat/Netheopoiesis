@@ -5,7 +5,7 @@ import dev.sefiraat.netheopoiesis.listeners.VanillaDropListener;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first.DustySeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first.GrainySeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first.OakendranSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first.MoldableSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first.PurificationSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first.RottenSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first.SeasideSeed;
@@ -13,10 +13,17 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first.Spin
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first.SplinteredSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first.StoneySeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.first.StringySeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second.CombustibleSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second.EnchantedSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second.MetallicSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second.PerfectionSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second.ProtectiveSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second.ShinySeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second.SmoothSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second.SoulSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.second.ValuableSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.third.OakendranSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.implementation.third.SpiritSeed;
 import dev.sefiraat.netheopoiesis.slimefun.groups.NpsItemGroups;
 import dev.sefiraat.netheopoiesis.slimefun.tools.HarvestingTool;
 import dev.sefiraat.netheopoiesis.slimefun.tools.PurificationBarometer;
@@ -47,6 +54,7 @@ public class NpsSlimefunItems {
     // Seeds
     public static final PurificationSeed PURIFICATION_SEED;
     public static final SoulSeed SOUL_SEED;
+    public static final SpiritSeed SPIRIT_SEED;
 
     // First Stage
     public static final SpindleSeed SPINDLE_SEED;
@@ -55,6 +63,7 @@ public class NpsSlimefunItems {
     public static final StoneySeed STONEY_SEED;
     public static final DustySeed DUSTY_SEED;
     public static final SeasideSeed SEASIDE_SEED;
+    public static final MoldableSeed MOLDABLE_SEED;
     public static final SplinteredSeed SPLINTERED_SEED;
     public static final RottenSeed ROTTEN_SEED;
 
@@ -62,8 +71,13 @@ public class NpsSlimefunItems {
     public static final MetallicSeed METALLIC_SEED;
     public static final ShinySeed SHINY_SEED;
     public static final SmoothSeed SMOOTH_SEED;
+    public static final EnchantedSeed ENCHANTED_SEED;
+    public static final CombustibleSeed COMBUSTIBLE_SEED;
+    public static final ProtectiveSeed PROTECTIVE_SEED;
+    public static final ValuableSeed VALUABLE_SEED;
+    public static final PerfectionSeed PERFECTION_SEED;
 
-
+    // Third Stage
     public static final OakendranSeed OAKENDRAN_SEED;
 
     // Crux'
@@ -138,6 +152,13 @@ public class NpsSlimefunItems {
             new ItemStack[0]
         );
 
+        SPIRIT_SEED = new SpiritSeed(
+            NpsItemGroups.SEEDS,
+            NpsSlimefunItemStacks.SPIRIT_SEED,
+            NpsRecipeTypes.PLANT_BREEDING,
+            new ItemStack[0]
+        );
+
         SPINDLE_SEED = new SpindleSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SPINDLE_SEED,
@@ -180,6 +201,13 @@ public class NpsSlimefunItems {
             new ItemStack[0]
         );
 
+        MOLDABLE_SEED = new MoldableSeed(
+            NpsItemGroups.SEEDS,
+            NpsSlimefunItemStacks.MOLDABLE_SEED,
+            NpsRecipeTypes.PLANT_BREEDING,
+            new ItemStack[0]
+        );
+
         SPLINTERED_SEED = new SplinteredSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SPLINTERED_SEED,
@@ -211,6 +239,41 @@ public class NpsSlimefunItems {
         SMOOTH_SEED = new SmoothSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SMOOTH_SEED,
+            NpsRecipeTypes.PLANT_BREEDING,
+            new ItemStack[0]
+        );
+
+        ENCHANTED_SEED = new EnchantedSeed(
+            NpsItemGroups.SEEDS,
+            NpsSlimefunItemStacks.ENCHANTED_SEED,
+            NpsRecipeTypes.PLANT_BREEDING,
+            new ItemStack[0]
+        );
+
+        COMBUSTIBLE_SEED = new CombustibleSeed(
+            NpsItemGroups.SEEDS,
+            NpsSlimefunItemStacks.COMBUSTIBLE_SEED,
+            NpsRecipeTypes.PLANT_BREEDING,
+            new ItemStack[0]
+        );
+
+        PROTECTIVE_SEED = new ProtectiveSeed(
+            NpsItemGroups.SEEDS,
+            NpsSlimefunItemStacks.PROTECTIVE_SEED,
+            NpsRecipeTypes.PLANT_BREEDING,
+            new ItemStack[0]
+        );
+
+        VALUABLE_SEED = new ValuableSeed(
+            NpsItemGroups.SEEDS,
+            NpsSlimefunItemStacks.VALUABLE_SEED,
+            NpsRecipeTypes.PLANT_BREEDING,
+            new ItemStack[0]
+        );
+
+        PERFECTION_SEED = new PerfectionSeed(
+            NpsItemGroups.SEEDS,
+            NpsSlimefunItemStacks.PERFECTION_SEED,
             NpsRecipeTypes.PLANT_BREEDING,
             new ItemStack[0]
         );
@@ -281,6 +344,7 @@ public class NpsSlimefunItems {
         // Seeds
         PURIFICATION_SEED.register(plugin);
         SOUL_SEED.register(plugin);
+        SPIRIT_SEED.register(plugin);
 
         SPINDLE_SEED.register(plugin);
         GRAINY_SEED.register(plugin);
@@ -288,12 +352,18 @@ public class NpsSlimefunItems {
         STONEY_SEED.register(plugin);
         DUSTY_SEED.register(plugin);
         SEASIDE_SEED.register(plugin);
+        MOLDABLE_SEED.register(plugin);
         SPLINTERED_SEED.register(plugin);
         ROTTEN_SEED.register(plugin);
 
         METALLIC_SEED.register(plugin);
         SHINY_SEED.register(plugin);
         SMOOTH_SEED.register(plugin);
+        ENCHANTED_SEED.register(plugin);
+        COMBUSTIBLE_SEED.register(plugin);
+        PROTECTIVE_SEED.register(plugin);
+        VALUABLE_SEED.register(plugin);
+        PERFECTION_SEED.register(plugin);
 
         OAKENDRAN_SEED.register(plugin);
 

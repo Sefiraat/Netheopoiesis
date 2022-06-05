@@ -20,7 +20,6 @@ public final class ItemStackUtils {
     }
 
     /**
-     *
      * @param color
      * @return
      */
@@ -36,19 +35,19 @@ public final class ItemStackUtils {
     }
 
     /**
-     *
      * @param material
      * @param enchantments
      * @return
      */
     @Nonnull
     @SafeVarargs
-    public static ItemStack enchantedItemStack(@Nonnull Material material, @Nonnull Pair<Enchantment, Integer>... enchantments) {
+    public static ItemStack enchantedItemStack(@Nonnull Material material,
+                                               @Nonnull Pair<Enchantment, Integer>... enchantments
+    ) {
         return enchantedItemStack(material, false, enchantments);
     }
 
     /**
-     *
      * @param material
      * @param hide
      * @param enchantments
@@ -56,7 +55,10 @@ public final class ItemStackUtils {
      */
     @Nonnull
     @SafeVarargs
-    public static ItemStack enchantedItemStack(@Nonnull Material material, boolean hide, @Nonnull Pair<Enchantment, Integer>... enchantments) {
+    public static ItemStack enchantedItemStack(@Nonnull Material material,
+                                               boolean hide,
+                                               @Nonnull Pair<Enchantment, Integer>... enchantments
+    ) {
         ItemStack itemStack = new ItemStack(material);
         ItemMeta itemMeta = itemStack.getItemMeta();
         for (Pair<Enchantment, Integer> pair : enchantments) {

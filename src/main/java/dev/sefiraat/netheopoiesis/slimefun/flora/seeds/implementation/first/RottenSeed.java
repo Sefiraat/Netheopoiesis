@@ -18,14 +18,14 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RottenSeed extends NetherSeed {
 
-    private final LinkedList<Skulls> growthPhases = new LinkedList<>();
+    private final List<Skulls> growthPhases = new ArrayList<>();
 
     public RottenSeed(@Nonnull ItemGroup itemGroup,
                       @Nonnull SlimefunItemStack item,

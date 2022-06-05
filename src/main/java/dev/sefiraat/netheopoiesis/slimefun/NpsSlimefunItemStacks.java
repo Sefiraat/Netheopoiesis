@@ -26,6 +26,7 @@ public class NpsSlimefunItemStacks {
     // Main
     public static final SlimefunItemStack PURIFICATION_SEED;
     public static final SlimefunItemStack SOUL_SEED;
+    public static final SlimefunItemStack SPIRIT_SEED;
 
     // First Stage
     public static final SlimefunItemStack SPINDLE_SEED;
@@ -34,6 +35,7 @@ public class NpsSlimefunItemStacks {
     public static final SlimefunItemStack STONEY_SEED;
     public static final SlimefunItemStack DUSTY_SEED;
     public static final SlimefunItemStack SEASIDE_SEED;
+    public static final SlimefunItemStack MOLDABLE_SEED;
     public static final SlimefunItemStack SPLINTERED_SEED;
     public static final SlimefunItemStack ROTTEN_SEED;
 
@@ -41,7 +43,13 @@ public class NpsSlimefunItemStacks {
     public static final SlimefunItemStack METALLIC_SEED;
     public static final SlimefunItemStack SHINY_SEED;
     public static final SlimefunItemStack SMOOTH_SEED;
+    public static final SlimefunItemStack ENCHANTED_SEED;
+    public static final SlimefunItemStack COMBUSTIBLE_SEED;
+    public static final SlimefunItemStack PROTECTIVE_SEED;
+    public static final SlimefunItemStack VALUABLE_SEED;
+    public static final SlimefunItemStack PERFECTION_SEED;
 
+    // Third Stage
     public static final SlimefunItemStack OAKENDRAN_SEED;
 
     // Crux'
@@ -116,6 +124,15 @@ public class NpsSlimefunItemStacks {
             getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
         );
 
+        SPIRIT_SEED = Theme.themedSeed(
+            "NPS_SPIRIT_SEED",
+            Skulls.SEED_BLUE.getPlayerHead(),
+            Theme.SEED,
+            "Sprit Seed",
+            new String[]{"This seed, when fully grown,", "will allow an even deeper purification", "for nearby blocks."},
+            getCanBePlacedOnLore("Purified Netherrack (or better)")
+        );
+
         SPINDLE_SEED = Theme.themedSeed(
             "NPS_SPINDLE_SEED",
             Skulls.SEED_ORANGE.getPlayerHead(),
@@ -170,6 +187,15 @@ public class NpsSlimefunItemStacks {
             getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
         );
 
+        MOLDABLE_SEED = Theme.themedSeed(
+            "NPS_MOLDABLE_SEED",
+            Skulls.SEED_VIOLET.getPlayerHead(),
+            Theme.SEED,
+            "Moldable Seed",
+            new String[]{"This seed, when fully grown,", "can be harvested with a tool for", "clay balls."},
+            getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
+        );
+
         SPLINTERED_SEED = Theme.themedSeed(
             "NPS_SPLINTERED_SEED",
             Skulls.SEED_GREEN.getPlayerHead(),
@@ -212,6 +238,51 @@ public class NpsSlimefunItemStacks {
             Theme.SEED,
             "Smooth Seed",
             new String[]{"This seed, when fully grown,", "can be harvested with a tool for", "amethyst shards."},
+            getCanBePlacedOnLore("Purified Netherrack (or better)")
+        );
+
+        ENCHANTED_SEED = Theme.themedSeed(
+            "NPS_ENCHANTED_SEED",
+            Skulls.SEED_BLUE.getPlayerHead(),
+            Theme.SEED,
+            "Enchanted Seed",
+            new String[]{"This seed, when fully grown,", "can be harvested with a tool for", "lapis lazuli."},
+            getCanBePlacedOnLore("Purified Netherrack (or better)")
+        );
+
+        COMBUSTIBLE_SEED = Theme.themedSeed(
+            "NPS_COMBUSTABLE_SEED",
+            Skulls.SEED_INDIGO.getPlayerHead(),
+            Theme.SEED,
+            "Combustable Seed",
+            new String[]{"This seed, when fully grown,", "can be harvested with a tool for", "coal."},
+            getCanBePlacedOnLore("Purified Netherrack (or better)")
+        );
+
+        PROTECTIVE_SEED = Theme.themedSeed(
+            "NPS_PROTECTIVE_SEED",
+            Skulls.SEED_YELLOW.getPlayerHead(),
+            Theme.SEED,
+            "Protective Seed",
+            new String[]{"This seed, when fully grown,", "will spawn protective iron golems."},
+            getCanBePlacedOnLore("Purified Netherrack (or better)")
+        );
+
+        VALUABLE_SEED = Theme.themedSeed(
+            "NPS_VALUABLE_SEED",
+            Skulls.SEED_GREEN.getPlayerHead(),
+            Theme.SEED,
+            "Valuable Seed",
+            new String[]{"This seed, when fully grown,", "can be harvested with a tool for", "emeralds."},
+            getCanBePlacedOnLore("Purified Netherrack (or better)")
+        );
+
+        PERFECTION_SEED = Theme.themedSeed(
+            "NPS_PERFECTION_SEED",
+            Skulls.SEED_BLUE.getPlayerHead(),
+            Theme.SEED,
+            "Perfection Seed",
+            new String[]{"This seed, when fully grown,", "can be harvested with a tool for", "diamonds."},
             getCanBePlacedOnLore("Purified Netherrack (or better)")
         );
 

@@ -19,8 +19,8 @@ public final class Cooldowns {
      * to see if the item is on cooldown.
      * see {@link Cooldowns#isOnCooldown(NamespacedKey, ItemStack)}
      *
-     * @param key A {@link NamespacedKey} for this cooldown
-     * @param itemStack The {@link ItemStack} to put on cooldown
+     * @param key               A {@link NamespacedKey} for this cooldown
+     * @param itemStack         The {@link ItemStack} to put on cooldown
      * @param durationInSeconds The duration in seconds to put the stack on cooldown for
      */
     @ParametersAreNonnullByDefault
@@ -33,8 +33,8 @@ public final class Cooldowns {
      * to see if the item is on cooldown.
      * see {@link Cooldowns#isOnCooldown(NamespacedKey, ItemStack)}
      *
-     * @param key A {@link NamespacedKey} for this cooldown
-     * @param itemStack The {@link ItemStack} to put on cooldown
+     * @param key          A {@link NamespacedKey} for this cooldown
+     * @param itemStack    The {@link ItemStack} to put on cooldown
      * @param durationInMs The duration in milliseconds to put the stack on cooldown for
      */
     @ParametersAreNonnullByDefault
@@ -48,8 +48,8 @@ public final class Cooldowns {
      * to see if the item is on cooldown.
      * see {@link Cooldowns#isOnCooldown(NamespacedKey, ItemStack)}
      *
-     * @param key A {@link NamespacedKey} for this cooldown
-     * @param holder The {@link PersistentDataHolder} to put on cooldown
+     * @param key               A {@link NamespacedKey} for this cooldown
+     * @param holder            The {@link PersistentDataHolder} to put on cooldown
      * @param durationInSeconds The duration in seconds to put the stack on cooldown for
      */
     @ParametersAreNonnullByDefault
@@ -62,8 +62,8 @@ public final class Cooldowns {
      * to see if the item is on cooldown.
      * see {@link Cooldowns#isOnCooldown(NamespacedKey, ItemStack)}
      *
-     * @param key A {@link NamespacedKey} for this cooldown
-     * @param holder The {@link PersistentDataHolder} to put on cooldown
+     * @param key          A {@link NamespacedKey} for this cooldown
+     * @param holder       The {@link PersistentDataHolder} to put on cooldown
      * @param durationInMs The duration in milliseconds to put the stack on cooldown for
      */
     @ParametersAreNonnullByDefault
@@ -74,7 +74,8 @@ public final class Cooldowns {
     /**
      * Checks if the item has a cooldown time and returns if it has not yet expired
      * or false if it doesn't have a matching cooldown
-     * @param key A {@link NamespacedKey} matching the cooldown to retrieve
+     *
+     * @param key       A {@link NamespacedKey} matching the cooldown to retrieve
      * @param itemStack The {@link ItemStack} to put on cooldown
      * @return True if the item is still on cooldown. False if expired or has no cooldown
      */
@@ -87,7 +88,8 @@ public final class Cooldowns {
     /**
      * Checks if the item has a cooldown time and returns if it has not yet expired
      * or false if it doesn't have a matching cooldown
-     * @param key A {@link NamespacedKey} matching the cooldown to retrieve
+     *
+     * @param key    A {@link NamespacedKey} matching the cooldown to retrieve
      * @param holder The {@link PersistentDataHolder} to put on cooldown
      * @return True if the item is still on cooldown. False if expired or has no cooldown
      */

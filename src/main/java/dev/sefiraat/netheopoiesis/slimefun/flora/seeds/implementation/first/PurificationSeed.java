@@ -22,8 +22,8 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,7 +31,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class PurificationSeed extends NetherSeed {
 
     private final Set<Material> materials;
-    private final LinkedList<Skulls> growthPhases = new LinkedList<>();
+    private final List<Skulls> growthPhases = new ArrayList<>();
 
     public PurificationSeed(@Nonnull ItemGroup itemGroup,
                             @Nonnull SlimefunItemStack item,
@@ -56,7 +56,7 @@ public class PurificationSeed extends NetherSeed {
     @ParametersAreNonnullByDefault
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
-        if (randomChance <= 0.1) {
+        if (randomChance <= 0.15) {
             final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
             final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
             // For loop to make sure the purification can creep up and down.
@@ -103,7 +103,7 @@ public class PurificationSeed extends NetherSeed {
 
     @Override
     public double getGrowthRate() {
-        return 0.9;
+        return 0.15;
     }
 
     @Override
