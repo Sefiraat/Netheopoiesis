@@ -28,7 +28,7 @@ public class PlayerSleepListener implements Listener {
         if (world.getEnvironment() == World.Environment.NETHER
             && block != null
             && SlimefunTag.BEDS.isTagged(block.getType())
-            && PurificationMemory.getInstance().getValue(block.getChunk()) >= 250
+            && PurificationMemory.getValue(block.getChunk()) >= 250
         ) {
             event.setCancelled(true);
             if (TimePeriod.isNight(world)) {

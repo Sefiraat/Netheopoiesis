@@ -72,7 +72,7 @@ public class MobSpawnListener implements Listener {
             && world.getEnvironment() == World.Environment.NETHER) {
             final int requiredValue = MAP.getOrDefault(entity.getType(), -1);
             final Location location = entity.getLocation();
-            final int value = PurificationMemory.getInstance().getValue(location.getChunk());
+            final int value = PurificationMemory.getValue(location.getChunk());
             if (requiredValue == -1 || value < requiredValue) {
                 // Either the mob cannot be replaced or the chunk is not purified enough
                 return;

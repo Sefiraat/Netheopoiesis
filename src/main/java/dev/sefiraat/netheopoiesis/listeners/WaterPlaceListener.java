@@ -18,7 +18,7 @@ public class WaterPlaceListener implements Listener {
         final Player player = event.getPlayer();
         if (player.getWorld().getEnvironment() == World.Environment.NETHER
             && player.getInventory().getItemInMainHand().getType() == Material.WATER_BUCKET
-            && PurificationMemory.getInstance().getValue(player.getLocation().getChunk()) >= 500
+            && PurificationMemory.getValue(player.getLocation().getChunk()) >= 500
             && event.getClickedBlock() != null
             && event.getItem() != null
         ) {
