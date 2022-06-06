@@ -13,6 +13,13 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * The purpose of this listener is to drop registered items when breaking the specified vanilla
+ * block.
+ * Recipes should be registered using {@link VanillaDropListener#createRecipeWorldDrop(ItemStack, ItemStack, double)}
+ * which returns an ItemStack array used for Slimefun's recipe
+ * {@link dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes#VANILLA_BLOCK_DROP}
+ */
 public class VanillaDropListener implements Listener {
 
     private static final Map<Material, BlockDrop> DROP_MAP = new EnumMap<>(Material.class);
@@ -27,6 +34,15 @@ public class VanillaDropListener implements Listener {
         blockDrop.rollDrop(event);
     }
 
+    /**
+     * This method both registers the drop and returns an ItemStack array that can be used
+     * for Slimefun's recipe system. {@link dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes#VANILLA_BLOCK_DROP}
+     *
+     * @param stackToDrop The {@link ItemStack} to drop in the world
+     * @param dropFrom    The {@link ItemStack} to drop from (#getType() is used) and the stack is used in the recipe.
+     * @param dropChance  The chance (0-1) for the drop to occur
+     * @return A {@link ItemStack[]} used for Slimefun's Recipe registration with the dropFrom item in the middle.
+     */
     @Nonnull
     public static ItemStack[] createRecipeWorldDrop(@Nonnull ItemStack stackToDrop,
                                                     @Nonnull ItemStack dropFrom,
@@ -41,6 +57,10 @@ public class VanillaDropListener implements Listener {
         };
     }
 
+    /**
+     * This class represents a drop including its source, the item to drop and the chance for it to occur
+     * Including a method to roll for and spawn the drop itself.
+     */
     public static class BlockDrop {
         private final ItemStack stackToDrop;
         private final Material dropFrom;

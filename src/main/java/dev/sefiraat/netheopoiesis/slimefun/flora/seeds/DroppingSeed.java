@@ -1,7 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.core.plant.Placement;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -11,8 +10,14 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * A plant that will drop a specific itemstack in-world when fully mature.
+ * Should only be used for Redstone, String and Cobblestone as these are
+ * mandatory for the EnhancedCraftingTable before you can make a tool
+ */
 public class DroppingSeed extends NetherSeed {
 
     private final ItemStack stackToDrop;
@@ -22,7 +27,7 @@ public class DroppingSeed extends NetherSeed {
     public DroppingSeed(@Nonnull ItemGroup itemGroup,
                         @Nonnull SlimefunItemStack item,
                         @Nonnull GrowthDescription growthDescription,
-                        @Nonnull Placement placement,
+                        @Nonnull Set<String> placement,
                         @Nonnull ItemStack stackToDrop,
                         double growthRate,
                         int purificationValue

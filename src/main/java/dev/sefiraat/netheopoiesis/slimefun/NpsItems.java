@@ -2,7 +2,7 @@ package dev.sefiraat.netheopoiesis.slimefun;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.core.plant.Placement;
+import dev.sefiraat.netheopoiesis.core.plant.Placements;
 import dev.sefiraat.netheopoiesis.listeners.VanillaDropListener;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.DroppingSeed;
@@ -147,28 +147,28 @@ public class NpsItems {
                 0.05
             ),
             GrowthDescription.HARDY_BLUE,
-            Placement.NULL
+            Placements.NULL
         );
 
         SOUL_SEED = new SoulSeed(
             NpsGroups.SEEDS,
             NpsStacks.SOUL_SEED,
             GrowthDescription.HARDY_BLUE,
-            Placement.ALL
+            Placements.ALL
         );
 
         SPIRIT_SEED = new SpiritSeed(
             NpsGroups.SEEDS,
             NpsStacks.SPIRIT_SEED,
             GrowthDescription.HARDY_BLUE,
-            Placement.PURIFIED_AND_UP
+            Placements.PURIFIED_AND_UP
         );
 
         SPINDLE_SEED = new GenericTickingSeed(
             NpsGroups.SEEDS,
             NpsStacks.SPINDLE_SEED,
             GrowthDescription.HARDY_ORANGE,
-            Placement.ALL,
+            Placements.ALL,
             GenericTickingMethods::onTickSpindleSeed,
             0.09,
             1
@@ -178,7 +178,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.GRAINY_SEED,
             GrowthDescription.HARDY_RED,
-            Placement.ALL,
+            Placements.ALL,
             new ItemStack(Material.REDSTONE),
             0.09,
             1
@@ -188,7 +188,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.STRINGY_SEED,
             GrowthDescription.HARDY_GREEN,
-            Placement.ALL,
+            Placements.ALL,
             new ItemStack(Material.STRING),
             0.09,
             1
@@ -198,7 +198,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.STONEY_SEED,
             GrowthDescription.HARDY_INDIGO,
-            Placement.ALL,
+            Placements.ALL,
             new ItemStack(Material.COBBLESTONE),
             0.09,
             1
@@ -208,7 +208,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.DUSTY_SEED,
             GrowthDescription.HARDY_INDIGO,
-            Placement.ALL,
+            Placements.ALL,
             new ItemStack(Material.GRAVEL),
             0.09,
             1
@@ -218,7 +218,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.SEASIDE_SEED,
             GrowthDescription.HARDY_YELLOW,
-            Placement.ALL,
+            Placements.ALL,
             new ItemStack(Material.SAND),
             0.09,
             1
@@ -228,7 +228,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.MOLDABLE_SEED,
             GrowthDescription.HARDY_INDIGO,
-            Placement.ALL,
+            Placements.ALL,
             new ItemStack(Material.CLAY_BALL),
             0.09,
             1
@@ -238,7 +238,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.SPLINTERED_SEED,
             GrowthDescription.HARDY_ORANGE,
-            Placement.ALL,
+            Placements.ALL,
             EntityType.SKELETON,
             0.08,
             2
@@ -248,7 +248,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.ROTTEN_SEED,
             GrowthDescription.HARDY_GREEN,
-            Placement.ALL,
+            Placements.ALL,
             EntityType.ZOMBIE,
             0.08,
             2
@@ -258,7 +258,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.METALLIC_SEED,
             GrowthDescription.HARDY_RED,
-            Placement.PURIFIED_AND_UP,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.IRON_NUGGET),
             0.08,
             2
@@ -268,7 +268,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.SHINY_SEED,
             GrowthDescription.HARDY_YELLOW,
-            Placement.PURIFIED_AND_UP,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.GOLD_NUGGET),
             0.08,
             2
@@ -278,7 +278,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.SMOOTH_SEED,
             GrowthDescription.HARDY_VIOLET,
-            Placement.PURIFIED_AND_UP,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.AMETHYST_SHARD),
             0.08,
             2
@@ -288,7 +288,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.ENCHANTED_SEED,
             GrowthDescription.HARDY_BLUE,
-            Placement.PURIFIED_AND_UP,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.LAPIS_LAZULI),
             0.07,
             3
@@ -298,7 +298,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.COMBUSTIBLE_SEED,
             GrowthDescription.HARDY_VIOLET,
-            Placement.PURIFIED_AND_UP,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.COAL),
             0.07,
             3
@@ -308,7 +308,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.PROTECTIVE_SEED,
             GrowthDescription.HARDY_YELLOW,
-            Placement.ALL,
+            Placements.ALL,
             EntityType.IRON_GOLEM,
             0.03,
             5
@@ -318,7 +318,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.VALUABLE_SEED,
             GrowthDescription.HARDY_VIOLET,
-            Placement.PURIFIED_AND_UP,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.EMERALD),
             0.07,
             3
@@ -328,7 +328,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.PERFECTION_SEED,
             GrowthDescription.HARDY_BLUE,
-            Placement.PURIFIED_AND_UP,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.DIAMOND),
             0.07,
             5
@@ -338,7 +338,7 @@ public class NpsItems {
             NpsGroups.SEEDS,
             NpsStacks.OAKENDRAN_SEED,
             GrowthDescription.HARDY_RED,
-            Placement.VORACIOUS_AND_UP,
+            Placements.VORACIOUS_AND_UP,
             GenericTickingMethods::onTickOakendranSeed,
             0.04,
             12

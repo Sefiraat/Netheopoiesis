@@ -1,5 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.tools;
 
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.HarvestableSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Protection;
@@ -20,6 +21,10 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
+/**
+ * The HarvestingTool is used on {@link dev.sefiraat.netheopoiesis.slimefun.flora.seeds.HarvestableSeed} to
+ * generate materials and revert the plant's growth to seed.
+ */
 public class HarvestingTool extends LimitedUseItem {
 
     private static final NamespacedKey key = Keys.newKey("uses");
@@ -46,7 +51,7 @@ public class HarvestingTool extends LimitedUseItem {
         if (optional.isPresent()) {
             final Block block = optional.get();
             final SlimefunItem slimefunItem = BlockStorage.check(block);
-            if (slimefunItem instanceof NetherSeed seed && canHarvest(seed, block, e.getPlayer())) {
+            if (slimefunItem instanceof HarvestableSeed seed && canHarvest(seed, block, e.getPlayer())) {
                 final ItemStack stackToDrop = seed.getHarvestingResult();
                 seed.updateGrowthStage(block, 0);
                 block.getWorld().dropItem(block.getLocation(), stackToDrop);

@@ -24,8 +24,10 @@ public class MainFlexGroup extends FlexItemGroup {
 
     private static final int GUIDE_BACK = 1;
 
-    private static final int SEEDS = 9;
-    private static final int CRUX = 10;
+    private static final int CRAFTING = 9;
+    private static final int TOOLS = 10;
+    private static final int SEEDS = 11;
+    private static final int CRUX = 12;
 
     private static final int[] HEADER = new int[]{
         0, 1, 2, 3, 4, 5, 6, 7, 8
@@ -81,6 +83,18 @@ public class MainFlexGroup extends FlexItemGroup {
             SlimefunGuide.openMainMenu(profile, mode, 1);
             return false;
         });
+
+        // Crafting
+        menu.replaceExistingItem(CRAFTING, NpsGroups.CRAFTING.getItem(player));
+        menu.addMenuClickHandler(CRAFTING, (player1, i1, itemStack1, clickAction) ->
+            openPage(profile, NpsGroups.CRAFTING, mode, 1)
+        );
+
+        // Tools
+        menu.replaceExistingItem(TOOLS, NpsGroups.TOOLS.getItem(player));
+        menu.addMenuClickHandler(TOOLS, (player1, i1, itemStack1, clickAction) ->
+            openPage(profile, NpsGroups.TOOLS, mode, 1)
+        );
 
         // Seeds
         menu.replaceExistingItem(SEEDS, NpsGroups.SEEDS.getItem(player));

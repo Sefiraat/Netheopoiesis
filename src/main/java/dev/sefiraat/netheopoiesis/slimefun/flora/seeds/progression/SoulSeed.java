@@ -2,9 +2,8 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.core.plant.Placement;
-import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
+import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Theme;
@@ -19,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class SoulSeed extends NetherSeed {
@@ -26,7 +26,7 @@ public class SoulSeed extends NetherSeed {
     public SoulSeed(@Nonnull ItemGroup itemGroup,
                     @Nonnull SlimefunItemStack item,
                     @Nonnull GrowthDescription growthDescription,
-                    @Nonnull Placement placement
+                    @Nonnull Set<String> placement
     ) {
         super(itemGroup, item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], growthDescription, placement);
     }
@@ -42,7 +42,7 @@ public class SoulSeed extends NetherSeed {
             for (int i = -1; i < 2; i++) {
                 final Block block = location.clone().add(randomX, i, randomZ).getBlock();
                 final SlimefunItem possibleCrux = BlockStorage.check(block);
-                if (possibleCrux instanceof NetherSeedCrux crux && getPlacement().contains(crux.getId())) {
+                if (possibleCrux instanceof NetherSeedCrux crux && getPlacements().contains(crux.getId())) {
                     BlockStorage.clearBlockInfo(block);
                     // Schedule a task to ensure the new block storage happens only AFTER deletion
                     UpdateCruxTask task = new UpdateCruxTask(block, NpsItems.PURIFIED_NETHERRACK);

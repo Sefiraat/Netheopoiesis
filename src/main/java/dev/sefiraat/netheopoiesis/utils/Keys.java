@@ -11,6 +11,8 @@ public final class Keys {
     public static final String SEED_GROWTH_STAGE = "growth-stage";
     public static final String SEED_OWNER = "plant-owner";
 
+    public static final NamespacedKey COOLDOWN = newKey("cooldown");
+
     private Keys() {
         throw new IllegalStateException("Utility class");
     }

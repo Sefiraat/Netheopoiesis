@@ -1,7 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.core.plant.Placement;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -15,8 +14,12 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * This plant will spawn the provided entity when fully matured
+ */
 public class EntitySpawningSeed extends NetherSeed {
 
     private final EntityType entityType;
@@ -26,7 +29,7 @@ public class EntitySpawningSeed extends NetherSeed {
     public EntitySpawningSeed(@Nonnull ItemGroup itemGroup,
                               @Nonnull SlimefunItemStack item,
                               @Nonnull GrowthDescription growthDescription,
-                              @Nonnull Placement placement,
+                              @Nonnull Set<String> placement,
                               @Nonnull EntityType entityType,
                               double growthRate,
                               int purificationValue

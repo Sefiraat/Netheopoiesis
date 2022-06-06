@@ -14,6 +14,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import javax.annotation.Nonnull;
 
+/**
+ * The purpose of this listener is to allow players to sleep and set their respawn point whilst
+ * in the Nether assuming the chunk is purified enough
+ */
 public class PlayerSleepListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)

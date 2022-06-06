@@ -14,9 +14,14 @@ import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
+import java.util.Set;
 
+/**
+ * A NetherSeedCrux is a block that allows NetherPlants to grow on top.
+ * Each plant has a {@link Set<String>} of id's to specify which Crux's they can be placed on
+ * @see {@link dev.sefiraat.netheopoiesis.core.plant.Placements}
+ */
 public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
 
     private final int purificationValue;

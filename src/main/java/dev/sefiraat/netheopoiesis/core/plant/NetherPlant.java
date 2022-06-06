@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Set;
 
 /**
  * This interface represents a plant in the Nether, and it's behavior as it ticks and grows
@@ -105,7 +106,7 @@ public interface NetherPlant extends PurifyingObject {
      * @return The set of {@link NetherSeedCrux} that are valid for placement
      */
     @Nonnull
-    Placement getPlacement();
+    Set<String> getPlacements();
 
     /**
      * Defines the chance at which this plant will grow each tick, between 0 (0%) and 1 (100%)

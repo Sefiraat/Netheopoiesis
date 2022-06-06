@@ -2,8 +2,12 @@ package dev.sefiraat.netheopoiesis.utils;
 
 import org.bukkit.World;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import javax.annotation.Nonnull;
 
+/**
+ * This enum holds some common time periods and the start/end time represented in Minecraft's single long value
+ * Also provides static methods to check common time-based events and intersecting periods
+ */
 public enum TimePeriod {
     SUNRISE(23000, 23999),
     DAY(24000, 11999),
@@ -40,8 +44,7 @@ public enum TimePeriod {
         return end;
     }
 
-    @ParametersAreNonnullByDefault
-    public static boolean isDay(World world) {
+    public static boolean isDay(@Nonnull World world) {
         return isDay(world.getTime());
     }
 
@@ -49,8 +52,7 @@ public enum TimePeriod {
         return time < 13000 || time > 24000;
     }
 
-    @ParametersAreNonnullByDefault
-    public static boolean isNight(World world) {
+    public static boolean isNight(@Nonnull World world) {
         return isNight(world.getTime());
     }
 
@@ -58,21 +60,44 @@ public enum TimePeriod {
         return !isDay(time);
     }
 
-    @ParametersAreNonnullByDefault
-    public static boolean isActive(World world, TimePeriod timePeriod) {
+    /**
+     * Returns if the given time period would be active within the given world
+     *
+     * @param world      The world to get the time from
+     * @param timePeriod The TimePeriod to check is active
+     * @return True if the time and the period intersect
+     */
+    public static boolean isActive(@Nonnull World world, @Nonnull TimePeriod timePeriod) {
         return isActive(world.getTime(), timePeriod);
     }
 
-    @ParametersAreNonnullByDefault
-    public static boolean isActive(long time, TimePeriod timePeriod) {
+    /**
+     * Returns if the given time period would be active during the given time
+     *
+     * @param time       The time to check against
+     * @param timePeriod The TimePeriod to check is active
+     * @return True if the time and the period intersect
+     */
+    public static boolean isActive(long time, @Nonnull TimePeriod timePeriod) {
         return time >= timePeriod.getStart() && time <= timePeriod.getEnd();
     }
 
-    @ParametersAreNonnullByDefault
-    public static boolean villagersAwake(World world) {
+    /**
+     * Returns if villagers should be awake during the given time
+     *
+     * @param world the world to get the time from
+     * @return True if they should be awake
+     */
+    public static boolean villagersAwake(@Nonnull World world) {
         return villagersAwake(world.getTime());
     }
 
+    /**
+     * Returns if villagers should be awake during the given time
+     *
+     * @param time The time to check against
+     * @return True if they should be awake
+     */
     public static boolean villagersAwake(long time) {
         return time >= WAKE_UP.getStart() && time <= VILLAGER_BED_TIME.getEnd();
     }
@@ -83,8 +108,7 @@ public enum TimePeriod {
      * @param world The world to check.
      * @return True if the moon is/would be out, false if not or wrong world type.
      */
-    @ParametersAreNonnullByDefault
-    public static boolean moonOut(World world) {
+    public static boolean moonOut(@Nonnull World world) {
         if (world.getEnvironment() == World.Environment.NORMAL) {
             return moonOut(world.getTime());
         }
@@ -102,8 +126,7 @@ public enum TimePeriod {
         return time >= MOON_SHOW.getStart() && time <= MOON_HIDE.getEnd();
     }
 
-    @ParametersAreNonnullByDefault
-    public static boolean naturalMobsCanSpawn(World world) {
+    public static boolean naturalMobsCanSpawn(@Nonnull World world) {
         long time = world.getTime();
         return world.isClearWeather()
                ? naturalMobsCanSpawn(time, false)
@@ -122,8 +145,7 @@ public enum TimePeriod {
      * @param world The world to check.
      * @return True if past sunset/before sunrise or in a different world.
      */
-    @ParametersAreNonnullByDefault
-    public static boolean isDark(World world) {
+    public static boolean isDark(@Nonnull World world) {
         return !isLight(world);
     }
 
@@ -133,8 +155,7 @@ public enum TimePeriod {
      * @param world The world to check.
      * @return True if past sunrise/before sunset or in a different world.
      */
-    @ParametersAreNonnullByDefault
-    public static boolean isLight(World world) {
+    public static boolean isLight(@Nonnull World world) {
         if (world.getEnvironment() == World.Environment.NORMAL) {
             return isDay(world.getTime());
         }

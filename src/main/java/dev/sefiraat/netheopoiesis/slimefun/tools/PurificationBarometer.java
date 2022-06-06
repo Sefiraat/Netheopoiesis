@@ -1,6 +1,7 @@
 package dev.sefiraat.netheopoiesis.slimefun.tools;
 
 import dev.sefiraat.netheopoiesis.PurificationMemory;
+import dev.sefiraat.netheopoiesis.utils.Cooldowns;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -13,6 +14,11 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 
+/**
+ * The PurificationBarometer will display the player's currently located chunks purification level
+ * @see {@link dev.sefiraat.netheopoiesis.core.purification.PurifyingObject}
+ * Coolsdown after use @see {@link Cooldowns}
+ */
 public class PurificationBarometer extends SimpleSlimefunItem<ItemUseHandler> {
 
     public PurificationBarometer(ItemGroup itemGroup,
@@ -29,12 +35,19 @@ public class PurificationBarometer extends SimpleSlimefunItem<ItemUseHandler> {
         return event -> {
             final Player player = event.getPlayer();
             final Chunk chunk = player.getLocation().getChunk();
-            final String message = Theme.applyThemeAsTitle(
-                Theme.CLICK_INFO,
+            final ItemStack barometer = event.getItem();
+
+            if (Cooldowns.isOnCooldown(barometer)) {
+                player.sendMessage(Theme.WARNING + "This item is still on cooldown.");
+                return;
+            }
+
+            final String message = Theme.CLICK_INFO.asTitle(
                 "Chunk Purification Amount",
                 PurificationMemory.getInstance().getPurificationValue(chunk)
             );
             player.sendMessage(message);
+            Cooldowns.addCooldown(barometer, 5);
         };
     }
 }

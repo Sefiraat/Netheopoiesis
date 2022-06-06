@@ -2,7 +2,6 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.core.plant.NetherPlant;
-import dev.sefiraat.netheopoiesis.core.plant.Placement;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResult;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingDefinitions;
 import dev.sefiraat.netheopoiesis.events.NetherPlantBeforeGrowthEvent;
@@ -61,14 +60,14 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     public final Map<Location, UUID> ownerCache = new HashMap<>();
 
     private final GrowthDescription growthStages;
-    private final Placement placement;
+    private final Set<String> placement;
 
     protected NetherSeed(@Nonnull ItemGroup itemGroup,
                          @Nonnull SlimefunItemStack item,
                          @Nonnull RecipeType recipeType,
                          @Nonnull ItemStack[] recipe,
                          @Nonnull GrowthDescription growthDescription,
-                         @Nonnull Placement placement
+                         @Nonnull Set<String> placement
     ) {
         super(itemGroup, item, recipeType, recipe);
         this.growthStages = growthDescription;
@@ -81,7 +80,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
                          @Nonnull ItemStack[] recipe,
                          @Nullable ItemStack recipeOutput,
                          @Nonnull GrowthDescription growthDescription,
-                         @Nonnull Placement placement
+                         @Nonnull Set<String> placement
     ) {
         super(itemGroup, item, recipeType, recipe, recipeOutput);
         this.growthStages = growthDescription;
@@ -250,7 +249,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         final SlimefunItem itemBelow = BlockStorage.check(blockBelow);
 
         if (itemBelow instanceof NetherSeedCrux crux
-            && location.getWorld().getEnvironment() == World.Environment.NETHER && getPlacement().contains(crux.getId())
+            && location.getWorld().getEnvironment() == World.Environment.NETHER && getPlacements().contains(crux.getId())
         ) {
             final UUID uuid = event.getPlayer().getUniqueId();
             BlockStorage.addBlockInfo(location, Keys.SEED_GROWTH_STAGE, "0");
@@ -280,7 +279,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
 
     @Nonnull
     @Override
-    public Placement getPlacement() {
+    public Set<String> getPlacements() {
         return this.placement;
     }
 

@@ -39,7 +39,7 @@ public final class GenericTickingMethods {
 
             // And the block below must be a valid crux
             if (possibleCrux instanceof NetherSeedCrux crux
-                && parameters.getSeed().getPlacement().contains(crux.getId())
+                && parameters.getSeed().getPlacements().contains(crux.getId())
             ) {
                 block.setType(Material.OAK_LOG);
             }
@@ -65,7 +65,7 @@ public final class GenericTickingMethods {
 
             // And the block below must be a valid crux
             if (possibleCrux instanceof NetherSeedCrux crux
-                && parameters.getSeed().getPlacement().contains(crux.getId())
+                && parameters.getSeed().getPlacements().contains(crux.getId())
             ) {
                 block.getWorld().generateTree(block.getLocation(), TreeType.TREE);
             }

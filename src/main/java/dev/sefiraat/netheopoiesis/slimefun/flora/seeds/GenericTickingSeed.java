@@ -1,7 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.core.plant.Placement;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -11,8 +10,13 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Set;
 import java.util.function.Consumer;
 
+/**
+ * This plant will accept the given consumer each tick when fully matured
+ * @see {@link GenericTickingMethods}
+ */
 public class GenericTickingSeed extends NetherSeed {
 
     private final Consumer<TickParameters> consumer;
@@ -22,7 +26,7 @@ public class GenericTickingSeed extends NetherSeed {
     public GenericTickingSeed(@Nonnull ItemGroup itemGroup,
                               @Nonnull SlimefunItemStack item,
                               @Nonnull GrowthDescription growthDescription,
-                              @Nonnull Placement placement,
+                              @Nonnull Set<String> placement,
                               @Nonnull Consumer<TickParameters> consumer,
                               double growthRate,
                               int purificationValue

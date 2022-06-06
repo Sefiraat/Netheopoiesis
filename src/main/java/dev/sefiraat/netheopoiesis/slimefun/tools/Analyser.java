@@ -1,6 +1,7 @@
 package dev.sefiraat.netheopoiesis.slimefun.tools;
 
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
+import dev.sefiraat.netheopoiesis.utils.Cooldowns;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Protection;
 import dev.sefiraat.netheopoiesis.utils.Theme;
@@ -23,6 +24,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * The Analyser is used on plants to display information about said plant to the player
+ */
 public class Analyser extends SlimefunItem {
 
     @ParametersAreNonnullByDefault
@@ -40,6 +44,14 @@ public class Analyser extends SlimefunItem {
         if (optional.isPresent()) {
             final Block block = optional.get();
             final Player player = event.getPlayer();
+
+            final ItemStack analyser = event.getItem();
+
+            if (Cooldowns.isOnCooldown(analyser)) {
+                player.sendMessage(Theme.WARNING + "This item is still on cooldown.");
+                return;
+            }
+
             final SlimefunItem slimefunItem = BlockStorage.check(block);
 
             if (slimefunItem instanceof NetherSeed plant
@@ -53,8 +65,11 @@ public class Analyser extends SlimefunItem {
                 final String messageType = Theme.CLICK_INFO.asTitle("Seed Type", plant.getItemName());
                 final String messageStage = Theme.CLICK_INFO.asTitle("Growth Stage", growthStage);
                 final String messageOwner = Theme.CLICK_INFO.asTitle("Owner", ownerPlayer.getName());
-                player.sendMessage(messageType, messageStage, messageOwner);
+                final String messageValue = Theme.CLICK_INFO.asTitle("Purification Value", plant.getPurificationValue());
+                player.sendMessage(messageType, messageStage, messageOwner, messageValue);
             }
+            // Put item on cooldown to minimise potential BlockStorage spamming
+            Cooldowns.addCooldown(analyser, 5);
         }
     }
 }

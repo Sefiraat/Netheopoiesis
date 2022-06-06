@@ -2,7 +2,6 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.core.plant.Placement;
 import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
@@ -37,7 +36,7 @@ public class PurificationSeed extends NetherSeed {
                             @Nonnull RecipeType recipeType,
                             @Nonnull ItemStack[] recipe,
                             @Nonnull GrowthDescription growthDescription,
-                            @Nonnull Placement placement
+                            @Nonnull Set<String> placement
     ) {
         super(itemGroup, item, recipeType, recipe, growthDescription, placement);
         materials = Set.of(
@@ -62,7 +61,7 @@ public class PurificationSeed extends NetherSeed {
                 if (materials.contains(block.getType())) {
                     BlockStorage.clearBlockInfo(block);
                     // Schedule a task to ensure the new block storage happens only AFTER deletion
-                    UpdateCruxTask task  = new UpdateCruxTask(block, NpsItems.BASIC_PURIFIED_NETHERRACK);
+                    UpdateCruxTask task = new UpdateCruxTask(block, NpsItems.BASIC_PURIFIED_NETHERRACK);
                     task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);
                     // Return so we only effect the one block per valid tick
                     return;
