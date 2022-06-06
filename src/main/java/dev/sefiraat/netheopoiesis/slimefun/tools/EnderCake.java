@@ -98,7 +98,7 @@ public class EnderCake extends SlimefunItem {
     private void tryPlaceBlock(@Nonnull Block block) {
         if (block.getY() == 48 && block.getType() != Material.OBSIDIAN) {
             block.setType(Material.OBSIDIAN);
-        } else if (block.getType().isAir()){
+        } else if (!block.getType().isAir()){
             block.setType(Material.AIR);
         }
     }
