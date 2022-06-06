@@ -4,8 +4,7 @@ import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.core.plant.Placement;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
-import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItemStacks;
-import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
+import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Theme;
@@ -46,7 +45,7 @@ public class SpiritSeed extends NetherSeed {
                 if (possibleCrux instanceof NetherSeedCrux crux && getPlacement().contains(crux.getId())) {
                     BlockStorage.clearBlockInfo(block);
                     // Schedule a task to ensure the new block storage happens only AFTER deletion
-                    UpdateCruxTask task  = new UpdateCruxTask(block, NpsSlimefunItems.VORACIOUS_DIRT);
+                    UpdateCruxTask task  = new UpdateCruxTask(block, NpsItems.VORACIOUS_DIRT);
                     task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);
                     // Return so we only effect the one block per valid tick
                     return;

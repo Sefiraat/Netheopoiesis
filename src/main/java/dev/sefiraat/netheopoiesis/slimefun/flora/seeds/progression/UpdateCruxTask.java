@@ -1,6 +1,5 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression;
 
-import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItemStacks;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;

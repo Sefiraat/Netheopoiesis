@@ -17,19 +17,19 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class EntitySpawningPlant extends NetherSeed {
+public class EntitySpawningSeed extends NetherSeed {
 
     private final EntityType entityType;
     private final double growthRate;
     private final int purificationValue;
 
-    public EntitySpawningPlant(@Nonnull ItemGroup itemGroup,
-                               @Nonnull SlimefunItemStack item,
-                               @Nonnull GrowthDescription growthDescription,
-                               @Nonnull Placement placement,
-                               @Nonnull EntityType entityType,
-                               double growthRate,
-                               int purificationValue
+    public EntitySpawningSeed(@Nonnull ItemGroup itemGroup,
+                              @Nonnull SlimefunItemStack item,
+                              @Nonnull GrowthDescription growthDescription,
+                              @Nonnull Placement placement,
+                              @Nonnull EntityType entityType,
+                              double growthRate,
+                              int purificationValue
     ) {
         super(itemGroup, item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], growthDescription, placement);
         this.entityType = entityType;

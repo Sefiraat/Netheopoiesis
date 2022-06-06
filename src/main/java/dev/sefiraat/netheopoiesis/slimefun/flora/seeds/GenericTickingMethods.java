@@ -12,7 +12,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Holds the methods for the {@link GenericTickingPlant}'s consumer
+ * Holds the methods for the {@link GenericTickingSeed}'s consumer
  */
 public final class GenericTickingMethods {
 
@@ -21,7 +21,7 @@ public final class GenericTickingMethods {
     }
 
     @ParametersAreNonnullByDefault
-    public static void onTickSpindleSeed(GenericTickingPlant.TickParameters parameters) {
+    public static void onTickSpindleSeed(GenericTickingSeed.TickParameters parameters) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
         if (randomChance <= 0.05) {
             final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
@@ -47,7 +47,7 @@ public final class GenericTickingMethods {
     }
 
     @ParametersAreNonnullByDefault
-    public static void onTickOakendranSeed(GenericTickingPlant.TickParameters parameters) {
+    public static void onTickOakendranSeed(GenericTickingSeed.TickParameters parameters) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
         if (randomChance <= 0.5) {
             final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);

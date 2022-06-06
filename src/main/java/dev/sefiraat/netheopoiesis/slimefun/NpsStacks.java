@@ -9,9 +9,9 @@ import org.bukkit.Material;
 import javax.annotation.Nonnull;
 import java.util.stream.Stream;
 
-public class NpsSlimefunItemStacks {
+public class NpsStacks {
 
-    private NpsSlimefunItemStacks() {
+    private NpsStacks() {
         throw new IllegalStateException("Utility class");
     }
 

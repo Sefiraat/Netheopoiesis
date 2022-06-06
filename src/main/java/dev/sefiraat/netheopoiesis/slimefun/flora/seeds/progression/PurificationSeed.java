@@ -3,8 +3,7 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression;
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.core.plant.Placement;
-import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItemStacks;
-import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
+import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Keys;
@@ -15,7 +14,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -64,7 +62,7 @@ public class PurificationSeed extends NetherSeed {
                 if (materials.contains(block.getType())) {
                     BlockStorage.clearBlockInfo(block);
                     // Schedule a task to ensure the new block storage happens only AFTER deletion
-                    UpdateCruxTask task  = new UpdateCruxTask(block, NpsSlimefunItems.BASIC_PURIFIED_NETHERRACK);
+                    UpdateCruxTask task  = new UpdateCruxTask(block, NpsItems.BASIC_PURIFIED_NETHERRACK);
                     task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);
                     // Return so we only effect the one block per valid tick
                     return;

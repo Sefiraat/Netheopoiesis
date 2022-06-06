@@ -7,9 +7,9 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public final class NpsItemGroups {
+public final class NpsGroups {
 
-    private NpsItemGroups() {
+    private NpsGroups() {
         throw new IllegalStateException("Utility class");
     }
 

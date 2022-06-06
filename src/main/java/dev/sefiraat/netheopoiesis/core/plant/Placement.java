@@ -1,12 +1,56 @@
 package dev.sefiraat.netheopoiesis.core.plant;
 
-import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import dev.sefiraat.netheopoiesis.slimefun.NpsStacks;
 
 import javax.annotation.Nonnull;
+import java.util.Collections;
 import java.util.Set;
 
 public class Placement {
+
+    public static final Placement ALL = new Placement(
+        Set.of(
+            NpsStacks.BASIC_PURIFIED_NETHERRACK.getItemId(),
+            NpsStacks.PURIFIED_NETHERRACK.getItemId(),
+            NpsStacks.VORACIOUS_DIRT.getItemId(),
+            NpsStacks.NETHER_DIRT.getItemId(),
+            NpsStacks.NETHER_GRASS.getItemId()
+        )
+    );
+
+    public static final Placement PURIFIED_AND_UP = new Placement(
+        Set.of(
+            NpsStacks.PURIFIED_NETHERRACK.getItemId(),
+            NpsStacks.VORACIOUS_DIRT.getItemId(),
+            NpsStacks.NETHER_DIRT.getItemId(),
+            NpsStacks.NETHER_GRASS.getItemId()
+        )
+    );
+
+    public static final Placement VORACIOUS_AND_UP = new Placement(
+        Set.of(
+            NpsStacks.VORACIOUS_DIRT.getItemId(),
+            NpsStacks.NETHER_DIRT.getItemId(),
+            NpsStacks.NETHER_GRASS.getItemId()
+        )
+    );
+
+    public static final Placement NETHER_DIRT_AND_UP = new Placement(
+        Set.of(
+            NpsStacks.NETHER_DIRT.getItemId(),
+            NpsStacks.NETHER_GRASS.getItemId()
+        )
+    );
+
+    public static final Placement NETHER_GRASS_AND_UP = new Placement(
+        Set.of(
+            NpsStacks.NETHER_GRASS.getItemId()
+        )
+    );
+
+    public static final Placement NULL = new Placement(
+        Collections.emptySet()
+    );
 
     @Nonnull
     private final Set<String> validPlacements;
