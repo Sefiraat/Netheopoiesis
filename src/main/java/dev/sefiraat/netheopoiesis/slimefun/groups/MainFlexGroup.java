@@ -83,15 +83,15 @@ public class MainFlexGroup extends FlexItemGroup {
         });
 
         // Seeds
-        menu.replaceExistingItem(SEEDS, NpsItemGroups.SEEDS.getItem(player));
+        menu.replaceExistingItem(SEEDS, NpsGroups.SEEDS.getItem(player));
         menu.addMenuClickHandler(SEEDS, (player1, i1, itemStack1, clickAction) ->
-            openPage(profile, NpsItemGroups.SEEDS, mode, 1)
+            openPage(profile, NpsGroups.SEEDS, mode, 1)
         );
 
         // Crux'
-        menu.replaceExistingItem(CRUX, NpsItemGroups.CRUX.getItem(player));
+        menu.replaceExistingItem(CRUX, NpsGroups.CRUX.getItem(player));
         menu.addMenuClickHandler(CRUX, (player1, i1, itemStack1, clickAction) ->
-            openPage(profile, NpsItemGroups.CRUX, mode, 1)
+            openPage(profile, NpsGroups.CRUX, mode, 1)
         );
     }
 

@@ -6,7 +6,7 @@ import dev.sefiraat.netheopoiesis.commands.CommandMain;
 import dev.sefiraat.netheopoiesis.managers.ListenerManager;
 import dev.sefiraat.netheopoiesis.managers.RunnableManager;
 import dev.sefiraat.netheopoiesis.managers.SupportedPluginManager;
-import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
+import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import org.bstats.bukkit.Metrics;
@@ -54,7 +54,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
 
         commandManager.registerCommand(new CommandMain());
 
-        NpsSlimefunItems.setup();
+        NpsItems.setup();
 
         setupStats();
     }

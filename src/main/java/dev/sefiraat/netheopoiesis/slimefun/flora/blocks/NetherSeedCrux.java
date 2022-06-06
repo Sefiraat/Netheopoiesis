@@ -36,11 +36,13 @@ public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
         addItemHandler(
             new BlockBreakHandler(false, true) {
                 @Override
-                public void onPlayerBreak(BlockBreakEvent e, ItemStack item, List<ItemStack> drops) {
+                public void onPlayerBreak(BlockBreakEvent event, ItemStack item, List<ItemStack> drops) {
                     // We do not want crux' to be able to drop and placed elsewhere thus gaming the system
-                    e.setCancelled(true);
-                    e.getBlock().setType(Material.AIR);
-                    BlockStorage.clearBlockInfo(e.getBlock());
+                    final Block block = event.getBlock();
+                    event.setCancelled(true);
+                    block.setType(Material.AIR);
+                    BlockStorage.clearBlockInfo(block);
+                    removePurificationRegistry(block);
                 }
             },
             new BlockTicker() {
@@ -52,13 +54,6 @@ public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
                 @Override
                 public void tick(Block block, SlimefunItem slimefunItem, Config config) {
                     registerPurificationValue(block);
-                }
-            },
-            new BlockBreakHandler(false, false) {
-                @Override
-                @ParametersAreNonnullByDefault
-                public void onPlayerBreak(BlockBreakEvent blockBreakEvent, ItemStack itemStack, List<ItemStack> list) {
-                    removePurificationRegistry(blockBreakEvent.getBlock());
                 }
             }
         );

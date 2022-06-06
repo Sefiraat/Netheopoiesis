@@ -13,19 +13,19 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Consumer;
 
-public class GenericTickingPlant extends NetherSeed {
+public class GenericTickingSeed extends NetherSeed {
 
     private final Consumer<TickParameters> consumer;
     private final double growthRate;
     private final int purificationValue;
 
-    public GenericTickingPlant(@Nonnull ItemGroup itemGroup,
-                               @Nonnull SlimefunItemStack item,
-                               @Nonnull GrowthDescription growthDescription,
-                               @Nonnull Placement placement,
-                               @Nonnull Consumer<TickParameters> consumer,
-                               double growthRate,
-                               int purificationValue
+    public GenericTickingSeed(@Nonnull ItemGroup itemGroup,
+                              @Nonnull SlimefunItemStack item,
+                              @Nonnull GrowthDescription growthDescription,
+                              @Nonnull Placement placement,
+                              @Nonnull Consumer<TickParameters> consumer,
+                              double growthRate,
+                              int purificationValue
     ) {
         super(itemGroup, item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], growthDescription, placement);
         this.consumer = consumer;

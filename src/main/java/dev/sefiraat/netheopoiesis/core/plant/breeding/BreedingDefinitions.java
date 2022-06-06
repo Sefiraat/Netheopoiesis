@@ -1,6 +1,6 @@
 package dev.sefiraat.netheopoiesis.core.plant.breeding;
 
-import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
+import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 
 import javax.annotation.Nonnull;
@@ -12,145 +12,145 @@ import javax.annotation.Nullable;
 public enum BreedingDefinitions {
 
     SPINDLE(new BreedingPair(
-        NpsSlimefunItems.SPINDLE_SEED,
-        NpsSlimefunItems.PURIFICATION_SEED,
-        NpsSlimefunItems.PURIFICATION_SEED,
+        NpsItems.SPINDLE_SEED,
+        NpsItems.PURIFICATION_SEED,
+        NpsItems.PURIFICATION_SEED,
         0.1,
         0.2
     )),
 
     GRAINY(new BreedingPair(
-        NpsSlimefunItems.GRAINY_SEED,
-        NpsSlimefunItems.PURIFICATION_SEED,
-        NpsSlimefunItems.PURIFICATION_SEED,
+        NpsItems.GRAINY_SEED,
+        NpsItems.PURIFICATION_SEED,
+        NpsItems.PURIFICATION_SEED,
         0.1,
         0.2
     )),
 
     STRINGY(new BreedingPair(
-        NpsSlimefunItems.STRINGY_SEED,
-        NpsSlimefunItems.PURIFICATION_SEED,
-        NpsSlimefunItems.PURIFICATION_SEED,
+        NpsItems.STRINGY_SEED,
+        NpsItems.PURIFICATION_SEED,
+        NpsItems.PURIFICATION_SEED,
         0.1,
         0.2
     )),
 
     STONEY(new BreedingPair(
-        NpsSlimefunItems.STONEY_SEED,
-        NpsSlimefunItems.SPINDLE_SEED,
-        NpsSlimefunItems.GRAINY_SEED,
+        NpsItems.STONEY_SEED,
+        NpsItems.SPINDLE_SEED,
+        NpsItems.GRAINY_SEED,
         0.1,
         0.2
     )),
 
     DUSTY(new BreedingPair(
-        NpsSlimefunItems.DUSTY_SEED,
-        NpsSlimefunItems.STONEY_SEED,
-        NpsSlimefunItems.GRAINY_SEED,
+        NpsItems.DUSTY_SEED,
+        NpsItems.STONEY_SEED,
+        NpsItems.GRAINY_SEED,
         0.1,
         0.2
     )),
 
     SEASIDE(new BreedingPair(
-        NpsSlimefunItems.SEASIDE_SEED,
-        NpsSlimefunItems.SPINDLE_SEED,
-        NpsSlimefunItems.DUSTY_SEED,
+        NpsItems.SEASIDE_SEED,
+        NpsItems.SPINDLE_SEED,
+        NpsItems.DUSTY_SEED,
         0.05,
         0.2
     )),
 
     MOLDABLE(new BreedingPair(
-        NpsSlimefunItems.MOLDABLE_SEED,
-        NpsSlimefunItems.SEASIDE_SEED,
-        NpsSlimefunItems.STONEY_SEED,
+        NpsItems.MOLDABLE_SEED,
+        NpsItems.SEASIDE_SEED,
+        NpsItems.STONEY_SEED,
         0.05,
         0.2
     )),
 
     SPLINTERED(new BreedingPair(
-        NpsSlimefunItems.SPLINTERED_SEED,
-        NpsSlimefunItems.SPINDLE_SEED,
-        NpsSlimefunItems.STRINGY_SEED,
+        NpsItems.SPLINTERED_SEED,
+        NpsItems.SPINDLE_SEED,
+        NpsItems.STRINGY_SEED,
         0.05,
         0.2
     )),
 
     ROTTEN(new BreedingPair(
-        NpsSlimefunItems.ROTTEN_SEED,
-        NpsSlimefunItems.SPLINTERED_SEED,
-        NpsSlimefunItems.DUSTY_SEED,
+        NpsItems.ROTTEN_SEED,
+        NpsItems.SPLINTERED_SEED,
+        NpsItems.DUSTY_SEED,
         0.05,
         0.2
     )),
 
     SOUL(new BreedingPair(
-        NpsSlimefunItems.SOUL_SEED,
-        NpsSlimefunItems.ROTTEN_SEED,
-        NpsSlimefunItems.PURIFICATION_SEED,
+        NpsItems.SOUL_SEED,
+        NpsItems.ROTTEN_SEED,
+        NpsItems.PURIFICATION_SEED,
         0.05,
         0.2
     )),
 
     METALLIC(new BreedingPair(
-        NpsSlimefunItems.METALLIC_SEED,
-        NpsSlimefunItems.SOUL_SEED,
-        NpsSlimefunItems.SOUL_SEED,
+        NpsItems.METALLIC_SEED,
+        NpsItems.SOUL_SEED,
+        NpsItems.SOUL_SEED,
         0.05,
         0.2
     )),
 
     SHINY(new BreedingPair(
-        NpsSlimefunItems.SHINY_SEED,
-        NpsSlimefunItems.SOUL_SEED,
-        NpsSlimefunItems.SOUL_SEED,
+        NpsItems.SHINY_SEED,
+        NpsItems.SOUL_SEED,
+        NpsItems.SOUL_SEED,
         0.05,
         0.2
     )),
 
     SMOOTH(new BreedingPair(
-        NpsSlimefunItems.SMOOTH_SEED,
-        NpsSlimefunItems.SOUL_SEED,
-        NpsSlimefunItems.SOUL_SEED,
+        NpsItems.SMOOTH_SEED,
+        NpsItems.SOUL_SEED,
+        NpsItems.SOUL_SEED,
         0.05,
         0.2
     )),
 
     ENCHANTED(new BreedingPair(
-        NpsSlimefunItems.ENCHANTED_SEED,
-        NpsSlimefunItems.SHINY_SEED,
-        NpsSlimefunItems.SOUL_SEED,
+        NpsItems.ENCHANTED_SEED,
+        NpsItems.SHINY_SEED,
+        NpsItems.SOUL_SEED,
         0.05,
         0.2
     )),
 
     COMBUSTIBLE(new BreedingPair(
-        NpsSlimefunItems.COMBUSTIBLE_SEED,
-        NpsSlimefunItems.SMOOTH_SEED,
-        NpsSlimefunItems.SPLINTERED_SEED,
+        NpsItems.COMBUSTIBLE_SEED,
+        NpsItems.SMOOTH_SEED,
+        NpsItems.SPLINTERED_SEED,
         0.05,
         0.2
     )),
 
     PROTECTIVE(new BreedingPair(
-        NpsSlimefunItems.PROTECTIVE_SEED,
-        NpsSlimefunItems.METALLIC_SEED,
-        NpsSlimefunItems.SOUL_SEED,
+        NpsItems.PROTECTIVE_SEED,
+        NpsItems.METALLIC_SEED,
+        NpsItems.SOUL_SEED,
         0.02,
         0.1
     )),
 
     VALUABLE(new BreedingPair(
-        NpsSlimefunItems.VALUABLE_SEED,
-        NpsSlimefunItems.SHINY_SEED,
-        NpsSlimefunItems.ENCHANTED_SEED,
+        NpsItems.VALUABLE_SEED,
+        NpsItems.SHINY_SEED,
+        NpsItems.ENCHANTED_SEED,
         0.05,
         0.2
     )),
 
     PERFECTION(new BreedingPair(
-        NpsSlimefunItems.PERFECTION_SEED,
-        NpsSlimefunItems.SHINY_SEED,
-        NpsSlimefunItems.VALUABLE_SEED,
+        NpsItems.PERFECTION_SEED,
+        NpsItems.SHINY_SEED,
+        NpsItems.VALUABLE_SEED,
         0.05,
         0.2
     ));
