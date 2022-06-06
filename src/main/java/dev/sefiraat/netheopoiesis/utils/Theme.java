@@ -76,7 +76,7 @@ public enum Theme {
      * @return Returns the string provides preceded by the color
      */
     @Nonnull
-    public String applyAsTitle(@Nonnull Object value1, @Nonnull Object value2) {
+    public String asTitle(@Nonnull Object value1, @Nonnull Object value2) {
         return this.color + String.valueOf(value1) + ": " + Theme.PASSIVE + value2;
     }
 

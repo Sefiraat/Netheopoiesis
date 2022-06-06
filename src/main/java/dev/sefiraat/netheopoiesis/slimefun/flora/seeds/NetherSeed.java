@@ -1,12 +1,11 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plants.GrowthDescription;
-import dev.sefiraat.netheopoiesis.core.plants.NetherPlant;
-import dev.sefiraat.netheopoiesis.core.plants.Placement;
-import dev.sefiraat.netheopoiesis.core.plants.breeding.BreedResult;
-import dev.sefiraat.netheopoiesis.core.plants.breeding.BreedingDefinitions;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plant.NetherPlant;
+import dev.sefiraat.netheopoiesis.core.plant.Placement;
+import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResult;
+import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingDefinitions;
 import dev.sefiraat.netheopoiesis.events.NetherPlantBeforeGrowthEvent;
-import dev.sefiraat.netheopoiesis.slimefun.NpsSlimefunItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Particles;
@@ -22,12 +21,17 @@ import io.papermc.lib.PaperLib;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
@@ -35,8 +39,11 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -50,6 +57,8 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         BlockFace.EAST,
         BlockFace.WEST
     );
+
+    public final Map<Location, UUID> ownerCache = new HashMap<>();
 
     private final GrowthDescription growthStages;
     private final Placement placement;
@@ -169,6 +178,39 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         BlockStorage.addBlockInfo(cloneBlock, Keys.SEED_GROWTH_STAGE, "0");
     }
 
+    @Override
+    public void postRegister() {
+        new BlockMenuPreset(this.getId(), this.getItemName()) {
+
+            @Override
+            public void init() {
+                setSize(9);
+                addMenuOpeningHandler(HumanEntity::closeInventory);
+            }
+
+            @Override
+            public void newInstance(@Nonnull BlockMenu menu, @Nonnull Location location) {
+                final String ownerUuidString = BlockStorage.getLocationInfo(location, Keys.SEED_OWNER);
+                if (ownerUuidString != null) {
+                    final UUID ownerUuid = UUID.fromString(ownerUuidString);
+                    NetherSeed.this.ownerCache.put(location, ownerUuid);
+                }
+            }
+
+            @Override
+            public boolean canOpen(@Nonnull Block block, @Nonnull Player player) {
+                return true;
+            }
+
+            @Override
+            public int[] getSlotsAccessedByItemTransport(ItemTransportFlow itemTransportFlow) {
+                return new int[0];
+            }
+
+
+        };
+    }
+
     public boolean isMature(@Nonnull Block block) {
         return isMature(block.getLocation());
     }
@@ -208,13 +250,21 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         final SlimefunItem itemBelow = BlockStorage.check(blockBelow);
 
         if (itemBelow instanceof NetherSeedCrux crux
-            && location.getWorld().getEnvironment() == World.Environment.NETHER && getPlacement().contains(crux)
+            && location.getWorld().getEnvironment() == World.Environment.NETHER && getPlacement().contains(crux.getId())
         ) {
+            final UUID uuid = event.getPlayer().getUniqueId();
             BlockStorage.addBlockInfo(location, Keys.SEED_GROWTH_STAGE, "0");
+            BlockStorage.addBlockInfo(location, Keys.SEED_OWNER, uuid.toString());
+            ownerCache.put(location, uuid);
             return;
         }
         // Wasn't placable, so cancel the event
         event.setCancelled(true);
+    }
+
+    @Nullable
+    public UUID getOwner(@Nonnull Location location) {
+        return ownerCache.get(location);
     }
 
     @Override

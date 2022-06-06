@@ -9,6 +9,7 @@ public final class Keys {
 
     // Region Slimefun BlockStorage Keys
     public static final String SEED_GROWTH_STAGE = "growth-stage";
+    public static final String SEED_OWNER = "plant-owner";
 
     private Keys() {
         throw new IllegalStateException("Utility class");
