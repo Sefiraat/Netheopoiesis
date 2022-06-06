@@ -1,7 +1,7 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plants.GrowthDescription;
-import dev.sefiraat.netheopoiesis.core.plants.Placement;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plant.Placement;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -11,7 +11,6 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
 
 public class GenericTickingPlant extends NetherSeed {

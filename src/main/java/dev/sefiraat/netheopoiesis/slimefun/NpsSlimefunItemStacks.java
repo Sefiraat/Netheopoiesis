@@ -21,6 +21,7 @@ public class NpsSlimefunItemStacks {
     public static final SlimefunItemStack CRUDE_HARVESTING_TOOL;
     public static final SlimefunItemStack HARVESTING_TOOL;
     public static final SlimefunItemStack PURIFICATION_BAROMETER;
+    public static final SlimefunItemStack SEED_ANALYSER;
 
     // Seeds
     // Main
@@ -100,6 +101,17 @@ public class NpsSlimefunItemStacks {
             "Purification Barometer",
             "When used, this tool will tell you",
             "how purified the current chunk is."
+        );
+
+        SEED_ANALYSER = Theme.themedSlimefunItemStack(
+            "NPS_SEED_ANALYSER",
+            Material.COMPASS,
+            Theme.TOOL,
+            "Seed Analyser",
+            "When used on a Nether Plant, this",
+            "tool will provide you information",
+            "about it's type, growth and",
+            "purification values."
         );
 
         // endregion

@@ -1,8 +1,9 @@
 package dev.sefiraat.netheopoiesis.slimefun;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
-import dev.sefiraat.netheopoiesis.core.plants.GrowthDescription;
-import dev.sefiraat.netheopoiesis.core.plants.Placement;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthDescriptions;
+import dev.sefiraat.netheopoiesis.core.plant.Placements;
 import dev.sefiraat.netheopoiesis.listeners.VanillaDropListener;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.DroppingSeed;
@@ -14,6 +15,7 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.PurificationS
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.SoulSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.SpiritSeed;
 import dev.sefiraat.netheopoiesis.slimefun.groups.NpsItemGroups;
+import dev.sefiraat.netheopoiesis.slimefun.tools.Analyser;
 import dev.sefiraat.netheopoiesis.slimefun.tools.HarvestingTool;
 import dev.sefiraat.netheopoiesis.slimefun.tools.PurificationBarometer;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -40,6 +42,7 @@ public class NpsSlimefunItems {
     public static final HarvestingTool CRUDE_HARVESTING_TOOL;
     public static final HarvestingTool HARVESTING_TOOL;
     public static final PurificationBarometer PURIFICATION_BAROMETER;
+    public static final Analyser SEED_ANALYSER;
 
     // Seeds
     public static final PurificationSeed PURIFICATION_SEED;
@@ -120,6 +123,17 @@ public class NpsSlimefunItems {
             }
         );
 
+        SEED_ANALYSER = new Analyser(
+            NpsItemGroups.TOOLS,
+            NpsSlimefunItemStacks.SEED_ANALYSER,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[]{
+                SlimefunItems.DAMASCUS_STEEL_INGOT, GLASS, SlimefunItems.DAMASCUS_STEEL_INGOT,
+                SlimefunItems.BRASS_INGOT, GLASS, SlimefunItems.BRASS_INGOT,
+                SlimefunItems.DAMASCUS_STEEL_INGOT, REDSTONE, SlimefunItems.DAMASCUS_STEEL_INGOT,
+            }
+        );
+
         // endregion
 
         // region Seeds
@@ -133,29 +147,29 @@ public class NpsSlimefunItems {
                 new ItemStack(Material.SOUL_SOIL),
                 0.05
             ),
-            GrowthDescription.HARDY_BLUE,
-            Placement.NULL
+            GrowthDescriptions.HARDY_BLUE,
+            Placements.NULL
         );
 
         SOUL_SEED = new SoulSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SOUL_SEED,
-            GrowthDescription.HARDY_BLUE,
-            Placement.ALL
+            GrowthDescriptions.HARDY_BLUE,
+            Placements.ALL
         );
 
         SPIRIT_SEED = new SpiritSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SPIRIT_SEED,
-            GrowthDescription.HARDY_BLUE,
-            Placement.PURIFIED_AND_UP
+            GrowthDescriptions.HARDY_BLUE,
+            Placements.PURIFIED_AND_UP
         );
 
         SPINDLE_SEED = new GenericTickingPlant(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SPINDLE_SEED,
-            GrowthDescription.HARDY_ORANGE,
-            Placement.ALL,
+            GrowthDescriptions.HARDY_ORANGE,
+            Placements.ALL,
             GenericTickingMethods::onTickSpindleSeed,
             0.09,
             1
@@ -164,8 +178,8 @@ public class NpsSlimefunItems {
         GRAINY_SEED = new DroppingSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.GRAINY_SEED,
-            GrowthDescription.HARDY_RED,
-            Placement.ALL,
+            GrowthDescriptions.HARDY_RED,
+            Placements.ALL,
             new ItemStack(Material.REDSTONE),
             0.09,
             1
@@ -174,8 +188,8 @@ public class NpsSlimefunItems {
         STRINGY_SEED = new DroppingSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.STRINGY_SEED,
-            GrowthDescription.HARDY_GREEN,
-            Placement.ALL,
+            GrowthDescriptions.HARDY_GREEN,
+            Placements.ALL,
             new ItemStack(Material.STRING),
             0.09,
             1
@@ -184,8 +198,8 @@ public class NpsSlimefunItems {
         STONEY_SEED = new DroppingSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.STONEY_SEED,
-            GrowthDescription.HARDY_INDIGO,
-            Placement.ALL,
+            GrowthDescriptions.HARDY_INDIGO,
+            Placements.ALL,
             new ItemStack(Material.COBBLESTONE),
             0.09,
             1
@@ -194,8 +208,8 @@ public class NpsSlimefunItems {
         DUSTY_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.DUSTY_SEED,
-            GrowthDescription.HARDY_INDIGO,
-            Placement.ALL,
+            GrowthDescriptions.HARDY_INDIGO,
+            Placements.ALL,
             new ItemStack(Material.GRAVEL),
             0.09,
             1
@@ -204,8 +218,8 @@ public class NpsSlimefunItems {
         SEASIDE_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SEASIDE_SEED,
-            GrowthDescription.HARDY_YELLOW,
-            Placement.ALL,
+            GrowthDescriptions.HARDY_YELLOW,
+            Placements.ALL,
             new ItemStack(Material.SAND),
             0.09,
             1
@@ -214,8 +228,8 @@ public class NpsSlimefunItems {
         MOLDABLE_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.MOLDABLE_SEED,
-            GrowthDescription.HARDY_INDIGO,
-            Placement.ALL,
+            GrowthDescriptions.HARDY_INDIGO,
+            Placements.ALL,
             new ItemStack(Material.CLAY_BALL),
             0.09,
             1
@@ -224,8 +238,8 @@ public class NpsSlimefunItems {
         SPLINTERED_SEED = new EntitySpawningPlant(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SPLINTERED_SEED,
-            GrowthDescription.HARDY_ORANGE,
-            Placement.ALL,
+            GrowthDescriptions.HARDY_ORANGE,
+            Placements.ALL,
             EntityType.SKELETON,
             0.08,
             2
@@ -234,8 +248,8 @@ public class NpsSlimefunItems {
         ROTTEN_SEED = new EntitySpawningPlant(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.ROTTEN_SEED,
-            GrowthDescription.HARDY_GREEN,
-            Placement.ALL,
+            GrowthDescriptions.HARDY_GREEN,
+            Placements.ALL,
             EntityType.ZOMBIE,
             0.08,
             2
@@ -244,8 +258,8 @@ public class NpsSlimefunItems {
         METALLIC_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.METALLIC_SEED,
-            GrowthDescription.HARDY_RED,
-            Placement.PURIFIED_AND_UP,
+            GrowthDescriptions.HARDY_RED,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.IRON_NUGGET),
             0.08,
             2
@@ -254,8 +268,8 @@ public class NpsSlimefunItems {
         SHINY_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SHINY_SEED,
-            GrowthDescription.HARDY_YELLOW,
-            Placement.PURIFIED_AND_UP,
+            GrowthDescriptions.HARDY_YELLOW,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.GOLD_NUGGET),
             0.08,
             2
@@ -264,8 +278,8 @@ public class NpsSlimefunItems {
         SMOOTH_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.SMOOTH_SEED,
-            GrowthDescription.HARDY_VIOLET,
-            Placement.PURIFIED_AND_UP,
+            GrowthDescriptions.HARDY_VIOLET,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.AMETHYST_SHARD),
             0.08,
             2
@@ -274,8 +288,8 @@ public class NpsSlimefunItems {
         ENCHANTED_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.ENCHANTED_SEED,
-            GrowthDescription.HARDY_BLUE,
-            Placement.PURIFIED_AND_UP,
+            GrowthDescriptions.HARDY_BLUE,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.LAPIS_LAZULI),
             0.07,
             3
@@ -284,8 +298,8 @@ public class NpsSlimefunItems {
         COMBUSTIBLE_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.COMBUSTIBLE_SEED,
-            GrowthDescription.HARDY_VIOLET,
-            Placement.PURIFIED_AND_UP,
+            GrowthDescriptions.HARDY_VIOLET,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.COAL),
             0.07,
             3
@@ -294,8 +308,8 @@ public class NpsSlimefunItems {
         PROTECTIVE_SEED = new EntitySpawningPlant(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.PROTECTIVE_SEED,
-            GrowthDescription.HARDY_YELLOW,
-            Placement.ALL,
+            GrowthDescriptions.HARDY_YELLOW,
+            Placements.ALL,
             EntityType.IRON_GOLEM,
             0.03,
             5
@@ -304,8 +318,8 @@ public class NpsSlimefunItems {
         VALUABLE_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.VALUABLE_SEED,
-            GrowthDescription.HARDY_VIOLET,
-            Placement.PURIFIED_AND_UP,
+            GrowthDescriptions.HARDY_VIOLET,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.EMERALD),
             0.07,
             3
@@ -314,8 +328,8 @@ public class NpsSlimefunItems {
         PERFECTION_SEED = new HarvestableSeed(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.PERFECTION_SEED,
-            GrowthDescription.HARDY_BLUE,
-            Placement.PURIFIED_AND_UP,
+            GrowthDescriptions.HARDY_BLUE,
+            Placements.PURIFIED_AND_UP,
             new ItemStack(Material.DIAMOND),
             0.07,
             5
@@ -324,8 +338,8 @@ public class NpsSlimefunItems {
         OAKENDRAN_SEED = new GenericTickingPlant(
             NpsItemGroups.SEEDS,
             NpsSlimefunItemStacks.OAKENDRAN_SEED,
-            GrowthDescription.HARDY_RED,
-            Placement.VORACIOUS_AND_UP,
+            GrowthDescriptions.HARDY_RED,
+            Placements.VORACIOUS_AND_UP,
             GenericTickingMethods::onTickOakendranSeed,
             0.04,
             12
@@ -385,7 +399,9 @@ public class NpsSlimefunItems {
 
         // Tools
         CRUDE_HARVESTING_TOOL.register(plugin);
+        HARVESTING_TOOL.register(plugin);
         PURIFICATION_BAROMETER.register(plugin);
+        SEED_ANALYSER.register(plugin);
 
         // Seeds
         PURIFICATION_SEED.register(plugin);

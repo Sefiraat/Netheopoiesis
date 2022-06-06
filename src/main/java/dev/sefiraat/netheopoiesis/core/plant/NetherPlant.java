@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.core.plants;
+package dev.sefiraat.netheopoiesis.core.plant;
 
 import dev.sefiraat.netheopoiesis.core.purification.PurifyingObject;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
