@@ -2,6 +2,7 @@ package dev.sefiraat.netheopoiesis.listeners;
 
 import dev.sefiraat.netheopoiesis.PurificationMemory;
 import dev.sefiraat.netheopoiesis.utils.TimePeriod;
+import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -25,7 +26,7 @@ public class PlayerSleepListener implements Listener {
         final Player player = event.getPlayer();
         final World world = player.getWorld();
         final Block block = event.getClickedBlock();
-        if (world.getEnvironment() == World.Environment.NETHER
+        if (WorldUtils.inNether(world)
             && block != null
             && SlimefunTag.BEDS.isTagged(block.getType())
             && PurificationMemory.getValue(block.getChunk()) >= 250

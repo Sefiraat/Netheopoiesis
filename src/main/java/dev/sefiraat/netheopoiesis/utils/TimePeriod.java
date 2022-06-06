@@ -109,7 +109,7 @@ public enum TimePeriod {
      * @return True if the moon is/would be out, false if not or wrong world type.
      */
     public static boolean moonOut(@Nonnull World world) {
-        if (world.getEnvironment() == World.Environment.NORMAL) {
+        if (WorldUtils.inOverworld(world)) {
             return moonOut(world.getTime());
         }
         return false;
@@ -156,7 +156,7 @@ public enum TimePeriod {
      * @return True if past sunrise/before sunset or in a different world.
      */
     public static boolean isLight(@Nonnull World world) {
-        if (world.getEnvironment() == World.Environment.NORMAL) {
+        if (WorldUtils.inOverworld(world)) {
             return isDay(world.getTime());
         }
         return false;

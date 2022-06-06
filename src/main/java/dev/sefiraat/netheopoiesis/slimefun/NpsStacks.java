@@ -22,6 +22,7 @@ public class NpsStacks {
     public static final SlimefunItemStack HARVESTING_TOOL;
     public static final SlimefunItemStack PURIFICATION_BAROMETER;
     public static final SlimefunItemStack SEED_ANALYSER;
+    public static final SlimefunItemStack ENDER_CAKE;
 
     // Seeds
     // Main
@@ -112,6 +113,16 @@ public class NpsStacks {
             "tool will provide you information",
             "about it's type, growth and",
             "purification values."
+        );
+
+        ENDER_CAKE = Theme.themedSlimefunItemStack(
+            "NPS_ENDER_CAKE",
+            Material.CAKE,
+            Theme.TOOL,
+            "Ender Cake",
+            "This tasty cake has the power",
+            "to break through dimensions",
+            "when eaten."
         );
 
         // endregion

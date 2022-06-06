@@ -15,6 +15,7 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.SoulSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.SpiritSeed;
 import dev.sefiraat.netheopoiesis.slimefun.groups.NpsGroups;
 import dev.sefiraat.netheopoiesis.slimefun.tools.Analyser;
+import dev.sefiraat.netheopoiesis.slimefun.tools.EnderCake;
 import dev.sefiraat.netheopoiesis.slimefun.tools.HarvestingTool;
 import dev.sefiraat.netheopoiesis.slimefun.tools.PurificationBarometer;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -42,6 +43,7 @@ public class NpsItems {
     public static final HarvestingTool HARVESTING_TOOL;
     public static final PurificationBarometer PURIFICATION_BAROMETER;
     public static final Analyser SEED_ANALYSER;
+    public static final EnderCake ENDER_CAKE;
 
     // Seeds
     public static final PurificationSeed PURIFICATION_SEED;
@@ -130,6 +132,18 @@ public class NpsItems {
                 SlimefunItems.DAMASCUS_STEEL_INGOT, GLASS, SlimefunItems.DAMASCUS_STEEL_INGOT,
                 SlimefunItems.BRASS_INGOT, GLASS, SlimefunItems.BRASS_INGOT,
                 SlimefunItems.DAMASCUS_STEEL_INGOT, REDSTONE, SlimefunItems.DAMASCUS_STEEL_INGOT,
+            }
+        );
+
+        // todo create AddonJam,
+        ENDER_CAKE = new EnderCake(
+            NpsGroups.TOOLS,
+            NpsStacks.ENDER_CAKE,
+            RecipeType.ANCIENT_ALTAR,
+            new ItemStack[]{
+                null, null, null,
+                null, null, null,
+                null, null, null,
             }
         );
 
@@ -401,6 +415,7 @@ public class NpsItems {
         HARVESTING_TOOL.register(plugin);
         PURIFICATION_BAROMETER.register(plugin);
         SEED_ANALYSER.register(plugin);
+        ENDER_CAKE.register(plugin);
 
         // Seeds
         PURIFICATION_SEED.register(plugin);
