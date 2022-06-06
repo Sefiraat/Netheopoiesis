@@ -46,13 +46,13 @@ public class MobSpawnListener implements Listener {
         PASSIVE_MOBS.add(EntityType.SHEEP, 1);
 
         // Required purification values
-        MAP.put(EntityType.BLAZE, 1_000);
-        MAP.put(EntityType.PIGLIN, 2_000);
-        MAP.put(EntityType.ZOMBIFIED_PIGLIN, 2_000);
-        MAP.put(EntityType.HOGLIN, 4_000);
-        MAP.put(EntityType.MAGMA_CUBE, 4_000);
-        MAP.put(EntityType.PIGLIN_BRUTE, 8_000);
-        MAP.put(EntityType.WITHER_SKELETON, 16_000);
+        MAP.put(EntityType.BLAZE, 500);
+        MAP.put(EntityType.PIGLIN, 500);
+        MAP.put(EntityType.ZOMBIFIED_PIGLIN, 1_000);
+        MAP.put(EntityType.HOGLIN, 1_000);
+        MAP.put(EntityType.MAGMA_CUBE, 1_000);
+        MAP.put(EntityType.PIGLIN_BRUTE, 1_500);
+        MAP.put(EntityType.WITHER_SKELETON, 3_000);
     }
 
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
