@@ -1,5 +1,5 @@
 <p align="center">
-<img width="800" src="https://github.com/Sefiraat/Netheopiesis/blob/master/images/logo/logo.svg"><br><br>
+<img width="800" src="https://github.com/Sefiraat/Netheopoiesis/blob/master/images/logo/logo.svg"><br><br>
 </p>
 
 # Netheopoiesis
