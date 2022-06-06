@@ -44,7 +44,7 @@ public class PurificationBarometer extends SimpleSlimefunItem<ItemUseHandler> {
 
             final String message = Theme.CLICK_INFO.asTitle(
                 "Chunk Purification Amount",
-                PurificationMemory.getInstance().getPurificationValue(chunk)
+                PurificationMemory.getInstance().getValue(chunk)
             );
             player.sendMessage(message);
             Cooldowns.addCooldown(barometer, 5);

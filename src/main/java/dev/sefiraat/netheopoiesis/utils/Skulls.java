@@ -7,6 +7,9 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+/**
+ * Stores the hashes for the skulls used in the addon with Methods for generating ItemStacks/Skins
+ */
 public enum Skulls {
 
     SEED_RED("f8368a0d1b95432f14de4473cbbc6314ed9dcf1cc55621510e6339995b176add"),

@@ -261,7 +261,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         event.setCancelled(true);
     }
 
-    @Nullable
+    @Nonnull
     public UUID getOwner(@Nonnull Location location) {
         return ownerCache.get(location);
     }

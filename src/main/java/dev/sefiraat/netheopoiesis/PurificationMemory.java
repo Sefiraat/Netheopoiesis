@@ -35,22 +35,30 @@ public class PurificationMemory {
         }
     }
 
-    public void addPurifyingValue(@Nonnull Block block, int value) {
+    public Map<BlockPosition, Integer> getPurifyingObjectValues() {
+        return purifyingObjectValues;
+    }
+
+    public Map<ChunkPosition, Integer> getChunkValues() {
+        return chunkValues;
+    }
+
+    public static void addValue(@Nonnull Block block, int value) {
         final BlockPosition blockPosition = new BlockPosition(block);
-        this.purifyingObjectValues.put(blockPosition, value);
+        instance.getPurifyingObjectValues().put(blockPosition, value);
     }
 
-    public void removePurifyingValue(@Nonnull Block block) {
+    public static void removeValue(@Nonnull Block block) {
         final BlockPosition blockPosition = new BlockPosition(block);
-        this.purifyingObjectValues.remove(blockPosition);
+        instance.getPurifyingObjectValues().remove(blockPosition);
     }
 
-    public int getPurificationValue(@Nonnull Block block) {
-        return purifyingObjectValues.getOrDefault(new BlockPosition(block), 0);
+    public static int getValue(@Nonnull Block block) {
+        return instance.getPurifyingObjectValues().getOrDefault(new BlockPosition(block), 0);
     }
 
-    public int getPurificationValue(@Nonnull Chunk chunk) {
-        return chunkValues.getOrDefault(new ChunkPosition(chunk), 0);
+    public static int getValue(@Nonnull Chunk chunk) {
+        return instance.getChunkValues().getOrDefault(new ChunkPosition(chunk), 0);
     }
 
     public static PurificationMemory getInstance() {

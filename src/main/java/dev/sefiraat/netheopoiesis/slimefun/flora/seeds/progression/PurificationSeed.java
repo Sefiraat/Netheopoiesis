@@ -6,11 +6,13 @@ import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Keys;
+import dev.sefiraat.netheopoiesis.utils.Protection;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Location;
@@ -52,20 +54,26 @@ public class PurificationSeed extends NetherSeed {
     @ParametersAreNonnullByDefault
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
-        if (randomChance <= 0.15) {
-            final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
-            final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
-            // For loop to make sure the purification can creep up and down.
-            for (int i = -1; i < 2; i++) {
-                final Block block = location.clone().add(randomX, i, randomZ).getBlock();
-                if (materials.contains(block.getType())) {
-                    BlockStorage.clearBlockInfo(block);
-                    // Schedule a task to ensure the new block storage happens only AFTER deletion
-                    UpdateCruxTask task = new UpdateCruxTask(block, NpsItems.BASIC_PURIFIED_NETHERRACK);
-                    task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);
-                    // Return so we only effect the one block per valid tick
-                    return;
-                }
+
+        if (randomChance > 0.15) {
+            // Fails chance roll
+            return;
+        }
+
+        final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
+        final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
+        // For loop to make sure the purification can creep up and down.
+        for (int i = -1; i < 2; i++) {
+            final Block block = location.clone().add(randomX, i, randomZ).getBlock();
+            if (materials.contains(block.getType())
+                && Protection.hasPermission(getOwner(location), block, Interaction.BREAK_BLOCK)
+            ) {
+                BlockStorage.clearBlockInfo(block);
+                // Schedule a task to ensure the new block storage happens only AFTER deletion
+                UpdateCruxTask task = new UpdateCruxTask(block, NpsItems.BASIC_PURIFIED_NETHERRACK);
+                task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);
+                // Return so we only effect the one block per valid tick
+                return;
             }
         }
     }

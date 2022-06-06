@@ -13,6 +13,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This Enum is used to ensure theming across the addon with Methods for applying themes to ItemStacks
+ */
 public enum Theme {
     // Main Theme
     MAIN(ChatColor.of("#290612"), "Netheopoiesis"),

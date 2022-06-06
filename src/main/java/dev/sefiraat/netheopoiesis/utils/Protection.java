@@ -8,7 +8,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.UUID;
 
 public final class Protection {
@@ -17,28 +17,23 @@ public final class Protection {
         throw new IllegalStateException("Utility class");
     }
 
-    public static boolean hasPermission(@Nonnull Player player,
-                                        @Nonnull Block block,
-                                        @Nonnull Interaction interaction
-    ) {
+    @ParametersAreNonnullByDefault
+    public static boolean hasPermission(Player player, Block block, Interaction interaction) {
         return hasPermission(player.getUniqueId(), block.getLocation(), interaction);
     }
 
-    public static boolean hasPermission(@Nonnull Player player,
-                                        @Nonnull Location location,
-                                        @Nonnull Interaction interaction
-    ) {
+    @ParametersAreNonnullByDefault
+    public static boolean hasPermission(Player player, Location location, Interaction interaction) {
         return hasPermission(player.getUniqueId(), location, interaction);
     }
 
-    public static boolean hasPermission(@Nonnull UUID player, @Nonnull Block block, @Nonnull Interaction interaction) {
+    @ParametersAreNonnullByDefault
+    public static boolean hasPermission(UUID player, Block block, Interaction interaction) {
         return hasPermission(player, block.getLocation(), interaction);
     }
 
-    public static boolean hasPermission(@Nonnull UUID player,
-                                        @Nonnull Location location,
-                                        @Nonnull Interaction interaction
-    ) {
+    @ParametersAreNonnullByDefault
+    public static boolean hasPermission(UUID player, Location location, Interaction interaction) {
         OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player);
         return Slimefun.getProtectionManager().hasPermission(offlinePlayer, location, interaction);
     }

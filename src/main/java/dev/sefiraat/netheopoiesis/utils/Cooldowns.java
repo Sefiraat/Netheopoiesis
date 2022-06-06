@@ -1,7 +1,6 @@
 package dev.sefiraat.netheopoiesis.utils;
 
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
-import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataHolder;
@@ -18,7 +17,7 @@ public final class Cooldowns {
     /**
      * Adds a time to the provided {@link ItemStack} that can be checked
      * to see if the item is on cooldown.
-     * see {@link Cooldowns#isOnCooldown(NamespacedKey, ItemStack)}
+     * see {@link Cooldowns#isOnCooldown(ItemStack)}
      *
      * @param itemStack         The {@link ItemStack} to put on cooldown
      * @param durationInSeconds The duration in seconds to put the stack on cooldown for
@@ -30,7 +29,7 @@ public final class Cooldowns {
     /**
      * Adds a time to the provided {@link ItemStack} that can be checked
      * to see if the item is on cooldown.
-     * see {@link Cooldowns#isOnCooldown(NamespacedKey, ItemStack)}
+     * see {@link Cooldowns#isOnCooldown(ItemStack)}
      *
      * @param itemStack    The {@link ItemStack} to put on cooldown
      * @param durationInMs The duration in milliseconds to put the stack on cooldown for
@@ -43,7 +42,7 @@ public final class Cooldowns {
     /**
      * Adds a time to the provided {@link ItemStack} that can be checked
      * to see if the item is on cooldown.
-     * see {@link Cooldowns#isOnCooldown(NamespacedKey, ItemStack)}
+     * see {@link Cooldowns#isOnCooldown(ItemStack)}
      *
      * @param holder            The {@link PersistentDataHolder} to put on cooldown
      * @param durationInSeconds The duration in seconds to put the stack on cooldown for
@@ -55,7 +54,7 @@ public final class Cooldowns {
     /**
      * Adds a time to the provided {@link ItemStack} that can be checked
      * to see if the item is on cooldown.
-     * see {@link Cooldowns#isOnCooldown(NamespacedKey, ItemStack)}
+     * see {@link Cooldowns#isOnCooldown(ItemStack)}
      *
      * @param holder       The {@link PersistentDataHolder} to put on cooldown
      * @param durationInMs The duration in milliseconds to put the stack on cooldown for

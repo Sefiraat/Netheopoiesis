@@ -12,14 +12,13 @@ public final class Placements extends HashSet<String> {
         throw new IllegalStateException("Utility class");
     }
 
-    public static final Set<String> ALL =
-        Set.of(
-            NpsStacks.BASIC_PURIFIED_NETHERRACK.getItemId(),
-            NpsStacks.PURIFIED_NETHERRACK.getItemId(),
-            NpsStacks.VORACIOUS_DIRT.getItemId(),
-            NpsStacks.NETHER_DIRT.getItemId(),
-            NpsStacks.NETHER_GRASS.getItemId()
-        );
+    public static final Set<String> ALL = Set.of(
+        NpsStacks.BASIC_PURIFIED_NETHERRACK.getItemId(),
+        NpsStacks.PURIFIED_NETHERRACK.getItemId(),
+        NpsStacks.VORACIOUS_DIRT.getItemId(),
+        NpsStacks.NETHER_DIRT.getItemId(),
+        NpsStacks.NETHER_GRASS.getItemId()
+    );
 
     public static final Set<String> PURIFIED_AND_UP = Set.of(
         NpsStacks.PURIFIED_NETHERRACK.getItemId(),
