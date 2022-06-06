@@ -5,6 +5,7 @@ import dev.sefiraat.netheopoiesis.listeners.MobSpawnListener;
 import dev.sefiraat.netheopoiesis.listeners.PlayerSleepListener;
 import dev.sefiraat.netheopoiesis.listeners.SeedPlacementListener;
 import dev.sefiraat.netheopoiesis.listeners.VanillaDropListener;
+import dev.sefiraat.netheopoiesis.listeners.WaterPlaceListener;
 import org.apache.commons.lang.Validate;
 import org.bukkit.event.Listener;
 
@@ -21,6 +22,7 @@ public class ListenerManager {
         addListener(new SeedPlacementListener());
         addListener(new MobSpawnListener());
         addListener(new PlayerSleepListener());
+        addListener(new WaterPlaceListener());
     }
 
     private void addListener(@Nonnull Listener listener) {
