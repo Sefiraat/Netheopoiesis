@@ -8,6 +8,7 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Protection;
 import dev.sefiraat.netheopoiesis.utils.Theme;
+import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -92,7 +93,8 @@ public class PurificationSeed extends NetherSeed {
         final SlimefunItem possibleCrux = BlockStorage.check(blockBelow);
         final Location location = block.getLocation();
 
-        if (location.getWorld().getEnvironment() == World.Environment.NETHER
+        if (location.getWorld() != null
+            && WorldUtils.inNether(location.getWorld())
             && (materials.contains(blockBelow.getType()) || possibleCrux instanceof NetherSeedCrux)
         ) {
             final UUID uuid = event.getPlayer().getUniqueId();

@@ -2,6 +2,7 @@ package dev.sefiraat.netheopoiesis.listeners;
 
 import dev.sefiraat.netheopoiesis.PurificationMemory;
 import dev.sefiraat.netheopoiesis.utils.TimePeriod;
+import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.collections.RandomizedSet;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -69,7 +70,7 @@ public class MobSpawnListener implements Listener {
         final World world = entity.getWorld();
         // Check if the spawn is a monster and we're in the Nether
         if (entity instanceof Monster
-            && world.getEnvironment() == World.Environment.NETHER) {
+            && WorldUtils.inNether(world)) {
             final int requiredValue = MAP.getOrDefault(entity.getType(), -1);
             final Location location = entity.getLocation();
             final int value = PurificationMemory.getInstance().getValue(location.getChunk());

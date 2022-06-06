@@ -10,6 +10,7 @@ import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Particles;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
+import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -249,7 +250,8 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         final SlimefunItem itemBelow = BlockStorage.check(blockBelow);
 
         if (itemBelow instanceof NetherSeedCrux crux
-            && location.getWorld().getEnvironment() == World.Environment.NETHER && getPlacements().contains(crux.getId())
+            && WorldUtils.inNether(block.getWorld())
+            && getPlacements().contains(crux.getId())
         ) {
             final UUID uuid = event.getPlayer().getUniqueId();
             BlockStorage.addBlockInfo(location, Keys.SEED_GROWTH_STAGE, "0");
