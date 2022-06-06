@@ -27,7 +27,6 @@ import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.HumanEntity;
@@ -170,7 +169,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         }
     }
 
-    private void trySetChildSeed(Block cloneBlock, NetherSeed childSeed) {
+    private void trySetChildSeed(@Nonnull Block cloneBlock, @Nonnull NetherSeed childSeed) {
         cloneBlock.setType(Material.PLAYER_HEAD);
         PlayerHead.setSkin(cloneBlock, childSeed.getGrowthDescription().get(0).getPlayerSkin(), false);
         PaperLib.getBlockState(cloneBlock, false).getState().update(true, false);
@@ -189,11 +188,11 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
             }
 
             @Override
-            public void newInstance(@Nonnull BlockMenu menu, @Nonnull Location location) {
-                final String ownerUuidString = BlockStorage.getLocationInfo(location, Keys.SEED_OWNER);
+            public void newInstance(@Nonnull BlockMenu menu, @Nonnull Block block) {
+                final String ownerUuidString = BlockStorage.getLocationInfo(block.getLocation(), Keys.SEED_OWNER);
                 if (ownerUuidString != null) {
                     final UUID ownerUuid = UUID.fromString(ownerUuidString);
-                    NetherSeed.this.ownerCache.put(location, ownerUuid);
+                    addOwner(block.getLocation(), ownerUuid);
                 }
             }
 
@@ -206,9 +205,16 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
             public int[] getSlotsAccessedByItemTransport(ItemTransportFlow itemTransportFlow) {
                 return new int[0];
             }
-
-
         };
+    }
+
+    @Nullable
+    public UUID getOwner(@Nonnull Location location) {
+        return ownerCache.get(location);
+    }
+
+    public void addOwner(@Nonnull Location location, @Nonnull UUID uuid) {
+        ownerCache.put(location, uuid);
     }
 
     public boolean isMature(@Nonnull Block block) {
@@ -261,11 +267,6 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         }
         // Wasn't placable, so cancel the event
         event.setCancelled(true);
-    }
-
-    @Nonnull
-    public UUID getOwner(@Nonnull Location location) {
-        return ownerCache.get(location);
     }
 
     @Override

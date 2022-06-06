@@ -18,6 +18,7 @@ import dev.sefiraat.netheopoiesis.slimefun.tools.Analyser;
 import dev.sefiraat.netheopoiesis.slimefun.tools.EnderCake;
 import dev.sefiraat.netheopoiesis.slimefun.tools.HarvestingTool;
 import dev.sefiraat.netheopoiesis.slimefun.tools.PurificationBarometer;
+import dev.sefiraat.netheopoiesis.slimefun.tools.PurificationScanner;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import org.bukkit.Material;
@@ -42,6 +43,7 @@ public class NpsItems {
     public static final HarvestingTool CRUDE_HARVESTING_TOOL;
     public static final HarvestingTool HARVESTING_TOOL;
     public static final PurificationBarometer PURIFICATION_BAROMETER;
+    public static final PurificationScanner PURIFICATION_SCANNER;
     public static final Analyser SEED_ANALYSER;
     public static final EnderCake ENDER_CAKE;
 
@@ -121,6 +123,17 @@ public class NpsItems {
                 SlimefunItems.ZINC_INGOT, GLASS, SlimefunItems.ZINC_INGOT,
                 GLASS, REDSTONE, GLASS,
                 SlimefunItems.ZINC_INGOT, GLASS, SlimefunItems.ZINC_INGOT,
+            }
+        );
+
+        PURIFICATION_SCANNER = new PurificationScanner(
+            NpsGroups.TOOLS,
+            NpsStacks.PURIFICATION_SCANNER,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[]{
+                SlimefunItems.BILLON_INGOT, GLASS, SlimefunItems.BILLON_INGOT,
+                GLASS, NpsStacks.PURIFICATION_BAROMETER, GLASS,
+                SlimefunItems.BILLON_INGOT, GLASS, SlimefunItems.BILLON_INGOT,
             }
         );
 
@@ -414,6 +427,7 @@ public class NpsItems {
         CRUDE_HARVESTING_TOOL.register(plugin);
         HARVESTING_TOOL.register(plugin);
         PURIFICATION_BAROMETER.register(plugin);
+        PURIFICATION_SCANNER.register(plugin);
         SEED_ANALYSER.register(plugin);
         ENDER_CAKE.register(plugin);
 

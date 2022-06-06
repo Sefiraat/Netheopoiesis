@@ -37,6 +37,7 @@ public final class Cooldowns {
     public static void addCooldown(@Nonnull ItemStack itemStack, long durationInMs) {
         ItemMeta itemMeta = itemStack.getItemMeta();
         addCooldown(itemMeta, durationInMs);
+        itemStack.setItemMeta(itemMeta);
     }
 
     /**

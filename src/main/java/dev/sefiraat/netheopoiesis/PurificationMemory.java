@@ -19,7 +19,7 @@ public class PurificationMemory {
     private final Map<ChunkPosition, Integer> chunkValues = new HashMap<>();
 
     public PurificationMemory() {
-        Validate.isTrue(instance == null, "Cannot create a new instance of the PurificationMemory");
+        Validate.isTrue(instance == null, "Cannot create a new instance of PurificationMemory");
         instance = this;
         Bukkit.getScheduler().runTaskTimer(Netheopoiesis.getInstance(), this::collateChunkValues, 1, 100);
     }

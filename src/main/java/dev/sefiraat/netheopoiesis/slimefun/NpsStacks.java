@@ -21,6 +21,7 @@ public class NpsStacks {
     public static final SlimefunItemStack CRUDE_HARVESTING_TOOL;
     public static final SlimefunItemStack HARVESTING_TOOL;
     public static final SlimefunItemStack PURIFICATION_BAROMETER;
+    public static final SlimefunItemStack PURIFICATION_SCANNER;
     public static final SlimefunItemStack SEED_ANALYSER;
     public static final SlimefunItemStack ENDER_CAKE;
 
@@ -102,6 +103,16 @@ public class NpsStacks {
             "Purification Barometer",
             "When used, this tool will tell you",
             "how purified the current chunk is."
+        );
+
+        PURIFICATION_SCANNER = Theme.themedSlimefunItemStack(
+            "NPS_PURIFICATION_SCANNER",
+            Material.BRICK,
+            Theme.TOOL,
+            "Purification Scanner",
+            "When used on a relevant block or plant,",
+            "this tool will tell you what its",
+            "purifying effect on the world is."
         );
 
         SEED_ANALYSER = Theme.themedSlimefunItemStack(
