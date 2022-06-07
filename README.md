@@ -8,10 +8,10 @@ Netheopoiesis is our entry to the Slimefun Addon Jam 2022. Created by Sefiraat a
 
 This addon has three main aims:
 
-- To bring life to the Nether, as per the Addon Jam's theme
+- To bring life to the Nether, as per the Addon Jam's theme.
 - To create the potential for players to be able to play both Vanilla Minecraft and Slimefun solely in the nether,
   should they choose to
-- To make the nether a place suitable to base in, if wanted.
+- To make the nether a place suitable (and safe!) place to call home
 
 ## Purification
 
@@ -22,29 +22,33 @@ possible in the Nether e.g.
 
 - Being able to sleep in a bed!
 - Being able to place water and grow new crops.
-- Mob spawns will slowly be replaced with mobs not normally found in the Nether that respect a normal overworld
-  day/light cycle.
+- Nether Mob spawns will slowly be replaced with overworld mobs, respecting the Nether's day/light cycle.
+- Other Spawns will appear as the purification level gets higher including fish, random passive mobs and even wandering
+  traders!
 - Travel to the end using the Ender Cake
 - Passive healing while in a purified region, increasing with the level of purification
+- In the latter stages, you are able to go beyond just purification being able to create overworld biomes in the Nether
 
-And much more
+And more...
 
 Purification begins by finding a Purification Seed. This seed will kick-start your journey in the nether as, when
 placed, it will slowly begin to purify the surrounding blocks from Netherrack into Basic Purified Netherrack. Overtime
 you will learn how to purify the Netherrack further into more rich soil types, each with an increasing effect on the
-nearby purification value.
+nearby purification value, leading us neatly into our second main mechanic...
 
 ## Seeds
 
 The secondary mechanic is a vast plant growing/breeding system. Starting with 2 purification seeds next to one another (
 with an air block between them) you can begin to breed cloned seeds and mutate new variants. These new variants each do
 something unique from dropping materials, being harvestable for additional items, spawning mobs, pulsing beacon/potion
-effects and more.
+effects, growing trees and more.
 
 As a bonus each seed will also add to the nearby purification value, with more complex-bred seeds providing more.
 
 An in-depth breeding dictionary is available to keep track of discovered breeds and more detailed information about a
-seed not initially available in the regular portion of the guide.
+seed not initially available in the regular portion of the guide. Breeding requirements are hidden until the first time
+you discover one, so watch out for in-game feedback, for example black particles mean the plants cannot breed, so you
+best stop trying!
 
 ## Future Development
 
@@ -53,5 +57,4 @@ product would be ready for the end of the Jam, so here are a list of our planned
 
 - A plant or generation method for every overworld-only item
 - Transformation of lava within the Nether to water
-- Biomes and biome-specific crux', plants and spawns
 - Possible spawning of structures in purified areas
