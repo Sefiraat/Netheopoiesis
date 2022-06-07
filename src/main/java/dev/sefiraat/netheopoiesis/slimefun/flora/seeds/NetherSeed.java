@@ -1,12 +1,13 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
-import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.core.plant.NetherPlant;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResult;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResultType;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingPairs;
-import dev.sefiraat.netheopoiesis.events.NetherPlantBeforeGrowthEvent;
+import dev.sefiraat.netheopoiesis.events.PlantBeforeGrowthEvent;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.utils.Keys;
@@ -67,58 +68,39 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
 
     public final Map<Location, UUID> ownerCache = new HashMap<>();
 
-    private final GrowthType growthStages;
+    private final GrowthStages growthStages;
     private final Set<String> placement;
     private final double growthRate;
     private final int purificationValue;
 
-    protected NetherSeed(@Nonnull ItemGroup itemGroup,
-                         @Nonnull SlimefunItemStack item,
-                         @Nonnull GrowthType description,
-                         @Nonnull Set<String> placement,
-                         double rate,
-                         int purification
-    ) {
-        this(
-            itemGroup,
-            item,
-            NpsRecipeTypes.PLANT_BREEDING,
-            new ItemStack[0],
-            null,
-            description,
-            placement,
-            rate,
-            purification
-        );
+    @ParametersAreNonnullByDefault
+    protected NetherSeed(ItemGroup itemGroup, SlimefunItemStack item, GrowthDescription growthDescription) {
+        this(itemGroup, item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], null, growthDescription);
     }
 
-    protected NetherSeed(@Nonnull ItemGroup itemGroup,
-                         @Nonnull SlimefunItemStack item,
-                         @Nonnull RecipeType recipeType,
-                         @Nonnull ItemStack[] recipe,
-                         @Nonnull GrowthType description,
-                         @Nonnull Set<String> placement,
-                         double rate,
-                         int purification
+    @ParametersAreNonnullByDefault
+    protected NetherSeed(ItemGroup itemGroup,
+                         SlimefunItemStack item,
+                         RecipeType recipeType,
+                         ItemStack[] recipe,
+                         GrowthDescription growthDescription
     ) {
-        this(itemGroup, item, recipeType, recipe, null, description, placement, rate, purification);
+        this(itemGroup, item, recipeType, recipe, null, growthDescription);
     }
 
-    protected NetherSeed(@Nonnull ItemGroup itemGroup,
-                         @Nonnull SlimefunItemStack item,
-                         @Nonnull RecipeType recipeType,
-                         @Nonnull ItemStack[] recipe,
+    @ParametersAreNonnullByDefault
+    protected NetherSeed(ItemGroup itemGroup,
+                         SlimefunItemStack item,
+                         RecipeType recipeType,
+                         ItemStack[] recipe,
                          @Nullable ItemStack recipeOutput,
-                         @Nonnull GrowthType description,
-                         @Nonnull Set<String> placement,
-                         double rate,
-                         int purification
+                         GrowthDescription growthDescription
     ) {
         super(itemGroup, item, recipeType, recipe, recipeOutput);
-        this.growthStages = description;
-        this.placement = placement;
-        this.growthRate = rate;
-        this.purificationValue = purification;
+        this.growthStages = growthDescription.getStages();
+        this.placement = growthDescription.getPlacements();
+        this.growthRate = growthDescription.getGrowthRate();
+        this.purificationValue = growthDescription.getPurificationValue();
     }
 
     @Override
@@ -175,7 +157,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     private void tryGrow(Block block, NetherSeed seed, Config data, Location location, int growthStage) {
         final double growthRandom = ThreadLocalRandom.current().nextDouble();
         if (growthRandom <= getGrowthRate() && getGrowthDescription().stages() > growthStage) {
-            NetherPlantBeforeGrowthEvent event = new NetherPlantBeforeGrowthEvent(location, seed, growthStage);
+            PlantBeforeGrowthEvent event = new PlantBeforeGrowthEvent(location, seed, growthStage);
             Bukkit.getPluginManager().callEvent(event);
             if (event.isCancelled()) {
                 return;
@@ -263,9 +245,10 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         };
     }
 
-    @Nullable
+    @Nonnull
     public UUID getOwner(@Nonnull Location location) {
         UUID uuid = ownerCache.get(location);
+        // Owner cannot be null if called correctly
         Validate.notNull(uuid, "Owner is null, has this been called correctly");
         return uuid;
     }
@@ -326,7 +309,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     }
 
     @Override
-    public GrowthType getGrowthDescription() {
+    public GrowthStages getGrowthDescription() {
         return growthStages;
     }
 

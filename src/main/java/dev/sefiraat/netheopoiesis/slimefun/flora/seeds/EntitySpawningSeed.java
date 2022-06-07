@@ -1,6 +1,7 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -23,16 +24,10 @@ public class EntitySpawningSeed extends NetherSeed {
 
     private final EntityType entityType;
 
-    public EntitySpawningSeed(@Nonnull ItemGroup itemGroup,
-                              @Nonnull SlimefunItemStack item,
-                              @Nonnull GrowthType growthType,
-                              @Nonnull Set<String> placement,
-                              @Nonnull EntityType entityType,
-                              double growthRate,
-                              int purificationValue
-    ) {
-        super(itemGroup, item, growthType, placement, growthRate, purificationValue);
-        this.entityType = entityType;
+    @ParametersAreNonnullByDefault
+    public EntitySpawningSeed(ItemGroup group, SlimefunItemStack item, EntityType type, GrowthDescription description) {
+        super(group, item, description);
+        this.entityType = type;
     }
 
     @Override

@@ -2,7 +2,8 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.Purification;
-import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.core.plant.Placements;
 import dev.sefiraat.netheopoiesis.runnables.UpdateCruxTask;
 import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
@@ -40,11 +41,12 @@ public class PurificationSeed extends NetherSeed {
     private final Set<Material> materials;
 
     @ParametersAreNonnullByDefault
-    public PurificationSeed(ItemGroup itemGroup,
+    public PurificationSeed(ItemGroup group,
                             SlimefunItemStack item,
-                            ItemStack[] recipe
+                            ItemStack[] recipe,
+                            GrowthDescription description
     ) {
-        super(itemGroup, item, NpsRecipeTypes.VANILLA_DROP, recipe, GrowthType.VINEY_BLUE, Placements.NULL, 0.25, 1);
+        super(group, item, NpsRecipeTypes.VANILLA_DROP, recipe, null, description);
         materials = Set.of(
             Material.NETHERRACK,
             Material.CRIMSON_NYLIUM,

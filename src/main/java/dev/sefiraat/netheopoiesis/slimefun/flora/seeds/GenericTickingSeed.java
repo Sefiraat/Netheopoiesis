@@ -1,14 +1,12 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.bukkit.Location;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Set;
 import java.util.function.Consumer;
 
 /**
@@ -20,15 +18,13 @@ public class GenericTickingSeed extends NetherSeed {
 
     private final Consumer<TickParameters> consumer;
 
-    public GenericTickingSeed(@Nonnull ItemGroup itemGroup,
-                              @Nonnull SlimefunItemStack item,
-                              @Nonnull GrowthType growthType,
-                              @Nonnull Set<String> placement,
-                              @Nonnull Consumer<TickParameters> consumer,
-                              double growthRate,
-                              int purificationValue
+    @ParametersAreNonnullByDefault
+    public GenericTickingSeed(ItemGroup group,
+                              SlimefunItemStack item,
+                              Consumer<TickParameters> consumer,
+                              GrowthDescription description
     ) {
-        super(itemGroup, item, growthType, placement, growthRate, purificationValue);
+        super(group, item, description);
         this.consumer = consumer;
     }
 

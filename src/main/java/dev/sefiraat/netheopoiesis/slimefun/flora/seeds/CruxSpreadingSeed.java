@@ -2,7 +2,9 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.Purification;
-import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
+import dev.sefiraat.netheopoiesis.core.plant.SpreadingPlant;
 import dev.sefiraat.netheopoiesis.runnables.UpdateCruxTask;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.utils.Protection;
@@ -20,20 +22,19 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class CruxSpreadingSeed extends NetherSeed {
+public class CruxSpreadingSeed extends NetherSeed implements SpreadingPlant {
 
     private final NetherCrux convertTo;
     private final double spreadChance;
 
-    public CruxSpreadingSeed(@Nonnull ItemGroup itemGroup,
-                             @Nonnull SlimefunItemStack item,
-                             @Nonnull Set<String> placement,
-                             @Nonnull NetherCrux convertTo,
-                             double growthRate,
-                             int purificationValue,
-                             double spreadChance
+    @ParametersAreNonnullByDefault
+    public CruxSpreadingSeed(ItemGroup group,
+                             SlimefunItemStack item,
+                             double spreadChance,
+                             NetherCrux convertTo,
+                             GrowthDescription description
     ) {
-        super(itemGroup, item, GrowthType.VINEY_BLUE, placement, growthRate, purificationValue);
+        super(group, item, description);
         this.convertTo = convertTo;
         this.spreadChance = spreadChance;
     }
@@ -41,6 +42,11 @@ public class CruxSpreadingSeed extends NetherSeed {
     @Override
     @ParametersAreNonnullByDefault
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
+        spread(location, seed, data);
+    }
+
+    @Override
+    public void spread(Location sourceLocation, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
 
         if (randomChance > (this.spreadChance * Netheopoiesis.CRUX_SPREAD_MULTIPLIER)) {
@@ -53,11 +59,11 @@ public class CruxSpreadingSeed extends NetherSeed {
         final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
         // For loop to make sure the purification can creep up and down.
 
-        final Block block = location.clone().add(randomX, randomY, randomZ).getBlock();
+        final Block block = sourceLocation.clone().add(randomX, randomY, randomZ).getBlock();
         final SlimefunItem possibleCrux = BlockStorage.check(block);
         if (possibleCrux instanceof NetherCrux currentCrux
             && getPlacements().contains(currentCrux.getId())
-            && Protection.hasPermission(getOwner(location), block, Interaction.BREAK_BLOCK)
+            && Protection.hasPermission(getOwner(sourceLocation), block, Interaction.BREAK_BLOCK)
         ) {
             BlockStorage.clearBlockInfo(block);
             Purification.removeValue(block);

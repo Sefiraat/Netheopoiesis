@@ -1,28 +1,30 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.inventory.GrindstoneInventory;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+import javax.annotation.PropertyKey;
 import java.util.Optional;
 import java.util.Set;
 
 public class WetSeed extends NetherSeed {
 
+    @ParametersAreNonnullByDefault
     public WetSeed(@Nonnull ItemGroup itemGroup,
                    @Nonnull SlimefunItemStack item,
-                   @Nonnull GrowthType growthType,
-                   @Nonnull Set<String> placement,
-                   double growthRate,
-                   int purificationValue
+                   GrowthDescription description
     ) {
-        super(itemGroup, item, growthType, placement, growthRate, purificationValue);
+        super(itemGroup, item, description);
     }
 
     @Override

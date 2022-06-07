@@ -1,15 +1,13 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -21,26 +19,14 @@ public class DroppingSeed extends NetherSeed {
 
     private final ItemStack[] stacksToDrop;
 
-    public DroppingSeed(@Nonnull ItemGroup itemGroup,
-                        @Nonnull SlimefunItemStack item,
-                        @Nonnull GrowthType growthType,
-                        @Nonnull Set<String> placement,
-                        @Nonnull ItemStack drop,
-                        double growthRate,
-                        int purificationValue
-    ) {
-        this(itemGroup, item, growthType, placement, new ItemStack[]{drop}, growthRate, purificationValue);
+    @ParametersAreNonnullByDefault
+    public DroppingSeed(ItemGroup group, SlimefunItemStack item, ItemStack drop, GrowthDescription description) {
+        this(group, item, new ItemStack[]{drop}, description);
     }
 
-    public DroppingSeed(@Nonnull ItemGroup itemGroup,
-                        @Nonnull SlimefunItemStack item,
-                        @Nonnull GrowthType growthType,
-                        @Nonnull Set<String> placement,
-                        @Nonnull ItemStack[] drops,
-                        double growthRate,
-                        int purificationValue
-    ) {
-        super(itemGroup, item, growthType, placement, growthRate, purificationValue);
+    @ParametersAreNonnullByDefault
+    public DroppingSeed(ItemGroup group, SlimefunItemStack item, ItemStack[] drops, GrowthDescription description) {
+        super(group, item, description);
         this.stacksToDrop = drops;
     }
 

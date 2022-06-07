@@ -6,9 +6,9 @@ import dev.sefiraat.netheopoiesis.utils.Theme;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class GrowthType {
+public class GrowthStages {
 
-    public static final GrowthType VINEY_RED = new GrowthType(
+    public static final GrowthStages VINEY_RED = new GrowthStages(
         Theme.SEED_RED,
         List.of(
             Skulls.SEED_RED,
@@ -20,7 +20,7 @@ public class GrowthType {
         )
     );
 
-    public static final GrowthType VINEY_ORANGE = new GrowthType(
+    public static final GrowthStages VINEY_ORANGE = new GrowthStages(
         Theme.SEED_ORANGE,
         List.of(
             Skulls.SEED_ORANGE,
@@ -32,7 +32,7 @@ public class GrowthType {
         )
     );
 
-    public static final GrowthType VINEY_YELLOW = new GrowthType(
+    public static final GrowthStages VINEY_YELLOW = new GrowthStages(
         Theme.SEED_YELLOW,
         List.of(
             Skulls.SEED_YELLOW,
@@ -44,7 +44,7 @@ public class GrowthType {
         )
     );
 
-    public static final GrowthType VINEY_GREEN = new GrowthType(
+    public static final GrowthStages VINEY_GREEN = new GrowthStages(
         Theme.SEED_GREEN,
         List.of(
             Skulls.SEED_GREEN,
@@ -56,7 +56,7 @@ public class GrowthType {
         )
     );
 
-    public static final GrowthType VINEY_BLUE = new GrowthType(
+    public static final GrowthStages VINEY_BLUE = new GrowthStages(
         Theme.SEED_BLUE,
         List.of(
             Skulls.SEED_BLUE,
@@ -68,7 +68,7 @@ public class GrowthType {
         )
     );
 
-    public static final GrowthType VINEY_CYAN = new GrowthType(
+    public static final GrowthStages VINEY_CYAN = new GrowthStages(
         Theme.SEED_CYAN,
         List.of(
             Skulls.SEED_CYAN,
@@ -80,7 +80,7 @@ public class GrowthType {
         )
     );
 
-    public static final GrowthType VINEY_PURPLE = new GrowthType(
+    public static final GrowthStages VINEY_PURPLE = new GrowthStages(
         Theme.SEED_PURPLE,
         List.of(
             Skulls.SEED_PURPLE,
@@ -105,7 +105,7 @@ public class GrowthType {
      * @param theme        The {@link Theme} that will be used for particle effects and other appropriate needs
      * @param growthStages The {@link List} of Skulls that will be used as textures for each stage
      */
-    public GrowthType(@Nonnull Theme theme, @Nonnull List<Skulls> growthStages) {
+    public GrowthStages(@Nonnull Theme theme, @Nonnull List<Skulls> growthStages) {
         this.theme = theme;
         this.growthStages = growthStages;
     }

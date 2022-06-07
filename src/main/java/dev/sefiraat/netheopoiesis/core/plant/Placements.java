@@ -3,10 +3,9 @@ package dev.sefiraat.netheopoiesis.core.plant;
 import dev.sefiraat.netheopoiesis.slimefun.NpsStacks;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
-public final class Placements extends HashSet<String> {
+public final class Placements {
 
     private Placements() {
         throw new IllegalStateException("Utility class");

@@ -11,7 +11,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 /**
  * This event is fired before a plant grows a stage. This event can be cancelled to stop growth
  */
-public class NetherPlantBeforeGrowthEvent extends Event implements Cancellable {
+public class PlantBeforeGrowthEvent extends Event implements Cancellable {
 
     private static final HandlerList HANDLER_LIST = new HandlerList();
 
@@ -21,9 +21,9 @@ public class NetherPlantBeforeGrowthEvent extends Event implements Cancellable {
     private boolean cancelled;
 
     @ParametersAreNonnullByDefault
-    public NetherPlantBeforeGrowthEvent(Location location,
-                                        NetherSeed growingPlant,
-                                        int growthStage
+    public PlantBeforeGrowthEvent(Location location,
+                                  NetherSeed growingPlant,
+                                  int growthStage
     ) {
         this.location = location;
         this.growingPlant = growingPlant;
