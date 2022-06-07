@@ -2,6 +2,7 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
+import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
@@ -45,10 +46,7 @@ public class EntitySpawningSeed extends NetherSeed {
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
         if (randomChance <= 0.05) {
-            final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
-            final double randomY = ThreadLocalRandom.current().nextInt(-2, 3);
-            final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
-            final Block block = location.clone().add(randomX, randomY, randomZ).getBlock();
+            final Block block = WorldUtils.randomLocation(location, 4).getBlock();
 
             // The first block we spawn on needs to be AIR
             if (block.getType() != Material.AIR) {

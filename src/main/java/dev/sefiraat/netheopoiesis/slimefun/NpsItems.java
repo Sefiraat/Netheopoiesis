@@ -11,14 +11,17 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.GenericTickingMethods;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.GenericTickingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.HarvestableSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.PurificationSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.SaintlySeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.SoulSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.SpiritSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique.WetSeed;
 import dev.sefiraat.netheopoiesis.slimefun.groups.NpsGroups;
 import dev.sefiraat.netheopoiesis.slimefun.tools.Analyser;
 import dev.sefiraat.netheopoiesis.slimefun.tools.EnderCake;
 import dev.sefiraat.netheopoiesis.slimefun.tools.HarvestingTool;
 import dev.sefiraat.netheopoiesis.slimefun.tools.PurificationBarometer;
 import dev.sefiraat.netheopoiesis.slimefun.tools.PurificationScanner;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import org.bukkit.Material;
@@ -38,6 +41,8 @@ public class NpsItems {
     private static final ItemStack REDSTONE = new ItemStack(Material.REDSTONE);
 
     // Crafting
+    public static final SlimefunItem ADDON_BERRY;
+    public static final SlimefunItem ADDON_JAM;
 
     // Tools
     public static final HarvestingTool CRUDE_HARVESTING_TOOL;
@@ -51,6 +56,7 @@ public class NpsItems {
     public static final PurificationSeed PURIFICATION_SEED;
     public static final SoulSeed SOUL_SEED;
     public static final SpiritSeed SPIRIT_SEED;
+    public static final SaintlySeed SAINTLY_SEED;
 
     // First Stage
     public static final GenericTickingSeed SPINDLE_SEED;
@@ -60,6 +66,7 @@ public class NpsItems {
     public static final HarvestableSeed DUSTY_SEED;
     public static final HarvestableSeed SEASIDE_SEED;
     public static final HarvestableSeed MOLDABLE_SEED;
+    public static final WetSeed WET_SEED;
     public static final EntitySpawningSeed SPLINTERED_SEED;
     public static final EntitySpawningSeed ROTTEN_SEED;
 
@@ -70,11 +77,23 @@ public class NpsItems {
     public static final HarvestableSeed ENCHANTED_SEED;
     public static final HarvestableSeed COMBUSTIBLE_SEED;
     public static final EntitySpawningSeed PROTECTIVE_SEED;
+    public static final EntitySpawningSeed PORKY_SEED;
     public static final HarvestableSeed VALUABLE_SEED;
     public static final HarvestableSeed PERFECTION_SEED;
 
     // Third Stage
+    public static final DroppingSeed RAINBOW_SEED;
+    public static final DroppingSeed GLOWING_SEED;
+    public static final EntitySpawningSeed ETHEREAL_SEED;
+    public static final EntitySpawningSeed IGNITED_SEED;
+    public static final EntitySpawningSeed BARTERED_SEED;
+    public static final DroppingSeed PRISMATIC_SEED;
+    public static final HarvestableSeed POROUS_SEED;
+    public static final HarvestableSeed LEARNED_SEED;
     public static final GenericTickingSeed OAKENDRAN_SEED;
+
+    // Fourth Stage
+    public static final HarvestableSeed ADDON_BERRY_SEED;
 
     // Crux'
     public static final NetherSeedCrux BASIC_PURIFIED_NETHERRACK;
@@ -86,6 +105,22 @@ public class NpsItems {
     static {
 
         // region Crafting
+
+        ADDON_BERRY = new SlimefunItem(
+            NpsGroups.CRAFTING,
+            NpsStacks.ADDON_BERRY,
+            NpsRecipeTypes.PLANT_HARVEST,
+            new ItemStack[0]
+        );
+
+        ADDON_JAM = new SlimefunItem(
+            NpsGroups.CRAFTING,
+            NpsStacks.ADDON_JAM,
+            RecipeType.ORE_CRUSHER,
+            new ItemStack[]{
+                NpsStacks.ADDON_BERRY
+            }
+        );
 
         // endregion
 
@@ -191,6 +226,13 @@ public class NpsItems {
             Placements.PURIFIED_AND_UP
         );
 
+        SAINTLY_SEED = new SaintlySeed(
+            NpsGroups.SEEDS,
+            NpsStacks.SAINTLY_SEED,
+            GrowthDescription.VINEY_BLUE,
+            Placements.VORACIOUS_AND_UP
+        );
+
         SPINDLE_SEED = new GenericTickingSeed(
             NpsGroups.SEEDS,
             NpsStacks.SPINDLE_SEED,
@@ -259,6 +301,15 @@ public class NpsItems {
             new ItemStack(Material.CLAY_BALL),
             0.09,
             1
+        );
+
+        WET_SEED = new WetSeed(
+            NpsGroups.SEEDS,
+            NpsStacks.WET_SEED,
+            GrowthDescription.VINEY_BLUE,
+            Placements.ALL,
+            0.11,
+            2
         );
 
         SPLINTERED_SEED = new EntitySpawningSeed(
@@ -341,6 +392,16 @@ public class NpsItems {
             5
         );
 
+        PORKY_SEED = new EntitySpawningSeed(
+            NpsGroups.SEEDS,
+            NpsStacks.PORKY_SEED,
+            GrowthDescription.VINEY_RED,
+            Placements.ALL,
+            EntityType.PIG,
+            0.08,
+            3
+        );
+
         VALUABLE_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.VALUABLE_SEED,
@@ -361,6 +422,110 @@ public class NpsItems {
             5
         );
 
+        RAINBOW_SEED = new DroppingSeed(
+            NpsGroups.SEEDS,
+            NpsStacks.RAINBOW_SEED,
+            GrowthDescription.VINEY_CYAN,
+            Placements.VORACIOUS_AND_UP,
+            new ItemStack[]{
+                new ItemStack(Material.WHITE_DYE),
+                new ItemStack(Material.ORANGE_DYE),
+                new ItemStack(Material.MAGENTA_DYE),
+                new ItemStack(Material.LIGHT_BLUE_DYE),
+                new ItemStack(Material.YELLOW_DYE),
+                new ItemStack(Material.LIME_DYE),
+                new ItemStack(Material.PINK_DYE),
+                new ItemStack(Material.GRAY_DYE),
+                new ItemStack(Material.LIGHT_GRAY_DYE),
+                new ItemStack(Material.CYAN_DYE),
+                new ItemStack(Material.PURPLE_DYE),
+                new ItemStack(Material.BLUE_DYE),
+                new ItemStack(Material.BROWN_DYE),
+                new ItemStack(Material.GREEN_DYE),
+                new ItemStack(Material.RED_DYE),
+                new ItemStack(Material.BLACK_DYE),
+            },
+            0.06,
+            8
+        );
+
+        GLOWING_SEED = new DroppingSeed(
+            NpsGroups.SEEDS,
+            NpsStacks.GLOWING_SEED,
+            GrowthDescription.VINEY_RED,
+            Placements.VORACIOUS_AND_UP,
+            new ItemStack[]{
+                new ItemStack(Material.GLOW_LICHEN),
+                new ItemStack(Material.GLOW_BERRIES),
+                new ItemStack(Material.GLOW_INK_SAC)
+            },
+            0.06,
+            8
+        );
+
+        ETHEREAL_SEED = new EntitySpawningSeed(
+            NpsGroups.SEEDS,
+            NpsStacks.ETHEREAL_SEED,
+            GrowthDescription.VINEY_GREEN,
+            Placements.VORACIOUS_AND_UP,
+            EntityType.ENDERMAN,
+            0.06,
+            6
+        );
+
+        IGNITED_SEED = new EntitySpawningSeed(
+            NpsGroups.SEEDS,
+            NpsStacks.IGNITED_SEED,
+            GrowthDescription.VINEY_RED,
+            Placements.VORACIOUS_AND_UP,
+            EntityType.BLAZE,
+            0.07,
+            8
+        );
+
+        BARTERED_SEED = new EntitySpawningSeed(
+            NpsGroups.SEEDS,
+            NpsStacks.BARTERED_SEED,
+            GrowthDescription.VINEY_CYAN,
+            Placements.VORACIOUS_AND_UP,
+            EntityType.PIGLIN,
+            0.06,
+            8
+        );
+
+        PRISMATIC_SEED = new DroppingSeed(
+            NpsGroups.SEEDS,
+            NpsStacks.PRISMATIC_SEED,
+            GrowthDescription.VINEY_GREEN,
+            Placements.VORACIOUS_AND_UP,
+            new ItemStack[]{
+                new ItemStack(Material.PRISMARINE_SHARD),
+                new ItemStack(Material.PRISMARINE_CRYSTALS)
+            },
+            0.06,
+            9
+        );
+
+        POROUS_SEED = new HarvestableSeed(
+            NpsGroups.SEEDS,
+            NpsStacks.POROUS_SEED,
+            GrowthDescription.VINEY_YELLOW,
+            Placements.VORACIOUS_AND_UP,
+            new ItemStack(Material.SPONGE),
+            0.06,
+            9
+        );
+
+        LEARNED_SEED = new HarvestableSeed(
+            NpsGroups.SEEDS,
+            NpsStacks.LEARNED_SEED,
+            GrowthDescription.VINEY_ORANGE,
+            Placements.VORACIOUS_AND_UP,
+            new ItemStack(Material.EXPERIENCE_BOTTLE),
+            0.06,
+            9
+        );
+
         OAKENDRAN_SEED = new GenericTickingSeed(
             NpsGroups.SEEDS,
             NpsStacks.OAKENDRAN_SEED,
@@ -369,6 +534,16 @@ public class NpsItems {
             GenericTickingMethods::onTickOakendranSeed,
             0.04,
             12
+        );
+
+        ADDON_BERRY_SEED = new HarvestableSeed(
+            NpsGroups.SEEDS,
+            NpsStacks.ADDON_BERRY_SEED,
+            GrowthDescription.VINEY_RED,
+            Placements.NETHER_DIRT_AND_UP,
+            NpsStacks.ADDON_BERRY,
+            0.2,
+            10
         );
 
         // endregion
@@ -422,6 +597,8 @@ public class NpsItems {
         final Netheopoiesis plugin = Netheopoiesis.getInstance();
 
         // Crafting
+        ADDON_BERRY.register(plugin);
+        ADDON_JAM.register(plugin);
 
         // Tools
         CRUDE_HARVESTING_TOOL.register(plugin);
@@ -435,6 +612,7 @@ public class NpsItems {
         PURIFICATION_SEED.register(plugin);
         SOUL_SEED.register(plugin);
         SPIRIT_SEED.register(plugin);
+        SAINTLY_SEED.register(plugin);
 
         SPINDLE_SEED.register(plugin);
         GRAINY_SEED.register(plugin);
@@ -442,6 +620,7 @@ public class NpsItems {
         STONEY_SEED.register(plugin);
         DUSTY_SEED.register(plugin);
         SEASIDE_SEED.register(plugin);
+        WET_SEED.register(plugin);
         MOLDABLE_SEED.register(plugin);
         SPLINTERED_SEED.register(plugin);
         ROTTEN_SEED.register(plugin);
@@ -452,10 +631,21 @@ public class NpsItems {
         ENCHANTED_SEED.register(plugin);
         COMBUSTIBLE_SEED.register(plugin);
         PROTECTIVE_SEED.register(plugin);
+        PORKY_SEED.register(plugin);
         VALUABLE_SEED.register(plugin);
         PERFECTION_SEED.register(plugin);
 
+        RAINBOW_SEED.register(plugin);
+        GLOWING_SEED.register(plugin);
+        ETHEREAL_SEED.register(plugin);
+        IGNITED_SEED.register(plugin);
+        BARTERED_SEED.register(plugin);
+        PRISMATIC_SEED.register(plugin);
+        POROUS_SEED.register(plugin);
+        LEARNED_SEED.register(plugin);
         OAKENDRAN_SEED.register(plugin);
+
+        ADDON_BERRY_SEED.register(plugin);
 
         // Crux'
         BASIC_PURIFIED_NETHERRACK.register(plugin);

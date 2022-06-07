@@ -39,7 +39,7 @@ public class SpiritSeed extends NetherSeed {
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
 
-        if (randomChance > 0.1) {
+        if (randomChance > 0.15) {
             // Fails chance roll
             return;
         }
@@ -68,12 +68,12 @@ public class SpiritSeed extends NetherSeed {
     @Nonnull
     @Override
     public Theme getTheme() {
-        return Theme.SEED_ORANGE;
+        return Theme.SEED_BLUE;
     }
 
     @Override
     public double getGrowthRate() {
-        return 0.6;
+        return 0.15;
     }
 
     @Override

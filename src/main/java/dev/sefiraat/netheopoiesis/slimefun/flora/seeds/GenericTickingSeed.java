@@ -15,6 +15,7 @@ import java.util.function.Consumer;
 
 /**
  * This plant will accept the given consumer each tick when fully matured
+ *
  * @see {@link GenericTickingMethods}
  */
 public class GenericTickingSeed extends NetherSeed {

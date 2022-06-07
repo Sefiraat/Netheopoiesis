@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class DroppingSeed extends NetherSeed {
 
-    private final ItemStack stackToDrop;
+    private final ItemStack[] stacksToDrop;
     private final double growthRate;
     private final int purificationValue;
 
@@ -28,12 +28,23 @@ public class DroppingSeed extends NetherSeed {
                         @Nonnull SlimefunItemStack item,
                         @Nonnull GrowthDescription growthDescription,
                         @Nonnull Set<String> placement,
-                        @Nonnull ItemStack stackToDrop,
+                        @Nonnull ItemStack drop,
+                        double growthRate,
+                        int purificationValue
+    ) {
+        this(itemGroup, item, growthDescription, placement, new ItemStack[]{drop}, growthRate, purificationValue);
+    }
+
+    public DroppingSeed(@Nonnull ItemGroup itemGroup,
+                        @Nonnull SlimefunItemStack item,
+                        @Nonnull GrowthDescription growthDescription,
+                        @Nonnull Set<String> placement,
+                        @Nonnull ItemStack[] drops,
                         double growthRate,
                         int purificationValue
     ) {
         super(itemGroup, item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], growthDescription, placement);
-        this.stackToDrop = stackToDrop;
+        this.stacksToDrop = drops;
         this.growthRate = growthRate;
         this.purificationValue = purificationValue;
     }
@@ -43,12 +54,13 @@ public class DroppingSeed extends NetherSeed {
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
         if (randomChance <= 0.005) {
-            location.getWorld().dropItem(location, this.stackToDrop);
+            final int random = ThreadLocalRandom.current().nextInt(this.stacksToDrop.length);
+            location.getWorld().dropItem(location, this.stacksToDrop[random]);
         }
     }
 
-    public ItemStack getStackToDrop() {
-        return stackToDrop;
+    public ItemStack[] getStacksToDrop() {
+        return stacksToDrop;
     }
 
     @Override

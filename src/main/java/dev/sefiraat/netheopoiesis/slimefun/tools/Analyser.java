@@ -65,7 +65,10 @@ public class Analyser extends SlimefunItem {
                 final String messageType = Theme.CLICK_INFO.asTitle("Seed Type", plant.getItemName());
                 final String messageStage = Theme.CLICK_INFO.asTitle("Growth Stage", growthStage);
                 final String messageOwner = Theme.CLICK_INFO.asTitle("Owner", ownerPlayer.getName());
-                final String messageValue = Theme.CLICK_INFO.asTitle("Purification Value", plant.getPurificationValue());
+                final String messageValue = Theme.CLICK_INFO.asTitle(
+                    "Purification Value",
+                    plant.getPurificationValue()
+                );
                 player.sendMessage(messageType, messageStage, messageOwner, messageValue);
             }
             // Put item on cooldown to minimise potential BlockStorage spamming

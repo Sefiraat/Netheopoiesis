@@ -18,6 +18,7 @@ public class Purification {
     public static final int SLEEP_IN_BED = 250;
     public static final int PLACE_WATER = 500;
     public static final int ENDER_CAKE = 1500;
+
     // Purification Requirement Mob Swapping Values
     public static final int SWAP_MAGMA_CUBE = 500;
     public static final int SWAP_PIGLIN = 500;
@@ -27,6 +28,16 @@ public class Purification {
     public static final int SWAP_PIGLIN_BRUTE = 2_000;
     public static final int SWAP_GHAST = 2_000;
     public static final int SWAP_WITHER_SKELETON = 2_000;
+
+    // Random Mob Spawning
+    public static final int SPAWN_SQUID = 600;
+    public static final int SPAWN_SALMON = 600;
+    public static final int SPAWN_COD = 600;
+    public static final int SPAWN_PUFFER_FISH = 700;
+    public static final int SPAWN_TROPICAL_FISH = 1000;
+    public static final int SPAWN_AXOLOTL = 1000;
+    public static final int WANDERING_TRADER = 1500;
+
     // Regeneration
     public static final int REGEN_1 = 500;
     public static final int REGEN_2 = 1500;

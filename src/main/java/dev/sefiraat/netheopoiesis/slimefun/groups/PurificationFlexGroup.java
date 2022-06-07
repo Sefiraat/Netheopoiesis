@@ -31,8 +31,9 @@ public class PurificationFlexGroup extends FlexItemGroup {
     private static final int SLEEP_SLOT = 9;
     private static final int WATER_SLOT = 10;
     private static final int REGEN_SLOT = 11;
-    private static final int MOB_SLOT = 12;
-    private static final int END_CAKE_SLOT = 13;
+    private static final int MOB_1_SLOT = 12;
+    private static final int MOB_2_SLOT = 13;
+    private static final int END_CAKE_SLOT = 14;
 
 
     private static final int[] HEADER = new int[]{
@@ -74,9 +75,9 @@ public class PurificationFlexGroup extends FlexItemGroup {
         Theme.CLICK_INFO.asTitle("Regen 3", Purification.REGEN_3)
     );
 
-    private static final ItemStack MOBS_STACK = new CustomItemStack(
+    private static final ItemStack MOBS_1_STACK = new CustomItemStack(
         Material.SPAWNER,
-        Theme.MAIN + "Mob Spawning",
+        Theme.MAIN + "Mob Spawning 1",
         Theme.PASSIVE.apply("With a high enough purification"),
         Theme.PASSIVE.apply("value, some mobs will no longer"),
         Theme.PASSIVE.apply("spawn, instead spawning an overworld"),
@@ -91,6 +92,22 @@ public class PurificationFlexGroup extends FlexItemGroup {
         Theme.CLICK_INFO.asTitle("Piglin Brute", Purification.SWAP_PIGLIN_BRUTE),
         Theme.CLICK_INFO.asTitle("Ghast", Purification.SWAP_GHAST),
         Theme.CLICK_INFO.asTitle("Wither Skeleton", Purification.SWAP_WITHER_SKELETON)
+    );
+
+    private static final ItemStack MOBS_2_STACK = new CustomItemStack(
+        Material.SPAWNER,
+        Theme.MAIN + "Mob Spawning 2",
+        Theme.PASSIVE.apply("With a high enough purification"),
+        Theme.PASSIVE.apply("value, certain passive mobs will"),
+        Theme.PASSIVE.apply("spawn around the player."),
+        Theme.PASSIVE.apply("More mobs as your value increases."),
+        Theme.CLICK_INFO.asTitle("Squid", Purification.SPAWN_SQUID),
+        Theme.CLICK_INFO.asTitle("Salmon", Purification.SPAWN_SALMON),
+        Theme.CLICK_INFO.asTitle("Cod", Purification.SPAWN_COD),
+        Theme.CLICK_INFO.asTitle("Pufferfish", Purification.SPAWN_PUFFER_FISH),
+        Theme.CLICK_INFO.asTitle("Tropical Fish", Purification.SPAWN_TROPICAL_FISH),
+        Theme.CLICK_INFO.asTitle("Axolotl", Purification.SPAWN_AXOLOTL),
+        Theme.CLICK_INFO.asTitle("Wandering Trader", Purification.WANDERING_TRADER)
     );
 
     private static final ItemStack ENDER_CAKE = new CustomItemStack(
@@ -161,8 +178,11 @@ public class PurificationFlexGroup extends FlexItemGroup {
         menu.replaceExistingItem(REGEN_SLOT, REGEN_STACK);
         menu.addMenuClickHandler(REGEN_SLOT, ChestMenuUtils.getEmptyClickHandler());
 
-        menu.replaceExistingItem(MOB_SLOT, MOBS_STACK);
-        menu.addMenuClickHandler(MOB_SLOT, ChestMenuUtils.getEmptyClickHandler());
+        menu.replaceExistingItem(MOB_1_SLOT, MOBS_1_STACK);
+        menu.addMenuClickHandler(MOB_1_SLOT, ChestMenuUtils.getEmptyClickHandler());
+
+        menu.replaceExistingItem(MOB_2_SLOT, MOBS_2_STACK);
+        menu.addMenuClickHandler(MOB_2_SLOT, ChestMenuUtils.getEmptyClickHandler());
 
         menu.replaceExistingItem(END_CAKE_SLOT, ENDER_CAKE);
         menu.addMenuClickHandler(END_CAKE_SLOT, ChestMenuUtils.getEmptyClickHandler());

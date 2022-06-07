@@ -24,12 +24,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SoulSeed extends NetherSeed {
+public class SaintlySeed extends NetherSeed {
 
-    public SoulSeed(@Nonnull ItemGroup itemGroup,
-                    @Nonnull SlimefunItemStack item,
-                    @Nonnull GrowthDescription growthDescription,
-                    @Nonnull Set<String> placement
+    public SaintlySeed(@Nonnull ItemGroup itemGroup,
+                       @Nonnull SlimefunItemStack item,
+                       @Nonnull GrowthDescription growthDescription,
+                       @Nonnull Set<String> placement
     ) {
         super(itemGroup, item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], growthDescription, placement);
     }
@@ -39,7 +39,7 @@ public class SoulSeed extends NetherSeed {
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
 
-        if (randomChance > 0.2) {
+        if (randomChance > 0.1) {
             // Fails chance roll
             return;
         }
@@ -57,7 +57,7 @@ public class SoulSeed extends NetherSeed {
                 BlockStorage.clearBlockInfo(block);
                 Purification.removeValue(block);
                 // Schedule a task to ensure the new block storage happens only AFTER deletion
-                UpdateCruxTask task = new UpdateCruxTask(block, NpsItems.PURIFIED_NETHERRACK);
+                UpdateCruxTask task = new UpdateCruxTask(block, NpsItems.NETHER_DIRT);
                 task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);
                 // Return so we only effect the one block per valid tick
                 return;
@@ -73,11 +73,11 @@ public class SoulSeed extends NetherSeed {
 
     @Override
     public double getGrowthRate() {
-        return 0.2;
+        return 0.1;
     }
 
     @Override
     public int getPurificationValue() {
-        return 2;
+        return 8;
     }
 }

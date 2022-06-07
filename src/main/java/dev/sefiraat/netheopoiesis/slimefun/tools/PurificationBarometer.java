@@ -16,6 +16,7 @@ import javax.annotation.Nonnull;
 
 /**
  * The PurificationBarometer will display the player's currently located chunks purification level
+ *
  * @see {@link dev.sefiraat.netheopoiesis.core.purification.PurifyingObject}
  * Coolsdown after use @see {@link Cooldowns}
  */

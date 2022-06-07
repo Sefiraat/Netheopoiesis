@@ -3,7 +3,7 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.core.plant.NetherPlant;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResult;
-import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingDefinitions;
+import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingPairs;
 import dev.sefiraat.netheopoiesis.events.NetherPlantBeforeGrowthEvent;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.utils.Keys;
@@ -12,11 +12,13 @@ import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.skins.PlayerHead;
+import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
+import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.papermc.lib.PaperLib;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
@@ -110,8 +112,18 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
                 public void onPlayerBreak(BlockBreakEvent blockBreakEvent, ItemStack itemStack, List<ItemStack> list) {
                     removePurificationRegistry(blockBreakEvent.getBlock());
                 }
-            }
+            },
+            (BlockUseHandler) this::onBlockUse
         );
+    }
+
+    /**
+     * Can be overridden by implementations to add an effect when the block if right-clicked.
+     *
+     * @param event The {@link PlayerRightClickEvent} being sent from Slimefun
+     */
+    protected void onBlockUse(@Nonnull PlayerRightClickEvent event) {
+
     }
 
     @ParametersAreNonnullByDefault
@@ -158,7 +170,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
                 final SlimefunItem mateItem = BlockStorage.check(potentialMate);
 
                 if (mateItem instanceof NetherSeed mate) {
-                    final BreedResult result = BreedingDefinitions.getBreedResult(mother, mate);
+                    final BreedResult result = BreedingPairs.getBreedResult(mother, mate);
                     if (result == null) {
                         return;
                     } else if (result.getResultType() == BreedResult.BreedResultType.BREED_SUCCESS) {
@@ -294,6 +306,6 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
 
     private void finalGrowthDisplay(@Nonnull Location location) {
         final Location centered = location.clone().add(0.5, 0.5, 0.5);
-        Particles.displayParticleRandomly(centered, Particle.WAX_ON, 0.5,4);
+        Particles.displayParticleRandomly(centered, Particle.WAX_ON, 0.5, 4);
     }
 }

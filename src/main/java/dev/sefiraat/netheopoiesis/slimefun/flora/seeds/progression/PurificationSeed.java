@@ -8,7 +8,6 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Protection;
-import dev.sefiraat.netheopoiesis.utils.Theme;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -56,7 +55,7 @@ public class PurificationSeed extends NetherSeed {
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
 
-        if (randomChance > 0.15) {
+        if (randomChance > 0.25) {
             // Fails chance roll
             return;
         }
@@ -78,12 +77,6 @@ public class PurificationSeed extends NetherSeed {
                 return;
             }
         }
-    }
-
-    @Nonnull
-    @Override
-    public Theme getTheme() {
-        return Theme.SEED_BLUE;
     }
 
     @Override
@@ -109,7 +102,7 @@ public class PurificationSeed extends NetherSeed {
 
     @Override
     public double getGrowthRate() {
-        return 0.15;
+        return 0.25;
     }
 
     @Override

@@ -2,6 +2,7 @@ package dev.sefiraat.netheopoiesis.listeners;
 
 import dev.sefiraat.netheopoiesis.Purification;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,16 +17,17 @@ public class WaterPlaceListener implements Listener {
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
     public void onWaterPlace(@Nonnull PlayerInteractEvent event) {
         final Player player = event.getPlayer();
-        if (WorldUtils.inNether(player.getWorld())
-            && player.getInventory().getItemInMainHand().getType() == Material.WATER_BUCKET
-            && Purification.getValue(player.getLocation().getChunk()) >= Purification.PLACE_WATER
-            && event.getClickedBlock() != null
+        if (event.getClickedBlock() != null
             && event.getItem() != null
+            && WorldUtils.inNether(player.getWorld())
+            && player.getInventory().getItemInMainHand().getType() == Material.WATER_BUCKET
+            && Purification.getValue(event.getClickedBlock().getChunk()) >= Purification.PLACE_WATER
         ) {
-
             event.setCancelled(true);
             event.getClickedBlock().getRelative(event.getBlockFace()).setType(Material.WATER);
-            event.getItem().setType(Material.BUCKET);
+            if (player.getGameMode() != GameMode.CREATIVE) {
+                event.getItem().setType(Material.BUCKET);
+            }
         }
     }
 }

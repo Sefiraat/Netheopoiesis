@@ -1,9 +1,11 @@
 package dev.sefiraat.netheopoiesis.slimefun;
 
+import dev.sefiraat.netheopoiesis.utils.ItemStackUtils;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
+import org.bukkit.Color;
 import org.bukkit.Material;
 
 import javax.annotation.Nonnull;
@@ -16,6 +18,8 @@ public class NpsStacks {
     }
 
     // Crafting
+    public static final SlimefunItemStack ADDON_BERRY;
+    public static final SlimefunItemStack ADDON_JAM;
 
     // Tools
     public static final SlimefunItemStack CRUDE_HARVESTING_TOOL;
@@ -30,6 +34,7 @@ public class NpsStacks {
     public static final SlimefunItemStack PURIFICATION_SEED;
     public static final SlimefunItemStack SOUL_SEED;
     public static final SlimefunItemStack SPIRIT_SEED;
+    public static final SlimefunItemStack SAINTLY_SEED;
 
     // First Stage
     public static final SlimefunItemStack SPINDLE_SEED;
@@ -39,6 +44,7 @@ public class NpsStacks {
     public static final SlimefunItemStack DUSTY_SEED;
     public static final SlimefunItemStack SEASIDE_SEED;
     public static final SlimefunItemStack MOLDABLE_SEED;
+    public static final SlimefunItemStack WET_SEED;
     public static final SlimefunItemStack SPLINTERED_SEED;
     public static final SlimefunItemStack ROTTEN_SEED;
 
@@ -49,11 +55,23 @@ public class NpsStacks {
     public static final SlimefunItemStack ENCHANTED_SEED;
     public static final SlimefunItemStack COMBUSTIBLE_SEED;
     public static final SlimefunItemStack PROTECTIVE_SEED;
+    public static final SlimefunItemStack PORKY_SEED;
     public static final SlimefunItemStack VALUABLE_SEED;
     public static final SlimefunItemStack PERFECTION_SEED;
 
     // Third Stage
+    public static final SlimefunItemStack RAINBOW_SEED;
+    public static final SlimefunItemStack GLOWING_SEED;
+    public static final SlimefunItemStack ETHEREAL_SEED;
+    public static final SlimefunItemStack IGNITED_SEED;
+    public static final SlimefunItemStack BARTERED_SEED;
+    public static final SlimefunItemStack PRISMATIC_SEED;
+    public static final SlimefunItemStack POROUS_SEED;
+    public static final SlimefunItemStack LEARNED_SEED;
     public static final SlimefunItemStack OAKENDRAN_SEED;
+
+    // Fourth Stage
+    public static final SlimefunItemStack ADDON_BERRY_SEED;
 
     // Crux'
     public static final SlimefunItemStack BASIC_PURIFIED_NETHERRACK;
@@ -65,6 +83,25 @@ public class NpsStacks {
     static {
 
         // region Crafting
+
+        ADDON_BERRY = Theme.themedSlimefunItemStack(
+            "NPS_ADDON_BERRY",
+            Material.SWEET_BERRIES,
+            Theme.CRAFTING,
+            "Addon Berry",
+            "A deliciously sweet berry that",
+            "can be made into jam."
+        );
+
+        ADDON_JAM = Theme.themedSlimefunItemStack(
+            "NPS_ADDON_JAM",
+            ItemStackUtils.potion(Color.RED),
+            Theme.CRAFTING,
+            "Addon Jam",
+            "A very sweet jam.",
+            "For some reason, it feels rushed",
+            "and incomplete."
+        );
 
         // endregion
 
@@ -166,16 +203,16 @@ public class NpsStacks {
             new String[]{"This seed, when fully grown,", "will allow an even deeper purification", "for nearby blocks."},
             getCanBePlacedOnLore("Purified Netherrack (or better)")
         );
-//
-//        SAINTLY_SEED = Theme.themedSeed(
-//            "NPS_SAINTLY_SEED",
-//            Skulls.SEED_BLUE.getPlayerHead(),
-//            Theme.SEED,
-//            "Saintly Seed",
-//            new String[]{"This seed, when fully grown,", "will remove nearly all of the", "Nether's taint for nearby blocks."},
-//            getCanBePlacedOnLore("Voracious Dirt (or better)")
-//        );
-//
+
+        SAINTLY_SEED = Theme.themedSeed(
+            "NPS_SAINTLY_SEED",
+            Skulls.SEED_BLUE.getPlayerHead(),
+            Theme.SEED,
+            "Saintly Seed",
+            new String[]{"This seed, when fully grown,", "will remove nearly all of the", "Nether's taint for nearby blocks."},
+            getCanBePlacedOnLore("Voracious Dirt (or better)")
+        );
+
 //        EDEN_SEED = Theme.themedSeed(
 //            "NPS_EDEN_SEED",
 //            Skulls.SEED_BLUE.getPlayerHead(),
@@ -248,14 +285,14 @@ public class NpsStacks {
             getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
         );
 
-//        WET_SEED = Theme.themedSeed(
-//            "NPS_WET_SEED",
-//            Skulls.SEED_BLUE.getPlayerHead(),
-//            Theme.SEED,
-//            "Wet Seed",
-//            new String[]{"This seed, when fully grown,", "will fill up a held, empty,", "bucket."},
-//            getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
-//        );
+        WET_SEED = Theme.themedSeed(
+            "NPS_WET_SEED",
+            Skulls.SEED_BLUE.getPlayerHead(),
+            Theme.SEED,
+            "Wet Seed",
+            new String[]{"This seed, when fully grown,", "will fill up a held, empty,", "bucket."},
+            getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
+        );
 
         SPLINTERED_SEED = Theme.themedSeed(
             "NPS_SPLINTERED_SEED",
@@ -328,15 +365,15 @@ public class NpsStacks {
             new String[]{"This seed, when fully grown,", "will spawn protective iron golems."},
             getCanBePlacedOnLore("Purified Netherrack (or better)")
         );
-//
-//        PORKY_SEED = Theme.themedSeed(
-//            "NPS_PORKY_SEED",
-//            Skulls.SEED_RED.getPlayerHead(),
-//            Theme.SEED,
-//            "Porky Seed",
-//            new String[]{"This seed, when fully grown,", "will spawn piggies!"},
-//            getCanBePlacedOnLore("Purified Netherrack (or better)")
-//        );
+
+        PORKY_SEED = Theme.themedSeed(
+            "NPS_PORKY_SEED",
+            Skulls.SEED_RED.getPlayerHead(),
+            Theme.SEED,
+            "Porky Seed",
+            new String[]{"This seed, when fully grown,", "will spawn piggies!"},
+            getCanBePlacedOnLore("Purified Netherrack (or better)")
+        );
 
         VALUABLE_SEED = Theme.themedSeed(
             "NPS_VALUABLE_SEED",
@@ -356,77 +393,77 @@ public class NpsStacks {
             getCanBePlacedOnLore("Purified Netherrack (or better)")
         );
 
-//        RAINBOW_SEED = Theme.themedSeed(
-//            "NPS_RAINBOW_SEED",
-//            Skulls.SEED_CYAN.getPlayerHead(),
-//            Theme.SEED,
-//            "Rainbow Seed",
-//            new String[]{"This seed, when fully grown,", "will periodically drop a random dye"},
-//            getCanBePlacedOnLore("Voracious Dirt (or better)")
-//        );
-//
-//        GLOWING_SEED = Theme.themedSeed(
-//            "NPS_GLOWING_SEED",
-//            Skulls.SEED_RED.getPlayerHead(),
-//            Theme.SEED,
-//            "Glowing Seed",
-//            new String[]{"This seed, when fully grown,", "will periodically drop glowing items"},
-//            getCanBePlacedOnLore("Voracious Dirt (or better)")
-//        );
-//
-//        ETHEREAL_SEED = Theme.themedSeed(
-//            "NPS_ETHEREAL_SEED",
-//            Skulls.SEED_GREEN.getPlayerHead(),
-//            Theme.SEED,
-//            "Ethereal Seed",
-//            new String[]{"This seed, when fully grown,", "will cause Endermen to appear nearby"},
-//            getCanBePlacedOnLore("Voracious Dirt (or better)")
-//        );
-//
-//        IGNITED_SEED = Theme.themedSeed(
-//            "NPS_IGNITED_SEED",
-//            Skulls.SEED_RED.getPlayerHead(),
-//            Theme.SEED,
-//            "Ignited Seed",
-//            new String[]{"This seed, when fully grown,", "will cause Blaze to appear nearby"},
-//            getCanBePlacedOnLore("Voracious Dirt (or better)")
-//        );
-//
-//        BARTERED_SEED = Theme.themedSeed(
-//            "NPS_BARTERED_SEED",
-//            Skulls.SEED_CYAN.getPlayerHead(),
-//            Theme.SEED,
-//            "Bartered Seed",
-//            new String[]{"This seed, when fully grown,", "will cause Piglins to pop", "by for a visit"},
-//            getCanBePlacedOnLore("Voracious Dirt (or better)")
-//        );
-//
-//        PRISMATIC_SEED = Theme.themedSeed(
-//            "NPS_PRISMATIC_SEED",
-//            Skulls.SEED_GREEN.getPlayerHead(),
-//            Theme.SEED,
-//            "Prismatic Seed",
-//            new String[]{"This seed, when fully grown,", "will cause prismatic items to drop."},
-//            getCanBePlacedOnLore("Voracious Dirt (or better)")
-//        );
-//
-//        POROUS_SEED = Theme.themedSeed(
-//            "NPS_POROUS_SEED",
-//            Skulls.SEED_YELLOW.getPlayerHead(),
-//            Theme.SEED,
-//            "Prismatic Seed",
-//            new String[]{"This seed, when fully grown,", "can be harvested with a tool", "for sponge"},
-//            getCanBePlacedOnLore("Voracious Dirt (or better)")
-//        );
-//
-//        LEARNED_SEED = Theme.themedSeed(
-//            "NPS_LEARNED_SEED",
-//            Skulls.SEED_ORANGE.getPlayerHead(),
-//            Theme.SEED,
-//            "Learned Seed",
-//            new String[]{"This seed, when fully grown,", "can be harvested for a wealth", "of knowledge."},
-//            getCanBePlacedOnLore("Voracious Dirt (or better)")
-//        );
+        RAINBOW_SEED = Theme.themedSeed(
+            "NPS_RAINBOW_SEED",
+            Skulls.SEED_CYAN.getPlayerHead(),
+            Theme.SEED,
+            "Rainbow Seed",
+            new String[]{"This seed, when fully grown,", "will periodically drop a random dye"},
+            getCanBePlacedOnLore("Voracious Dirt (or better)")
+        );
+
+        GLOWING_SEED = Theme.themedSeed(
+            "NPS_GLOWING_SEED",
+            Skulls.SEED_RED.getPlayerHead(),
+            Theme.SEED,
+            "Glowing Seed",
+            new String[]{"This seed, when fully grown,", "will periodically drop glowing items"},
+            getCanBePlacedOnLore("Voracious Dirt (or better)")
+        );
+
+        ETHEREAL_SEED = Theme.themedSeed(
+            "NPS_ETHEREAL_SEED",
+            Skulls.SEED_GREEN.getPlayerHead(),
+            Theme.SEED,
+            "Ethereal Seed",
+            new String[]{"This seed, when fully grown,", "will cause Endermen to appear nearby"},
+            getCanBePlacedOnLore("Voracious Dirt (or better)")
+        );
+
+        IGNITED_SEED = Theme.themedSeed(
+            "NPS_IGNITED_SEED",
+            Skulls.SEED_RED.getPlayerHead(),
+            Theme.SEED,
+            "Ignited Seed",
+            new String[]{"This seed, when fully grown,", "will cause Blaze to appear nearby"},
+            getCanBePlacedOnLore("Voracious Dirt (or better)")
+        );
+
+        BARTERED_SEED = Theme.themedSeed(
+            "NPS_BARTERED_SEED",
+            Skulls.SEED_CYAN.getPlayerHead(),
+            Theme.SEED,
+            "Bartered Seed",
+            new String[]{"This seed, when fully grown,", "will cause Piglins to pop", "by for a visit"},
+            getCanBePlacedOnLore("Voracious Dirt (or better)")
+        );
+
+        PRISMATIC_SEED = Theme.themedSeed(
+            "NPS_PRISMATIC_SEED",
+            Skulls.SEED_GREEN.getPlayerHead(),
+            Theme.SEED,
+            "Prismatic Seed",
+            new String[]{"This seed, when fully grown,", "will cause prismatic items to drop."},
+            getCanBePlacedOnLore("Voracious Dirt (or better)")
+        );
+
+        POROUS_SEED = Theme.themedSeed(
+            "NPS_POROUS_SEED",
+            Skulls.SEED_YELLOW.getPlayerHead(),
+            Theme.SEED,
+            "Prismatic Seed",
+            new String[]{"This seed, when fully grown,", "can be harvested with a tool", "for sponge"},
+            getCanBePlacedOnLore("Voracious Dirt (or better)")
+        );
+
+        LEARNED_SEED = Theme.themedSeed(
+            "NPS_LEARNED_SEED",
+            Skulls.SEED_ORANGE.getPlayerHead(),
+            Theme.SEED,
+            "Learned Seed",
+            new String[]{"This seed, when fully grown,", "can be harvested for a wealth", "of knowledge."},
+            getCanBePlacedOnLore("Voracious Dirt (or better)")
+        );
 
         OAKENDRAN_SEED = Theme.themedSeed(
             "NPS_OAKENDRAN_SEED",
@@ -437,15 +474,15 @@ public class NpsStacks {
             getCanBePlacedOnLore("Voracious Dirt (or better)")
         );
 
-//        ADDON_BERRY_SEED = Theme.themedSeed(
-//            "NPS_ADDON_BERRY_SEED",
-//            Skulls.SEED_BLUE.getPlayerHead(),
-//            Theme.SEED,
-//            "Addon-berry Seed",
-//            new String[]{"This seed, when fully grown,", "can be harvested for an", "addon berry."},
-//            getCanBePlacedOnLore("Nether Dirt (or better)")
-//        );
-//
+        ADDON_BERRY_SEED = Theme.themedSeed(
+            "NPS_ADDON_BERRY_SEED",
+            Skulls.SEED_BLUE.getPlayerHead(),
+            Theme.SEED,
+            "Addon-berry Seed",
+            new String[]{"This seed, when fully grown,", "can be harvested for an", "addon berry."},
+            getCanBePlacedOnLore("Nether Dirt (or better)")
+        );
+
 //        CUTE_SEED = Theme.themedSeed(
 //            "NPS_CUTE_SEED",
 //            Skulls.SEED_CYAN.getPlayerHead(),

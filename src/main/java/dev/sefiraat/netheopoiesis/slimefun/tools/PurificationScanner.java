@@ -53,7 +53,10 @@ public class PurificationScanner extends SlimefunItem {
             if (slimefunItem instanceof PurifyingObject object
                 && Protection.hasPermission(player, block, Interaction.INTERACT_BLOCK)
             ) {
-                final String messageValue = Theme.CLICK_INFO.asTitle("Purification Value", object.getPurificationValue());
+                final String messageValue = Theme.CLICK_INFO.asTitle(
+                    "Purification Value",
+                    object.getPurificationValue()
+                );
                 player.sendMessage(messageValue);
             }
             // Put item on cooldown to minimise potential BlockStorage spamming

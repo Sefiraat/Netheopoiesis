@@ -20,6 +20,7 @@ import java.util.Set;
 /**
  * A NetherSeedCrux is a block that allows NetherPlants to grow on top.
  * Each plant has a {@link Set<String>} of id's to specify which Crux's they can be placed on
+ *
  * @see {@link dev.sefiraat.netheopoiesis.core.plant.Placements}
  */
 public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
