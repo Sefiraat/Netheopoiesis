@@ -20,49 +20,50 @@ public class MobSpawnsRunnable extends BukkitRunnable {
     private static final RandomSpawn SQUID = new RandomSpawn(
         EntityType.SQUID,
         Purification.SPAWN_SQUID,
-        0.25,
+        0.5,
         MobSpawnsRunnable::isWater
     );
 
     private static final RandomSpawn SALMON = new RandomSpawn(
         EntityType.SALMON,
         Purification.SPAWN_SALMON,
-        0.25,
+        0.5,
         MobSpawnsRunnable::isWater
     );
 
     private static final RandomSpawn COD = new RandomSpawn(
         EntityType.COD,
         Purification.SPAWN_COD,
-        0.25,
+        0.5,
         MobSpawnsRunnable::isWater
     );
 
     private static final RandomSpawn PUFFER_FISH = new RandomSpawn(
         EntityType.PUFFERFISH,
         Purification.SPAWN_PUFFER_FISH,
-        0.2,
+        0.4,
         MobSpawnsRunnable::isWater
     );
 
     private static final RandomSpawn TROPICAL_FISH = new RandomSpawn(
         EntityType.TROPICAL_FISH,
         Purification.SPAWN_TROPICAL_FISH,
-        0.2,
+        0.4,
         MobSpawnsRunnable::isWater
     );
 
     private static final RandomSpawn AXOLOTL = new RandomSpawn(
         EntityType.AXOLOTL,
         Purification.SPAWN_AXOLOTL,
-        0.1,
+        0.2,
         MobSpawnsRunnable::isWater
     );
 
+    // Todo work out how to also spawn Llamas + leads (all for jeff)
     private static final RandomSpawn WANDERING_TRADER = new RandomSpawn(
         EntityType.WANDERING_TRADER,
         Purification.WANDERING_TRADER,
-        0.05,
+        0.1,
         MobSpawnsRunnable::isSafeGround
     );
 
@@ -87,8 +88,8 @@ public class MobSpawnsRunnable extends BukkitRunnable {
                 return;
             }
 
-            for (int i = 0; i < 4; i++) {
-                final Location randomLocation = WorldUtils.randomLocation(player.getLocation(), 25);
+            for (int i = 0; i < 10; i++) {
+                final Location randomLocation = WorldUtils.randomLocation(player.getLocation(), 15);
                 possibleSpawns.getRandom().trySpawn(randomLocation);
             }
         }

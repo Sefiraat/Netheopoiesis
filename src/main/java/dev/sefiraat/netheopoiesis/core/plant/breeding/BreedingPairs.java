@@ -4,7 +4,6 @@ import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -331,18 +330,20 @@ public enum BreedingPairs {
      *
      * @param seed1 The first {@link NetherSeed} to check for breeding
      * @param seed2 The partner {@link NetherSeed} to check against the first.
-     * @return The {@link BreedResult.BreedResultType} of the breed attampt
+     * @return The {@link BreedResultType} of the breed attampt
      */
-    public BreedResult.BreedResultType testBreed(@Nonnull NetherSeed seed1, @Nonnull NetherSeed seed2) {
+    public BreedResultType testBreed(@Nonnull NetherSeed seed1, @Nonnull NetherSeed seed2) {
         if (isBreedPossible(seed1, seed2)) {
             final double chance = ThreadLocalRandom.current().nextDouble();
             if (chance <= getBreedChance()) {
-                return BreedResult.BreedResultType.BREED_SUCCESS;
+                return BreedResultType.SUCCESS;
             } else if (chance <= getSpreadBreedChance()) {
-                return BreedResult.BreedResultType.BREED_SPREAD;
+                return BreedResultType.SPREAD;
             }
+        } else {
+            return BreedResultType.NOT_PAIR;
         }
-        return BreedResult.BreedResultType.BREED_FAIL;
+        return BreedResultType.FAIL;
     }
 
     public double getBreedChance() {
@@ -353,14 +354,19 @@ public enum BreedingPairs {
         return spreadChance;
     }
 
-    @Nullable
+    @Nonnull
     public static BreedResult getBreedResult(@Nonnull NetherSeed seed1, @Nonnull NetherSeed seed2) {
+        int matches = 0;
         for (BreedingPairs pair : CACHED_VALUES) {
-            final BreedResult.BreedResultType result = pair.testBreed(seed1, seed2);
-            if (result != BreedResult.BreedResultType.BREED_FAIL) {
-                return new BreedResult(pair, result);
+            final BreedResultType result = pair.testBreed(seed1, seed2);
+            if (result != BreedResultType.NOT_PAIR) {
+                if (result != BreedResultType.FAIL) {
+                    return new BreedResult(pair, result);
+                } else {
+                    matches++;
+                }
             }
         }
-        return null;
+        return new BreedResult(CACHED_VALUES[0], matches == 0 ? BreedResultType.NO_PAIRS : BreedResultType.FAIL);
     }
 }

@@ -1,12 +1,10 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.bukkit.Location;
-import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -21,21 +19,17 @@ import java.util.function.Consumer;
 public class GenericTickingSeed extends NetherSeed {
 
     private final Consumer<TickParameters> consumer;
-    private final double growthRate;
-    private final int purificationValue;
 
     public GenericTickingSeed(@Nonnull ItemGroup itemGroup,
                               @Nonnull SlimefunItemStack item,
-                              @Nonnull GrowthDescription growthDescription,
+                              @Nonnull GrowthType growthType,
                               @Nonnull Set<String> placement,
                               @Nonnull Consumer<TickParameters> consumer,
                               double growthRate,
                               int purificationValue
     ) {
-        super(itemGroup, item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], growthDescription, placement);
+        super(itemGroup, item, growthType, placement, growthRate, purificationValue);
         this.consumer = consumer;
-        this.growthRate = growthRate;
-        this.purificationValue = purificationValue;
     }
 
     @Override
@@ -47,16 +41,6 @@ public class GenericTickingSeed extends NetherSeed {
 
     public Consumer<TickParameters> getConsumer() {
         return consumer;
-    }
-
-    @Override
-    public double getGrowthRate() {
-        return growthRate;
-    }
-
-    @Override
-    public int getPurificationValue() {
-        return purificationValue;
     }
 
     public static class TickParameters {

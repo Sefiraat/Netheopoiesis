@@ -1,6 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
+import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Material;
@@ -38,7 +38,7 @@ public final class GenericTickingMethods {
             final SlimefunItem possibleCrux = BlockStorage.check(blockBelow);
 
             // And the block below must be a valid crux
-            if (possibleCrux instanceof NetherSeedCrux crux
+            if (possibleCrux instanceof NetherCrux crux
                 && parameters.getSeed().getPlacements().contains(crux.getId())
             ) {
                 block.setType(Material.OAK_LOG);
@@ -64,7 +64,7 @@ public final class GenericTickingMethods {
             final SlimefunItem possibleCrux = BlockStorage.check(blockBelow);
 
             // And the block below must be a valid crux
-            if (possibleCrux instanceof NetherSeedCrux crux
+            if (possibleCrux instanceof NetherCrux crux
                 && parameters.getSeed().getPlacements().contains(crux.getId())
             ) {
                 block.getWorld().generateTree(block.getLocation(), TreeType.TREE);

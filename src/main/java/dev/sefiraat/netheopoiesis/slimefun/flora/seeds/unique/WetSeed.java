@@ -1,7 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -16,19 +15,14 @@ import java.util.Set;
 
 public class WetSeed extends NetherSeed {
 
-    private final double growthRate;
-    private final int purificationValue;
-
     public WetSeed(@Nonnull ItemGroup itemGroup,
                    @Nonnull SlimefunItemStack item,
-                   @Nonnull GrowthDescription growthDescription,
+                   @Nonnull GrowthType growthType,
                    @Nonnull Set<String> placement,
                    double growthRate,
                    int purificationValue
     ) {
-        super(itemGroup, item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], growthDescription, placement);
-        this.growthRate = growthRate;
-        this.purificationValue = purificationValue;
+        super(itemGroup, item, growthType, placement, growthRate, purificationValue);
     }
 
     @Override
@@ -51,15 +45,5 @@ public class WetSeed extends NetherSeed {
             updateGrowthStage(block, 0);
             heldStack.setType(Material.WATER_BUCKET);
         }
-    }
-
-    @Override
-    public double getGrowthRate() {
-        return growthRate;
-    }
-
-    @Override
-    public int getPurificationValue() {
-        return purificationValue;
     }
 }

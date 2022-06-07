@@ -14,15 +14,15 @@ public final class Particles {
     }
 
     @ParametersAreNonnullByDefault
-    public static void displayParticleRandomly(Entity entity, Particle particle, double rangeRadius) {
-        displayParticleRandomly(entity.getLocation(), particle, rangeRadius, 5);
+    public static void randomSpread(Entity entity, Particle particle, double rangeRadius) {
+        randomSpread(entity.getLocation(), particle, rangeRadius, 5);
     }
 
     @ParametersAreNonnullByDefault
-    public static void displayParticleRandomly(Location location,
-                                               Particle particle,
-                                               double rangeRadius,
-                                               int numberOfParticles
+    public static void randomSpread(Location location,
+                                    Particle particle,
+                                    double rangeRadius,
+                                    int numberOfParticles
     ) {
         for (int i = 0; i < numberOfParticles; i++) {
             double x = ThreadLocalRandom.current().nextDouble(-rangeRadius, rangeRadius + 0.1);
@@ -33,44 +33,44 @@ public final class Particles {
     }
 
     @ParametersAreNonnullByDefault
-    public static void displayParticleRandomly(Entity entity,
-                                               Particle particle,
-                                               double rangeRadius,
-                                               int numberOfParticles
+    public static void randomSpread(Entity entity,
+                                    Particle particle,
+                                    double rangeRadius,
+                                    int numberOfParticles
     ) {
-        displayParticleRandomly(entity.getLocation().clone().add(0, 1, 0), particle, rangeRadius, numberOfParticles);
+        randomSpread(entity.getLocation().clone().add(0, 1, 0), particle, rangeRadius, numberOfParticles);
     }
 
     @ParametersAreNonnullByDefault
-    public static void displayParticleRandomly(Location location, Particle particle, double rangeRadius) {
-        displayParticleRandomly(location, particle, rangeRadius, 5);
+    public static void randomSpread(Location location, Particle particle, double rangeRadius) {
+        randomSpread(location, particle, rangeRadius, 5);
     }
 
     @ParametersAreNonnullByDefault
-    public static void displayParticleRandomly(Entity entity,
-                                               double rangeRadius,
-                                               int numberOfParticles,
-                                               Particle.DustOptions dustOptions
+    public static void randomSpread(Entity entity,
+                                    double rangeRadius,
+                                    int numberOfParticles,
+                                    Particle.DustOptions dustOptions
     ) {
-        displayParticleRandomly(entity.getLocation(), rangeRadius, numberOfParticles, dustOptions);
+        randomSpread(entity.getLocation(), rangeRadius, numberOfParticles, dustOptions);
     }
 
     @ParametersAreNonnullByDefault
-    public static void displayParticleRandomly(Location location,
-                                               double rangeRadius,
-                                               int numberOfParticles,
-                                               Particle.DustOptions dustOptions
+    public static void randomSpread(Location location,
+                                    double radius,
+                                    int number,
+                                    Particle.DustOptions options
     ) {
-        for (int i = 0; i < numberOfParticles; i++) {
-            double x = ThreadLocalRandom.current().nextDouble(-rangeRadius, rangeRadius + 0.1);
-            double y = ThreadLocalRandom.current().nextDouble(-rangeRadius, rangeRadius + 0.1);
-            double z = ThreadLocalRandom.current().nextDouble(-rangeRadius, rangeRadius + 0.1);
-            location.getWorld().spawnParticle(Particle.REDSTONE, location.clone().add(x, y, z), 1, dustOptions);
+        for (int i = 0; i < number; i++) {
+            double x = ThreadLocalRandom.current().nextDouble(-radius, radius + 0.1);
+            double y = ThreadLocalRandom.current().nextDouble(-radius, radius + 0.1);
+            double z = ThreadLocalRandom.current().nextDouble(-radius, radius + 0.1);
+            location.getWorld().spawnParticle(Particle.REDSTONE, location.clone().add(x, y, z), 1, options);
         }
     }
 
     @ParametersAreNonnullByDefault
-    public static void displayParticleRandomly(Entity entity, double rangeRadius, Particle.DustOptions dustOptions) {
-        displayParticleRandomly(entity.getLocation(), rangeRadius, 5, dustOptions);
+    public static void randomSpread(Entity entity, double rangeRadius, Particle.DustOptions dustOptions) {
+        randomSpread(entity.getLocation(), rangeRadius, 5, dustOptions);
     }
 }

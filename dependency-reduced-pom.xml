@@ -94,7 +94,7 @@
     </dependency>
   </dependencies>
   <properties>
-    <sonar.issue.ignore.multicriteria.e3.ruleKey>java:S2245</sonar.issue.ignore.multicriteria.e3.ruleKey>
+    <sonar.issue.ignore.multicriteria.e3.ruleKey>java:S6206</sonar.issue.ignore.multicriteria.e3.ruleKey>
     <sonar.issue.ignore.multicriteria.e3.resourceKey>**</sonar.issue.ignore.multicriteria.e3.resourceKey>
     <sonar.issue.ignore.multicriteria>e1,e2,e3</sonar.issue.ignore.multicriteria>
     <maven.compiler.source>16</maven.compiler.source>

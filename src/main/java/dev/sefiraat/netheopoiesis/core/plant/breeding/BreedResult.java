@@ -4,7 +4,9 @@ import javax.annotation.Nonnull;
 
 public class BreedResult {
 
+    @Nonnull
     private final BreedingPairs matchedPair;
+    @Nonnull
     private final BreedResultType resultType;
 
     /**
@@ -18,26 +20,13 @@ public class BreedResult {
         this.resultType = resultType;
     }
 
+    @Nonnull
     public BreedingPairs getMatchedPair() {
         return matchedPair;
     }
 
+    @Nonnull
     public BreedResultType getResultType() {
         return resultType;
-    }
-
-    public enum BreedResultType {
-        /**
-         * Breed has failed, no changes
-         */
-        BREED_FAIL,
-        /**
-         * Breed triggered a spread of the original plant
-         */
-        BREED_SPREAD,
-        /**
-         * Breed successful resulting in child plant
-         */
-        BREED_SUCCESS;
     }
 }

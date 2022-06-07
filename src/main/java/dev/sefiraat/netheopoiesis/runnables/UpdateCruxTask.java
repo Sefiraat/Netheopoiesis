@@ -1,6 +1,6 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression;
+package dev.sefiraat.netheopoiesis.runnables;
 
-import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
+import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.block.Block;
@@ -19,9 +19,9 @@ public class UpdateCruxTask extends BukkitRunnable {
     @Nonnull
     private final Block block;
     @Nonnull
-    private final NetherSeedCrux crux;
+    private final NetherCrux crux;
 
-    public UpdateCruxTask(@Nonnull Block block, @Nonnull NetherSeedCrux crux) {
+    public UpdateCruxTask(@Nonnull Block block, @Nonnull NetherCrux crux) {
         this.block = block;
         this.crux = crux;
     }

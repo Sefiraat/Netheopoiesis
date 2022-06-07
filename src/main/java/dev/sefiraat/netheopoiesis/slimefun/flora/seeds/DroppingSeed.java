@@ -1,7 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
@@ -21,32 +20,28 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DroppingSeed extends NetherSeed {
 
     private final ItemStack[] stacksToDrop;
-    private final double growthRate;
-    private final int purificationValue;
 
     public DroppingSeed(@Nonnull ItemGroup itemGroup,
                         @Nonnull SlimefunItemStack item,
-                        @Nonnull GrowthDescription growthDescription,
+                        @Nonnull GrowthType growthType,
                         @Nonnull Set<String> placement,
                         @Nonnull ItemStack drop,
                         double growthRate,
                         int purificationValue
     ) {
-        this(itemGroup, item, growthDescription, placement, new ItemStack[]{drop}, growthRate, purificationValue);
+        this(itemGroup, item, growthType, placement, new ItemStack[]{drop}, growthRate, purificationValue);
     }
 
     public DroppingSeed(@Nonnull ItemGroup itemGroup,
                         @Nonnull SlimefunItemStack item,
-                        @Nonnull GrowthDescription growthDescription,
+                        @Nonnull GrowthType growthType,
                         @Nonnull Set<String> placement,
                         @Nonnull ItemStack[] drops,
                         double growthRate,
                         int purificationValue
     ) {
-        super(itemGroup, item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], growthDescription, placement);
+        super(itemGroup, item, growthType, placement, growthRate, purificationValue);
         this.stacksToDrop = drops;
-        this.growthRate = growthRate;
-        this.purificationValue = purificationValue;
     }
 
     @Override
@@ -61,15 +56,5 @@ public class DroppingSeed extends NetherSeed {
 
     public ItemStack[] getStacksToDrop() {
         return stacksToDrop;
-    }
-
-    @Override
-    public double getGrowthRate() {
-        return growthRate;
-    }
-
-    @Override
-    public int getPurificationValue() {
-        return purificationValue;
     }
 }

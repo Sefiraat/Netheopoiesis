@@ -18,21 +18,21 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * A NetherSeedCrux is a block that allows NetherPlants to grow on top.
+ * A NetherCrux is a block that allows NetherPlants to grow on top.
  * Each plant has a {@link Set<String>} of id's to specify which Crux's they can be placed on
  *
  * @see {@link dev.sefiraat.netheopoiesis.core.plant.Placements}
  */
-public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
+public class NetherCrux extends SlimefunItem implements PurifyingObject {
 
     private final int purificationValue;
     private int tick = 0;
 
-    public NetherSeedCrux(ItemGroup itemGroup,
-                          SlimefunItemStack item,
-                          RecipeType recipeType,
-                          ItemStack[] recipe,
-                          int purificationValue
+    public NetherCrux(ItemGroup itemGroup,
+                      SlimefunItemStack item,
+                      RecipeType recipeType,
+                      ItemStack[] recipe,
+                      int purificationValue
     ) {
         super(itemGroup, item, recipeType, recipe);
         this.purificationValue = purificationValue;
@@ -60,7 +60,7 @@ public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
 
                 @Override
                 public void tick(Block block, SlimefunItem item, Config data) {
-                    if (NetherSeedCrux.this.tick >= 5) {
+                    if (NetherCrux.this.tick >= 5) {
                         registerPurificationValue(block);
                     }
                 }

@@ -1,19 +1,17 @@
 package dev.sefiraat.netheopoiesis.slimefun;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
 import dev.sefiraat.netheopoiesis.core.plant.Placements;
 import dev.sefiraat.netheopoiesis.listeners.VanillaDropListener;
-import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
+import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.DroppingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.EntitySpawningSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.GenericTickingMethods;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.GenericTickingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.HarvestableSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.PurificationSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.SaintlySeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.SoulSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression.SpiritSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.CruxSpreadingSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique.PurificationSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique.WetSeed;
 import dev.sefiraat.netheopoiesis.slimefun.groups.NpsGroups;
 import dev.sefiraat.netheopoiesis.slimefun.tools.Analyser;
@@ -40,6 +38,13 @@ public class NpsItems {
     private static final ItemStack GLASS = new ItemStack(Material.GLASS);
     private static final ItemStack REDSTONE = new ItemStack(Material.REDSTONE);
 
+    // Crux'
+    public static final NetherCrux BASIC_PURIFIED_NETHERRACK;
+    public static final NetherCrux PURIFIED_NETHERRACK;
+    public static final NetherCrux VORACIOUS_DIRT;
+    public static final NetherCrux NETHER_DIRT;
+    public static final NetherCrux NETHER_GRASS;
+
     // Crafting
     public static final SlimefunItem ADDON_BERRY;
     public static final SlimefunItem ADDON_JAM;
@@ -54,9 +59,9 @@ public class NpsItems {
 
     // Seeds
     public static final PurificationSeed PURIFICATION_SEED;
-    public static final SoulSeed SOUL_SEED;
-    public static final SpiritSeed SPIRIT_SEED;
-    public static final SaintlySeed SAINTLY_SEED;
+    public static final CruxSpreadingSeed SOUL_SEED;
+    public static final CruxSpreadingSeed SPIRIT_SEED;
+    public static final CruxSpreadingSeed SAINTLY_SEED;
 
     // First Stage
     public static final GenericTickingSeed SPINDLE_SEED;
@@ -94,13 +99,6 @@ public class NpsItems {
 
     // Fourth Stage
     public static final HarvestableSeed ADDON_BERRY_SEED;
-
-    // Crux'
-    public static final NetherSeedCrux BASIC_PURIFIED_NETHERRACK;
-    public static final NetherSeedCrux PURIFIED_NETHERRACK;
-    public static final NetherSeedCrux VORACIOUS_DIRT;
-    public static final NetherSeedCrux NETHER_DIRT;
-    public static final NetherSeedCrux NETHER_GRASS;
 
     static {
 
@@ -197,46 +195,92 @@ public class NpsItems {
 
         // endregion
 
+        // region Crux'
+
+        BASIC_PURIFIED_NETHERRACK = new NetherCrux(
+            NpsGroups.CRUX,
+            NpsStacks.BASIC_PURIFIED_NETHERRACK,
+            NpsRecipeTypes.NETHER_PURIFICATION,
+            new ItemStack[0],
+            1
+        );
+
+        PURIFIED_NETHERRACK = new NetherCrux(
+            NpsGroups.CRUX,
+            NpsStacks.PURIFIED_NETHERRACK,
+            NpsRecipeTypes.NETHER_PURIFICATION,
+            new ItemStack[0],
+            2
+        );
+
+        VORACIOUS_DIRT = new NetherCrux(
+            NpsGroups.CRUX,
+            NpsStacks.VORACIOUS_DIRT,
+            NpsRecipeTypes.NETHER_PURIFICATION,
+            new ItemStack[0],
+            4
+        );
+
+        NETHER_DIRT = new NetherCrux(
+            NpsGroups.CRUX,
+            NpsStacks.NETHER_DIRT,
+            NpsRecipeTypes.NETHER_PURIFICATION,
+            new ItemStack[0],
+            8
+        );
+
+        NETHER_GRASS = new NetherCrux(
+            NpsGroups.CRUX,
+            NpsStacks.NETHER_GRASS,
+            NpsRecipeTypes.NETHER_PURIFICATION,
+            new ItemStack[0],
+            16
+        );
+
+        // endregion
+
         // region Seeds
 
         PURIFICATION_SEED = new PurificationSeed(
             NpsGroups.SEEDS,
             NpsStacks.PURIFICATION_SEED,
-            NpsRecipeTypes.VANILLA_BLOCK_DROP,
-            VanillaDropListener.createRecipeWorldDrop(
-                NpsStacks.PURIFICATION_SEED,
-                new ItemStack(Material.SOUL_SOIL),
-                0.05
-            ),
-            GrowthDescription.VINEY_BLUE,
-            Placements.NULL
+            VanillaDropListener.createRecipe(NpsStacks.PURIFICATION_SEED, new ItemStack(Material.SOUL_SOIL), 0.05)
         );
 
-        SOUL_SEED = new SoulSeed(
+        SOUL_SEED = new CruxSpreadingSeed(
             NpsGroups.SEEDS,
             NpsStacks.SOUL_SEED,
-            GrowthDescription.VINEY_BLUE,
-            Placements.ALL
+            Placements.ALL,
+            PURIFIED_NETHERRACK,
+            0.2,
+            2,
+            0.2
         );
 
-        SPIRIT_SEED = new SpiritSeed(
+        SPIRIT_SEED = new CruxSpreadingSeed(
             NpsGroups.SEEDS,
             NpsStacks.SPIRIT_SEED,
-            GrowthDescription.VINEY_BLUE,
-            Placements.PURIFIED_AND_UP
+            Placements.PURIFIED_AND_UP,
+            VORACIOUS_DIRT,
+            0.15,
+            4,
+            0.15
         );
 
-        SAINTLY_SEED = new SaintlySeed(
+        SAINTLY_SEED = new CruxSpreadingSeed(
             NpsGroups.SEEDS,
             NpsStacks.SAINTLY_SEED,
-            GrowthDescription.VINEY_BLUE,
-            Placements.VORACIOUS_AND_UP
+            Placements.VORACIOUS_AND_UP,
+            NETHER_DIRT,
+            0.1,
+            8,
+            0.1
         );
 
         SPINDLE_SEED = new GenericTickingSeed(
             NpsGroups.SEEDS,
             NpsStacks.SPINDLE_SEED,
-            GrowthDescription.VINEY_ORANGE,
+            GrowthType.VINEY_ORANGE,
             Placements.ALL,
             GenericTickingMethods::onTickSpindleSeed,
             0.09,
@@ -246,7 +290,7 @@ public class NpsItems {
         GRAINY_SEED = new DroppingSeed(
             NpsGroups.SEEDS,
             NpsStacks.GRAINY_SEED,
-            GrowthDescription.VINEY_RED,
+            GrowthType.VINEY_RED,
             Placements.ALL,
             new ItemStack(Material.REDSTONE),
             0.09,
@@ -256,7 +300,7 @@ public class NpsItems {
         STRINGY_SEED = new DroppingSeed(
             NpsGroups.SEEDS,
             NpsStacks.STRINGY_SEED,
-            GrowthDescription.VINEY_GREEN,
+            GrowthType.VINEY_GREEN,
             Placements.ALL,
             new ItemStack(Material.STRING),
             0.09,
@@ -266,7 +310,7 @@ public class NpsItems {
         STONEY_SEED = new DroppingSeed(
             NpsGroups.SEEDS,
             NpsStacks.STONEY_SEED,
-            GrowthDescription.VINEY_PURPLE,
+            GrowthType.VINEY_PURPLE,
             Placements.ALL,
             new ItemStack(Material.COBBLESTONE),
             0.09,
@@ -276,7 +320,7 @@ public class NpsItems {
         DUSTY_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.DUSTY_SEED,
-            GrowthDescription.VINEY_CYAN,
+            GrowthType.VINEY_CYAN,
             Placements.ALL,
             new ItemStack(Material.GRAVEL),
             0.09,
@@ -286,7 +330,7 @@ public class NpsItems {
         SEASIDE_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.SEASIDE_SEED,
-            GrowthDescription.VINEY_YELLOW,
+            GrowthType.VINEY_YELLOW,
             Placements.ALL,
             new ItemStack(Material.SAND),
             0.09,
@@ -296,7 +340,7 @@ public class NpsItems {
         MOLDABLE_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.MOLDABLE_SEED,
-            GrowthDescription.VINEY_PURPLE,
+            GrowthType.VINEY_PURPLE,
             Placements.ALL,
             new ItemStack(Material.CLAY_BALL),
             0.09,
@@ -306,7 +350,7 @@ public class NpsItems {
         WET_SEED = new WetSeed(
             NpsGroups.SEEDS,
             NpsStacks.WET_SEED,
-            GrowthDescription.VINEY_BLUE,
+            GrowthType.VINEY_BLUE,
             Placements.ALL,
             0.11,
             2
@@ -315,7 +359,7 @@ public class NpsItems {
         SPLINTERED_SEED = new EntitySpawningSeed(
             NpsGroups.SEEDS,
             NpsStacks.SPLINTERED_SEED,
-            GrowthDescription.VINEY_CYAN,
+            GrowthType.VINEY_CYAN,
             Placements.ALL,
             EntityType.SKELETON,
             0.08,
@@ -325,7 +369,7 @@ public class NpsItems {
         ROTTEN_SEED = new EntitySpawningSeed(
             NpsGroups.SEEDS,
             NpsStacks.ROTTEN_SEED,
-            GrowthDescription.VINEY_GREEN,
+            GrowthType.VINEY_GREEN,
             Placements.ALL,
             EntityType.ZOMBIE,
             0.08,
@@ -335,7 +379,7 @@ public class NpsItems {
         METALLIC_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.METALLIC_SEED,
-            GrowthDescription.VINEY_RED,
+            GrowthType.VINEY_RED,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.IRON_NUGGET),
             0.08,
@@ -345,7 +389,7 @@ public class NpsItems {
         SHINY_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.SHINY_SEED,
-            GrowthDescription.VINEY_YELLOW,
+            GrowthType.VINEY_YELLOW,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.GOLD_NUGGET),
             0.08,
@@ -355,7 +399,7 @@ public class NpsItems {
         SMOOTH_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.SMOOTH_SEED,
-            GrowthDescription.VINEY_CYAN,
+            GrowthType.VINEY_CYAN,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.AMETHYST_SHARD),
             0.08,
@@ -365,7 +409,7 @@ public class NpsItems {
         ENCHANTED_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.ENCHANTED_SEED,
-            GrowthDescription.VINEY_BLUE,
+            GrowthType.VINEY_BLUE,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.LAPIS_LAZULI),
             0.07,
@@ -375,7 +419,7 @@ public class NpsItems {
         COMBUSTIBLE_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.COMBUSTIBLE_SEED,
-            GrowthDescription.VINEY_RED,
+            GrowthType.VINEY_RED,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.COAL),
             0.07,
@@ -385,7 +429,7 @@ public class NpsItems {
         PROTECTIVE_SEED = new EntitySpawningSeed(
             NpsGroups.SEEDS,
             NpsStacks.PROTECTIVE_SEED,
-            GrowthDescription.VINEY_PURPLE,
+            GrowthType.VINEY_PURPLE,
             Placements.ALL,
             EntityType.IRON_GOLEM,
             0.03,
@@ -395,7 +439,7 @@ public class NpsItems {
         PORKY_SEED = new EntitySpawningSeed(
             NpsGroups.SEEDS,
             NpsStacks.PORKY_SEED,
-            GrowthDescription.VINEY_RED,
+            GrowthType.VINEY_RED,
             Placements.ALL,
             EntityType.PIG,
             0.08,
@@ -405,7 +449,7 @@ public class NpsItems {
         VALUABLE_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.VALUABLE_SEED,
-            GrowthDescription.VINEY_GREEN,
+            GrowthType.VINEY_GREEN,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.EMERALD),
             0.07,
@@ -415,7 +459,7 @@ public class NpsItems {
         PERFECTION_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.PERFECTION_SEED,
-            GrowthDescription.VINEY_BLUE,
+            GrowthType.VINEY_BLUE,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.DIAMOND),
             0.07,
@@ -425,7 +469,7 @@ public class NpsItems {
         RAINBOW_SEED = new DroppingSeed(
             NpsGroups.SEEDS,
             NpsStacks.RAINBOW_SEED,
-            GrowthDescription.VINEY_CYAN,
+            GrowthType.VINEY_CYAN,
             Placements.VORACIOUS_AND_UP,
             new ItemStack[]{
                 new ItemStack(Material.WHITE_DYE),
@@ -452,7 +496,7 @@ public class NpsItems {
         GLOWING_SEED = new DroppingSeed(
             NpsGroups.SEEDS,
             NpsStacks.GLOWING_SEED,
-            GrowthDescription.VINEY_RED,
+            GrowthType.VINEY_RED,
             Placements.VORACIOUS_AND_UP,
             new ItemStack[]{
                 new ItemStack(Material.GLOW_LICHEN),
@@ -466,7 +510,7 @@ public class NpsItems {
         ETHEREAL_SEED = new EntitySpawningSeed(
             NpsGroups.SEEDS,
             NpsStacks.ETHEREAL_SEED,
-            GrowthDescription.VINEY_GREEN,
+            GrowthType.VINEY_GREEN,
             Placements.VORACIOUS_AND_UP,
             EntityType.ENDERMAN,
             0.06,
@@ -476,7 +520,7 @@ public class NpsItems {
         IGNITED_SEED = new EntitySpawningSeed(
             NpsGroups.SEEDS,
             NpsStacks.IGNITED_SEED,
-            GrowthDescription.VINEY_RED,
+            GrowthType.VINEY_RED,
             Placements.VORACIOUS_AND_UP,
             EntityType.BLAZE,
             0.07,
@@ -486,7 +530,7 @@ public class NpsItems {
         BARTERED_SEED = new EntitySpawningSeed(
             NpsGroups.SEEDS,
             NpsStacks.BARTERED_SEED,
-            GrowthDescription.VINEY_CYAN,
+            GrowthType.VINEY_CYAN,
             Placements.VORACIOUS_AND_UP,
             EntityType.PIGLIN,
             0.06,
@@ -496,7 +540,7 @@ public class NpsItems {
         PRISMATIC_SEED = new DroppingSeed(
             NpsGroups.SEEDS,
             NpsStacks.PRISMATIC_SEED,
-            GrowthDescription.VINEY_GREEN,
+            GrowthType.VINEY_GREEN,
             Placements.VORACIOUS_AND_UP,
             new ItemStack[]{
                 new ItemStack(Material.PRISMARINE_SHARD),
@@ -509,7 +553,7 @@ public class NpsItems {
         POROUS_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.POROUS_SEED,
-            GrowthDescription.VINEY_YELLOW,
+            GrowthType.VINEY_YELLOW,
             Placements.VORACIOUS_AND_UP,
             new ItemStack(Material.SPONGE),
             0.06,
@@ -519,7 +563,7 @@ public class NpsItems {
         LEARNED_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.LEARNED_SEED,
-            GrowthDescription.VINEY_ORANGE,
+            GrowthType.VINEY_ORANGE,
             Placements.VORACIOUS_AND_UP,
             new ItemStack(Material.EXPERIENCE_BOTTLE),
             0.06,
@@ -529,7 +573,7 @@ public class NpsItems {
         OAKENDRAN_SEED = new GenericTickingSeed(
             NpsGroups.SEEDS,
             NpsStacks.OAKENDRAN_SEED,
-            GrowthDescription.VINEY_ORANGE,
+            GrowthType.VINEY_ORANGE,
             Placements.VORACIOUS_AND_UP,
             GenericTickingMethods::onTickOakendranSeed,
             0.04,
@@ -539,55 +583,11 @@ public class NpsItems {
         ADDON_BERRY_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.ADDON_BERRY_SEED,
-            GrowthDescription.VINEY_RED,
+            GrowthType.VINEY_RED,
             Placements.NETHER_DIRT_AND_UP,
             NpsStacks.ADDON_BERRY,
             0.2,
             10
-        );
-
-        // endregion
-
-        // region Crux'
-
-        BASIC_PURIFIED_NETHERRACK = new NetherSeedCrux(
-            NpsGroups.CRUX,
-            NpsStacks.BASIC_PURIFIED_NETHERRACK,
-            NpsRecipeTypes.NETHER_PURIFICATION,
-            new ItemStack[0],
-            1
-        );
-
-        PURIFIED_NETHERRACK = new NetherSeedCrux(
-            NpsGroups.CRUX,
-            NpsStacks.PURIFIED_NETHERRACK,
-            NpsRecipeTypes.NETHER_PURIFICATION,
-            new ItemStack[0],
-            2
-        );
-
-        VORACIOUS_DIRT = new NetherSeedCrux(
-            NpsGroups.CRUX,
-            NpsStacks.VORACIOUS_DIRT,
-            NpsRecipeTypes.NETHER_PURIFICATION,
-            new ItemStack[0],
-            4
-        );
-
-        NETHER_DIRT = new NetherSeedCrux(
-            NpsGroups.CRUX,
-            NpsStacks.NETHER_DIRT,
-            NpsRecipeTypes.NETHER_PURIFICATION,
-            new ItemStack[0],
-            8
-        );
-
-        NETHER_GRASS = new NetherSeedCrux(
-            NpsGroups.CRUX,
-            NpsStacks.NETHER_GRASS,
-            NpsRecipeTypes.NETHER_PURIFICATION,
-            new ItemStack[0],
-            16
         );
 
         // endregion

@@ -1,10 +1,13 @@
-package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression;
+package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.Purification;
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
+import dev.sefiraat.netheopoiesis.core.plant.Placements;
+import dev.sefiraat.netheopoiesis.runnables.UpdateCruxTask;
 import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
-import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
+import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
+import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Protection;
@@ -12,7 +15,6 @@ import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
@@ -29,18 +31,20 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Purification seed doesn't extend Purifying seed as it's the odd one out starting the
+ * process of purification on vanilla blocks. Should only have a single implementation
+ */
 public class PurificationSeed extends NetherSeed {
 
     private final Set<Material> materials;
 
-    public PurificationSeed(@Nonnull ItemGroup itemGroup,
-                            @Nonnull SlimefunItemStack item,
-                            @Nonnull RecipeType recipeType,
-                            @Nonnull ItemStack[] recipe,
-                            @Nonnull GrowthDescription growthDescription,
-                            @Nonnull Set<String> placement
+    @ParametersAreNonnullByDefault
+    public PurificationSeed(ItemGroup itemGroup,
+                            SlimefunItemStack item,
+                            ItemStack[] recipe
     ) {
-        super(itemGroup, item, recipeType, recipe, growthDescription, placement);
+        super(itemGroup, item, NpsRecipeTypes.VANILLA_DROP, recipe, GrowthType.VINEY_BLUE, Placements.NULL, 0.25, 1);
         materials = Set.of(
             Material.NETHERRACK,
             Material.CRIMSON_NYLIUM,
@@ -61,21 +65,19 @@ public class PurificationSeed extends NetherSeed {
         }
 
         final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
+        final double randomY = ThreadLocalRandom.current().nextInt(-2, 1);
         final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
         // For loop to make sure the purification can creep up and down.
-        for (int i = -1; i < 2; i++) {
-            final Block block = location.clone().add(randomX, i, randomZ).getBlock();
-            if (materials.contains(block.getType())
-                && Protection.hasPermission(getOwner(location), block, Interaction.BREAK_BLOCK)
-            ) {
-                BlockStorage.clearBlockInfo(block);
-                Purification.removeValue(block);
-                // Schedule a task to ensure the new block storage happens only AFTER deletion
-                UpdateCruxTask task = new UpdateCruxTask(block, NpsItems.BASIC_PURIFIED_NETHERRACK);
-                task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);
-                // Return so we only effect the one block per valid tick
-                return;
-            }
+
+        final Block block = location.clone().add(randomX, randomY, randomZ).getBlock();
+        if (materials.contains(block.getType())
+            && Protection.hasPermission(getOwner(location), block, Interaction.BREAK_BLOCK)
+        ) {
+            BlockStorage.clearBlockInfo(block);
+            Purification.removeValue(block);
+            // Schedule a task to ensure the new block storage happens only AFTER deletion
+            UpdateCruxTask task = new UpdateCruxTask(block, NpsItems.BASIC_PURIFIED_NETHERRACK);
+            task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);
         }
     }
 
@@ -89,7 +91,7 @@ public class PurificationSeed extends NetherSeed {
 
         if (location.getWorld() != null
             && WorldUtils.inNether(location.getWorld())
-            && (materials.contains(blockBelow.getType()) || possibleCrux instanceof NetherSeedCrux)
+            && (materials.contains(blockBelow.getType()) || possibleCrux instanceof NetherCrux)
         ) {
             final UUID uuid = event.getPlayer().getUniqueId();
             BlockStorage.addBlockInfo(location, Keys.SEED_GROWTH_STAGE, "0");
@@ -98,15 +100,5 @@ public class PurificationSeed extends NetherSeed {
         } else {
             event.setCancelled(true);
         }
-    }
-
-    @Override
-    public double getGrowthRate() {
-        return 0.25;
-    }
-
-    @Override
-    public int getPurificationValue() {
-        return 1;
     }
 }

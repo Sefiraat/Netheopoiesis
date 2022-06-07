@@ -56,4 +56,14 @@ public final class WorldUtils {
         final double randomZ = ThreadLocalRandom.current().nextInt(-range, range + 1);
         return centreLocation.clone().add(randomX, randomY, randomZ);
     }
+
+    /**
+     * Gets a location in the middle of a block
+     * @param location The starting location
+     * @return A clone of the given location centered to the middle of the block
+     */
+    @Nonnull
+    public static Location centre(@Nonnull Location location) {
+        return location.clone().add(0.5, 0.5, 0.5);
+    }
 }

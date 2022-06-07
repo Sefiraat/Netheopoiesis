@@ -47,7 +47,7 @@ public class EnderCake extends SlimefunItem {
                 public void tick(Block block, SlimefunItem slimefunItem, Config config) {
                     final Location location = block.getLocation().clone().add(0.5, 0.5, 0.5);
                     final Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 1f);
-                    Particles.displayParticleRandomly(location, 1, 4, dustOptions);
+                    Particles.randomSpread(location, 1, 4, dustOptions);
                 }
             }
         );

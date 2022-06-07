@@ -1,7 +1,7 @@
 package dev.sefiraat.netheopoiesis.core.plant;
 
 import dev.sefiraat.netheopoiesis.core.purification.PurifyingObject;
-import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
+import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
@@ -103,7 +103,7 @@ public interface NetherPlant extends PurifyingObject {
      * This set defines the types of Crux that the plant can be placed/grow on.
      * The placement will be cancelled otherwise.
      *
-     * @return The set of {@link NetherSeedCrux} that are valid for placement
+     * @return The set of {@link NetherCrux} that are valid for placement
      */
     @Nonnull
     Set<String> getPlacements();
@@ -121,5 +121,5 @@ public interface NetherPlant extends PurifyingObject {
      *
      * @return The list of {@link Skulls} of valid growth stages (including the Seed)
      */
-    GrowthDescription getGrowthDescription();
+    GrowthType getGrowthDescription();
 }

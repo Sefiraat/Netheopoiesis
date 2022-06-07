@@ -50,7 +50,7 @@ public final class NpsRecipeTypes {
     );
 
     @Nonnull
-    public static final RecipeType VANILLA_BLOCK_DROP = new RecipeType(
+    public static final RecipeType VANILLA_DROP = new RecipeType(
         Keys.newKey("vanilla_block_drop"),
         Theme.themedItemStack(
             Material.BROWN_DYE,

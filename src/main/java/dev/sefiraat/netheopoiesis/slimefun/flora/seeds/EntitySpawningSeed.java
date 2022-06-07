@@ -1,7 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -11,7 +10,6 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
-import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -24,21 +22,17 @@ import java.util.concurrent.ThreadLocalRandom;
 public class EntitySpawningSeed extends NetherSeed {
 
     private final EntityType entityType;
-    private final double growthRate;
-    private final int purificationValue;
 
     public EntitySpawningSeed(@Nonnull ItemGroup itemGroup,
                               @Nonnull SlimefunItemStack item,
-                              @Nonnull GrowthDescription growthDescription,
+                              @Nonnull GrowthType growthType,
                               @Nonnull Set<String> placement,
                               @Nonnull EntityType entityType,
                               double growthRate,
                               int purificationValue
     ) {
-        super(itemGroup, item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], growthDescription, placement);
+        super(itemGroup, item, growthType, placement, growthRate, purificationValue);
         this.entityType = entityType;
-        this.growthRate = growthRate;
-        this.purificationValue = purificationValue;
     }
 
     @Override
@@ -69,15 +63,5 @@ public class EntitySpawningSeed extends NetherSeed {
 
     public EntityType getEntityType() {
         return entityType;
-    }
-
-    @Override
-    public double getGrowthRate() {
-        return growthRate;
-    }
-
-    @Override
-    public int getPurificationValue() {
-        return purificationValue;
     }
 }

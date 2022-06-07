@@ -1,11 +1,14 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.Netheopoiesis;
+import dev.sefiraat.netheopoiesis.core.plant.GrowthType;
 import dev.sefiraat.netheopoiesis.core.plant.NetherPlant;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResult;
+import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResultType;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingPairs;
 import dev.sefiraat.netheopoiesis.events.NetherPlantBeforeGrowthEvent;
-import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherSeedCrux;
+import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
+import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Particles;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
@@ -26,7 +29,9 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -62,19 +67,41 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
 
     public final Map<Location, UUID> ownerCache = new HashMap<>();
 
-    private final GrowthDescription growthStages;
+    private final GrowthType growthStages;
     private final Set<String> placement;
+    private final double growthRate;
+    private final int purificationValue;
+
+    protected NetherSeed(@Nonnull ItemGroup itemGroup,
+                         @Nonnull SlimefunItemStack item,
+                         @Nonnull GrowthType description,
+                         @Nonnull Set<String> placement,
+                         double rate,
+                         int purification
+    ) {
+        this(
+            itemGroup,
+            item,
+            NpsRecipeTypes.PLANT_BREEDING,
+            new ItemStack[0],
+            null,
+            description,
+            placement,
+            rate,
+            purification
+        );
+    }
 
     protected NetherSeed(@Nonnull ItemGroup itemGroup,
                          @Nonnull SlimefunItemStack item,
                          @Nonnull RecipeType recipeType,
                          @Nonnull ItemStack[] recipe,
-                         @Nonnull GrowthDescription growthDescription,
-                         @Nonnull Set<String> placement
+                         @Nonnull GrowthType description,
+                         @Nonnull Set<String> placement,
+                         double rate,
+                         int purification
     ) {
-        super(itemGroup, item, recipeType, recipe);
-        this.growthStages = growthDescription;
-        this.placement = placement;
+        this(itemGroup, item, recipeType, recipe, null, description, placement, rate, purification);
     }
 
     protected NetherSeed(@Nonnull ItemGroup itemGroup,
@@ -82,12 +109,16 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
                          @Nonnull RecipeType recipeType,
                          @Nonnull ItemStack[] recipe,
                          @Nullable ItemStack recipeOutput,
-                         @Nonnull GrowthDescription growthDescription,
-                         @Nonnull Set<String> placement
+                         @Nonnull GrowthType description,
+                         @Nonnull Set<String> placement,
+                         double rate,
+                         int purification
     ) {
         super(itemGroup, item, recipeType, recipe, recipeOutput);
-        this.growthStages = growthDescription;
+        this.growthStages = description;
         this.placement = placement;
+        this.growthRate = rate;
+        this.purificationValue = purification;
     }
 
     @Override
@@ -159,36 +190,46 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
 
     private void tryBreed(@Nonnull Block block, @Nonnull NetherSeed mother) {
         final double breedRandom = ThreadLocalRandom.current().nextDouble();
-        if (breedRandom <= getGrowthRate()) {
-            for (BlockFace face : BREEDING_DIRECTIONS) {
-                final Block middleBlock = block.getRelative(face);
-                // There must be space for the new block
-                if (middleBlock.getType() != Material.AIR) {
-                    return;
-                }
-                final Block potentialMate = middleBlock.getRelative(face);
-                final SlimefunItem mateItem = BlockStorage.check(potentialMate);
+        if (breedRandom > getGrowthRate()) {
+            // No breed attempt this tick
+            return;
+        }
 
-                if (mateItem instanceof NetherSeed mate) {
-                    final BreedResult result = BreedingPairs.getBreedResult(mother, mate);
-                    if (result == null) {
-                        return;
-                    } else if (result.getResultType() == BreedResult.BreedResultType.BREED_SUCCESS) {
-                        trySetChildSeed(middleBlock, result.getMatchedPair().getChildPlant());
-                    } else if (result.getResultType() == BreedResult.BreedResultType.BREED_SPREAD) {
-                        trySetChildSeed(middleBlock, mother);
-                    }
+        for (BlockFace face : BREEDING_DIRECTIONS) {
+            final Block middleBlock = block.getRelative(face);
+            // There must be space for the new block
+            if (middleBlock.getType() != Material.AIR) {
+                return;
+            }
+            final Block potentialMate = middleBlock.getRelative(face);
+            final SlimefunItem mateItem = BlockStorage.check(potentialMate);
+
+            if (mateItem instanceof NetherSeed mate) {
+                final BreedResult result = BreedingPairs.getBreedResult(mother, mate);
+
+                if (result.getResultType() == BreedResultType.NO_PAIRS) {
+                    // No matching breeding pairs, lets feedback to the player then move to the next direction
+                    breedInvalidDisplay(middleBlock.getLocation());
+                } else if (result.getResultType() == BreedResultType.SUCCESS) {
+                    // Breed was a success - spawn child
+                    trySetChildSeed(block.getLocation(), middleBlock, result.getMatchedPair().getChildPlant());
+                } else if (result.getResultType() == BreedResultType.SPREAD) {
+                    // Breed failed, spread success - spawn copy of mother
+                    trySetChildSeed(block.getLocation(), middleBlock, mother);
                 }
             }
         }
     }
 
-    private void trySetChildSeed(@Nonnull Block cloneBlock, @Nonnull NetherSeed childSeed) {
+    @ParametersAreNonnullByDefault
+    private void trySetChildSeed(Location motherLocation, Block cloneBlock, NetherSeed childSeed) {
         cloneBlock.setType(Material.PLAYER_HEAD);
         PlayerHead.setSkin(cloneBlock, childSeed.getGrowthDescription().get(0).getPlayerSkin(), false);
         PaperLib.getBlockState(cloneBlock, false).getState().update(true, false);
         BlockStorage.store(cloneBlock, childSeed.getId());
         BlockStorage.addBlockInfo(cloneBlock, Keys.SEED_GROWTH_STAGE, "0");
+        BlockStorage.addBlockInfo(cloneBlock, Keys.SEED_OWNER, getOwner(motherLocation).toString());
+        breedSuccess(cloneBlock.getLocation());
     }
 
     @Override
@@ -224,7 +265,9 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
 
     @Nullable
     public UUID getOwner(@Nonnull Location location) {
-        return ownerCache.get(location);
+        UUID uuid = ownerCache.get(location);
+        Validate.notNull(uuid, "Owner is null, has this been called correctly");
+        return uuid;
     }
 
     public void addOwner(@Nonnull Location location, @Nonnull UUID uuid) {
@@ -268,7 +311,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         final Location location = block.getLocation();
         final SlimefunItem itemBelow = BlockStorage.check(blockBelow);
 
-        if (itemBelow instanceof NetherSeedCrux crux
+        if (itemBelow instanceof NetherCrux crux
             && WorldUtils.inNether(block.getWorld())
             && getPlacements().contains(crux.getId())
         ) {
@@ -283,7 +326,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     }
 
     @Override
-    public GrowthDescription getGrowthDescription() {
+    public GrowthType getGrowthDescription() {
         return growthStages;
     }
 
@@ -299,13 +342,29 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         return this.placement;
     }
 
+    @Override
+    public double getGrowthRate() {
+        return growthRate * Netheopoiesis.GROWTH_RATE_MULTIPLIER;
+    }
+
+    @Override
+    public int getPurificationValue() {
+        return purificationValue * Netheopoiesis.GROWTH_RATE_MULTIPLIER;
+    }
+
     private void growthDisplay(@Nonnull Location location) {
-        final Location centered = location.clone().add(0.5, 0.5, 0.5);
-        Particles.displayParticleRandomly(centered, 0.5, 4, getTheme().getDustOptions(1f));
+        Particles.randomSpread(WorldUtils.centre(location), 0.5, 4, getTheme().getDustOptions(1f));
     }
 
     private void finalGrowthDisplay(@Nonnull Location location) {
-        final Location centered = location.clone().add(0.5, 0.5, 0.5);
-        Particles.displayParticleRandomly(centered, Particle.WAX_ON, 0.5, 4);
+        Particles.randomSpread(WorldUtils.centre(location), Particle.WAX_ON, 0.5, 4);
+    }
+
+    private void breedInvalidDisplay(@Nonnull Location location) {
+        Particles.randomSpread(WorldUtils.centre(location), 0.5, 2, new Particle.DustOptions(Color.BLACK, 1));
+    }
+
+    private void breedSuccess(@Nonnull Location location) {
+        Particles.randomSpread(WorldUtils.centre(location), Particle.SLIME, 0.5, 4);
     }
 }
