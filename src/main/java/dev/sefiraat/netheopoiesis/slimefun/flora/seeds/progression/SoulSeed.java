@@ -1,6 +1,7 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.progression;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
+import dev.sefiraat.netheopoiesis.Purification;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
@@ -54,6 +55,7 @@ public class SoulSeed extends NetherSeed {
                 && Protection.hasPermission(getOwner(location), block, Interaction.BREAK_BLOCK)
             ) {
                 BlockStorage.clearBlockInfo(block);
+                Purification.removeValue(block);
                 // Schedule a task to ensure the new block storage happens only AFTER deletion
                 UpdateCruxTask task = new UpdateCruxTask(block, NpsItems.PURIFIED_NETHERRACK);
                 task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);

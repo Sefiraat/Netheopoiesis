@@ -8,89 +8,90 @@ import java.util.List;
 
 public class GrowthDescription {
 
-    public static final GrowthDescription HARDY_RED = new GrowthDescription(
+    public static final GrowthDescription VINEY_RED = new GrowthDescription(
         Theme.SEED_RED,
         List.of(
             Skulls.SEED_RED,
-            Skulls.RED_HARDY_1,
-            Skulls.RED_HARDY_2,
-            Skulls.RED_HARDY_3,
-            Skulls.RED_HARDY_4,
-            Skulls.RED_HARDY_5
+            Skulls.VINEY_RED_1,
+            Skulls.VINEY_RED_2,
+            Skulls.VINEY_RED_3,
+            Skulls.VINEY_RED_4,
+            Skulls.VINEY_RED_5
         )
     );
 
-    public static final GrowthDescription HARDY_ORANGE = new GrowthDescription(
+    public static final GrowthDescription VINEY_ORANGE = new GrowthDescription(
         Theme.SEED_ORANGE,
         List.of(
             Skulls.SEED_ORANGE,
-            Skulls.ORANGE_HARDY_1,
-            Skulls.ORANGE_HARDY_2,
-            Skulls.ORANGE_HARDY_3,
-            Skulls.ORANGE_HARDY_4,
-            Skulls.ORANGE_HARDY_5
+            Skulls.VINEY_ORANGE_1,
+            Skulls.VINEY_ORANGE_2,
+            Skulls.VINEY_ORANGE_3,
+            Skulls.VINEY_ORANGE_4,
+            Skulls.VINEY_ORANGE_5
         )
     );
 
-    public static final GrowthDescription HARDY_YELLOW = new GrowthDescription(
+    public static final GrowthDescription VINEY_YELLOW = new GrowthDescription(
         Theme.SEED_YELLOW,
         List.of(
             Skulls.SEED_YELLOW,
-            Skulls.YELLOW_HARDY_1,
-            Skulls.YELLOW_HARDY_2,
-            Skulls.YELLOW_HARDY_3,
-            Skulls.YELLOW_HARDY_4,
-            Skulls.YELLOW_HARDY_5
+            Skulls.VINEY_YELLOW_1,
+            Skulls.VINEY_YELLOW_2,
+            Skulls.VINEY_YELLOW_3,
+            Skulls.VINEY_YELLOW_4,
+            Skulls.VINEY_YELLOW_5
         )
     );
 
-    public static final GrowthDescription HARDY_GREEN = new GrowthDescription(
+    public static final GrowthDescription VINEY_GREEN = new GrowthDescription(
         Theme.SEED_GREEN,
         List.of(
             Skulls.SEED_GREEN,
-            Skulls.GREEN_HARDY_1,
-            Skulls.GREEN_HARDY_2,
-            Skulls.GREEN_HARDY_3,
-            Skulls.GREEN_HARDY_4,
-            Skulls.GREEN_HARDY_5
+            Skulls.VINEY_GREEN_1,
+            Skulls.VINEY_GREEN_2,
+            Skulls.VINEY_GREEN_3,
+            Skulls.VINEY_GREEN_4,
+            Skulls.VINEY_GREEN_5
         )
     );
 
-    public static final GrowthDescription HARDY_BLUE = new GrowthDescription(
+    public static final GrowthDescription VINEY_BLUE = new GrowthDescription(
         Theme.SEED_BLUE,
         List.of(
             Skulls.SEED_BLUE,
-            Skulls.BLUE_HARDY_1,
-            Skulls.BLUE_HARDY_2,
-            Skulls.BLUE_HARDY_3,
-            Skulls.BLUE_HARDY_4,
-            Skulls.BLUE_HARDY_5
+            Skulls.VINEY_BLUE_1,
+            Skulls.VINEY_BLUE_2,
+            Skulls.VINEY_BLUE_3,
+            Skulls.VINEY_BLUE_4,
+            Skulls.VINEY_BLUE_5
         )
     );
 
-    public static final GrowthDescription HARDY_INDIGO = new GrowthDescription(
-        Theme.SEED_INDIGO,
+    public static final GrowthDescription VINEY_CYAN = new GrowthDescription(
+        Theme.SEED_CYAN,
         List.of(
-            Skulls.SEED_INDIGO,
-            Skulls.INDIGO_HARDY_1,
-            Skulls.INDIGO_HARDY_2,
-            Skulls.INDIGO_HARDY_3,
-            Skulls.INDIGO_HARDY_4,
-            Skulls.INDIGO_HARDY_5
+            Skulls.SEED_CYAN,
+            Skulls.VINEY_CYAN_1,
+            Skulls.VINEY_CYAN_2,
+            Skulls.VINEY_CYAN_3,
+            Skulls.VINEY_CYAN_4,
+            Skulls.VINEY_CYAN_5
         )
     );
 
-    public static final GrowthDescription HARDY_VIOLET = new GrowthDescription(
-        Theme.SEED_VIOLET,
+    public static final GrowthDescription VINEY_PURPLE = new GrowthDescription(
+        Theme.SEED_PURPLE,
         List.of(
-            Skulls.SEED_VIOLET,
-            Skulls.VIOLET_HARDY_1,
-            Skulls.VIOLET_HARDY_2,
-            Skulls.VIOLET_HARDY_3,
-            Skulls.VIOLET_HARDY_4,
-            Skulls.VIOLET_HARDY_5
+            Skulls.SEED_PURPLE,
+            Skulls.VINEY_PURPLE_1,
+            Skulls.VINEY_PURPLE_2,
+            Skulls.VINEY_PURPLE_3,
+            Skulls.VINEY_PURPLE_4,
+            Skulls.VINEY_PURPLE_5
         )
     );
+
 
     @Nonnull
     private final Theme theme;

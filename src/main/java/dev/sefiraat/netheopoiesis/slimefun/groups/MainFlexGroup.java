@@ -28,6 +28,7 @@ public class MainFlexGroup extends FlexItemGroup {
     private static final int TOOLS = 10;
     private static final int SEEDS = 11;
     private static final int CRUX = 12;
+    private static final int GUIDE = 13;
 
     private static final int[] HEADER = new int[]{
         0, 1, 2, 3, 4, 5, 6, 7, 8
@@ -49,7 +50,7 @@ public class MainFlexGroup extends FlexItemGroup {
     @Override
     @ParametersAreNonnullByDefault
     public void open(Player p, PlayerProfile profile, SlimefunGuideMode mode) {
-        final ChestMenu chestMenu = new ChestMenu(Theme.MAIN.getColor() + "EMC Tech");
+        final ChestMenu chestMenu = new ChestMenu(Theme.MAIN.getColor() + "Netheopoiesis");
 
         for (int slot : HEADER) {
             chestMenu.addItem(slot, ChestMenuUtils.getBackground(), (player1, i1, itemStack, clickAction) -> false);
@@ -106,6 +107,12 @@ public class MainFlexGroup extends FlexItemGroup {
         menu.replaceExistingItem(CRUX, NpsGroups.CRUX.getItem(player));
         menu.addMenuClickHandler(CRUX, (player1, i1, itemStack1, clickAction) ->
             openPage(profile, NpsGroups.CRUX, mode, 1)
+        );
+
+        // Guide'
+        menu.replaceExistingItem(GUIDE, NpsGroups.GUIDE.getItem(player));
+        menu.addMenuClickHandler(GUIDE, (player1, i1, itemStack1, clickAction) ->
+            openPage(profile, NpsGroups.GUIDE, mode, 1)
         );
     }
 

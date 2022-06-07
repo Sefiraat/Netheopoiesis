@@ -1,6 +1,6 @@
 package dev.sefiraat.netheopoiesis.core.purification;
 
-import dev.sefiraat.netheopoiesis.PurificationMemory;
+import dev.sefiraat.netheopoiesis.Purification;
 import org.bukkit.block.Block;
 
 import javax.annotation.Nonnull;
@@ -17,16 +17,16 @@ public interface PurifyingObject {
     int getPurificationValue();
 
     /**
-     * Adds the purification value to the {@link PurificationMemory} instance.
+     * Adds the purification value to the {@link Purification} instance.
      */
     default void registerPurificationValue(@Nonnull Block block) {
-        PurificationMemory.getInstance().addValue(block, getPurificationValue());
+        Purification.getInstance().addValue(block, getPurificationValue());
     }
 
     /**
-     * Removes the purification value to the {@link PurificationMemory} instance.
+     * Removes the purification value to the {@link Purification} instance.
      */
     default void removePurificationRegistry(@Nonnull Block block) {
-        PurificationMemory.getInstance().removeValue(block);
+        Purification.getInstance().removeValue(block);
     }
 }

@@ -1,5 +1,6 @@
 package dev.sefiraat.netheopoiesis;
 
+import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.blocks.BlockPosition;
 import io.github.bakedlibs.dough.blocks.ChunkPosition;
 import org.apache.commons.lang.Validate;
@@ -11,15 +12,34 @@ import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PurificationMemory {
+public class Purification {
 
-    private static PurificationMemory instance;
+    // Purification Requirement Base Values
+    public static final int SLEEP_IN_BED = 250;
+    public static final int PLACE_WATER = 500;
+    public static final int ENDER_CAKE = 1500;
+    // Purification Requirement Mob Swapping Values
+    public static final int SWAP_MAGMA_CUBE = 500;
+    public static final int SWAP_PIGLIN = 500;
+    public static final int SWAP_BLAZE = 1_000;
+    public static final int SWAP_ZOMBIFIED_PIGLIN = 1_000;
+    public static final int SWAP_HOGLIN = 1_000;
+    public static final int SWAP_PIGLIN_BRUTE = 2_000;
+    public static final int SWAP_GHAST = 2_000;
+    public static final int SWAP_WITHER_SKELETON = 2_000;
+    // Regeneration
+    public static final int REGEN_1 = 500;
+    public static final int REGEN_2 = 1500;
+    public static final int REGEN_3 = 2500;
+
+
+    private static Purification instance;
 
     private final Map<BlockPosition, Integer> purifyingObjectValues = new HashMap<>();
     private final Map<ChunkPosition, Integer> chunkValues = new HashMap<>();
 
-    public PurificationMemory() {
-        Validate.isTrue(instance == null, "Cannot create a new instance of PurificationMemory");
+    public Purification() {
+        Validate.isTrue(instance == null, "Cannot create a new instance of Purification");
         instance = this;
         Bukkit.getScheduler().runTaskTimer(Netheopoiesis.getInstance(), this::collateChunkValues, 1, 100);
     }
@@ -58,10 +78,13 @@ public class PurificationMemory {
     }
 
     public static int getValue(@Nonnull Chunk chunk) {
-        return instance.getChunkValues().getOrDefault(new ChunkPosition(chunk), 0);
+        if (WorldUtils.inNether(chunk.getWorld())) {
+            return instance.getChunkValues().getOrDefault(new ChunkPosition(chunk), 0);
+        }
+        return 0;
     }
 
-    public static PurificationMemory getInstance() {
+    public static Purification getInstance() {
         return instance;
     }
 }

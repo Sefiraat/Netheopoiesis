@@ -25,6 +25,7 @@ import java.util.Set;
 public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
 
     private final int purificationValue;
+    private int tick = 0;
 
     public NetherSeedCrux(ItemGroup itemGroup,
                           SlimefunItemStack item,
@@ -57,8 +58,15 @@ public class NetherSeedCrux extends SlimefunItem implements PurifyingObject {
                 }
 
                 @Override
-                public void tick(Block block, SlimefunItem slimefunItem, Config config) {
-                    registerPurificationValue(block);
+                public void tick(Block block, SlimefunItem item, Config data) {
+                    if (NetherSeedCrux.this.tick >= 5) {
+                        registerPurificationValue(block);
+                    }
+                }
+
+                @Override
+                public void uniqueTick() {
+                    tick = tick >= 5 ? 0 : tick + 1;
                 }
             }
         );

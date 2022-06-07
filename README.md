@@ -24,6 +24,8 @@ possible in the Nether e.g.
 - Being able to place water and grow new crops.
 - Mob spawns will slowly be replaced with mobs not normally found in the Nether that respect a normal overworld
   day/light cycle.
+- Travel to the end using the Ender Cake
+- Passive healing while in a purified region, increasing with the level of purification
 
 And much more
 
@@ -42,4 +44,14 @@ effects and more.
 As a bonus each seed will also add to the nearby purification value, with more complex-bred seeds providing more.
 
 An in-depth breeding dictionary is available to keep track of discovered breeds and more detailed information about a
-seed not inititally available in the regular portion of the guide.
+seed not initially available in the regular portion of the guide.
+
+## Future Development
+
+We had a lot of ideas for what we wanted to do here, but needed to keep the scope reasonable to ensure a completed
+product would be ready for the end of the Jam, so here are a list of our planned features after the results of the Jam:
+
+- A plant or generation method for every overworld-only item
+- Transformation of lava within the Nether to water
+- Biomes and biome-specific crux', plants and spawns
+- Possible spawning of structures in purified areas

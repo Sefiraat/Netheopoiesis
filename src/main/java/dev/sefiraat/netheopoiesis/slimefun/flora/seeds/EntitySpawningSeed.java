@@ -50,18 +50,21 @@ public class EntitySpawningSeed extends NetherSeed {
             final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
             final Block block = location.clone().add(randomX, randomY, randomZ).getBlock();
 
-            // the first block we spawn on needs to be AIR
+            // The first block we spawn on needs to be AIR
             if (block.getType() != Material.AIR) {
                 return;
             }
 
             final Block blockBelow = block.getRelative(BlockFace.DOWN);
 
-            // And we need a solid floor
-            if (blockBelow.getType() == Material.AIR) {
+            // And we need a solid floor and finally not too many nearby mobs
+            if (blockBelow.getType() == Material.AIR
+                && block.getWorld().getNearbyEntities(block.getLocation(), 10, 10, 10).size() < 6
+            ) {
                 return;
             }
 
+            // Clear to spawn
             blockBelow.getWorld().spawnEntity(block.getLocation(), this.entityType);
         }
     }

@@ -18,7 +18,7 @@ import java.util.List;
  */
 public enum Theme {
     // Main Theme
-    MAIN(ChatColor.of("#290612"), "Netheopoiesis"),
+    MAIN(ChatColor.of("#8a0e0e"), "Netheopoiesis"),
     // Basic chat elements
     WARNING(ChatColor.YELLOW, "Warning"),
     ERROR(ChatColor.RED, "Error"),
@@ -40,8 +40,8 @@ public enum Theme {
     SEED_YELLOW(ChatColor.of("#c4b31d")),
     SEED_GREEN(ChatColor.of("#4ac41d")),
     SEED_BLUE(ChatColor.of("#1d36c4")),
-    SEED_INDIGO(ChatColor.of("#551dc4")),
-    SEED_VIOLET(ChatColor.of("#811dc4"));
+    SEED_CYAN(ChatColor.of("#1fcccc")),
+    SEED_PURPLE(ChatColor.of("#811dc4"));
 
     private static final Theme[] cachedValues = values();
     private final ChatColor color;
@@ -67,7 +67,7 @@ public enum Theme {
      * @return Returns the string provides preceded by the color
      */
     @Nonnull
-    public String applyToString(@Nonnull Object value) {
+    public String apply(@Nonnull Object value) {
         return this.color + String.valueOf(value);
     }
 

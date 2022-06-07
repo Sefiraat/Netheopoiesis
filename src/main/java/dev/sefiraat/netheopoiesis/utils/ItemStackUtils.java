@@ -36,6 +36,15 @@ public final class ItemStackUtils {
 
     /**
      * @param material
+     * @return
+     */
+    @Nonnull
+    public static ItemStack enchantedItemStack(@Nonnull Material material) {
+        return enchantedItemStack(material, false, new Pair<>(Enchantment.LURE, 1));
+    }
+
+    /**
+     * @param material
      * @param enchantments
      * @return
      */

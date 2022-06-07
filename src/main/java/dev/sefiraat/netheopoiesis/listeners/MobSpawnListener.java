@@ -1,6 +1,6 @@
 package dev.sefiraat.netheopoiesis.listeners;
 
-import dev.sefiraat.netheopoiesis.PurificationMemory;
+import dev.sefiraat.netheopoiesis.Purification;
 import dev.sefiraat.netheopoiesis.utils.TimePeriod;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.collections.RandomizedSet;
@@ -55,13 +55,14 @@ public class MobSpawnListener implements Listener {
         PASSIVE_MOBS.add(EntityType.SHEEP, 1);
 
         // Required purification values
-        MAP.put(EntityType.MAGMA_CUBE, 500);
-        MAP.put(EntityType.PIGLIN, 500);
-        MAP.put(EntityType.BLAZE, 1_000);
-        MAP.put(EntityType.ZOMBIFIED_PIGLIN, 1_000);
-        MAP.put(EntityType.HOGLIN, 1_000);
-        MAP.put(EntityType.PIGLIN_BRUTE, 2_000);
-        MAP.put(EntityType.WITHER_SKELETON, 2_000);
+        MAP.put(EntityType.MAGMA_CUBE, Purification.SWAP_MAGMA_CUBE);
+        MAP.put(EntityType.PIGLIN, Purification.SWAP_PIGLIN);
+        MAP.put(EntityType.BLAZE, Purification.SWAP_BLAZE);
+        MAP.put(EntityType.ZOMBIFIED_PIGLIN, Purification.SWAP_ZOMBIFIED_PIGLIN);
+        MAP.put(EntityType.HOGLIN, Purification.SWAP_HOGLIN);
+        MAP.put(EntityType.PIGLIN_BRUTE, Purification.SWAP_PIGLIN_BRUTE);
+        MAP.put(EntityType.GHAST, Purification.SWAP_GHAST);
+        MAP.put(EntityType.WITHER_SKELETON, Purification.SWAP_WITHER_SKELETON);
     }
 
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
@@ -73,7 +74,7 @@ public class MobSpawnListener implements Listener {
             && WorldUtils.inNether(world)) {
             final int requiredValue = MAP.getOrDefault(entity.getType(), -1);
             final Location location = entity.getLocation();
-            final int value = PurificationMemory.getValue(location.getChunk());
+            final int value = Purification.getValue(location.getChunk());
             if (requiredValue == -1 || value < requiredValue) {
                 // Either the mob cannot be replaced or the chunk is not purified enough
                 return;

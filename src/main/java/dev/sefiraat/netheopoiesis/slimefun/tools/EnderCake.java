@@ -1,7 +1,8 @@
 package dev.sefiraat.netheopoiesis.slimefun.tools;
 
-import dev.sefiraat.netheopoiesis.PurificationMemory;
+import dev.sefiraat.netheopoiesis.Purification;
 import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
+import dev.sefiraat.netheopoiesis.slimefun.groups.PurificationFlexGroup;
 import dev.sefiraat.netheopoiesis.utils.Particles;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
@@ -56,10 +57,7 @@ public class EnderCake extends SlimefunItem {
     private void onCakeEat(@Nonnull PlayerRightClickEvent event) {
         final Player player = event.getPlayer();
         final Optional<Block> clickedBlock = event.getClickedBlock();
-        if (WorldUtils.inNether(player.getWorld())
-            && PurificationMemory.getValue(player.getLocation().getChunk()) >= 750
-            && clickedBlock.isPresent()
-        ) {
+        if (WorldUtils.inNether(player.getWorld()) && clickedBlock.isPresent()) {
             final Block block = clickedBlock.get();
             if (block.getType() == Material.CAKE) {
                 final Optional<SlimefunItem> slimefunItem = event.getSlimefunBlock();
@@ -68,13 +66,15 @@ public class EnderCake extends SlimefunItem {
                     && Bukkit.getAllowEnd()
                 ) {
                     final World end = Bukkit.getWorlds().get(2);
-                    final Location endSpawn = new Location(end, 100.5, 49, 0.5);
+                    final Location location = player.getLocation();
+                    if (end != null && Purification.getValue(location.getChunk()) >= Purification.ENDER_CAKE) {
+                        // optimize where possible. look into checking if its already there. Trusted source unknown.
+                        final Location endSpawn = new Location(end, 100.5, 49, 0.5);
+                        placePlatform(end);
+                        player.teleport(endSpawn);
+                    }
 
-                    // optimize where possible. look into checking if its already there. Trusted source unknown.
-                    placePlatform(end);
-                    player.teleport(endSpawn);
-                    Cake cakeData = (Cake) block.getBlockData();
-
+                    final Cake cakeData = (Cake) block.getBlockData();
                     if (cakeData.getBites() == 6) {
                         BlockStorage.clearBlockInfo(block);
                     }

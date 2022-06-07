@@ -1,6 +1,6 @@
 package dev.sefiraat.netheopoiesis.listeners;
 
-import dev.sefiraat.netheopoiesis.PurificationMemory;
+import dev.sefiraat.netheopoiesis.Purification;
 import dev.sefiraat.netheopoiesis.utils.TimePeriod;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.utils.tags.SlimefunTag;
@@ -29,7 +29,7 @@ public class PlayerSleepListener implements Listener {
         if (WorldUtils.inNether(world)
             && block != null
             && SlimefunTag.BEDS.isTagged(block.getType())
-            && PurificationMemory.getValue(block.getChunk()) >= 250
+            && Purification.getValue(block.getChunk()) >= 250
         ) {
             event.setCancelled(true);
             if (TimePeriod.isNight(world)) {

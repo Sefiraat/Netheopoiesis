@@ -1,6 +1,7 @@
 package dev.sefiraat.netheopoiesis.managers;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
+import dev.sefiraat.netheopoiesis.runnables.RegenerationRunnable;
 import org.apache.commons.lang.Validate;
 
 public class RunnableManager {
@@ -11,6 +12,8 @@ public class RunnableManager {
         Validate.isTrue(instance == null, "Cannot create a new instance of the ListenerManager");
         instance = this;
         final Netheopoiesis plugin = Netheopoiesis.getInstance();
+
+        new RegenerationRunnable().runTaskTimer(plugin, 0, 40);
     }
 
     public static RunnableManager getInstance() {

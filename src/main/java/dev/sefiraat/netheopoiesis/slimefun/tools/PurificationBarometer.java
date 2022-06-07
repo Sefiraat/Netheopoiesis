@@ -1,6 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.tools;
 
-import dev.sefiraat.netheopoiesis.PurificationMemory;
+import dev.sefiraat.netheopoiesis.Purification;
 import dev.sefiraat.netheopoiesis.utils.Cooldowns;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -44,7 +44,7 @@ public class PurificationBarometer extends SimpleSlimefunItem<ItemUseHandler> {
 
             final String message = Theme.CLICK_INFO.asTitle(
                 "Chunk Purification Amount",
-                PurificationMemory.getValue(chunk)
+                Purification.getValue(chunk)
             );
             player.sendMessage(message);
             Cooldowns.addCooldown(barometer, 5);

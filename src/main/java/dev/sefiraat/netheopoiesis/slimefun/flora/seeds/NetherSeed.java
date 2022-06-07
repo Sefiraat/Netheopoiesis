@@ -27,6 +27,7 @@ import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.HumanEntity;
@@ -137,8 +138,9 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
                 return;
             }
             updateGrowthStage(block, growthStage + 1);
-            if (getGrowthDescription().stages() == growthStage) {
+            if (getGrowthDescription().stages() == growthStage + 1) {
                 onFullyMatures(location, seed, data);
+                finalGrowthDisplay(location);
             }
         }
     }
@@ -235,12 +237,11 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     }
 
     public void updateGrowthStage(@Nonnull Block block, int growthStage) {
-        final Location location = block.getLocation().clone().add(0.5, 0.5, 0.5);
         final Skulls nextTexture = getGrowthDescription().get(growthStage - 1);
         PlayerHead.setSkin(block, nextTexture.getPlayerSkin(), false);
         PaperLib.getBlockState(block, false).getState().update(true, false);
         BlockStorage.addBlockInfo(block, Keys.SEED_GROWTH_STAGE, String.valueOf(growthStage));
-        displayGrowthParticles(location);
+        growthDisplay(block.getLocation());
     }
 
     /**
@@ -286,8 +287,13 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         return this.placement;
     }
 
-    private void displayGrowthParticles(@Nonnull Location location) {
+    private void growthDisplay(@Nonnull Location location) {
         final Location centered = location.clone().add(0.5, 0.5, 0.5);
         Particles.displayParticleRandomly(centered, 0.5, 4, getTheme().getDustOptions(1f));
+    }
+
+    private void finalGrowthDisplay(@Nonnull Location location) {
+        final Location centered = location.clone().add(0.5, 0.5, 0.5);
+        Particles.displayParticleRandomly(centered, Particle.WAX_ON, 0.5,4);
     }
 }

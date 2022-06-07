@@ -173,28 +173,28 @@ public class NpsItems {
                 new ItemStack(Material.SOUL_SOIL),
                 0.05
             ),
-            GrowthDescription.HARDY_BLUE,
+            GrowthDescription.VINEY_BLUE,
             Placements.NULL
         );
 
         SOUL_SEED = new SoulSeed(
             NpsGroups.SEEDS,
             NpsStacks.SOUL_SEED,
-            GrowthDescription.HARDY_BLUE,
+            GrowthDescription.VINEY_BLUE,
             Placements.ALL
         );
 
         SPIRIT_SEED = new SpiritSeed(
             NpsGroups.SEEDS,
             NpsStacks.SPIRIT_SEED,
-            GrowthDescription.HARDY_BLUE,
+            GrowthDescription.VINEY_BLUE,
             Placements.PURIFIED_AND_UP
         );
 
         SPINDLE_SEED = new GenericTickingSeed(
             NpsGroups.SEEDS,
             NpsStacks.SPINDLE_SEED,
-            GrowthDescription.HARDY_ORANGE,
+            GrowthDescription.VINEY_ORANGE,
             Placements.ALL,
             GenericTickingMethods::onTickSpindleSeed,
             0.09,
@@ -204,7 +204,7 @@ public class NpsItems {
         GRAINY_SEED = new DroppingSeed(
             NpsGroups.SEEDS,
             NpsStacks.GRAINY_SEED,
-            GrowthDescription.HARDY_RED,
+            GrowthDescription.VINEY_RED,
             Placements.ALL,
             new ItemStack(Material.REDSTONE),
             0.09,
@@ -214,7 +214,7 @@ public class NpsItems {
         STRINGY_SEED = new DroppingSeed(
             NpsGroups.SEEDS,
             NpsStacks.STRINGY_SEED,
-            GrowthDescription.HARDY_GREEN,
+            GrowthDescription.VINEY_GREEN,
             Placements.ALL,
             new ItemStack(Material.STRING),
             0.09,
@@ -224,7 +224,7 @@ public class NpsItems {
         STONEY_SEED = new DroppingSeed(
             NpsGroups.SEEDS,
             NpsStacks.STONEY_SEED,
-            GrowthDescription.HARDY_INDIGO,
+            GrowthDescription.VINEY_PURPLE,
             Placements.ALL,
             new ItemStack(Material.COBBLESTONE),
             0.09,
@@ -234,7 +234,7 @@ public class NpsItems {
         DUSTY_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.DUSTY_SEED,
-            GrowthDescription.HARDY_INDIGO,
+            GrowthDescription.VINEY_CYAN,
             Placements.ALL,
             new ItemStack(Material.GRAVEL),
             0.09,
@@ -244,7 +244,7 @@ public class NpsItems {
         SEASIDE_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.SEASIDE_SEED,
-            GrowthDescription.HARDY_YELLOW,
+            GrowthDescription.VINEY_YELLOW,
             Placements.ALL,
             new ItemStack(Material.SAND),
             0.09,
@@ -254,7 +254,7 @@ public class NpsItems {
         MOLDABLE_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.MOLDABLE_SEED,
-            GrowthDescription.HARDY_INDIGO,
+            GrowthDescription.VINEY_PURPLE,
             Placements.ALL,
             new ItemStack(Material.CLAY_BALL),
             0.09,
@@ -264,7 +264,7 @@ public class NpsItems {
         SPLINTERED_SEED = new EntitySpawningSeed(
             NpsGroups.SEEDS,
             NpsStacks.SPLINTERED_SEED,
-            GrowthDescription.HARDY_ORANGE,
+            GrowthDescription.VINEY_CYAN,
             Placements.ALL,
             EntityType.SKELETON,
             0.08,
@@ -274,7 +274,7 @@ public class NpsItems {
         ROTTEN_SEED = new EntitySpawningSeed(
             NpsGroups.SEEDS,
             NpsStacks.ROTTEN_SEED,
-            GrowthDescription.HARDY_GREEN,
+            GrowthDescription.VINEY_GREEN,
             Placements.ALL,
             EntityType.ZOMBIE,
             0.08,
@@ -284,7 +284,7 @@ public class NpsItems {
         METALLIC_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.METALLIC_SEED,
-            GrowthDescription.HARDY_RED,
+            GrowthDescription.VINEY_RED,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.IRON_NUGGET),
             0.08,
@@ -294,7 +294,7 @@ public class NpsItems {
         SHINY_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.SHINY_SEED,
-            GrowthDescription.HARDY_YELLOW,
+            GrowthDescription.VINEY_YELLOW,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.GOLD_NUGGET),
             0.08,
@@ -304,7 +304,7 @@ public class NpsItems {
         SMOOTH_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.SMOOTH_SEED,
-            GrowthDescription.HARDY_VIOLET,
+            GrowthDescription.VINEY_CYAN,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.AMETHYST_SHARD),
             0.08,
@@ -314,7 +314,7 @@ public class NpsItems {
         ENCHANTED_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.ENCHANTED_SEED,
-            GrowthDescription.HARDY_BLUE,
+            GrowthDescription.VINEY_BLUE,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.LAPIS_LAZULI),
             0.07,
@@ -324,7 +324,7 @@ public class NpsItems {
         COMBUSTIBLE_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.COMBUSTIBLE_SEED,
-            GrowthDescription.HARDY_VIOLET,
+            GrowthDescription.VINEY_RED,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.COAL),
             0.07,
@@ -334,7 +334,7 @@ public class NpsItems {
         PROTECTIVE_SEED = new EntitySpawningSeed(
             NpsGroups.SEEDS,
             NpsStacks.PROTECTIVE_SEED,
-            GrowthDescription.HARDY_YELLOW,
+            GrowthDescription.VINEY_PURPLE,
             Placements.ALL,
             EntityType.IRON_GOLEM,
             0.03,
@@ -344,7 +344,7 @@ public class NpsItems {
         VALUABLE_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.VALUABLE_SEED,
-            GrowthDescription.HARDY_VIOLET,
+            GrowthDescription.VINEY_GREEN,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.EMERALD),
             0.07,
@@ -354,7 +354,7 @@ public class NpsItems {
         PERFECTION_SEED = new HarvestableSeed(
             NpsGroups.SEEDS,
             NpsStacks.PERFECTION_SEED,
-            GrowthDescription.HARDY_BLUE,
+            GrowthDescription.VINEY_BLUE,
             Placements.PURIFIED_AND_UP,
             new ItemStack(Material.DIAMOND),
             0.07,
@@ -364,7 +364,7 @@ public class NpsItems {
         OAKENDRAN_SEED = new GenericTickingSeed(
             NpsGroups.SEEDS,
             NpsStacks.OAKENDRAN_SEED,
-            GrowthDescription.HARDY_RED,
+            GrowthDescription.VINEY_ORANGE,
             Placements.VORACIOUS_AND_UP,
             GenericTickingMethods::onTickOakendranSeed,
             0.04,
