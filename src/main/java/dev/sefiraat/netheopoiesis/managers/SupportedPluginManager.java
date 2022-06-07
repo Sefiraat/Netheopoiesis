@@ -13,7 +13,7 @@ public class SupportedPluginManager {
     }
 
     private void setup() {
-
+        // Todo - Remove this whole class if it's not needed before the Jam ends
     }
 
     public static SupportedPluginManager getInstance() {

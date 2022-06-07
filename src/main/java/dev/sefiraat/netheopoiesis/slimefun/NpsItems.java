@@ -183,14 +183,14 @@ public class NpsItems {
             }
         );
 
-        // todo create AddonJam,
+        // todo finish recipe
         ENDER_CAKE = new EnderCake(
             NpsGroups.TOOLS,
             NpsStacks.ENDER_CAKE,
             RecipeType.ANCIENT_ALTAR,
             new ItemStack[]{
                 null, null, null,
-                null, null, null,
+                null, NpsStacks.ADDON_JAM, null,
                 null, null, null,
             }
         );

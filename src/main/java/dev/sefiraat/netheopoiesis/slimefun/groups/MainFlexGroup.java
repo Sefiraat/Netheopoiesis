@@ -20,10 +20,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 public class MainFlexGroup extends FlexItemGroup {
 
-    private static final int PAGE_SIZE = 36;
-
     private static final int GUIDE_BACK = 1;
-
     private static final int CRAFTING = 9;
     private static final int TOOLS = 10;
     private static final int SEEDS = 11;

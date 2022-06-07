@@ -61,7 +61,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onDisable() {
-
+        // todo Remove if not needed before Jam ends
     }
 
     public void tryUpdate() {

@@ -56,27 +56,30 @@ public class EnderCake extends SlimefunItem {
     private void onCakeEat(@Nonnull PlayerRightClickEvent event) {
         final Player player = event.getPlayer();
         final Optional<Block> clickedBlock = event.getClickedBlock();
-        if (WorldUtils.inNether(player.getWorld()) && clickedBlock.isPresent()) {
-            final Block block = clickedBlock.get();
-            if (block.getType() == Material.CAKE) {
-                final Optional<SlimefunItem> slimefunItem = event.getSlimefunBlock();
-                if (slimefunItem.isPresent()
-                    && slimefunItem.get().getId().equals(NpsItems.ENDER_CAKE.getId())
-                    && Bukkit.getAllowEnd()
-                ) {
-                    final World end = Bukkit.getWorlds().get(2);
-                    final Location location = player.getLocation();
-                    if (end != null && Purification.getValue(location.getChunk()) >= Purification.ENDER_CAKE) {
-                        // optimize where possible. look into checking if its already there. Trusted source unknown.
-                        final Location endSpawn = new Location(end, 100.5, 49, 0.5);
-                        placePlatform(end);
-                        player.teleport(endSpawn);
-                    }
 
-                    final Cake cakeData = (Cake) block.getBlockData();
-                    if (cakeData.getBites() == 6) {
-                        BlockStorage.clearBlockInfo(block);
-                    }
+        if (!WorldUtils.inNether(player.getWorld()) || clickedBlock.isEmpty()) {
+            return;
+        }
+
+        final Block block = clickedBlock.get();
+        if (block.getType() == Material.CAKE) {
+            final Optional<SlimefunItem> slimefunItem = event.getSlimefunBlock();
+            if (slimefunItem.isPresent()
+                && slimefunItem.get().getId().equals(NpsItems.ENDER_CAKE.getId())
+                && Bukkit.getAllowEnd()
+            ) {
+                final World end = Bukkit.getWorlds().get(2);
+                final Location location = player.getLocation();
+                if (end != null && Purification.getValue(location.getChunk()) >= Purification.ENDER_CAKE) {
+                    // optimize where possible. look into checking if its already there. Trusted source unknown.
+                    final Location endSpawn = new Location(end, 100.5, 49, 0.5);
+                    placePlatform(end);
+                    player.teleport(endSpawn);
+                }
+
+                final Cake cakeData = (Cake) block.getBlockData();
+                if (cakeData.getBites() == 6) {
+                    BlockStorage.clearBlockInfo(block);
                 }
             }
         }

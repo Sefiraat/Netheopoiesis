@@ -24,8 +24,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 public class PurificationFlexGroup extends FlexItemGroup {
 
-    private static final int PAGE_SIZE = 36;
-
     private static final int GUIDE_BACK = 1;
 
     private static final int SLEEP_SLOT = 9;

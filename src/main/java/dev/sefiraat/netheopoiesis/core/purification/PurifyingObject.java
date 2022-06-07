@@ -20,13 +20,13 @@ public interface PurifyingObject {
      * Adds the purification value to the {@link Purification} instance.
      */
     default void registerPurificationValue(@Nonnull Block block) {
-        Purification.getInstance().addValue(block, getPurificationValue());
+        Purification.addValue(block, getPurificationValue());
     }
 
     /**
      * Removes the purification value to the {@link Purification} instance.
      */
     default void removePurificationRegistry(@Nonnull Block block) {
-        Purification.getInstance().removeValue(block);
+        Purification.removeValue(block);
     }
 }
