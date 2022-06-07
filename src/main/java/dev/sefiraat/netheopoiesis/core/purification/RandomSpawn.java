@@ -6,8 +6,6 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.SpawnCategory;
-import org.bukkit.entity.Squid;
 
 import javax.annotation.Nonnull;
 import java.util.concurrent.ThreadLocalRandom;

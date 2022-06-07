@@ -3,8 +3,6 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique;
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.Purification;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
-import dev.sefiraat.netheopoiesis.core.plant.Placements;
 import dev.sefiraat.netheopoiesis.runnables.UpdateCruxTask;
 import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;

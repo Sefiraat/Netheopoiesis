@@ -9,9 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Set;
 
 public class BiomeSpreadingSeed extends CruxSpreadingSeed {
 

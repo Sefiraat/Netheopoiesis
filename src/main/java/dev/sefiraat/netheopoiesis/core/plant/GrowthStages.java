@@ -96,18 +96,18 @@ public class GrowthStages {
     @Nonnull
     private final Theme theme;
     @Nonnull
-    private final List<Skulls> growthStages;
+    private final List<Skulls> stages;
 
     /**
      * This class is used to store the possible stages of growth a plant can go through
      * starting with a seed to its final step.
      *
      * @param theme        The {@link Theme} that will be used for particle effects and other appropriate needs
-     * @param growthStages The {@link List} of Skulls that will be used as textures for each stage
+     * @param stages The {@link List} of Skulls that will be used as textures for each stage
      */
-    public GrowthStages(@Nonnull Theme theme, @Nonnull List<Skulls> growthStages) {
+    public GrowthStages(@Nonnull Theme theme, @Nonnull List<Skulls> stages) {
         this.theme = theme;
-        this.growthStages = growthStages;
+        this.stages = stages;
     }
 
     @Nonnull
@@ -116,16 +116,16 @@ public class GrowthStages {
     }
 
     @Nonnull
-    public List<Skulls> getGrowthStages() {
-        return growthStages;
+    public List<Skulls> getStages() {
+        return stages;
     }
 
     public int stages() {
-        return growthStages.size();
+        return stages.size();
     }
 
     @Nonnull
     public Skulls get(int index) {
-        return growthStages.get(index);
+        return stages.get(index);
     }
 }

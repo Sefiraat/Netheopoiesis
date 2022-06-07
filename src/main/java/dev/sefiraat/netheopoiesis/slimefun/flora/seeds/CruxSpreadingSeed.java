@@ -3,7 +3,6 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.Purification;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.core.plant.SpreadingPlant;
 import dev.sefiraat.netheopoiesis.runnables.UpdateCruxTask;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
@@ -17,9 +16,7 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CruxSpreadingSeed extends NetherSeed implements SpreadingPlant {

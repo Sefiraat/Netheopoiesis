@@ -1,7 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -12,9 +11,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
