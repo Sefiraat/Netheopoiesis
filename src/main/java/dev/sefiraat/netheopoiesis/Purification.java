@@ -17,6 +17,7 @@ public class Purification {
     // Purification Requirement Base Values
     public static final int SLEEP_IN_BED = 250;
     public static final int PLACE_WATER = 500;
+    public static final int FRIENDLY_PIGLINS = 750;
     public static final int ENDER_CAKE = 1500;
 
     // Purification Requirement Mob Swapping Values
@@ -42,7 +43,6 @@ public class Purification {
     public static final int REGEN_1 = 500;
     public static final int REGEN_2 = 1500;
     public static final int REGEN_3 = 2500;
-
 
     private static Purification instance;
 

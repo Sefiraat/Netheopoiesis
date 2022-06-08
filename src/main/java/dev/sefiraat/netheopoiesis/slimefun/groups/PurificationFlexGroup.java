@@ -29,7 +29,9 @@ public class PurificationFlexGroup extends FlexItemGroup {
     private static final int REGEN_SLOT = 11;
     private static final int MOB_1_SLOT = 12;
     private static final int MOB_2_SLOT = 13;
-    private static final int END_CAKE_SLOT = 14;
+    private static final int PIGLIN_SLOT = 14;
+    private static final int BARTERING_SLOT = 15;
+    private static final int END_CAKE_SLOT = 16;
 
 
     private static final int[] HEADER = new int[]{
@@ -42,21 +44,23 @@ public class PurificationFlexGroup extends FlexItemGroup {
     private static final ItemStack SLEEP_STACK = new CustomItemStack(
         Material.BLACK_BED,
         Theme.MAIN + "Sleeping in the Nether",
-        Theme.CLICK_INFO.asTitle("Purification Required", Purification.SLEEP_IN_BED),
         Theme.PASSIVE.apply("You can finally sleep in the"),
         Theme.PASSIVE.apply("Nether! But check the purification"),
-        Theme.PASSIVE.apply("level first, else you may explode!")
+        Theme.PASSIVE.apply("level first, else you may explode!"),
+        "",
+        Theme.CLICK_INFO.asTitle("Purification Required", Purification.SLEEP_IN_BED)
     );
 
     private static final ItemStack WATER_STACK = new CustomItemStack(
         Material.BUCKET,
         Theme.MAIN + "Water in the Nether",
-        Theme.CLICK_INFO.asTitle("Purification Required", Purification.PLACE_WATER),
         Theme.PASSIVE.apply("With a high enough purification"),
         Theme.PASSIVE.apply("value, you will be able to place"),
         Theme.PASSIVE.apply("water in the Nether, allowing you"),
         Theme.PASSIVE.apply("to grow overworld crops."),
-        Theme.PASSIVE.apply("Water also adds 1 to the purification value")
+        Theme.PASSIVE.apply("Water also adds 1 to the purification value"),
+        "",
+        Theme.CLICK_INFO.asTitle("Purification Required", Purification.PLACE_WATER)
     );
 
     private static final ItemStack REGEN_STACK = new CustomItemStack(
@@ -66,6 +70,7 @@ public class PurificationFlexGroup extends FlexItemGroup {
         Theme.PASSIVE.apply("value, you will be be enveloped"),
         Theme.PASSIVE.apply("in a healing mist that increases"),
         Theme.PASSIVE.apply("in power as the level gets higher"),
+        "",
         Theme.CLICK_INFO.asTitle("Regen 1", Purification.REGEN_1),
         Theme.CLICK_INFO.asTitle("Regen 2", Purification.REGEN_2),
         Theme.CLICK_INFO.asTitle("Regen 3", Purification.REGEN_3)
@@ -80,8 +85,9 @@ public class PurificationFlexGroup extends FlexItemGroup {
         Theme.PASSIVE.apply("mobs. Passive or Hostile depending"),
         Theme.PASSIVE.apply("on the time of day."),
         Theme.PASSIVE.apply("More mobs as your value increases"),
+        "",
         Theme.CLICK_INFO.asTitle("Magma Cube", Purification.SWAP_MAGMA_CUBE),
-        Theme.CLICK_INFO.asTitle("Piglin", Purification.SWAP_PIGLIN),
+        // Theme.CLICK_INFO.asTitle("Piglin", Purification.SWAP_PIGLIN),
         Theme.CLICK_INFO.asTitle("Blaze", Purification.SWAP_BLAZE),
         Theme.CLICK_INFO.asTitle("Zombified Piglin", Purification.SWAP_ZOMBIFIED_PIGLIN),
         Theme.CLICK_INFO.asTitle("Hoglin", Purification.SWAP_HOGLIN),
@@ -97,6 +103,7 @@ public class PurificationFlexGroup extends FlexItemGroup {
         Theme.PASSIVE.apply("value, certain passive mobs will"),
         Theme.PASSIVE.apply("spawn around the player."),
         Theme.PASSIVE.apply("More mobs as your value increases."),
+        "",
         Theme.CLICK_INFO.asTitle("Squid", Purification.SPAWN_SQUID),
         Theme.CLICK_INFO.asTitle("Salmon", Purification.SPAWN_SALMON),
         Theme.CLICK_INFO.asTitle("Cod", Purification.SPAWN_COD),
@@ -106,15 +113,38 @@ public class PurificationFlexGroup extends FlexItemGroup {
         Theme.CLICK_INFO.asTitle("Wandering Trader", Purification.WANDERING_TRADER)
     );
 
+    private static final ItemStack PIGLIN_STACK = new CustomItemStack(
+        Material.PIGLIN_SPAWN_EGG,
+        Theme.MAIN + "Friendly Piglins",
+        Theme.PASSIVE.apply("With a high enough purification"),
+        Theme.PASSIVE.apply("value, nearby piglins will be"),
+        Theme.PASSIVE.apply("so happy with your progress"),
+        Theme.PASSIVE.apply("they will stop being hostile."),
+        "",
+        Theme.CLICK_INFO.asTitle("Purification Required", Purification.FRIENDLY_PIGLINS)
+    );
+
+    private static final ItemStack BARTERING_STACK = new CustomItemStack(
+        Material.GOLD_INGOT,
+        Theme.MAIN + "Better-Barter",
+        Theme.PASSIVE.apply("As your purification value"),
+        Theme.PASSIVE.apply("increases, you will have an"),
+        Theme.PASSIVE.apply("increased chance to double your"),
+        Theme.PASSIVE.apply("output from bartering."),
+        "",
+        Theme.CLICK_INFO.asTitle("Double Chance: ", "(Purification Value / " + Purification.FRIENDLY_PIGLINS + ") * 5%")
+    );
+
     private static final ItemStack ENDER_CAKE = new CustomItemStack(
         Material.CAKE,
         Theme.MAIN + "To the End!",
-        Theme.CLICK_INFO.asTitle("Purification Required", Purification.ENDER_CAKE),
         Theme.PASSIVE.apply("Using materials gathered from your"),
         Theme.PASSIVE.apply("new Nether plants, you can make an"),
         Theme.PASSIVE.apply("Ender Cake. If you have the required"),
         Theme.PASSIVE.apply("purification level, you will be transported"),
-        Theme.PASSIVE.apply("to the end.")
+        Theme.PASSIVE.apply("to the end."),
+        "",
+        Theme.CLICK_INFO.asTitle("Purification Required", Purification.ENDER_CAKE)
     );
 
     public PurificationFlexGroup(NamespacedKey key, ItemStack item) {
@@ -179,6 +209,12 @@ public class PurificationFlexGroup extends FlexItemGroup {
 
         menu.replaceExistingItem(MOB_2_SLOT, MOBS_2_STACK);
         menu.addMenuClickHandler(MOB_2_SLOT, ChestMenuUtils.getEmptyClickHandler());
+
+        menu.replaceExistingItem(PIGLIN_SLOT, PIGLIN_STACK);
+        menu.addMenuClickHandler(PIGLIN_SLOT, ChestMenuUtils.getEmptyClickHandler());
+
+        menu.replaceExistingItem(BARTERING_SLOT, BARTERING_STACK);
+        menu.addMenuClickHandler(BARTERING_SLOT, ChestMenuUtils.getEmptyClickHandler());
 
         menu.replaceExistingItem(END_CAKE_SLOT, ENDER_CAKE);
         menu.addMenuClickHandler(END_CAKE_SLOT, ChestMenuUtils.getEmptyClickHandler());

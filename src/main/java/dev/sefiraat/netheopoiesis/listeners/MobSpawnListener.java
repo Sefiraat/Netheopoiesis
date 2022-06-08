@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -34,16 +35,17 @@ public class MobSpawnListener implements Listener {
 
     static {
         // Hostile mobs
-        HOSTILE_MOBS.add(EntityType.CREEPER, 1);
-        HOSTILE_MOBS.add(EntityType.SKELETON, 1);
-        HOSTILE_MOBS.add(EntityType.SLIME, 1);
-        HOSTILE_MOBS.add(EntityType.WITCH, 1);
-        HOSTILE_MOBS.add(EntityType.ZOMBIE, 1);
+        HOSTILE_MOBS.add(EntityType.CREEPER, 5);
+        HOSTILE_MOBS.add(EntityType.SKELETON, 5);
+        HOSTILE_MOBS.add(EntityType.SLIME, 3);
+        HOSTILE_MOBS.add(EntityType.WITCH, 2);
+        HOSTILE_MOBS.add(EntityType.ZOMBIE, 5);
         HOSTILE_MOBS.add(EntityType.ZOMBIE_VILLAGER, 1);
-        HOSTILE_MOBS.add(EntityType.CAVE_SPIDER, 1);
+        HOSTILE_MOBS.add(EntityType.SPIDER, 3);
+        HOSTILE_MOBS.add(EntityType.CAVE_SPIDER, 3);
         HOSTILE_MOBS.add(EntityType.EVOKER, 1);
-        HOSTILE_MOBS.add(EntityType.PILLAGER, 1);
-        HOSTILE_MOBS.add(EntityType.VINDICATOR, 1);
+        HOSTILE_MOBS.add(EntityType.PILLAGER, 2);
+        HOSTILE_MOBS.add(EntityType.VINDICATOR, 2);
         HOSTILE_MOBS.add(EntityType.RAVAGER, 1);
 
         // Passive Mobs
@@ -56,7 +58,7 @@ public class MobSpawnListener implements Listener {
 
         // Required purification values
         MAP.put(EntityType.MAGMA_CUBE, Purification.SWAP_MAGMA_CUBE);
-        MAP.put(EntityType.PIGLIN, Purification.SWAP_PIGLIN);
+        // MAP.put(EntityType.PIGLIN, Purification.SWAP_PIGLIN);
         MAP.put(EntityType.BLAZE, Purification.SWAP_BLAZE);
         MAP.put(EntityType.ZOMBIFIED_PIGLIN, Purification.SWAP_ZOMBIFIED_PIGLIN);
         MAP.put(EntityType.HOGLIN, Purification.SWAP_HOGLIN);
@@ -86,9 +88,23 @@ public class MobSpawnListener implements Listener {
                 // Special case for ghasts to replace only with flying mobs
                 world.spawnEntity(location, isDay ? EntityType.BAT : EntityType.PHANTOM);
             } else {
-                // Replace the spawn with a relevant type
-                world.spawnEntity(location, isDay ? PASSIVE_MOBS.getRandom() : HOSTILE_MOBS.getRandom());
+                // Try to replace the spawn with a relevant type
+                if (hasEnoughSpace(location)) {
+                    final LivingEntity spawned = (LivingEntity) world.spawnEntity(
+                        location,
+                        isDay ? PASSIVE_MOBS.getRandom() : HOSTILE_MOBS.getRandom()
+                    );
+                    spawned.setRemoveWhenFarAway(true);
+                    spawned.setNoDamageTicks(20);
+                }
             }
         }
+    }
+
+    private boolean hasEnoughSpace(@Nonnull Location location) {
+        final World world = location.getWorld();
+
+        // Don't want too many mobs in one specific location
+        return world.getNearbyEntities(location, 7, 7, 7).size() <= 5;
     }
 }

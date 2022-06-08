@@ -1,6 +1,7 @@
 package dev.sefiraat.netheopoiesis.managers;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
+import dev.sefiraat.netheopoiesis.listeners.FriendlyPiglinListener;
 import dev.sefiraat.netheopoiesis.listeners.MobSpawnListener;
 import dev.sefiraat.netheopoiesis.listeners.PlayerSleepListener;
 import dev.sefiraat.netheopoiesis.listeners.SeedPlacementListener;
@@ -23,6 +24,7 @@ public class ListenerManager {
         addListener(new MobSpawnListener());
         addListener(new PlayerSleepListener());
         addListener(new WaterPlaceListener());
+        addListener(new FriendlyPiglinListener());
     }
 
     private void addListener(@Nonnull Listener listener) {
