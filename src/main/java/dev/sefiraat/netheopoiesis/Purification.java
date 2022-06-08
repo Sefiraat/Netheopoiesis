@@ -18,6 +18,7 @@ public class Purification {
     public static final int SLEEP_IN_BED = 250;
     public static final int PLACE_WATER = 500;
     public static final int FRIENDLY_PIGLINS = 750;
+    public static final int FRIENDLY_HOGLINS = 900;
     public static final int ENDER_CAKE = 1500;
 
     // Purification Requirement Mob Swapping Values
@@ -25,7 +26,7 @@ public class Purification {
     public static final int SWAP_PIGLIN = 500;
     public static final int SWAP_BLAZE = 1_000;
     public static final int SWAP_ZOMBIFIED_PIGLIN = 1_000;
-    public static final int SWAP_HOGLIN = 1_000;
+    public static final int SWAP_HOGLIN = 1_500;
     public static final int SWAP_PIGLIN_BRUTE = 2_000;
     public static final int SWAP_GHAST = 2_000;
     public static final int SWAP_WITHER_SKELETON = 2_000;

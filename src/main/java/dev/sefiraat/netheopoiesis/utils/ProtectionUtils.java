@@ -11,9 +11,9 @@ import org.bukkit.entity.Player;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.UUID;
 
-public final class Protection {
+public final class ProtectionUtils {
 
-    private Protection() {
+    private ProtectionUtils() {
         throw new IllegalStateException("Utility class");
     }
 

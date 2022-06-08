@@ -1,8 +1,6 @@
 package dev.sefiraat.netheopoiesis;
 
 
-import co.aikar.commands.PaperCommandManager;
-import dev.sefiraat.netheopoiesis.commands.CommandMain;
 import dev.sefiraat.netheopoiesis.managers.ConfigManager;
 import dev.sefiraat.netheopoiesis.managers.ListenerManager;
 import dev.sefiraat.netheopoiesis.managers.RunnableManager;
@@ -56,9 +54,6 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
         this.listenerManager = new ListenerManager();
         this.runnableManager = new RunnableManager();
         this.purification = new Purification();
-        PaperCommandManager commandManager = new PaperCommandManager(this);
-
-        commandManager.registerCommand(new CommandMain());
 
         NpsItems.setup();
 

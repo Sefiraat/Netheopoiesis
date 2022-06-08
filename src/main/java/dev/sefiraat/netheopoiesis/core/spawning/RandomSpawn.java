@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.core.purification;
+package dev.sefiraat.netheopoiesis.core.spawning;
 
 import dev.sefiraat.netheopoiesis.Purification;
 import org.apache.commons.lang.Validate;

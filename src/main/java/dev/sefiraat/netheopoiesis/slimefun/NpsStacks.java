@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 import java.util.stream.Stream;
 
 @SuppressWarnings("java:S1192")
-public class NpsStacks {
+public final class NpsStacks {
 
     private NpsStacks() {
         throw new IllegalStateException("Utility class");

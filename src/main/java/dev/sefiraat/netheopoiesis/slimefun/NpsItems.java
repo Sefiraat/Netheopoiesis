@@ -27,7 +27,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
-public class NpsItems {
+public final class NpsItems {
 
     private NpsItems() {
         throw new IllegalStateException("Utility class");

@@ -37,10 +37,6 @@
               <shadedPattern>dev.sefiraat.netheopoiesis.bstats</shadedPattern>
             </relocation>
             <relocation>
-              <pattern>co.aikar.commands</pattern>
-              <shadedPattern>dev.sefiraat.netheopoiesis.acf</shadedPattern>
-            </relocation>
-            <relocation>
               <pattern>io.github.bakedlibs.dough</pattern>
               <shadedPattern>dev.sefiraat.netheopoiesis.dough</shadedPattern>
             </relocation>
@@ -69,10 +65,6 @@
     <repository>
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
-    </repository>
-    <repository>
-      <id>aikar</id>
-      <url>https://repo.aikar.co/content/groups/aikar/</url>
     </repository>
     <repository>
       <id>papermc</id>

@@ -1,9 +1,9 @@
 package dev.sefiraat.netheopoiesis.slimefun.tools;
 
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
-import dev.sefiraat.netheopoiesis.utils.Cooldowns;
+import dev.sefiraat.netheopoiesis.utils.ItemStackUtils;
 import dev.sefiraat.netheopoiesis.utils.Keys;
-import dev.sefiraat.netheopoiesis.utils.Protection;
+import dev.sefiraat.netheopoiesis.utils.ProtectionUtils;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -47,7 +47,7 @@ public class Analyser extends SlimefunItem {
 
             final ItemStack analyser = event.getItem();
 
-            if (Cooldowns.isOnCooldown(analyser)) {
+            if (ItemStackUtils.isOnCooldown(analyser)) {
                 player.sendMessage(Theme.WARNING + "This item is still on cooldown.");
                 return;
             }
@@ -55,7 +55,7 @@ public class Analyser extends SlimefunItem {
             final SlimefunItem slimefunItem = BlockStorage.check(block);
 
             if (slimefunItem instanceof NetherSeed plant
-                && Protection.hasPermission(player, block, Interaction.INTERACT_BLOCK)
+                && ProtectionUtils.hasPermission(player, block, Interaction.INTERACT_BLOCK)
             ) {
                 final String growthStage = BlockStorage.getLocationInfo(block.getLocation(), Keys.SEED_GROWTH_STAGE);
                 final String ownerString = BlockStorage.getLocationInfo(block.getLocation(), Keys.SEED_OWNER);
@@ -72,7 +72,7 @@ public class Analyser extends SlimefunItem {
                 player.sendMessage(messageType, messageStage, messageOwner, messageValue);
             }
             // Put item on cooldown to minimise potential BlockStorage spamming
-            Cooldowns.addCooldown(analyser, 5);
+            ItemStackUtils.addCooldown(analyser, 5);
         }
     }
 }

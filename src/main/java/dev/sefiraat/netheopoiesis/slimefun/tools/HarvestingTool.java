@@ -3,7 +3,7 @@ package dev.sefiraat.netheopoiesis.slimefun.tools;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.HarvestableSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Keys;
-import dev.sefiraat.netheopoiesis.utils.Protection;
+import dev.sefiraat.netheopoiesis.utils.ProtectionUtils;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -63,7 +63,7 @@ public class HarvestingTool extends LimitedUseItem {
     private boolean canHarvest(@Nonnull NetherSeed seed, @Nonnull Block block, @Nonnull Player player) {
         return seed.isHarvestable()
             && seed.isMature(block)
-            && Protection.hasPermission(player, block, Interaction.INTERACT_BLOCK);
+            && ProtectionUtils.hasPermission(player, block, Interaction.INTERACT_BLOCK);
     }
 
     @Override

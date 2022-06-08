@@ -11,9 +11,9 @@ import dev.sefiraat.netheopoiesis.events.PlantBeforeGrowthEvent;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.utils.Keys;
-import dev.sefiraat.netheopoiesis.utils.Particles;
-import dev.sefiraat.netheopoiesis.utils.PlayerStats;
+import dev.sefiraat.netheopoiesis.utils.ParticleUtils;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
+import dev.sefiraat.netheopoiesis.utils.StatisticUtils;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.skins.PlayerHead;
@@ -197,7 +197,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
                     // Breed was a success - spawn child, log discovery
                     final NetherSeed child = result.getMatchedPair().getChildPlant();
                     trySetChildSeed(motherBlock.getLocation(), middleBlock, child);
-                    PlayerStats.unlockDiscovery(getOwner(motherBlock.getLocation()), child.getId());
+                    StatisticUtils.unlockDiscovery(getOwner(motherBlock.getLocation()), child.getId());
                 } else if (result.getResultType() == BreedResultType.SPREAD) {
                     // Breed failed, spread success - spawn copy of mother
                     trySetChildSeed(motherBlock.getLocation(), middleBlock, mother);
@@ -341,18 +341,18 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     }
 
     private void growthDisplay(@Nonnull Location location) {
-        Particles.randomSpread(WorldUtils.centre(location), 0.5, 4, getTheme().getDustOptions(1f));
+        ParticleUtils.randomSpread(WorldUtils.centre(location), 0.5, 4, getTheme().getDustOptions(1f));
     }
 
     private void finalGrowthDisplay(@Nonnull Location location) {
-        Particles.randomSpread(WorldUtils.centre(location), Particle.WAX_ON, 0.5, 4);
+        ParticleUtils.randomSpread(WorldUtils.centre(location), Particle.WAX_ON, 0.5, 4);
     }
 
     private void breedInvalidDisplay(@Nonnull Location location) {
-        Particles.randomSpread(WorldUtils.centre(location), 0.5, 2, new Particle.DustOptions(Color.BLACK, 1));
+        ParticleUtils.randomSpread(WorldUtils.centre(location), 0.5, 2, new Particle.DustOptions(Color.BLACK, 1));
     }
 
     private void breedSuccess(@Nonnull Location location) {
-        Particles.randomSpread(WorldUtils.centre(location), Particle.SLIME, 0.5, 4);
+        ParticleUtils.randomSpread(WorldUtils.centre(location), Particle.SLIME, 0.5, 4);
     }
 }

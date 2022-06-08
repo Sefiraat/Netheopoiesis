@@ -1,7 +1,7 @@
 package dev.sefiraat.netheopoiesis.runnables;
 
 import dev.sefiraat.netheopoiesis.Purification;
-import dev.sefiraat.netheopoiesis.core.purification.RandomSpawn;
+import dev.sefiraat.netheopoiesis.core.spawning.RandomSpawn;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.collections.RandomizedSet;
 import org.bukkit.Bukkit;

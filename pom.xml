@@ -22,10 +22,6 @@
                             <shadedPattern>dev.sefiraat.netheopoiesis.bstats</shadedPattern>
                         </relocation>
                         <relocation>
-                            <pattern>co.aikar.commands</pattern>
-                            <shadedPattern>dev.sefiraat.netheopoiesis.acf</shadedPattern>
-                        </relocation>
-                        <relocation>
                             <pattern>io.github.bakedlibs.dough</pattern>
                             <shadedPattern>dev.sefiraat.netheopoiesis.dough</shadedPattern>
                         </relocation>
@@ -100,10 +96,6 @@
             <url>https://jitpack.io</url>
         </repository>
         <repository>
-            <id>aikar</id>
-            <url>https://repo.aikar.co/content/groups/aikar/</url>
-        </repository>
-        <repository>
             <id>papermc</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
@@ -141,11 +133,6 @@
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>annotations</artifactId>
             <version>3.0.1u2</version>
-        </dependency>
-        <dependency>
-            <groupId>co.aikar</groupId>
-            <artifactId>acf-paper</artifactId>
-            <version>0.5.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>io.papermc</groupId>

@@ -115,13 +115,15 @@ public class PurificationFlexGroup extends FlexItemGroup {
 
     private static final ItemStack PIGLIN_STACK = new CustomItemStack(
         Material.PIGLIN_SPAWN_EGG,
-        Theme.MAIN + "Friendly Piglins",
+        Theme.MAIN + "Friendly Mobs",
         Theme.PASSIVE.apply("With a high enough purification"),
         Theme.PASSIVE.apply("value, nearby piglins will be"),
         Theme.PASSIVE.apply("so happy with your progress"),
         Theme.PASSIVE.apply("they will stop being hostile."),
+        Theme.PASSIVE.apply("Other mobs will soon follow suit."),
         "",
-        Theme.CLICK_INFO.asTitle("Purification Required", Purification.FRIENDLY_PIGLINS)
+        Theme.CLICK_INFO.asTitle("Piglins", Purification.FRIENDLY_PIGLINS),
+        Theme.CLICK_INFO.asTitle("Hoglins", Purification.FRIENDLY_HOGLINS)
     );
 
     private static final ItemStack BARTERING_STACK = new CustomItemStack(

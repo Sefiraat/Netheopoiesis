@@ -1,8 +1,8 @@
 package dev.sefiraat.netheopoiesis.slimefun.tools;
 
 import dev.sefiraat.netheopoiesis.core.purification.PurifyingObject;
-import dev.sefiraat.netheopoiesis.utils.Cooldowns;
-import dev.sefiraat.netheopoiesis.utils.Protection;
+import dev.sefiraat.netheopoiesis.utils.ItemStackUtils;
+import dev.sefiraat.netheopoiesis.utils.ProtectionUtils;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -43,7 +43,7 @@ public class PurificationScanner extends SlimefunItem {
 
             final ItemStack analyser = event.getItem();
 
-            if (Cooldowns.isOnCooldown(analyser)) {
+            if (ItemStackUtils.isOnCooldown(analyser)) {
                 player.sendMessage(Theme.WARNING + "This item is still on cooldown.");
                 return;
             }
@@ -51,7 +51,7 @@ public class PurificationScanner extends SlimefunItem {
             final SlimefunItem slimefunItem = BlockStorage.check(block);
 
             if (slimefunItem instanceof PurifyingObject object
-                && Protection.hasPermission(player, block, Interaction.INTERACT_BLOCK)
+                && ProtectionUtils.hasPermission(player, block, Interaction.INTERACT_BLOCK)
             ) {
                 final String messageValue = Theme.CLICK_INFO.asTitle(
                     "Purification Value",
@@ -60,7 +60,7 @@ public class PurificationScanner extends SlimefunItem {
                 player.sendMessage(messageValue);
             }
             // Put item on cooldown to minimise potential BlockStorage spamming
-            Cooldowns.addCooldown(analyser, 5);
+            ItemStackUtils.addCooldown(analyser, 5);
         }
     }
 }

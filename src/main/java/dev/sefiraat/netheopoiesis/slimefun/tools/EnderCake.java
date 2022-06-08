@@ -2,7 +2,7 @@ package dev.sefiraat.netheopoiesis.slimefun.tools;
 
 import dev.sefiraat.netheopoiesis.Purification;
 import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
-import dev.sefiraat.netheopoiesis.utils.Particles;
+import dev.sefiraat.netheopoiesis.utils.ParticleUtils;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
@@ -47,7 +47,7 @@ public class EnderCake extends SlimefunItem {
                 public void tick(Block block, SlimefunItem slimefunItem, Config config) {
                     final Location location = block.getLocation().clone().add(0.5, 0.5, 0.5);
                     final Particle.DustOptions dustOptions = new Particle.DustOptions(Color.PURPLE, 1f);
-                    Particles.randomSpread(location, 1, 4, dustOptions);
+                    ParticleUtils.randomSpread(location, 1, 4, dustOptions);
                 }
             }
         );

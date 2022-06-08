@@ -6,7 +6,7 @@ import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.core.plant.SpreadingPlant;
 import dev.sefiraat.netheopoiesis.runnables.UpdateCruxTask;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
-import dev.sefiraat.netheopoiesis.utils.Protection;
+import dev.sefiraat.netheopoiesis.utils.ProtectionUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -60,7 +60,7 @@ public class CruxSpreadingSeed extends NetherSeed implements SpreadingPlant {
         final SlimefunItem possibleCrux = BlockStorage.check(block);
         if (possibleCrux instanceof NetherCrux currentCrux
             && getPlacements().contains(currentCrux.getId())
-            && Protection.hasPermission(getOwner(sourceLocation), block, Interaction.BREAK_BLOCK)
+            && ProtectionUtils.hasPermission(getOwner(sourceLocation), block, Interaction.BREAK_BLOCK)
         ) {
             BlockStorage.clearBlockInfo(block);
             Purification.removeValue(block);

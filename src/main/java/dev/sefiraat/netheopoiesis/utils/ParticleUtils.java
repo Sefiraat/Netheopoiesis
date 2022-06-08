@@ -7,9 +7,9 @@ import org.bukkit.entity.Entity;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.ThreadLocalRandom;
 
-public final class Particles {
+public final class ParticleUtils {
 
-    private Particles() {
+    private ParticleUtils() {
         throw new IllegalStateException("Utility class");
     }
 

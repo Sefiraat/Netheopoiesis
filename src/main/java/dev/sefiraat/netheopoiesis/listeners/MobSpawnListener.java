@@ -101,6 +101,7 @@ public class MobSpawnListener implements Listener {
         }
     }
 
+    // Todo - Add a proper way to detect and manage mob-caps.
     private boolean hasEnoughSpace(@Nonnull Location location) {
         final World world = location.getWorld();
 

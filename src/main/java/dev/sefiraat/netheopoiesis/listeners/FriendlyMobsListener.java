@@ -12,16 +12,23 @@ import org.bukkit.event.entity.PiglinBarterEvent;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class FriendlyPiglinListener implements Listener {
+public class FriendlyMobsListener implements Listener {
+
+    public static final Map<EntityType, Integer> TYPES = Map.of(
+        EntityType.PIGLIN, Purification.FRIENDLY_PIGLINS,
+        EntityType.HOGLIN, Purification.FRIENDLY_HOGLINS
+    );
 
     @EventHandler
-    public void onPiglinTarget(@Nonnull EntityTargetLivingEntityEvent event) {
+    public void onMobTarget(@Nonnull EntityTargetLivingEntityEvent event) {
         final LivingEntity livingEntity = event.getTarget();
-        if (livingEntity != null && WorldUtils.inNether(livingEntity) && event.getEntityType() == EntityType.PIGLIN) {
+        if (livingEntity != null && WorldUtils.inNether(livingEntity)) {
             final int purificationLevel = Purification.getValue(livingEntity.getLocation().getChunk());
-            if (purificationLevel >= Purification.FRIENDLY_PIGLINS) {
+            final int requiredLevel = TYPES.getOrDefault(event.getEntityType(), 0);
+            if (requiredLevel > 0 && purificationLevel >= requiredLevel) {
                 event.setCancelled(true);
             }
         }

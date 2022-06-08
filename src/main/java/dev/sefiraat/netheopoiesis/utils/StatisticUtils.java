@@ -7,9 +7,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.text.MessageFormat;
 import java.util.UUID;
 
-public final class PlayerStats {
+public final class StatisticUtils {
 
-    private PlayerStats() {
+    private StatisticUtils() {
         throw new IllegalStateException("Utility class");
     }
 

@@ -2,7 +2,7 @@ package dev.sefiraat.netheopoiesis.slimefun.groups;
 
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingPair;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
-import dev.sefiraat.netheopoiesis.utils.PlayerStats;
+import dev.sefiraat.netheopoiesis.utils.StatisticUtils;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.FlexItemGroup;
@@ -138,7 +138,7 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
             if (i + 1 <= pairSubList.size()) {
                 final BreedingPair pair = pairSubList.get(i);
                 final NetherSeed child = pair.getChildPlant();
-                final boolean researched = PlayerStats.isDiscovered(player, child.getId());
+                final boolean researched = StatisticUtils.isDiscovered(player, child.getId());
 
                 if (mode == SlimefunGuideMode.CHEAT_MODE || researched) {
                     menu.replaceExistingItem(slot, new ItemStack(pair.getChildPlant().getItem()));

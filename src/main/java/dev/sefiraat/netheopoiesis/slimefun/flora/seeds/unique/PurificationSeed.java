@@ -9,7 +9,7 @@ import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Keys;
-import dev.sefiraat.netheopoiesis.utils.Protection;
+import dev.sefiraat.netheopoiesis.utils.ProtectionUtils;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -71,7 +71,7 @@ public class PurificationSeed extends NetherSeed {
 
         final Block block = location.clone().add(randomX, randomY, randomZ).getBlock();
         if (materials.contains(block.getType())
-            && Protection.hasPermission(getOwner(location), block, Interaction.BREAK_BLOCK)
+            && ProtectionUtils.hasPermission(getOwner(location), block, Interaction.BREAK_BLOCK)
         ) {
             BlockStorage.clearBlockInfo(block);
             Purification.removeValue(block);
