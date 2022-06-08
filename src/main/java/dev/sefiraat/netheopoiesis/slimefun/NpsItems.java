@@ -27,6 +27,9 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * Final class used to store and initialise the {@link SlimefunItem}s used in the addon
+ */
 public final class NpsItems {
 
     private NpsItems() {

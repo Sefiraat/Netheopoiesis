@@ -8,8 +8,12 @@ import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * This class is used to create and manage/save custom configuration files
+ */
 public class ConfigManager {
 
+    // Player breeding discoveries
     private final FileConfiguration discoveries;
 
     public ConfigManager() {
@@ -21,6 +25,7 @@ public class ConfigManager {
     private FileConfiguration getConfig(@Nonnull String fileName) {
         final Netheopoiesis plugin = Netheopoiesis.getInstance();
         final File file = new File(plugin.getDataFolder(), fileName);
+
         try {
             if (!file.exists()) {
                 file.getParentFile().mkdirs();
@@ -29,7 +34,6 @@ public class ConfigManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return YamlConfiguration.loadConfiguration(file);
     }
 

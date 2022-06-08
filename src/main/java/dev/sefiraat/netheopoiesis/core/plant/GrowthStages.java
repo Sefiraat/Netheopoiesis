@@ -6,6 +6,10 @@ import dev.sefiraat.netheopoiesis.utils.Theme;
 import javax.annotation.Nonnull;
 import java.util.List;
 
+/**
+ * This class is used to define the seed item for a plant as well as the textures to be used
+ * as the plant grows. It also contains the static instances of GrowthStages used in the addon
+ */
 public class GrowthStages {
 
     public static final GrowthStages VINEY_RED = new GrowthStages(

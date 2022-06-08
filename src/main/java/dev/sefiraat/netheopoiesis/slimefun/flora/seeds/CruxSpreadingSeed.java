@@ -19,6 +19,9 @@ import org.bukkit.block.Block;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * This seed will spread crux to nearby blocks when placed and grown
+ */
 public class CruxSpreadingSeed extends NetherSeed implements SpreadingPlant {
 
     private final NetherCrux convertTo;
@@ -43,6 +46,7 @@ public class CruxSpreadingSeed extends NetherSeed implements SpreadingPlant {
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public void spread(Location sourceLocation, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
 

@@ -2,11 +2,15 @@ package dev.sefiraat.netheopoiesis.slimefun;
 
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Theme;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import org.bukkit.Material;
 
 import javax.annotation.Nonnull;
 
+/**
+ * Final class used to store and initialise the {@link RecipeType}s used in the addon
+ */
 public final class NpsRecipeTypes {
 
     private NpsRecipeTypes() {

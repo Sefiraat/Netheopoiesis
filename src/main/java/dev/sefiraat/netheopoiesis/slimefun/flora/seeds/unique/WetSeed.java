@@ -13,6 +13,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
 
+/**
+ * This custom implementation of NetherSeed is used to allow a Right-click interaction to fill a bucket.
+ * Todo - If we need more BlockUseHandlers, create a new extendable class with a PlayerRightClick consumer?
+ */
 public class WetSeed extends NetherSeed {
 
     @ParametersAreNonnullByDefault

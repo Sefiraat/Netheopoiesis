@@ -27,6 +27,10 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
+/**
+ * The EnderCake will teleport a player to the end when right-clicked (assuming the purification level
+ * is high enough)
+ */
 public class EnderCake extends SlimefunItem {
 
     public EnderCake(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {

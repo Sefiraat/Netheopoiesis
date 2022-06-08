@@ -15,6 +15,10 @@ import javax.annotation.Nonnull;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * The purpose of this Listener is to stop mobs targeting other entities (inc. Players)
+ * when in purified ground. It also adds doubling to Bartering.
+ */
 public class FriendlyMobsListener implements Listener {
 
     public static final Map<EntityType, Integer> TYPES = Map.of(

@@ -12,6 +12,11 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import javax.annotation.Nonnull;
 
+/**
+ * The purpose of this listener is to allow players to place water buckets in the Nether
+ * when above a purification threshold.
+ * Todo - Remove particles if/when possible
+ */
 public class WaterPlaceListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)

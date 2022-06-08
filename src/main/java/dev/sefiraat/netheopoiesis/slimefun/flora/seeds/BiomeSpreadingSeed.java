@@ -11,6 +11,11 @@ import org.bukkit.block.Block;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+/**
+ * This seed will spread crux like the CruxSpreadingSeed whilst also setting the spread-to block's
+ * biome
+ * @see CruxSpreadingSeed
+ */
 public class BiomeSpreadingSeed extends CruxSpreadingSeed {
 
     private final Biome biome;

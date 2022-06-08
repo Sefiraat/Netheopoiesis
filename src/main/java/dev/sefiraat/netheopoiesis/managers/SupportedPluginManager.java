@@ -2,6 +2,9 @@ package dev.sefiraat.netheopoiesis.managers;
 
 import org.apache.commons.lang.Validate;
 
+/**
+ * This class is used to check, register and manage/provide supported plugins
+ */
 public class SupportedPluginManager {
 
     private static SupportedPluginManager instance;

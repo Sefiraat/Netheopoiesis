@@ -7,6 +7,10 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+/**
+ * This Runnable is used to provide a scaling regeneration effect to all players within a
+ * purified region
+ */
 public class RegenerationRunnable extends BukkitRunnable {
 
     private static final PotionEffect REGEN_1 = new PotionEffect(PotionEffectType.REGENERATION, 50, 0);

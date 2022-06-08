@@ -24,7 +24,8 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * @noinspection deprecation
+ * This flex group is used to display breeding information to the player.
+ * Information is locked until the player has bred the appropriate plant at least once
  */
 public class DiscoveriesFlexGroup extends FlexItemGroup {
 

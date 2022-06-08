@@ -15,6 +15,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nonnull;
 
+/**
+ * This Runnable is used to spawn additional mobs in the Nether when above a certain
+ * purification level.
+ * @see RandomSpawn
+ */
 public class MobSpawnsRunnable extends BukkitRunnable {
 
     private static final RandomSpawn SQUID = new RandomSpawn(

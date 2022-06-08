@@ -58,7 +58,6 @@ public class MobSpawnListener implements Listener {
 
         // Required purification values
         MAP.put(EntityType.MAGMA_CUBE, Purification.SWAP_MAGMA_CUBE);
-        // MAP.put(EntityType.PIGLIN, Purification.SWAP_PIGLIN);
         MAP.put(EntityType.BLAZE, Purification.SWAP_BLAZE);
         MAP.put(EntityType.ZOMBIFIED_PIGLIN, Purification.SWAP_ZOMBIFIED_PIGLIN);
         MAP.put(EntityType.HOGLIN, Purification.SWAP_HOGLIN);
@@ -72,8 +71,7 @@ public class MobSpawnListener implements Listener {
         final Entity entity = event.getEntity();
         final World world = entity.getWorld();
         // Check if the spawn is a monster and we're in the Nether
-        if (entity instanceof Monster
-            && WorldUtils.inNether(world)) {
+        if (entity instanceof Monster && WorldUtils.inNether(world)) {
             final int requiredValue = MAP.getOrDefault(entity.getType(), -1);
             final Location location = entity.getLocation();
             final int value = Purification.getValue(location.getChunk());
@@ -87,16 +85,14 @@ public class MobSpawnListener implements Listener {
             if (entity.getType() == EntityType.GHAST) {
                 // Special case for ghasts to replace only with flying mobs
                 world.spawnEntity(location, isDay ? EntityType.BAT : EntityType.PHANTOM);
-            } else {
+            } else if (hasEnoughSpace(location)) {
                 // Try to replace the spawn with a relevant type
-                if (hasEnoughSpace(location)) {
-                    final LivingEntity spawned = (LivingEntity) world.spawnEntity(
-                        location,
-                        isDay ? PASSIVE_MOBS.getRandom() : HOSTILE_MOBS.getRandom()
-                    );
-                    spawned.setRemoveWhenFarAway(true);
-                    spawned.setNoDamageTicks(20);
-                }
+                final LivingEntity spawned = (LivingEntity) world.spawnEntity(
+                    location,
+                    isDay ? PASSIVE_MOBS.getRandom() : HOSTILE_MOBS.getRandom()
+                );
+                spawned.setRemoveWhenFarAway(true);
+                spawned.setNoDamageTicks(20);
             }
         }
     }

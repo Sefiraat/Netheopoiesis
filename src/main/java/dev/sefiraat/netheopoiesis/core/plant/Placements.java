@@ -5,6 +5,11 @@ import dev.sefiraat.netheopoiesis.slimefun.NpsStacks;
 import java.util.Collections;
 import java.util.Set;
 
+/**
+ * This class is used to contain the most common combinations of possible placements for plants
+ * @see GrowthDescription
+ * @see dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed
+ */
 public final class Placements {
 
     private Placements() {

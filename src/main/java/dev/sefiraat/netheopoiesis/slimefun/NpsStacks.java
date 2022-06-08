@@ -3,6 +3,7 @@ package dev.sefiraat.netheopoiesis.slimefun;
 import dev.sefiraat.netheopoiesis.utils.ItemStackUtils;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import org.bukkit.Color;
@@ -12,6 +13,9 @@ import javax.annotation.Nonnull;
 import java.util.stream.Stream;
 
 @SuppressWarnings("java:S1192")
+/**
+ * Final class used to store and initialise the {@link SlimefunItemStack}s used in the addon
+ */
 public final class NpsStacks {
 
     private NpsStacks() {

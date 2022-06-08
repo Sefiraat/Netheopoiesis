@@ -3,6 +3,10 @@ package dev.sefiraat.netheopoiesis.core.plant;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Set;
 
+/**
+ * This class collates the various classes used to describe the way a plant grows
+ * and/or interacts with the world.
+ */
 public class GrowthDescription {
 
     private final GrowthStages stages;

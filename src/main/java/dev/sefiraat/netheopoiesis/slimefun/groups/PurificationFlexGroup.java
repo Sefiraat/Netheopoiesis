@@ -87,7 +87,6 @@ public class PurificationFlexGroup extends FlexItemGroup {
         Theme.PASSIVE.apply("More mobs as your value increases"),
         "",
         Theme.CLICK_INFO.asTitle("Magma Cube", Purification.SWAP_MAGMA_CUBE),
-        // Theme.CLICK_INFO.asTitle("Piglin", Purification.SWAP_PIGLIN),
         Theme.CLICK_INFO.asTitle("Blaze", Purification.SWAP_BLAZE),
         Theme.CLICK_INFO.asTitle("Zombified Piglin", Purification.SWAP_ZOMBIFIED_PIGLIN),
         Theme.CLICK_INFO.asTitle("Hoglin", Purification.SWAP_HOGLIN),

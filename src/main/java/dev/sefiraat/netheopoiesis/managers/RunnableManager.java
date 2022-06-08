@@ -6,6 +6,9 @@ import dev.sefiraat.netheopoiesis.runnables.RegenerationRunnable;
 import dev.sefiraat.netheopoiesis.runnables.SaveConfigRunnable;
 import org.apache.commons.lang.Validate;
 
+/**
+ * This class is used to run Runnables from one place
+ */
 public class RunnableManager {
 
     private static RunnableManager instance;

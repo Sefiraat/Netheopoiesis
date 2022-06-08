@@ -12,6 +12,9 @@ import org.bukkit.event.Listener;
 
 import javax.annotation.Nonnull;
 
+/**
+ * This class is used to register all listeners in one place
+ */
 public class ListenerManager {
 
     private static ListenerManager instance;
