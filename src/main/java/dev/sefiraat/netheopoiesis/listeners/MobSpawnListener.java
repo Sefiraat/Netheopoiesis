@@ -49,12 +49,12 @@ public class MobSpawnListener implements Listener {
         HOSTILE_MOBS.add(EntityType.RAVAGER, 1);
 
         // Passive Mobs
-        PASSIVE_MOBS.add(EntityType.CHICKEN, 1);
-        PASSIVE_MOBS.add(EntityType.COW, 1);
+        PASSIVE_MOBS.add(EntityType.COW, 5);
+        PASSIVE_MOBS.add(EntityType.SHEEP, 5);
+        PASSIVE_MOBS.add(EntityType.CHICKEN, 4);
+        PASSIVE_MOBS.add(EntityType.HORSE, 2);
         PASSIVE_MOBS.add(EntityType.DONKEY, 1);
-        PASSIVE_MOBS.add(EntityType.HORSE, 1);
         PASSIVE_MOBS.add(EntityType.MULE, 1);
-        PASSIVE_MOBS.add(EntityType.SHEEP, 1);
 
         // Required purification values
         MAP.put(EntityType.MAGMA_CUBE, Purification.SWAP_MAGMA_CUBE);
