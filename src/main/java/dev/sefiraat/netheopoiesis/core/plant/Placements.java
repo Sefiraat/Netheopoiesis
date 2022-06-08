@@ -37,9 +37,17 @@ public final class Placements {
         NpsStacks.NETHER_GRASS.getItemId()
     );
 
-
     public static final Set<String> NETHER_GRASS_AND_UP = Set.of(
         NpsStacks.NETHER_GRASS.getItemId()
+    );
+
+    public static final Set<String> JUNGLE_FRINGE = Set.of(
+        NpsStacks.NETHER_GRASS.getItemId(),
+        NpsStacks.JUNGLE_CRUX.getItemId()
+    );
+
+    public static final Set<String> JUNGLE_BIOME = Set.of(
+        NpsStacks.JUNGLE_CRUX.getItemId()
     );
 
     public static final Set<String> NULL = Collections.emptySet();

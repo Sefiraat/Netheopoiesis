@@ -28,6 +28,7 @@ public enum Theme {
     // Item and SlimefunItem lore/themes
     CLICK_INFO(ChatColor.of("#e4ed32"), "Click here"),
     RESEARCH(ChatColor.of("#a60e03"), "Research"),
+    DISCOVEREY(ChatColor.of("#a60e03"), "Discovery"),
     CRAFTING(ChatColor.of("#dbcea9"), "Crafting Material"),
     RECIPE_TYPE(ChatColor.of("#ffe89c"), "Recipe Type"),
     MACHINE(ChatColor.of("#3295a8"), "Machine"),

@@ -13,6 +13,11 @@ This addon has three main aims:
   should they choose to
 - To make the nether a place suitable (and safe!) place to call home
 
+***Notes for the Addon Jam specifically***
+
+- Seed growth rate is multiplied 5x to speed up the process for judges
+- Nether Crux spread rate is multiplied 5x also
+
 ## Purification
 
 The primary mechanic of this addon is the Purification system. When you place/grow etc. certain items from this addon in

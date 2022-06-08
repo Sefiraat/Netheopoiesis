@@ -11,6 +11,7 @@ import org.bukkit.Material;
 import javax.annotation.Nonnull;
 import java.util.stream.Stream;
 
+@SuppressWarnings("java:S1192")
 public class NpsStacks {
 
     private NpsStacks() {
@@ -27,6 +28,7 @@ public class NpsStacks {
         "A deliciously sweet berry that",
         "can be made into jam."
     );
+
     public static final SlimefunItemStack ADDON_JAM = Theme.themedSlimefunItemStack(
         "NPS_ADDON_JAM",
         ItemStackUtils.potion(Color.RED),
@@ -53,6 +55,7 @@ public class NpsStacks {
         "",
         LoreBuilder.usesLeft(25)
     );
+
     public static final SlimefunItemStack HARVESTING_TOOL = Theme.themedSlimefunItemStack(
         "NPS_HARVESTING_TOOL",
         Material.PRISMARINE_SHARD,
@@ -65,6 +68,7 @@ public class NpsStacks {
         "",
         LoreBuilder.usesLeft(150)
     );
+
     public static final SlimefunItemStack PURIFICATION_BAROMETER = Theme.themedSlimefunItemStack(
         "NPS_PURIFICATION_BAROMETER",
         Material.CLOCK,
@@ -73,6 +77,7 @@ public class NpsStacks {
         "When used, this tool will tell you",
         "how purified the current chunk is."
     );
+
     public static final SlimefunItemStack PURIFICATION_SCANNER = Theme.themedSlimefunItemStack(
         "NPS_PURIFICATION_SCANNER",
         Material.BRICK,
@@ -82,6 +87,7 @@ public class NpsStacks {
         "this tool will tell you what its",
         "purifying effect on the world is."
     );
+
     public static final SlimefunItemStack SEED_ANALYSER = Theme.themedSlimefunItemStack(
         "NPS_SEED_ANALYSER",
         Material.COMPASS,
@@ -92,6 +98,7 @@ public class NpsStacks {
         "about it's type, growth and",
         "purification values."
     );
+
     public static final SlimefunItemStack ENDER_CAKE = Theme.themedSlimefunItemStack(
         "NPS_ENDER_CAKE",
         Material.CAKE,
@@ -115,6 +122,7 @@ public class NpsStacks {
         "to allow more complex seeds to",
         "be grown on it."
     );
+
     public static final SlimefunItemStack PURIFIED_NETHERRACK = Theme.themedSlimefunItemStack(
         "NPS_PURIFIED_NETHERRACK",
         Material.PODZOL,
@@ -124,6 +132,7 @@ public class NpsStacks {
         "to allow more complex seeds to",
         "be grown on it."
     );
+
     public static final SlimefunItemStack VORACIOUS_DIRT = Theme.themedSlimefunItemStack(
         "NPS_VORACIOUS_DIRT",
         Material.ROOTED_DIRT,
@@ -132,6 +141,7 @@ public class NpsStacks {
         "The Netherrack has been purified to",
         "a point in which it is a viable soil."
     );
+
     public static final SlimefunItemStack NETHER_DIRT = Theme.themedSlimefunItemStack(
         "NPS_NETHER_DIRT",
         Material.DIRT,
@@ -140,12 +150,22 @@ public class NpsStacks {
         "The Netherrack has been purified to",
         "a point in which it is a good soil."
     );
+
     public static final SlimefunItemStack NETHER_GRASS = Theme.themedSlimefunItemStack(
         "NPS_NETHER_GRASS",
         Material.GRASS_BLOCK,
         Theme.CRUX,
         "Nether Grass",
         "This grass is positively healthy."
+    );
+
+    public static final SlimefunItemStack JUNGLE_CRUX = Theme.themedSlimefunItemStack(
+        "NPS_JUNGLE_CRUX",
+        Material.MOSS_BLOCK,
+        Theme.CRUX,
+        "Jungle Crux",
+        "This soil is suitable for more",
+        "temperate plants."
     );
 
     // endregion

@@ -44,41 +44,37 @@ public class NpsItems {
     public static final NetherCrux BASIC_PURIFIED_NETHERRACK = new NetherCrux(
         NpsGroups.CRUX,
         NpsStacks.BASIC_PURIFIED_NETHERRACK,
-        NpsRecipeTypes.NETHER_PURIFICATION,
-        new ItemStack[0],
         1
     );
 
     public static final NetherCrux PURIFIED_NETHERRACK = new NetherCrux(
         NpsGroups.CRUX,
         NpsStacks.PURIFIED_NETHERRACK,
-        NpsRecipeTypes.NETHER_PURIFICATION,
-        new ItemStack[0],
         2
     );
 
     public static final NetherCrux VORACIOUS_DIRT = new NetherCrux(
         NpsGroups.CRUX,
         NpsStacks.VORACIOUS_DIRT,
-        NpsRecipeTypes.NETHER_PURIFICATION,
-        new ItemStack[0],
         4
     );
 
     public static final NetherCrux NETHER_DIRT = new NetherCrux(
         NpsGroups.CRUX,
         NpsStacks.NETHER_DIRT,
-        NpsRecipeTypes.NETHER_PURIFICATION,
-        new ItemStack[0],
         8
     );
 
     public static final NetherCrux NETHER_GRASS = new NetherCrux(
         NpsGroups.CRUX,
         NpsStacks.NETHER_GRASS,
-        NpsRecipeTypes.NETHER_PURIFICATION,
-        new ItemStack[0],
         16
+    );
+
+    public static final NetherCrux JUNGLE_CRUX = new NetherCrux(
+        NpsGroups.CRUX,
+        NpsStacks.JUNGLE_CRUX,
+        20
     );
 
     // region Crafting
@@ -449,6 +445,14 @@ public class NpsItems {
         SEED_ANALYSER.register(plugin);
         ENDER_CAKE.register(plugin);
 
+        // Crux'
+        BASIC_PURIFIED_NETHERRACK.register(plugin);
+        PURIFIED_NETHERRACK.register(plugin);
+        VORACIOUS_DIRT.register(plugin);
+        NETHER_DIRT.register(plugin);
+        NETHER_GRASS.register(plugin);
+        JUNGLE_CRUX.register(plugin);
+
         // Seeds
         PURIFICATION_SEED.register(plugin);
         SOUL_SEED.register(plugin);
@@ -487,12 +491,5 @@ public class NpsItems {
         OAKENDRAN_SEED.register(plugin);
 
         ADDON_BERRY_SEED.register(plugin);
-
-        // Crux'
-        BASIC_PURIFIED_NETHERRACK.register(plugin);
-        PURIFIED_NETHERRACK.register(plugin);
-        VORACIOUS_DIRT.register(plugin);
-        NETHER_DIRT.register(plugin);
-        NETHER_GRASS.register(plugin);
     }
 }

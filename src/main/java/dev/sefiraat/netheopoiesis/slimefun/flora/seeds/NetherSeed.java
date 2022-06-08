@@ -6,12 +6,13 @@ import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.core.plant.NetherPlant;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResult;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResultType;
-import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingPairs;
+import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingPair;
 import dev.sefiraat.netheopoiesis.events.PlantBeforeGrowthEvent;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Particles;
+import dev.sefiraat.netheopoiesis.utils.PlayerStats;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
@@ -170,7 +171,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         }
     }
 
-    private void tryBreed(@Nonnull Block block, @Nonnull NetherSeed mother) {
+    private void tryBreed(@Nonnull Block motherBlock, @Nonnull NetherSeed mother) {
         final double breedRandom = ThreadLocalRandom.current().nextDouble();
         if (breedRandom > getGrowthRate()) {
             // No breed attempt this tick
@@ -178,7 +179,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         }
 
         for (BlockFace face : BREEDING_DIRECTIONS) {
-            final Block middleBlock = block.getRelative(face);
+            final Block middleBlock = motherBlock.getRelative(face);
             // There must be space for the new block
             if (middleBlock.getType() != Material.AIR) {
                 return;
@@ -187,17 +188,19 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
             final SlimefunItem mateItem = BlockStorage.check(potentialMate);
 
             if (mateItem instanceof NetherSeed mate) {
-                final BreedResult result = BreedingPairs.getBreedResult(mother, mate);
+                final BreedResult result = BreedingPair.getBreedResult(mother, mate);
 
                 if (result.getResultType() == BreedResultType.NO_PAIRS) {
                     // No matching breeding pairs, lets feedback to the player then move to the next direction
                     breedInvalidDisplay(middleBlock.getLocation());
                 } else if (result.getResultType() == BreedResultType.SUCCESS) {
-                    // Breed was a success - spawn child
-                    trySetChildSeed(block.getLocation(), middleBlock, result.getMatchedPair().getChildPlant());
+                    // Breed was a success - spawn child, log discovery
+                    final NetherSeed child = result.getMatchedPair().getChildPlant();
+                    trySetChildSeed(motherBlock.getLocation(), middleBlock, child);
+                    PlayerStats.unlockDiscovery(getOwner(motherBlock.getLocation()), child.getId());
                 } else if (result.getResultType() == BreedResultType.SPREAD) {
                     // Breed failed, spread success - spawn copy of mother
-                    trySetChildSeed(block.getLocation(), middleBlock, mother);
+                    trySetChildSeed(motherBlock.getLocation(), middleBlock, mother);
                 }
             }
         }
@@ -275,11 +278,13 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     }
 
     public void updateGrowthStage(@Nonnull Block block, int growthStage) {
-        final Skulls nextTexture = getGrowthDescription().get(growthStage - 1);
-        PlayerHead.setSkin(block, nextTexture.getPlayerSkin(), false);
-        PaperLib.getBlockState(block, false).getState().update(true, false);
-        BlockStorage.addBlockInfo(block, Keys.SEED_GROWTH_STAGE, String.valueOf(growthStage));
-        growthDisplay(block.getLocation());
+        if (block.getType() == Material.PLAYER_HEAD || block.getType() == Material.PLAYER_WALL_HEAD) {
+            final Skulls nextTexture = getGrowthDescription().get(growthStage - 1);
+            PlayerHead.setSkin(block, nextTexture.getPlayerSkin(), false);
+            PaperLib.getBlockState(block, false).getState().update(true, false);
+            BlockStorage.addBlockInfo(block, Keys.SEED_GROWTH_STAGE, String.valueOf(growthStage));
+            growthDisplay(block.getLocation());
+        }
     }
 
     /**

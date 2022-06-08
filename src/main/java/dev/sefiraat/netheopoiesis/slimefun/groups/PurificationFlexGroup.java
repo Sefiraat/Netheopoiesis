@@ -19,9 +19,7 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-/**
- * @noinspection deprecation
- */
+@SuppressWarnings("java:S1192")
 public class PurificationFlexGroup extends FlexItemGroup {
 
     private static final int GUIDE_BACK = 1;

@@ -3,6 +3,7 @@ package dev.sefiraat.netheopoiesis;
 
 import co.aikar.commands.PaperCommandManager;
 import dev.sefiraat.netheopoiesis.commands.CommandMain;
+import dev.sefiraat.netheopoiesis.managers.ConfigManager;
 import dev.sefiraat.netheopoiesis.managers.ListenerManager;
 import dev.sefiraat.netheopoiesis.managers.RunnableManager;
 import dev.sefiraat.netheopoiesis.managers.SupportedPluginManager;
@@ -27,8 +28,9 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
     private final String repo;
     private final String branch;
 
-    private ListenerManager listenerManager;
     private SupportedPluginManager supportedPluginManager;
+    private ConfigManager configManager;
+    private ListenerManager listenerManager;
     private RunnableManager runnableManager;
     private Purification purification;
 
@@ -49,9 +51,10 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
         saveDefaultConfig();
         tryUpdate();
 
+        this.configManager = new ConfigManager();
         this.supportedPluginManager = new SupportedPluginManager();
-        this.runnableManager = new RunnableManager();
         this.listenerManager = new ListenerManager();
+        this.runnableManager = new RunnableManager();
         this.purification = new Purification();
         PaperCommandManager commandManager = new PaperCommandManager(this);
 
@@ -64,7 +67,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onDisable() {
-        // todo Remove if not needed before Jam ends
+        this.configManager.saveAll();
     }
 
     public void tryUpdate() {
@@ -102,12 +105,16 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
         return Netheopoiesis.getInstance().getServer().getPluginManager();
     }
 
-    public static ListenerManager getListenerManager() {
-        return Netheopoiesis.getInstance().listenerManager;
+    public static ConfigManager getConfigManager() {
+        return Netheopoiesis.getInstance().configManager;
     }
 
     public static SupportedPluginManager getSupportedPluginManager() {
         return Netheopoiesis.getInstance().supportedPluginManager;
+    }
+
+    public static ListenerManager getListenerManager() {
+        return Netheopoiesis.getInstance().listenerManager;
     }
 
     public static RunnableManager getRunnableManager() {

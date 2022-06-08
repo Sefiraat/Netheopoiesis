@@ -53,11 +53,19 @@ public final class NpsGroups {
         )
     );
 
+    public static final DiscoveriesFlexGroup DISCOVERIES = new DiscoveriesFlexGroup(
+        Keys.newKey("discoveries"),
+        new CustomItemStack(
+            new ItemStack(Material.WHEAT_SEEDS),
+            Theme.MAIN.color("Breeding Discoveries'")
+        )
+    );
+
     public static final PurificationFlexGroup GUIDE = new PurificationFlexGroup(
         Keys.newKey("guide"),
         new CustomItemStack(
             new ItemStack(Material.BOOKSHELF),
-            Theme.MAIN.color("Misc Guides")
+            Theme.MAIN.color("Purification Information")
         )
     );
 
@@ -70,6 +78,5 @@ public final class NpsGroups {
         TOOLS.register(plugin);
         SEEDS.register(plugin);
         CRUX.register(plugin);
-        GUIDE.register(plugin);
     }
 }

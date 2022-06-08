@@ -9,10 +9,13 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Consumer;
 
 /**
  * This plant will spawn the provided entity when fully matured
@@ -20,11 +23,23 @@ import java.util.concurrent.ThreadLocalRandom;
 public class EntitySpawningSeed extends NetherSeed {
 
     private final EntityType entityType;
+    private final Consumer<Entity> callback;
 
     @ParametersAreNonnullByDefault
     public EntitySpawningSeed(ItemGroup group, SlimefunItemStack item, EntityType type, GrowthDescription description) {
+        this(group, item, type, description, null);
+    }
+
+    @ParametersAreNonnullByDefault
+    public EntitySpawningSeed(ItemGroup group,
+                              SlimefunItemStack item,
+                              EntityType type,
+                              GrowthDescription description,
+                              @Nullable Consumer<Entity> callback
+    ) {
         super(group, item, description);
         this.entityType = type;
+        this.callback = callback;
     }
 
     @Override
@@ -49,11 +64,20 @@ public class EntitySpawningSeed extends NetherSeed {
             }
 
             // Clear to spawn
-            blockBelow.getWorld().spawnEntity(block.getLocation(), this.entityType);
+            final Entity entity = blockBelow.getWorld().spawnEntity(block.getLocation(), this.entityType);
+
+            // Accept call back if preset
+            if (this.callback != null) {
+                this.callback.accept(entity);
+            }
         }
     }
 
     public EntityType getEntityType() {
         return entityType;
+    }
+
+    public Consumer<Entity> getCallback() {
+        return callback;
     }
 }

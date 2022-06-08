@@ -1,6 +1,7 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.blocks;
 
 import dev.sefiraat.netheopoiesis.core.purification.PurifyingObject;
+import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -30,11 +31,9 @@ public class NetherCrux extends SlimefunItem implements PurifyingObject {
 
     public NetherCrux(ItemGroup itemGroup,
                       SlimefunItemStack item,
-                      RecipeType recipeType,
-                      ItemStack[] recipe,
                       int purificationValue
     ) {
-        super(itemGroup, item, recipeType, recipe);
+        super(itemGroup, item, NpsRecipeTypes.NETHER_PURIFICATION, new ItemStack[0]);
         this.purificationValue = purificationValue;
     }
 

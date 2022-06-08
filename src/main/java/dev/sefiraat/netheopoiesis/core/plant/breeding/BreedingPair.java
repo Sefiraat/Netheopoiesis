@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * This Enum holds the possible breeding possibilities available in the addon
  */
-public enum BreedingPairs {
+public enum BreedingPair {
 
     SPINDLE(
         NpsItems.SPINDLE_SEED,
@@ -261,7 +261,7 @@ public enum BreedingPairs {
     );
 
     @Nonnull
-    private static final BreedingPairs[] CACHED_VALUES = values();
+    private static final BreedingPair[] CACHED_VALUES = values();
 
     private final NetherSeed childPlant;
     private final NetherSeed motherSeed;
@@ -279,11 +279,11 @@ public enum BreedingPairs {
      * @param spreadChance The chance that, should a true breed fail, a spread can occur (spawning a copy of the mother)
      */
     @ParametersAreNonnullByDefault
-    BreedingPairs(NetherSeed childPlant,
-                  NetherSeed motherSeed,
-                  NetherSeed fatherSeed,
-                  double breedChance,
-                  double spreadChance
+    BreedingPair(NetherSeed childPlant,
+                 NetherSeed motherSeed,
+                 NetherSeed fatherSeed,
+                 double breedChance,
+                 double spreadChance
     ) {
         this.childPlant = childPlant;
         this.motherSeed = motherSeed;
@@ -357,7 +357,7 @@ public enum BreedingPairs {
     @Nonnull
     public static BreedResult getBreedResult(@Nonnull NetherSeed seed1, @Nonnull NetherSeed seed2) {
         int matches = 0;
-        for (BreedingPairs pair : CACHED_VALUES) {
+        for (BreedingPair pair : CACHED_VALUES) {
             final BreedResultType result = pair.testBreed(seed1, seed2);
             if (result != BreedResultType.NOT_PAIR) {
                 if (result != BreedResultType.FAIL) {
@@ -368,5 +368,10 @@ public enum BreedingPairs {
             }
         }
         return new BreedResult(CACHED_VALUES[0], matches == 0 ? BreedResultType.NO_PAIRS : BreedResultType.FAIL);
+    }
+
+    @Nonnull
+    public static BreedingPair[] getCachedValues() {
+        return CACHED_VALUES;
     }
 }
