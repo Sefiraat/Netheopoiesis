@@ -179,6 +179,90 @@ public class GrowthStages {
             Skulls.SPAWNING_PURPLE_5
         )
     );
+    
+    public static final GrowthStages SPIKEY_RED = new GrowthStages(
+        Theme.SEED_RED,
+        List.of(
+            Skulls.SEED_RED,
+            Skulls.SPIKEY_RED_1,
+            Skulls.SPIKEY_RED_2,
+            Skulls.SPIKEY_RED_3,
+            Skulls.SPIKEY_RED_4,
+            Skulls.SPIKEY_RED_5
+        )
+    );
+
+    public static final GrowthStages SPIKEY_ORANGE = new GrowthStages(
+        Theme.SEED_ORANGE,
+        List.of(
+            Skulls.SEED_ORANGE,
+            Skulls.SPIKEY_ORANGE_1,
+            Skulls.SPIKEY_ORANGE_2,
+            Skulls.SPIKEY_ORANGE_3,
+            Skulls.SPIKEY_ORANGE_4,
+            Skulls.SPIKEY_ORANGE_5
+        )
+    );
+
+    public static final GrowthStages SPIKEY_YELLOW = new GrowthStages(
+        Theme.SEED_YELLOW,
+        List.of(
+            Skulls.SEED_YELLOW,
+            Skulls.SPIKEY_YELLOW_1,
+            Skulls.SPIKEY_YELLOW_2,
+            Skulls.SPIKEY_YELLOW_3,
+            Skulls.SPIKEY_YELLOW_4,
+            Skulls.SPIKEY_YELLOW_5
+        )
+    );
+
+    public static final GrowthStages SPIKEY_GREEN = new GrowthStages(
+        Theme.SEED_GREEN,
+        List.of(
+            Skulls.SEED_GREEN,
+            Skulls.SPIKEY_GREEN_1,
+            Skulls.SPIKEY_GREEN_2,
+            Skulls.SPIKEY_GREEN_3,
+            Skulls.SPIKEY_GREEN_4,
+            Skulls.SPIKEY_GREEN_5
+        )
+    );
+
+    public static final GrowthStages SPIKEY_BLUE = new GrowthStages(
+        Theme.SEED_BLUE,
+        List.of(
+            Skulls.SEED_BLUE,
+            Skulls.SPIKEY_BLUE_1,
+            Skulls.SPIKEY_BLUE_2,
+            Skulls.SPIKEY_BLUE_3,
+            Skulls.SPIKEY_BLUE_4,
+            Skulls.SPIKEY_BLUE_5
+        )
+    );
+
+    public static final GrowthStages SPIKEY_CYAN = new GrowthStages(
+        Theme.SEED_CYAN,
+        List.of(
+            Skulls.SEED_CYAN,
+            Skulls.SPIKEY_CYAN_1,
+            Skulls.SPIKEY_CYAN_2,
+            Skulls.SPIKEY_CYAN_3,
+            Skulls.SPIKEY_CYAN_4,
+            Skulls.SPIKEY_CYAN_5
+        )
+    );
+
+    public static final GrowthStages SPIKEY_PURPLE = new GrowthStages(
+        Theme.SEED_PURPLE,
+        List.of(
+            Skulls.SEED_PURPLE,
+            Skulls.SPIKEY_PURPLE_1,
+            Skulls.SPIKEY_PURPLE_2,
+            Skulls.SPIKEY_PURPLE_3,
+            Skulls.SPIKEY_PURPLE_4,
+            Skulls.SPIKEY_PURPLE_5
+        )
+    );
 
     @Nonnull
     private final Theme theme;

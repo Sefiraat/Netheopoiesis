@@ -362,6 +362,46 @@ public enum BreedingPair {
         NpsItems.EDEN_SEED,
         0.05,
         0.05
+    ),
+
+    BLACK_AND_WHITE(
+        NpsItems.BLACK_AND_WHITE_SEED,
+        NpsItems.JUNGLE_SEED,
+        NpsItems.PORKY_SEED,
+        0.01,
+        0.05
+    ),
+
+    PARROT(
+        NpsItems.PARROT_SEED,
+        NpsItems.JUNGLE_SEED,
+        NpsItems.RAINBOW_SEED,
+        0.09,
+        0.15
+    ),
+
+    WILD(
+        NpsItems.WILD_SEED,
+        NpsItems.JUNGLE_SEED,
+        NpsItems.CUTE_SEED,
+        0.05,
+        0.15
+    ),
+
+    SHELLED(
+        NpsItems.SHELLED_SEED,
+        NpsItems.BEACH_SEED,
+        NpsItems.PROTECTIVE_SEED,
+        0.05,
+        0.15
+    ),
+
+    TREASURED(
+        NpsItems.TREASURED_SEED,
+        NpsItems.BEACH_SEED,
+        NpsItems.SHINY_SEED,
+        0.10,
+        0.5
     );
 
     @Nonnull

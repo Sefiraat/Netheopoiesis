@@ -179,7 +179,84 @@ public enum Skulls {
     // https://mineskin.org/1735011326
     SPAWNING_PURPLE_4("efadb4a8a6d01812f4dd8cf051a25524e6fb58d2df325c002378b6644fc08de8"),
     // https://mineskin.org/1555542858
-    SPAWNING_PURPLE_5("ecb30b3df481c831968732d961bdd61c66ee97b348a8a185575782077733e7ae");
+    SPAWNING_PURPLE_5("ecb30b3df481c831968732d961bdd61c66ee97b348a8a185575782077733e7ae"),
+
+    // https://mineskin.org/846768076
+    SPIKEY_RED_1("f82a7f0b5a7577fcd2860d0cb74f7375083fbb2246ad3427734cd33f43021bb5"),
+    // https://mineskin.org/1883546382
+    SPIKEY_RED_2("c367f99afa08136ef4416b6f956f3c321edea33a7d3c811e11c1a92f34d3107f"),
+    // https://mineskin.org/1840741332
+    SPIKEY_RED_3("af1cf346c5d40750a51f7abe10be0f178bde727d06d4febffe0ef24070b51762"),
+    // https://mineskin.org/583935882
+    SPIKEY_RED_4("fd97bd5265375cc3aac8dd917eb730ba046ef4f42c04b9b8d03f0913151ce767"),
+    // https://mineskin.org/1597787193
+    SPIKEY_RED_5("4503e94702fc5990eb484fe281cc780ab0f798078532bedde5e7ff6b924002f5"),
+
+    // https://mineskin.org/1348352124
+    SPIKEY_ORANGE_1("b048aeb2a6cbd9bb649cebf7624312f31ca7a17cedcb7287301035f9af982489"),
+    // https://mineskin.org/2058856872
+    SPIKEY_ORANGE_2("5031d15601cd8dfe5071df8019a4e500eb50c47351a3513d492732e203904a4f"),
+    // https://mineskin.org/1306919695
+    SPIKEY_ORANGE_3("41ddde952116367d3967e9d8b933d2511126bdc0b221725c677793295d40e91f"),
+    // https://mineskin.org/5657364
+    SPIKEY_ORANGE_4("bd96aafe872e1d229b7cb5d72f227f1d74669b1e73f8160251ecd7e9c23057f5"),
+    // https://mineskin.org/301113045
+    SPIKEY_ORANGE_5("9e6252f4472a0f9b4a226ead65f45033f4564b62a6577aa08af91568b6aaa7f2"),
+
+    // https://mineskin.org/2048723446
+    SPIKEY_YELLOW_1("77248dfff2daa59528f9954403f48ddffb5652ecca7f2d3c2288bcb1ab95bca8"),
+    // https://mineskin.org/2035142300
+    SPIKEY_YELLOW_2("14e7b63360b257b75f23db48225e6a9e6d3daf96c8d831411ca4f9a1a874c5cc"),
+    // https://mineskin.org/1263659301
+    SPIKEY_YELLOW_3("a262bc218a039b7f8d7f85ff099586ed3f1e7ce17a605fac6741833cd65e2fca"),
+    // https://mineskin.org/1461039584
+    SPIKEY_YELLOW_4("96ee562ec77726c38fb9c3aa56546c389759eb72d380589439d29c6681d5c57a"),
+    // https://mineskin.org/2043661180
+    SPIKEY_YELLOW_5("abecf8626dce10fc77c24f8c4c611ec306a93f85d663dddf020d0e16847b231a"),
+
+    // https://mineskin.org/827052023
+    SPIKEY_GREEN_1("1f2fa421512f9cc6b52b616789498ca64b24a755748a35952d9071b9877bb96b"),
+    // https://mineskin.org/1647618694
+    SPIKEY_GREEN_2("a13158311163d1d8634edc5bec10982ca6797a1141e13b6a1b731e9d25311ca"),
+    // https://mineskin.org/1109227374
+    SPIKEY_GREEN_3("50718148b7502085256a1960915fcbe492e715f7b29d2cad8f3da805bf51f788"),
+    // https://mineskin.org/1218355899
+    SPIKEY_GREEN_4("e9598bff05597588447307670fcb59741abcc4e47eb9f21249243acec85e623d"),
+    // https://mineskin.org/1947354836
+    SPIKEY_GREEN_5("11c4883237524820b7a54dc2fc10c4a2fb382ef5a5b11fa4d7c7ada61e9bcd67"),
+
+    // https://mineskin.org/2140792884
+    SPIKEY_BLUE_1("751da94f60610bd6503e0847d4873418cb1115999fcea42059b129c12b7e3004"),
+    // https://mineskin.org/418244274
+    SPIKEY_BLUE_2("ed143a9bc39d3ce3896c9923b838ca42a7c9e8924a47932ae6496edb9163a558"),
+    // https://mineskin.org/747870816
+    SPIKEY_BLUE_3("2c92976ce6ce9427225211a7dc06a023f5c4b3a83aa3fa01e5fea81f36b3baec"),
+    // https://mineskin.org/1658423478
+    SPIKEY_BLUE_4("96dcb6950c9180f7b48769c75929815dcc5781fea8766e2e099c39d353274884"),
+    // https://mineskin.org/357918080
+    SPIKEY_BLUE_5("6908223ba0eb362d3bb641d20750583d91450a8d868bd62665563ad0845a0e4b"),
+
+    // https://mineskin.org/1678397913
+    SPIKEY_CYAN_1("1fc19a17eda70cc1b889c5c78d3874aa85948909bd16f36e3a9b413812caf076"),
+    // https://mineskin.org/1360902116
+    SPIKEY_CYAN_2("157bdba2e35ff3c8bc9bd6acf562e7d10f56242998082b6ba28f5a2827eb15a5"),
+    // https://mineskin.org/1845841611
+    SPIKEY_CYAN_3("fdf619e95d6a4074829263f9713ba63072c99e03e625218bae3f06ff178cfb04"),
+    // https://mineskin.org/940938710
+    SPIKEY_CYAN_4("5a8a7b14c6d2f653d7460e42f87b6f27de33e182ff324100a2d1e8661d21fdc1"),
+    // https://mineskin.org/1215350048
+    SPIKEY_CYAN_5("c33817aeb0987b6588292809879b755d21d423ce3627918318df6a5599ef6047"),
+
+    // https://mineskin.org/1139197080
+    SPIKEY_PURPLE_1("c67739bdfeb009b0fd2e940600cf93a68958acbbc3e69e80c4890a5518dbc0d0"),
+    // https://mineskin.org/1438694154
+    SPIKEY_PURPLE_2("9254bf607d0830a8c33f266752bbef62eef777cfa16d75eafbdadca647da4df9"),
+    // https://mineskin.org/1236738870
+    SPIKEY_PURPLE_3("570a8c5d7f9c0e4a58f837b316d51b5008ef29e078a2aad5c54412c0fa55b95"),
+    // https://mineskin.org/1297434347
+    SPIKEY_PURPLE_4("c92caaca509041e1b4997d53f6d5c12e45203847817bcfdad0a9cba2f73bd405"),
+    // https://mineskin.org/55569926
+    SPIKEY_PURPLE_5("472cae47a81cb5af41a2bbe4977d3b6394c29bb9b8e625a8baa09f83a29486fe");
 
     private static final Skulls[] cachedValues = values();
     private final String hash;

@@ -4,12 +4,14 @@ import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -22,20 +24,21 @@ import java.util.function.Consumer;
 public class EntitySpawningSeed extends NetherSeed {
 
     private final EntityType entityType;
-    private final Consumer<Entity> callback;
+    private final Consumer<LivingEntity> callback;
 
     @ParametersAreNonnullByDefault
     public EntitySpawningSeed(SlimefunItemStack item, EntityType type, GrowthDescription description) {
-        this(item, type, description, null);
+        this(item, type, null, description);
     }
 
     @ParametersAreNonnullByDefault
     public EntitySpawningSeed(SlimefunItemStack item,
                               EntityType type,
-                              GrowthDescription description,
-                              @Nullable Consumer<Entity> callback
+                              @Nullable Consumer<LivingEntity> callback,
+                              GrowthDescription description
     ) {
         super(item, description);
+        Validate.isTrue(type.isAlive(), "Must provide a valid LivingEntity type");
         this.entityType = type;
         this.callback = callback;
     }
@@ -56,7 +59,7 @@ public class EntitySpawningSeed extends NetherSeed {
 
             // And we need a solid floor and finally not too many nearby mobs
             if (blockBelow.getType() == Material.AIR
-                && block.getWorld().getNearbyEntities(block.getLocation(), 10, 10, 10).size() < 6
+                && block.getWorld().getNearbyEntities(block.getLocation(), 10, 10, 10).size() > 6
             ) {
                 return;
             }
@@ -65,8 +68,10 @@ public class EntitySpawningSeed extends NetherSeed {
             final Entity entity = blockBelow.getWorld().spawnEntity(block.getLocation(), this.entityType);
 
             // Accept call back if preset
-            if (this.callback != null) {
-                this.callback.accept(entity);
+            if (entity instanceof LivingEntity livingEntity && this.callback != null) {
+                livingEntity.setRemoveWhenFarAway(true);
+                livingEntity.setNoDamageTicks(20);
+                this.callback.accept(livingEntity);
             }
         }
     }
@@ -75,7 +80,7 @@ public class EntitySpawningSeed extends NetherSeed {
         return entityType;
     }
 
-    public Consumer<Entity> getCallback() {
+    public Consumer<LivingEntity> getCallback() {
         return callback;
     }
 }

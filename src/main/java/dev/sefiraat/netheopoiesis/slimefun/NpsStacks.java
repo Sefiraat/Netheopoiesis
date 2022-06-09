@@ -667,6 +667,59 @@ public final class NpsStacks {
 
     // endregion
 
+    // region Jungle +
+
+    public static final SlimefunItemStack BLACK_AND_WHITE_SEED = Theme.themedSeed(
+        "NPS_BLACK_AND_WHITE_SEED",
+        Skulls.SEED_BLUE.getPlayerHead(),
+        Theme.SEED,
+        "Black and White Seed",
+        new String[]{"This seed, when fully grown,", "will slowly spawn some black", "and white friends."},
+        getCanBePlacedOnLore("Jungle +")
+    );
+
+    public static final SlimefunItemStack PARROT_SEED = Theme.themedSeed(
+        "NPS_PARROT_SEED",
+        Skulls.SEED_GREEN.getPlayerHead(),
+        Theme.SEED,
+        "Parrot Seed",
+        new String[]{"This seed, when fully grown,", "will slowly spawn beautiful", "feathered friends."},
+        getCanBePlacedOnLore("Jungle +")
+    );
+
+    public static final SlimefunItemStack WILD_SEED = Theme.themedSeed(
+        "NPS_WILD_SEED",
+        Skulls.SEED_YELLOW.getPlayerHead(),
+        Theme.SEED,
+        "Wild Seed",
+        new String[]{"This seed, when fully grown,", "will slowly spawn some cute", "furry friends."},
+        getCanBePlacedOnLore("Jungle +")
+    );
+
+    // endregion
+
+    // region Beach
+
+    public static final SlimefunItemStack SHELLED_SEED = Theme.themedSeed(
+        "NPS_SHELLED_SEED",
+        Skulls.SEED_GREEN.getPlayerHead(),
+        Theme.SEED,
+        "Shelled Seed",
+        new String[]{"This seed, when fully grown,", "will slowly spawn hardy", "shelled friends."},
+        getCanBePlacedOnLore("Beach +")
+    );
+
+    public static final SlimefunItemStack TREASURED_SEED = Theme.themedSeed(
+        "NPS_TREASURED_SEED",
+        Skulls.SEED_YELLOW.getPlayerHead(),
+        Theme.SEED,
+        "Treasured Seed",
+        new String[]{"This seed, when fully grown,", "has a -very- small chance to drop", "treasured items."},
+        getCanBePlacedOnLore("Beach +")
+    );
+
+    // endregion
+
     // endregion
 
     @Nonnull

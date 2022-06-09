@@ -128,7 +128,8 @@ public class RandomSpawn {
      * purification's level, if it's already known.
      *
      * @param location          The location to spawn at
-     * @param purificationLevel
+     * @param purificationLevel The location's purification level (if already accessed and known).
+     *                          Use other constructor otherwise
      * @return true if the spawn was successful
      */
     public boolean trySpawn(@Nonnull Location location, int purificationLevel) {

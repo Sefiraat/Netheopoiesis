@@ -17,23 +17,25 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DroppingSeed extends NetherSeed {
 
     private final ItemStack[] stacksToDrop;
+    private final double chance;
 
     @ParametersAreNonnullByDefault
-    public DroppingSeed(SlimefunItemStack item, ItemStack drop, GrowthDescription description) {
-        this(item, new ItemStack[]{drop}, description);
+    public DroppingSeed(SlimefunItemStack item, ItemStack drop, double chance, GrowthDescription description) {
+        this(item, new ItemStack[]{drop}, chance, description);
     }
 
     @ParametersAreNonnullByDefault
-    public DroppingSeed(SlimefunItemStack item, ItemStack[] drops, GrowthDescription description) {
+    public DroppingSeed(SlimefunItemStack item, ItemStack[] drops, double chance, GrowthDescription description) {
         super(item, description);
         this.stacksToDrop = drops;
+        this.chance = chance;
     }
 
     @Override
     @ParametersAreNonnullByDefault
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
-        if (randomChance <= 0.005) {
+        if (randomChance <= chance) {
             final int random = ThreadLocalRandom.current().nextInt(this.stacksToDrop.length);
             location.getWorld().dropItem(location, this.stacksToDrop[random]);
         }

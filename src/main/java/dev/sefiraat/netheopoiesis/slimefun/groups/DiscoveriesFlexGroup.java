@@ -74,7 +74,7 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
 
     private static final ItemStack HELD_SLOT = new CustomItemStack(
         Material.BLACK_STAINED_GLASS_PANE,
-        ""
+        " "
     );
 
     private static final DecimalFormat FORMAT = new DecimalFormat("#,###.##");
@@ -278,18 +278,16 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
 
     @Nonnull
     public static ItemStack getGrowthRate(@Nonnull NetherSeed seed) {
-        return Theme.themedItemStack(
+        return new CustomItemStack(
             Material.WHEAT_SEEDS,
-            Theme.DISCOVEREY,
             Theme.CLICK_INFO.asTitle("Growth Rate", FORMAT.format(seed.getGrowthRate()))
         );
     }
 
     @Nonnull
     public static ItemStack getPurificationValue(@Nonnull NetherSeed seed) {
-        return Theme.themedItemStack(
+        return new CustomItemStack(
             Material.NETHERRACK,
-            Theme.DISCOVEREY,
             Theme.CLICK_INFO.asTitle("Purification Value", seed.getPurificationValue())
         );
     }

@@ -1,6 +1,7 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.blocks;
 
 import dev.sefiraat.netheopoiesis.core.purification.PurifyingObject;
+import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -46,8 +47,11 @@ public class NetherCrux extends SlimefunItem implements PurifyingObject {
                 public void onPlayerBreak(BlockBreakEvent event, ItemStack item, List<ItemStack> drops) {
                     // We do not want crux' to be able to drop and placed elsewhere thus gaming the system
                     final Block block = event.getBlock();
-                    event.setCancelled(true);
-                    block.setType(Material.AIR);
+                    final ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
+                    if (SlimefunItem.getByItem(heldItem).getId().equals(NpsItems.CRUX_GATHERER.getId())) {
+                        event.setCancelled(true);
+                        block.setType(Material.AIR);
+                    }
                     BlockStorage.clearBlockInfo(block);
                     removePurificationRegistry(block);
                 }

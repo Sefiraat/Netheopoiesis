@@ -6,9 +6,11 @@ import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Statistic;
 import org.bukkit.TreeType;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -80,7 +82,7 @@ public final class GenericTickingMethods {
             final double randomY = ThreadLocalRandom.current().nextInt(-3, 3);
             final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
             final Location location = parameters.getLocation().clone().add(randomX, randomY, randomZ);
-            location.getWorld().createExplosion(location, 4F, true, false);
+            location.getWorld().createExplosion(location, 2F, true, false);
         }
     }
 
