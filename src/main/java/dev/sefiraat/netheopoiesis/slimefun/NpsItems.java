@@ -353,13 +353,13 @@ public final class NpsItems {
     public static final EntitySpawningSeed SPLINTERED_SEED = new EntitySpawningSeed(
         NpsStacks.SPLINTERED_SEED,
         EntityType.SKELETON,
-        new GrowthDescription(GrowthStages.VINEY_CYAN, Placements.ALL, 2, 0.08)
+        new GrowthDescription(GrowthStages.SPAWNING_CYAN, Placements.ALL, 2, 0.08)
     );
 
     public static final EntitySpawningSeed ROTTEN_SEED = new EntitySpawningSeed(
         NpsStacks.ROTTEN_SEED,
         EntityType.ZOMBIE,
-        new GrowthDescription(GrowthStages.VINEY_GREEN, Placements.ALL, 2, 0.08)
+        new GrowthDescription(GrowthStages.SPAWNING_GREEN, Placements.ALL, 2, 0.08)
     );
 
     public static final HarvestableSeed METALLIC_SEED = new HarvestableSeed(
@@ -395,13 +395,13 @@ public final class NpsItems {
     public static final EntitySpawningSeed PROTECTIVE_SEED = new EntitySpawningSeed(
         NpsStacks.PROTECTIVE_SEED,
         EntityType.IRON_GOLEM,
-        new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.PURIFIED_AND_UP, 5, 0.03)
+        new GrowthDescription(GrowthStages.SPAWNING_PURPLE, Placements.PURIFIED_AND_UP, 5, 0.03)
     );
 
     public static final EntitySpawningSeed PORKY_SEED = new EntitySpawningSeed(
         NpsStacks.PORKY_SEED,
         EntityType.PIG,
-        new GrowthDescription(GrowthStages.VINEY_RED, Placements.PURIFIED_AND_UP, 3, 0.08)
+        new GrowthDescription(GrowthStages.SPAWNING_RED, Placements.PURIFIED_AND_UP, 3, 0.08)
     );
 
     public static final HarvestableSeed VALUABLE_SEED = new HarvestableSeed(
@@ -452,19 +452,19 @@ public final class NpsItems {
     public static final EntitySpawningSeed ETHEREAL_SEED = new EntitySpawningSeed(
         NpsStacks.ETHEREAL_SEED,
         EntityType.ENDERMAN,
-        new GrowthDescription(GrowthStages.VINEY_GREEN, Placements.VORACIOUS_AND_UP, 6, 0.06)
+        new GrowthDescription(GrowthStages.SPAWNING_GREEN, Placements.VORACIOUS_AND_UP, 6, 0.06)
     );
 
     public static final EntitySpawningSeed IGNITED_SEED = new EntitySpawningSeed(
         NpsStacks.IGNITED_SEED,
         EntityType.BLAZE,
-        new GrowthDescription(GrowthStages.VINEY_RED, Placements.VORACIOUS_AND_UP, 8, 0.07)
+        new GrowthDescription(GrowthStages.SPAWNING_RED, Placements.VORACIOUS_AND_UP, 8, 0.07)
     );
 
     public static final EntitySpawningSeed BARTERED_SEED = new EntitySpawningSeed(
         NpsStacks.BARTERED_SEED,
         EntityType.PIGLIN,
-        new GrowthDescription(GrowthStages.VINEY_CYAN, Placements.VORACIOUS_AND_UP, 8, 0.06)
+        new GrowthDescription(GrowthStages.SPAWNING_CYAN, Placements.VORACIOUS_AND_UP, 8, 0.06)
     );
 
     public static final DroppingSeed PRISMATIC_SEED = new DroppingSeed(
@@ -503,7 +503,7 @@ public final class NpsItems {
     public static final EntitySpawningSeed CUTE_SEED = new EntitySpawningSeed(
         NpsStacks.CUTE_SEED,
         EntityType.AXOLOTL,
-        new GrowthDescription(GrowthStages.VINEY_BLUE, Placements.NETHER_DIRT_AND_UP, 15, 0.15)
+        new GrowthDescription(GrowthStages.SPAWNING_BLUE, Placements.NETHER_DIRT_AND_UP, 15, 0.15)
     );
 
     public static final HarvestableSeed BUZZING_SEED = new HarvestableSeed(
@@ -515,7 +515,7 @@ public final class NpsItems {
     public static final EntitySpawningSeed TERRIFYING_SEED = new EntitySpawningSeed(
         NpsStacks.TERRIFYING_SEED,
         EntityType.WITHER_SKELETON,
-        new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.NETHER_DIRT_AND_UP, 15, 0.1)
+        new GrowthDescription(GrowthStages.SPAWNING_PURPLE, Placements.NETHER_DIRT_AND_UP, 15, 0.1)
     );
 
     public static final GenericTickingSeed HATE_FILLED_SEED = new GenericTickingSeed(
@@ -533,7 +533,7 @@ public final class NpsItems {
     public static final EntitySpawningSeed GATEWAY_SEED = new EntitySpawningSeed(
         NpsStacks.GATEWAY_SEED,
         EntityType.VILLAGER,
-        new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.NETHER_DIRT_AND_UP, 20, 0.08)
+        new GrowthDescription(GrowthStages.SPAWNING_PURPLE, Placements.NETHER_DIRT_AND_UP, 20, 0.08)
     );
 
     public static void setup() {

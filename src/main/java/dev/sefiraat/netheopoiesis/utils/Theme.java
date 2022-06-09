@@ -33,9 +33,9 @@ public enum Theme {
     RECIPE_TYPE(ChatColor.of("#ffe89c"), "Recipe Type"),
     MACHINE(ChatColor.of("#3295a8"), "Machine"),
     TOOL(ChatColor.of("#3295a8"), "Tool"),
-    PURIFYING_SEED(ChatColor.of("#a241bf"), "Purifying Seed"),
+    PURIFYING_SEED(ChatColor.of("#cde06c"), "Purifying Seed"),
     SEED(ChatColor.of("#a241bf"), "Seed"),
-    CRUX(ChatColor.of("#a241bf"), "Crux"),
+    CRUX(ChatColor.of("#4287f5"), "Crux"),
     // Seeds
     SEED_RED(ChatColor.of("#c41d1d")),
     SEED_ORANGE(ChatColor.of("#c4761d")),

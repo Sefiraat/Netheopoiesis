@@ -95,7 +95,90 @@ public class GrowthStages {
             Skulls.VINEY_PURPLE_5
         )
     );
+    
+    public static final GrowthStages SPAWNING_RED = new GrowthStages(
+        Theme.SEED_RED,
+        List.of(
+            Skulls.SEED_RED,
+            Skulls.SPAWNING_RED_1,
+            Skulls.SPAWNING_RED_2,
+            Skulls.SPAWNING_RED_3,
+            Skulls.SPAWNING_RED_4,
+            Skulls.SPAWNING_RED_5
+        )
+    );
 
+    public static final GrowthStages SPAWNING_ORANGE = new GrowthStages(
+        Theme.SEED_ORANGE,
+        List.of(
+            Skulls.SEED_ORANGE,
+            Skulls.SPAWNING_ORANGE_1,
+            Skulls.SPAWNING_ORANGE_2,
+            Skulls.SPAWNING_ORANGE_3,
+            Skulls.SPAWNING_ORANGE_4,
+            Skulls.SPAWNING_ORANGE_5
+        )
+    );
+
+    public static final GrowthStages SPAWNING_YELLOW = new GrowthStages(
+        Theme.SEED_YELLOW,
+        List.of(
+            Skulls.SEED_YELLOW,
+            Skulls.SPAWNING_YELLOW_1,
+            Skulls.SPAWNING_YELLOW_2,
+            Skulls.SPAWNING_YELLOW_3,
+            Skulls.SPAWNING_YELLOW_4,
+            Skulls.SPAWNING_YELLOW_5
+        )
+    );
+
+    public static final GrowthStages SPAWNING_GREEN = new GrowthStages(
+        Theme.SEED_GREEN,
+        List.of(
+            Skulls.SEED_GREEN,
+            Skulls.SPAWNING_GREEN_1,
+            Skulls.SPAWNING_GREEN_2,
+            Skulls.SPAWNING_GREEN_3,
+            Skulls.SPAWNING_GREEN_4,
+            Skulls.SPAWNING_GREEN_5
+        )
+    );
+
+    public static final GrowthStages SPAWNING_BLUE = new GrowthStages(
+        Theme.SEED_BLUE,
+        List.of(
+            Skulls.SEED_BLUE,
+            Skulls.SPAWNING_BLUE_1,
+            Skulls.SPAWNING_BLUE_2,
+            Skulls.SPAWNING_BLUE_3,
+            Skulls.SPAWNING_BLUE_4,
+            Skulls.SPAWNING_BLUE_5
+        )
+    );
+
+    public static final GrowthStages SPAWNING_CYAN = new GrowthStages(
+        Theme.SEED_CYAN,
+        List.of(
+            Skulls.SEED_CYAN,
+            Skulls.SPAWNING_CYAN_1,
+            Skulls.SPAWNING_CYAN_2,
+            Skulls.SPAWNING_CYAN_3,
+            Skulls.SPAWNING_CYAN_4,
+            Skulls.SPAWNING_CYAN_5
+        )
+    );
+
+    public static final GrowthStages SPAWNING_PURPLE = new GrowthStages(
+        Theme.SEED_PURPLE,
+        List.of(
+            Skulls.SEED_PURPLE,
+            Skulls.SPAWNING_PURPLE_1,
+            Skulls.SPAWNING_PURPLE_2,
+            Skulls.SPAWNING_PURPLE_3,
+            Skulls.SPAWNING_PURPLE_4,
+            Skulls.SPAWNING_PURPLE_5
+        )
+    );
 
     @Nonnull
     private final Theme theme;

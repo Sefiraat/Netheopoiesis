@@ -85,14 +85,7 @@ public final class GenericTickingMethods {
     }
 
     public static void onTickPulsingSeed(@Nonnull TickParameters parameters) {
-        double randomChance = ThreadLocalRandom.current().nextDouble();
-        if (randomChance <= 0.05) {
-            final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
-            final double randomY = ThreadLocalRandom.current().nextInt(-3, 3);
-            final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
-            final Location location = parameters.getLocation().clone().add(randomX, randomY, randomZ);
-            location.getWorld().createExplosion(location, 4F, true, false);
-        }
+        // Todo set up beacon effects
     }
 
     public static class TickParameters {

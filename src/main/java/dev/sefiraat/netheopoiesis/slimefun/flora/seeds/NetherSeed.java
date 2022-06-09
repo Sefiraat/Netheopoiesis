@@ -18,6 +18,7 @@ import dev.sefiraat.netheopoiesis.utils.StatisticUtils;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.skins.PlayerHead;
+import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -309,6 +310,11 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         }
         // Wasn't placable, so cancel the event
         event.setCancelled(true);
+    }
+
+    public NetherSeed registerSeed(@Nonnull SlimefunAddon addon) {
+        register(addon);
+        return this;
     }
 
     @Override

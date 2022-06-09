@@ -23,8 +23,8 @@ public final class NpsRecipeTypes {
             Material.WITHER_ROSE,
             Theme.RECIPE_TYPE,
             "Nether Purification",
-            "These items are made by purifying the Nether",
-            "Planting certain Nether Plants may help."
+            "These items are made by purifying the Nether.",
+            "This is done by planting Purifying Seeds."
         )
     );
 
@@ -48,7 +48,9 @@ public final class NpsRecipeTypes {
             "Plant Breeding",
             "This seed is found via breeding.",
             "The breeding dictionary can be used",
-            "to track your discoveries."
+            "to track your discoveries.",
+            "Hint: Black particles mean the",
+            "two plants CANNOT breed."
         )
     );
 
