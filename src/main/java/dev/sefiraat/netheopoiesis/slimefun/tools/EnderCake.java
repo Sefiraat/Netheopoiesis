@@ -77,6 +77,7 @@ public class EnderCake extends SlimefunItem {
                 if (end != null && Purification.getValue(location.getChunk()) >= Purification.ENDER_CAKE) {
                     // optimize where possible. look into checking if its already there. Trusted source unknown.
                     final Location endSpawn = new Location(end, 100.5, 49, 0.5);
+                    location.getChunk().load();
                     placePlatform(end);
                     player.teleport(endSpawn);
                 }

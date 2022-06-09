@@ -20,16 +20,21 @@ This addon has three main aims:
 
 ## Purification
 
-The primary mechanic of this addon is the Purification system. When you place/grow etc. certain items from this addon in
-the nether, they will begin to lift the veil of darkness over the Nether in the surrounding area. This is the '
-Purification Value'. As a chunk's purification value increases, you will be rewarded with things that are not normally
-possible in the Nether e.g.
+The primary mechanic of this addon is the Purification system. When you place/grow certain items from this addon in the
+nether, they will begin to lift the veil of darkness over the Nether in the surrounding area. This is the '
+Purification Value'. Not only will the value increase but the blocks will change. These blocks become progressively more
+lush as you progress.
+
+As a chunk's purification value increases, you will be rewarded with things that are not normally possible in the
+Nether:
 
 - Being able to sleep in a bed!
 - Being able to place water and grow new crops.
 - Nether Mob spawns will slowly be replaced with overworld mobs, respecting the Nether's day/light cycle.
 - Other Spawns will appear as the purification level gets higher including fish, random passive mobs and even wandering
   traders!
+- Specific mobs will become friendly while in purified ground
+- Bartering reaps greater rewards the higher the purification value
 - Travel to the end using the Ender Cake
 - Passive healing while in a purified region, increasing with the level of purification
 - In the latter stages, you are able to go beyond just purification being able to create overworld biomes in the Nether
@@ -55,11 +60,19 @@ seed not initially available in the regular portion of the guide. Breeding requi
 you discover one, so watch out for in-game feedback, for example black particles mean the plants cannot breed, so you
 best stop trying!
 
+*Hint: Breeding a purifying seed with another of the same type is a good way to discover new seeds each time you find a
+new one*
+
 ## Future Development
 
 We had a lot of ideas for what we wanted to do here, but needed to keep the scope reasonable to ensure a completed
 product would be ready for the end of the Jam, so here are a list of our planned features after the results of the Jam:
 
-- A plant or generation method for every overworld-only item
+- A plant or other generation method for every overworld-only item
 - Transformation of lava within the Nether to water
-- Possible spawning of structures in purified areas
+- Legitimate sky access in the most purified areas
+
+## Credits
+
+Big thank goes to GentlemanCheesy#2225 who made all the heads used in this addon. He made them in a very short time
+frame and, for those who may not know, each color and each shade as they grow had to be their own texture!

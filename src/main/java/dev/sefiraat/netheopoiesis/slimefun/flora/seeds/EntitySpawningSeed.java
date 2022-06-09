@@ -2,7 +2,6 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.bukkit.Location;
@@ -26,18 +25,17 @@ public class EntitySpawningSeed extends NetherSeed {
     private final Consumer<Entity> callback;
 
     @ParametersAreNonnullByDefault
-    public EntitySpawningSeed(ItemGroup group, SlimefunItemStack item, EntityType type, GrowthDescription description) {
-        this(group, item, type, description, null);
+    public EntitySpawningSeed(SlimefunItemStack item, EntityType type, GrowthDescription description) {
+        this(item, type, description, null);
     }
 
     @ParametersAreNonnullByDefault
-    public EntitySpawningSeed(ItemGroup group,
-                              SlimefunItemStack item,
+    public EntitySpawningSeed(SlimefunItemStack item,
                               EntityType type,
                               GrowthDescription description,
                               @Nullable Consumer<Entity> callback
     ) {
-        super(group, item, description);
+        super(item, description);
         this.entityType = type;
         this.callback = callback;
     }

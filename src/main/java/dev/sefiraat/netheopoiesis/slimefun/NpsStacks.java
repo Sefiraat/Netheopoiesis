@@ -3,7 +3,6 @@ package dev.sefiraat.netheopoiesis.slimefun;
 import dev.sefiraat.netheopoiesis.utils.ItemStackUtils;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import org.bukkit.Color;
@@ -103,6 +102,16 @@ public final class NpsStacks {
         "purification values."
     );
 
+    public static final SlimefunItemStack CRUX_GATHERER = Theme.themedSlimefunItemStack(
+        "NPS_CRUX_GATHERER",
+        Material.BLAZE_ROD,
+        Theme.TOOL,
+        "Crux Gatherer",
+        "If you break a crux while holding",
+        "this tool, you can collect it's drop.",
+        "Does NOT change biomes."
+    );
+
     public static final SlimefunItemStack ENDER_CAKE = Theme.themedSlimefunItemStack(
         "NPS_ENDER_CAKE",
         Material.CAKE,
@@ -110,7 +119,9 @@ public final class NpsStacks {
         "Ender Cake",
         "This tasty cake has the power",
         "to break through dimensions",
-        "when eaten."
+        "when eaten.",
+        Theme.WARNING + "Make sure to sleep in the Nether",
+        Theme.WARNING + "if you wish to make it back!"
     );
 
     // endregion
@@ -172,16 +183,62 @@ public final class NpsStacks {
         "temperate plants."
     );
 
+    public static final SlimefunItemStack BEACH_CRUX = Theme.themedSlimefunItemStack(
+        "NPS_BEACH_CRUX",
+        Material.SAND,
+        Theme.CRUX,
+        "Beach Crux",
+        "This sand feels great between",
+        "your toes."
+    );
+
+    public static final SlimefunItemStack DESERT_CRUX = Theme.themedSlimefunItemStack(
+        "NPS_DESERT_CRUX",
+        Material.RED_SAND,
+        Theme.CRUX,
+        "Desert Crux",
+        "This sand is barren and dull",
+        "but still an improvement over",
+        "netherrack."
+    );
+
+    public static final SlimefunItemStack SNOW_CRUX = Theme.themedSlimefunItemStack(
+        "NPS_SNOWY_CRUX",
+        Material.SNOW_BLOCK,
+        Theme.CRUX,
+        "Snowy Crux",
+        "A sudden drop in temperature is",
+        "sure to bring in new fauna."
+    );
+
+    public static final SlimefunItemStack STONEY_CRUX = Theme.themedSlimefunItemStack(
+        "NPS_STONEY_CRUX",
+        Material.STONE,
+        Theme.CRUX,
+        "Snowy Crux",
+        "While not suitable for plants",
+        "there is a reason for everything."
+    );
+
+    public static final SlimefunItemStack SWAMP_CRUX = Theme.themedSlimefunItemStack(
+        "NPS_SWAMPY_CRUX",
+        Material.GRASS_BLOCK,
+        Theme.CRUX,
+        "Swampy Crux",
+        "This soil is over saturated yet",
+        "teeming with life."
+    );
+
     // endregion
 
     // region Seeds
 
-    //  region Spreaders
+    // region Spreaders
 
     public static final SlimefunItemStack PURIFICATION_SEED = Theme.themedSeed(
         "NPS_PURIFICATION_SEED",
         Skulls.SEED_BLUE.getPlayerHead(),
-        Theme.SEED,
+        Theme.PURIFYING_SEED,
         "Purification Seed",
         new String[]{"This seed, when fully grown,", "will slowly purify surrounding", "blocks."},
         getCanBePlacedOnLore("Netherrack", "Warped Nylium", "Crimson Nylium")
@@ -190,7 +247,7 @@ public final class NpsStacks {
     public static final SlimefunItemStack SOUL_SEED = Theme.themedSeed(
         "NPS_SOUL_SEED",
         Skulls.SEED_BLUE.getPlayerHead(),
-        Theme.SEED,
+        Theme.PURIFYING_SEED,
         "Soul Seed",
         new String[]{"This seed, when fully grown,", "will further push the purification", "process of nearby blocks."},
         getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
@@ -199,7 +256,7 @@ public final class NpsStacks {
     public static final SlimefunItemStack SPIRIT_SEED = Theme.themedSeed(
         "NPS_SPIRIT_SEED",
         Skulls.SEED_BLUE.getPlayerHead(),
-        Theme.SEED,
+        Theme.PURIFYING_SEED,
         "Spirit Seed",
         new String[]{"This seed, when fully grown,", "will allow an even deeper purification", "for nearby blocks."},
         getCanBePlacedOnLore("Purified Netherrack (or better)")
@@ -208,20 +265,74 @@ public final class NpsStacks {
     public static final SlimefunItemStack SAINTLY_SEED = Theme.themedSeed(
         "NPS_SAINTLY_SEED",
         Skulls.SEED_BLUE.getPlayerHead(),
-        Theme.SEED,
+        Theme.PURIFYING_SEED,
         "Saintly Seed",
         new String[]{"This seed, when fully grown,", "will remove nearly all of the", "Nether's taint for nearby blocks."},
         getCanBePlacedOnLore("Voracious Dirt (or better)")
     );
 
-    //        EDEN_SEED = Theme.themedSeed(
-//            "NPS_EDEN_SEED",
-//            Skulls.SEED_BLUE.getPlayerHead(),
-//            Theme.SEED,
-//            "Eden Seed",
-//            new String[]{"This seed, when fully grown,", "will create and eden in the Nether."},
-//            getCanBePlacedOnLore("Nether Dirt (or better)")
-//        );
+    public static final SlimefunItemStack EDEN_SEED = Theme.themedSeed(
+        "NPS_EDEN_SEED",
+        Skulls.SEED_BLUE.getPlayerHead(),
+        Theme.PURIFYING_SEED,
+        "Eden Seed",
+        new String[]{"This seed, when fully grown,", "will create and eden in the Nether."},
+        getCanBePlacedOnLore("Nether Dirt (or better)")
+    );
+
+    public static final SlimefunItemStack JUNGLE_SEED = Theme.themedSeed(
+        "NPS_JUNGLE_SEED",
+        Skulls.SEED_GREEN.getPlayerHead(),
+        Theme.PURIFYING_SEED,
+        "Jungle Seed",
+        new String[]{"This seed, when fully grown,", "will begin the process of creating", "a jungle."},
+        getCanBePlacedOnLore("Nether Grass or Jungle")
+    );
+
+    public static final SlimefunItemStack BEACH_SEED = Theme.themedSeed(
+        "NPS_BEACH_SEED",
+        Skulls.SEED_YELLOW.getPlayerHead(),
+        Theme.PURIFYING_SEED,
+        "Beach Seed",
+        new String[]{"This seed, when fully grown,", "will begin the process of creating", "a beach."},
+        getCanBePlacedOnLore("Nether Grass or Beach")
+    );
+
+    public static final SlimefunItemStack DESERT_SEED = Theme.themedSeed(
+        "NPS_DESERT_SEED",
+        Skulls.SEED_RED.getPlayerHead(),
+        Theme.PURIFYING_SEED,
+        "Desert Seed",
+        new String[]{"This seed, when fully grown,", "will begin the process of creating", "a desert."},
+        getCanBePlacedOnLore("Nether Grass or Desert")
+    );
+
+    public static final SlimefunItemStack SNOW_SEED = Theme.themedSeed(
+        "NPS_SNOW_SEED",
+        Skulls.SEED_CYAN.getPlayerHead(),
+        Theme.PURIFYING_SEED,
+        "Desert Seed",
+        new String[]{"This seed, when fully grown,", "will begin the process of creating a", "cold wonderland."},
+        getCanBePlacedOnLore("Nether Grass (or better)")
+    );
+
+    public static final SlimefunItemStack STONEY_SEED = Theme.themedSeed(
+        "NPS_STONEY_SEED",
+        Skulls.SEED_PURPLE.getPlayerHead(),
+        Theme.PURIFYING_SEED,
+        "Stoney Seed",
+        new String[]{"This seed, when fully grown,", "will begin the process of creating", "a stoney plain."},
+        getCanBePlacedOnLore("Nether Grass or Stoney")
+    );
+
+    public static final SlimefunItemStack SWAMP_SEED = Theme.themedSeed(
+        "NPS_SWAMP_SEED",
+        Skulls.SEED_GREEN.getPlayerHead(),
+        Theme.PURIFYING_SEED,
+        "Swamp Seed",
+        new String[]{"This seed, when fully grown,", "will begin the process of creating", "a damp swamp."},
+        getCanBePlacedOnLore("Nether Grass or Swamp")
+    );
 
     // endregion
 
@@ -254,11 +365,11 @@ public final class NpsStacks {
         getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
     );
 
-    public static final SlimefunItemStack STONEY_SEED = Theme.themedSeed(
-        "NPS_STONEY_SEED",
+    public static final SlimefunItemStack COBBLED_SEED = Theme.themedSeed(
+        "NPS_COBBLED_SEED",
         Skulls.SEED_PURPLE.getPlayerHead(),
         Theme.SEED,
-        "Stoney Seed",
+        "Cobbled Seed",
         new String[]{"This seed, when fully grown,", "will slowly produce small amounts of", "cobblestone."},
         getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
     );
@@ -500,59 +611,59 @@ public final class NpsStacks {
         getCanBePlacedOnLore("Nether Dirt (or better)")
     );
 
-    //        CUTE_SEED = Theme.themedSeed(
-//            "NPS_CUTE_SEED",
-//            Skulls.SEED_CYAN.getPlayerHead(),
-//            Theme.SEED,
-//            "Cute Seed",
-//            new String[]{"This seed, when fully grown,", "will sometimes cause an Axolotl", "to appear."},
-//            getCanBePlacedOnLore("Nether Dirt (or better)")
-//        );
-//
-//        BUZZING_SEED = Theme.themedSeed(
-//            "NPS_BUZZING_SEED",
-//            Skulls.SEED_YELLOW.getPlayerHead(),
-//            Theme.SEED,
-//            "Buzzing Seed",
-//            new String[]{"This seed, when fully grown,", "can be harvested for honeycomb."},
-//            getCanBePlacedOnLore("Nether Dirt (or better)")
-//        );
-//
-//        TERRIFYING_SEED = Theme.themedSeed(
-//            "NPS_TERRIFYING_SEED",
-//            Skulls.SEED_BLUE.getPlayerHead(),
-//            Theme.SEED,
-//            "Terrifying Seed",
-//            new String[]{"This seed, when fully grown,", "will sometimes cause a Wither Skeleton", "to appear."},
-//            getCanBePlacedOnLore("Nether Dirt (or better)")
-//        );
-//
-//        HATE_FILLED_SEED = Theme.themedSeed(
-//            "NPS_HATE_FILLED_SEED",
-//            Skulls.SEED_YELLOW.getPlayerHead(),
-//            Theme.SEED,
-//            "Hate-Filled Seed",
-//            new String[]{"This seed, when fully grown,", "will sometimes cause a Wither", "to appear. Be sure to use", "wisely!"},
-//            getCanBePlacedOnLore("Nether Dirt (or better)")
-//        );
-//
-//        PULSING_SEED = Theme.themedSeed(
-//            "NPS_PULSING_SEED",
-//            Skulls.SEED_YELLOW.getPlayerHead(),
-//            Theme.SEED,
-//            "Pulsing Seed",
-//            new String[]{"This seed, when fully grown,", "will pulse out powerful but", "random (positive) effects"},
-//            getCanBePlacedOnLore("Nether Dirt (or better)")
-//        );
-//
-//        GATEWAY_SEED = Theme.themedSeed(
-//            "NPS_GATEWAY_SEED",
-//            Skulls.SEED_GREEN.getPlayerHead(),
-//            Theme.SEED,
-//            "Gateway Seed",
-//            new String[]{"This seed, when fully grown,", "will allow villagers to cross", "over into your new nirvana."},
-//            getCanBePlacedOnLore("Nether Dirt (or better)")
-//        );
+    public static final SlimefunItemStack CUTE_SEED = Theme.themedSeed(
+        "NPS_CUTE_SEED",
+        Skulls.SEED_CYAN.getPlayerHead(),
+        Theme.SEED,
+        "Cute Seed",
+        new String[]{"This seed, when fully grown,", "will sometimes cause an Axolotl", "to appear."},
+        getCanBePlacedOnLore("Nether Dirt (or better)")
+    );
+
+    public static final SlimefunItemStack BUZZING_SEED = Theme.themedSeed(
+        "NPS_BUZZING_SEED",
+        Skulls.SEED_YELLOW.getPlayerHead(),
+        Theme.SEED,
+        "Buzzing Seed",
+        new String[]{"This seed, when fully grown,", "can be harvested for honeycomb."},
+        getCanBePlacedOnLore("Nether Dirt (or better)")
+    );
+
+    public static final SlimefunItemStack TERRIFYING_SEED = Theme.themedSeed(
+        "NPS_TERRIFYING_SEED",
+        Skulls.SEED_PURPLE.getPlayerHead(),
+        Theme.SEED,
+        "Terrifying Seed",
+        new String[]{"This seed, when fully grown,", "will sometimes cause a Wither Skeleton", "to appear."},
+        getCanBePlacedOnLore("Nether Dirt (or better)")
+    );
+
+    public static final SlimefunItemStack HATE_FILLED_SEED = Theme.themedSeed(
+        "NPS_HATE_FILLED_SEED",
+        Skulls.SEED_YELLOW.getPlayerHead(),
+        Theme.SEED,
+        "Hate-Filled Seed",
+        new String[]{"This seed, when fully grown,", "can only cause bad things", "to occur. Be sure to place", "wisely!"},
+        getCanBePlacedOnLore("Nether Dirt (or better)")
+    );
+
+    public static final SlimefunItemStack PULSING_SEED = Theme.themedSeed(
+        "NPS_PULSING_SEED",
+        Skulls.SEED_GREEN.getPlayerHead(),
+        Theme.SEED,
+        "Pulsing Seed",
+        new String[]{"This seed, when fully grown,", "will pulse out powerful but", "random (positive) effects"},
+        getCanBePlacedOnLore("Nether Dirt (or better)")
+    );
+
+    public static final SlimefunItemStack GATEWAY_SEED = Theme.themedSeed(
+        "NPS_GATEWAY_SEED",
+        Skulls.SEED_PURPLE.getPlayerHead(),
+        Theme.SEED,
+        "Gateway Seed",
+        new String[]{"This seed, when fully grown,", "will allow villagers to cross", "over into your new nirvana."},
+        getCanBePlacedOnLore("Nether Dirt (or better)")
+    );
 
     // endregion
 

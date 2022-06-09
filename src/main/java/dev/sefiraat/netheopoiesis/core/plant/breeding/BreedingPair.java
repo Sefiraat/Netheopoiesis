@@ -36,8 +36,8 @@ public enum BreedingPair {
         0.2
     ),
 
-    STONEY(
-        NpsItems.STONEY_SEED,
+    COBBLED(
+        NpsItems.COBBLED_SEED,
         NpsItems.SPINDLE_SEED,
         NpsItems.GRAINY_SEED,
         0.1,
@@ -46,7 +46,7 @@ public enum BreedingPair {
 
     DUSTY(
         NpsItems.DUSTY_SEED,
-        NpsItems.STONEY_SEED,
+        NpsItems.COBBLED_SEED,
         NpsItems.GRAINY_SEED,
         0.1,
         0.2
@@ -63,7 +63,7 @@ public enum BreedingPair {
     MOLDABLE(
         NpsItems.MOLDABLE_SEED,
         NpsItems.SEASIDE_SEED,
-        NpsItems.STONEY_SEED,
+        NpsItems.COBBLED_SEED,
         0.05,
         0.2
     ),
@@ -258,6 +258,110 @@ public enum BreedingPair {
         NpsItems.SAINTLY_SEED,
         0.1,
         0.15
+    ),
+
+    CUTE(
+        NpsItems.CUTE_SEED,
+        NpsItems.SAINTLY_SEED,
+        NpsItems.SAINTLY_SEED,
+        0.1,
+        0.15
+    ),
+
+    BUZZING(
+        NpsItems.BUZZING_SEED,
+        NpsItems.CUTE_SEED,
+        NpsItems.SPINDLE_SEED,
+        0.15,
+        0.2
+    ),
+
+    TERRIFYING(
+        NpsItems.TERRIFYING_SEED,
+        NpsItems.SAINTLY_SEED,
+        NpsItems.SAINTLY_SEED,
+        0.10,
+        0.3
+    ),
+
+    HATE_FILLED(
+        NpsItems.HATE_FILLED_SEED,
+        NpsItems.TERRIFYING_SEED,
+        NpsItems.PROTECTIVE_SEED,
+        0.2,
+        0.05
+    ),
+
+    PULSING(
+        NpsItems.PULSING_SEED,
+        NpsItems.HATE_FILLED_SEED,
+        NpsItems.GLOWING_SEED,
+        0.15,
+        0.2
+    ),
+
+    GATEWAY(
+        NpsItems.GATEWAY_SEED,
+        NpsItems.PULSING_SEED,
+        NpsItems.BARTERED_SEED,
+        0.15,
+        0.2
+    ),
+
+    EDEN(
+        NpsItems.EDEN_SEED,
+        NpsItems.GATEWAY_SEED,
+        NpsItems.PERFECTION_SEED,
+        0.15,
+        0.2
+    ),
+
+    JUNGLE(
+        NpsItems.JUNGLE_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.EDEN_SEED,
+        0.05,
+        0.05
+    ),
+
+    BEACH(
+        NpsItems.BEACH_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.EDEN_SEED,
+        0.05,
+        0.05
+    ),
+
+    DESERT(
+        NpsItems.DESERT_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.EDEN_SEED,
+        0.05,
+        0.05
+    ),
+
+    SNOW(
+        NpsItems.SNOW_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.EDEN_SEED,
+        0.05,
+        0.05
+    ),
+
+    STONE(
+        NpsItems.STONEY_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.EDEN_SEED,
+        0.05,
+        0.05
+    ),
+
+    SWAMP(
+        NpsItems.SWAMP_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.EDEN_SEED,
+        0.05,
+        0.05
     );
 
     @Nonnull

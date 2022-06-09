@@ -25,6 +25,8 @@ import java.util.Set;
  */
 public class NetherCrux extends SlimefunItem implements PurifyingObject {
 
+    private static final int TICKS_REQUIRED = 10;
+
     private final int purificationValue;
     private int tick = 0;
 
@@ -58,14 +60,14 @@ public class NetherCrux extends SlimefunItem implements PurifyingObject {
 
                 @Override
                 public void tick(Block block, SlimefunItem item, Config data) {
-                    if (NetherCrux.this.tick >= 5) {
+                    if (NetherCrux.this.tick >= TICKS_REQUIRED) {
                         registerPurificationValue(block);
                     }
                 }
 
                 @Override
                 public void uniqueTick() {
-                    tick = tick >= 5 ? 0 : tick + 1;
+                    tick = tick >= TICKS_REQUIRED ? 0 : tick + 1;
                 }
             }
         );

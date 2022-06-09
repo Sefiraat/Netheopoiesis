@@ -17,6 +17,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -44,17 +45,17 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
     };
 
     private static final int CHILD_SLOT = 22;
-    private static final int[] CHILD_INFO_SLOT = new int[] {13, 31};
+    private static final int[] CHILD_INFO_SLOT = new int[]{13, 31};
 
     private static final int MOTHER_SLOT = 21;
-    private static final int[] MOTHER_INFO_SLOT = new int[] {12, 30};
+    private static final int[] MOTHER_INFO_SLOT = new int[]{12, 30};
 
     private static final int FATHER_SLOT = 23;
-    private static final int[] FATHER_INFO_SLOT = new int[] {14, 32};
+    private static final int[] FATHER_INFO_SLOT = new int[]{14, 32};
 
     private static final int GROWTH_RATE_SLOT = 37;
     private static final int PURIFICATION_AMOUNT_SLOT = 38;
-    private static final int[] HELD_SLOTS = new int[] { 39, 40, 41, 42, 43 };
+    private static final int[] HELD_SLOTS = new int[]{39, 40, 41, 42, 43};
 
     private static final ItemStack MOTHER_INFO = new CustomItemStack(
         Material.LIGHT_BLUE_STAINED_GLASS_PANE,
@@ -149,11 +150,11 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
                     });
                 } else {
                     menu.replaceExistingItem(slot, getUndiscovered(child));
-                    menu.addMenuClickHandler(slot, (player1, i1, itemStack1, clickAction) -> false);
+                    menu.addMenuClickHandler(slot, ChestMenuUtils.getEmptyClickHandler());
                 }
             } else {
                 menu.replaceExistingItem(slot, null);
-                menu.addMenuClickHandler(slot, (player1, i1, itemStack1, clickAction) -> false);
+                menu.addMenuClickHandler(slot, ChestMenuUtils.getEmptyClickHandler());
             }
         }
     }
@@ -241,7 +242,7 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
     ) {
         for (int slot : FOOTER) {
             menu.replaceExistingItem(slot, ChestMenuUtils.getBackground());
-            menu.addMenuClickHandler(slot, ((player, i, itemStack, clickAction) -> false));
+            menu.addMenuClickHandler(slot, ChestMenuUtils.getEmptyClickHandler());
         }
 
         menu.replaceExistingItem(PAGE_PREVIOUS, ChestMenuUtils.getPreviousButton(p, page, totalPages));
@@ -263,8 +264,8 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
         });
     }
 
-    @ParametersAreNonnullByDefault
-    public static ItemStack getUndiscovered(NetherSeed seed) {
+    @Nonnull
+    public static ItemStack getUndiscovered(@Nonnull NetherSeed seed) {
         return Theme.themedItemStack(
             Material.BARRIER,
             Theme.DISCOVEREY,
@@ -275,23 +276,21 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
         );
     }
 
-    @ParametersAreNonnullByDefault
-    public static ItemStack getGrowthRate(NetherSeed seed) {
+    @Nonnull
+    public static ItemStack getGrowthRate(@Nonnull NetherSeed seed) {
         return Theme.themedItemStack(
             Material.WHEAT_SEEDS,
             Theme.DISCOVEREY,
-            "Growth Rate",
-            "Growth Rate: " + FORMAT.format(seed.getGrowthRate())
+            Theme.CLICK_INFO.asTitle("Growth Rate", FORMAT.format(seed.getGrowthRate()))
         );
     }
 
-    @ParametersAreNonnullByDefault
-    public static ItemStack getPurificationValue(NetherSeed seed) {
+    @Nonnull
+    public static ItemStack getPurificationValue(@Nonnull NetherSeed seed) {
         return Theme.themedItemStack(
             Material.NETHERRACK,
             Theme.DISCOVEREY,
-            "Purification Value",
-            "Purification Value: " + seed.getPurificationValue()
+            Theme.CLICK_INFO.asTitle("Purification Value", seed.getPurificationValue())
         );
     }
 }

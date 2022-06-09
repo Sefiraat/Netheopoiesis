@@ -87,6 +87,7 @@ public class RandomSpawn {
 
     /**
      * The {@link EntityType} that will be spawned
+     *
      * @return The {@link EntityType} that will be spawned
      */
     public EntityType getType() {
@@ -95,6 +96,7 @@ public class RandomSpawn {
 
     /**
      * The required level of purification for a spawn attempt
+     *
      * @return The required level of purification
      */
     public int getRequiredPurification() {
@@ -103,6 +105,7 @@ public class RandomSpawn {
 
     /**
      * The chance of a spawn occurring (0-1)
+     *
      * @return The chance of a spawn occurring (0-1)
      */
     public double getChance() {
@@ -111,6 +114,7 @@ public class RandomSpawn {
 
     /**
      * Attempts to spawn the {@link EntityType} defined.
+     *
      * @param location The location to spawn at (and to get purificationValue from)
      * @return true if the spawn was successful
      */
@@ -122,7 +126,8 @@ public class RandomSpawn {
     /**
      * Attempts to spawn the {@link EntityType} defined. Allows you to provide the location's
      * purification's level, if it's already known.
-     * @param location The location to spawn at
+     *
+     * @param location          The location to spawn at
      * @param purificationLevel
      * @return true if the spawn was successful
      */

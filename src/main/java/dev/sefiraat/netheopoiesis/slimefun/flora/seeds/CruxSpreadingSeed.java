@@ -7,7 +7,6 @@ import dev.sefiraat.netheopoiesis.core.plant.SpreadingPlant;
 import dev.sefiraat.netheopoiesis.runnables.UpdateCruxTask;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.utils.ProtectionUtils;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
@@ -28,13 +27,12 @@ public class CruxSpreadingSeed extends NetherSeed implements SpreadingPlant {
     private final double spreadChance;
 
     @ParametersAreNonnullByDefault
-    public CruxSpreadingSeed(ItemGroup group,
-                             SlimefunItemStack item,
+    public CruxSpreadingSeed(SlimefunItemStack item,
                              double spreadChance,
                              NetherCrux convertTo,
                              GrowthDescription description
     ) {
-        super(group, item, description);
+        super(item, description);
         this.convertTo = convertTo;
         this.spreadChance = spreadChance;
     }
@@ -71,6 +69,7 @@ public class CruxSpreadingSeed extends NetherSeed implements SpreadingPlant {
             // Schedule a task to ensure the new block storage happens only AFTER deletion
             UpdateCruxTask task = new UpdateCruxTask(block, convertTo);
             task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);
+            afterSpread(sourceLocation, seed, data, block);
         }
     }
 }

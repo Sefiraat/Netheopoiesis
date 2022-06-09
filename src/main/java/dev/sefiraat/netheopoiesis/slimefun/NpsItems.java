@@ -6,6 +6,7 @@ import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.core.plant.Placements;
 import dev.sefiraat.netheopoiesis.listeners.VanillaDropListener;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.BiomeSpreadingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.CruxSpreadingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.DroppingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.EntitySpawningSeed;
@@ -24,6 +25,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import org.bukkit.Material;
+import org.bukkit.block.Biome;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
@@ -77,8 +79,40 @@ public final class NpsItems {
     public static final NetherCrux JUNGLE_CRUX = new NetherCrux(
         NpsGroups.CRUX,
         NpsStacks.JUNGLE_CRUX,
-        20
+        16
     );
+
+    public static final NetherCrux BEACH_CRUX = new NetherCrux(
+        NpsGroups.CRUX,
+        NpsStacks.BEACH_CRUX,
+        16
+    );
+
+    public static final NetherCrux DESERT_CRUX = new NetherCrux(
+        NpsGroups.CRUX,
+        NpsStacks.DESERT_CRUX,
+        16
+    );
+
+    public static final NetherCrux SNOW_CRUX = new NetherCrux(
+        NpsGroups.CRUX,
+        NpsStacks.SNOW_CRUX,
+        16
+    );
+
+    public static final NetherCrux STONEY_CRUX = new NetherCrux(
+        NpsGroups.CRUX,
+        NpsStacks.STONEY_CRUX,
+        16
+    );
+
+    public static final NetherCrux SWAMP_CRUX = new NetherCrux(
+        NpsGroups.CRUX,
+        NpsStacks.SWAMP_CRUX,
+        16
+    );
+
+    // endregion
 
     // region Crafting
 
@@ -148,6 +182,17 @@ public final class NpsItems {
         }
     );
 
+    public static final Analyser CRUX_GATHERER = new Analyser(
+        NpsGroups.TOOLS,
+        NpsStacks.CRUX_GATHERER,
+        RecipeType.ENHANCED_CRAFTING_TABLE,
+        new ItemStack[]{
+            SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.REINFORCED_ALLOY_INGOT,
+            null, GLASS, null,
+            null, GLASS, null,
+        }
+    );
+
     public static final Analyser SEED_ANALYSER = new Analyser(
         NpsGroups.TOOLS,
         NpsStacks.SEED_ANALYSER,
@@ -176,171 +221,202 @@ public final class NpsItems {
     // region Seeds
 
     public static final PurificationSeed PURIFICATION_SEED = new PurificationSeed(
-        NpsGroups.SEEDS,
         NpsStacks.PURIFICATION_SEED,
         VanillaDropListener.createRecipe(NpsStacks.PURIFICATION_SEED, new ItemStack(Material.SOUL_SOIL), 0.05),
-        new GrowthDescription(GrowthStages.VINEY_BLUE, Placements.NULL, 1, 0.25)
+        new GrowthDescription(GrowthStages.VINEY_BLUE, Placements.NULL, 1, 0.30)
     );
 
     public static final CruxSpreadingSeed SOUL_SEED = new CruxSpreadingSeed(
-        NpsGroups.SEEDS,
         NpsStacks.SOUL_SEED,
-        0.2,
+        0.25,
         PURIFIED_NETHERRACK,
         new GrowthDescription(GrowthStages.VINEY_BLUE, Placements.ALL, 2, 0.2)
     );
 
     public static final CruxSpreadingSeed SPIRIT_SEED = new CruxSpreadingSeed(
-        NpsGroups.SEEDS,
         NpsStacks.SPIRIT_SEED,
-        0.15,
+        0.2,
         VORACIOUS_DIRT,
         new GrowthDescription(GrowthStages.VINEY_BLUE, Placements.PURIFIED_AND_UP, 4, 0.15)
     );
 
     public static final CruxSpreadingSeed SAINTLY_SEED = new CruxSpreadingSeed(
-        NpsGroups.SEEDS,
         NpsStacks.SAINTLY_SEED,
-        0.1,
+        0.15,
         NETHER_DIRT,
         new GrowthDescription(GrowthStages.VINEY_BLUE, Placements.VORACIOUS_AND_UP, 8, 0.1)
     );
 
+    public static final CruxSpreadingSeed EDEN_SEED = new CruxSpreadingSeed(
+        NpsStacks.EDEN_SEED,
+        0.1,
+        NETHER_GRASS,
+        new GrowthDescription(GrowthStages.VINEY_BLUE, Placements.NETHER_DIRT_AND_UP, 16, 0.1)
+    );
+
+    public static final CruxSpreadingSeed JUNGLE_SEED = new BiomeSpreadingSeed(
+        NpsStacks.JUNGLE_SEED,
+        0.1,
+        JUNGLE_CRUX,
+        Biome.JUNGLE,
+        new GrowthDescription(GrowthStages.VINEY_GREEN, Placements.JUNGLE_FRINGE, 16, 0.1)
+    );
+
+    public static final CruxSpreadingSeed BEACH_SEED = new BiomeSpreadingSeed(
+        NpsStacks.BEACH_SEED,
+        0.1,
+        BEACH_CRUX,
+        Biome.BEACH,
+        new GrowthDescription(GrowthStages.VINEY_YELLOW, Placements.BEACH_FRINGE, 16, 0.1)
+    );
+
+    public static final CruxSpreadingSeed DESERT_SEED = new BiomeSpreadingSeed(
+        NpsStacks.DESERT_SEED,
+        0.1,
+        DESERT_CRUX,
+        Biome.DESERT,
+        new GrowthDescription(GrowthStages.VINEY_RED, Placements.DESERT_FRINGE, 16, 0.1)
+    );
+
+    public static final CruxSpreadingSeed SNOW_SEED = new BiomeSpreadingSeed(
+        NpsStacks.SNOW_SEED,
+        0.1,
+        SNOW_CRUX,
+        Biome.SNOWY_PLAINS,
+        new GrowthDescription(GrowthStages.VINEY_CYAN, Placements.SNOW_FRINGE, 16, 0.1)
+    );
+
+    public static final CruxSpreadingSeed STONEY_SEED = new BiomeSpreadingSeed(
+        NpsStacks.STONEY_SEED,
+        0.1,
+        STONEY_CRUX,
+        Biome.STONY_SHORE,
+        new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.STONEY_FRINGE, 16, 0.1)
+    );
+
+    public static final CruxSpreadingSeed SWAMP_SEED = new BiomeSpreadingSeed(
+        NpsStacks.SWAMP_SEED,
+        0.1,
+        SWAMP_CRUX,
+        Biome.SWAMP,
+        new GrowthDescription(GrowthStages.VINEY_GREEN, Placements.SWAMP_FRINGE, 16, 0.1)
+    );
+
     // First Stage
     public static final GenericTickingSeed SPINDLE_SEED = new GenericTickingSeed(
-        NpsGroups.SEEDS,
         NpsStacks.SPINDLE_SEED,
         GenericTickingMethods::onTickSpindleSeed,
         new GrowthDescription(GrowthStages.VINEY_ORANGE, Placements.ALL, 1, 0.09)
     );
 
     public static final DroppingSeed GRAINY_SEED = new DroppingSeed(
-        NpsGroups.SEEDS,
         NpsStacks.GRAINY_SEED,
         new ItemStack(Material.REDSTONE),
         new GrowthDescription(GrowthStages.VINEY_RED, Placements.ALL, 1, 0.09)
     );
 
     public static final DroppingSeed STRINGY_SEED = new DroppingSeed(
-        NpsGroups.SEEDS,
         NpsStacks.STRINGY_SEED,
         new ItemStack(Material.STRING),
         new GrowthDescription(GrowthStages.VINEY_GREEN, Placements.ALL, 1, 0.09)
     );
 
-    public static final DroppingSeed STONEY_SEED = new DroppingSeed(
-        NpsGroups.SEEDS,
-        NpsStacks.STONEY_SEED,
+    public static final DroppingSeed COBBLED_SEED = new DroppingSeed(
+        NpsStacks.COBBLED_SEED,
         new ItemStack(Material.COBBLESTONE),
         new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.ALL, 1, 0.09)
     );
 
     public static final HarvestableSeed DUSTY_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.DUSTY_SEED,
         new ItemStack(Material.GRAVEL),
         new GrowthDescription(GrowthStages.VINEY_CYAN, Placements.ALL, 1, 0.09)
     );
 
     public static final HarvestableSeed SEASIDE_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.SEASIDE_SEED,
         new ItemStack(Material.SAND),
         new GrowthDescription(GrowthStages.VINEY_YELLOW, Placements.ALL, 1, 0.09)
     );
 
     public static final HarvestableSeed MOLDABLE_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.MOLDABLE_SEED,
         new ItemStack(Material.CLAY_BALL),
         new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.ALL, 1, 0.09)
     );
 
     public static final WetSeed WET_SEED = new WetSeed(
-        NpsGroups.SEEDS,
         NpsStacks.WET_SEED,
         new GrowthDescription(GrowthStages.VINEY_BLUE, Placements.ALL, 2, 0.11)
     );
 
     public static final EntitySpawningSeed SPLINTERED_SEED = new EntitySpawningSeed(
-        NpsGroups.SEEDS,
         NpsStacks.SPLINTERED_SEED,
         EntityType.SKELETON,
         new GrowthDescription(GrowthStages.VINEY_CYAN, Placements.ALL, 2, 0.08)
     );
 
     public static final EntitySpawningSeed ROTTEN_SEED = new EntitySpawningSeed(
-        NpsGroups.SEEDS,
         NpsStacks.ROTTEN_SEED,
         EntityType.ZOMBIE,
         new GrowthDescription(GrowthStages.VINEY_GREEN, Placements.ALL, 2, 0.08)
     );
 
     public static final HarvestableSeed METALLIC_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.METALLIC_SEED,
         new ItemStack(Material.IRON_NUGGET),
         new GrowthDescription(GrowthStages.VINEY_RED, Placements.PURIFIED_AND_UP, 2, 0.08)
     );
 
     public static final HarvestableSeed SHINY_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.SHINY_SEED,
         new ItemStack(Material.GOLD_NUGGET),
         new GrowthDescription(GrowthStages.VINEY_YELLOW, Placements.PURIFIED_AND_UP, 2, 0.08)
     );
 
     public static final HarvestableSeed SMOOTH_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.SMOOTH_SEED,
         new ItemStack(Material.AMETHYST_SHARD),
         new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.PURIFIED_AND_UP, 2, 0.08)
     );
 
     public static final HarvestableSeed ENCHANTED_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.ENCHANTED_SEED,
         new ItemStack(Material.LAPIS_LAZULI),
         new GrowthDescription(GrowthStages.VINEY_BLUE, Placements.PURIFIED_AND_UP, 3, 0.07)
     );
 
     public static final HarvestableSeed COMBUSTIBLE_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.COMBUSTIBLE_SEED,
         new ItemStack(Material.COAL),
         new GrowthDescription(GrowthStages.VINEY_RED, Placements.PURIFIED_AND_UP, 3, 0.07)
     );
 
     public static final EntitySpawningSeed PROTECTIVE_SEED = new EntitySpawningSeed(
-        NpsGroups.SEEDS,
         NpsStacks.PROTECTIVE_SEED,
         EntityType.IRON_GOLEM,
         new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.PURIFIED_AND_UP, 5, 0.03)
     );
 
     public static final EntitySpawningSeed PORKY_SEED = new EntitySpawningSeed(
-        NpsGroups.SEEDS,
         NpsStacks.PORKY_SEED,
         EntityType.PIG,
         new GrowthDescription(GrowthStages.VINEY_RED, Placements.PURIFIED_AND_UP, 3, 0.08)
     );
 
     public static final HarvestableSeed VALUABLE_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.VALUABLE_SEED,
         new ItemStack(Material.EMERALD),
         new GrowthDescription(GrowthStages.VINEY_GREEN, Placements.PURIFIED_AND_UP, 3, 0.07)
     );
 
     public static final HarvestableSeed PERFECTION_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.PERFECTION_SEED,
         new ItemStack(Material.DIAMOND),
         new GrowthDescription(GrowthStages.VINEY_BLUE, Placements.PURIFIED_AND_UP, 5, 0.07)
     );
 
     public static final DroppingSeed RAINBOW_SEED = new DroppingSeed(
-        NpsGroups.SEEDS,
         NpsStacks.RAINBOW_SEED,
         new ItemStack[]{
             new ItemStack(Material.WHITE_DYE),
@@ -364,7 +440,6 @@ public final class NpsItems {
     );
 
     public static final DroppingSeed GLOWING_SEED = new DroppingSeed(
-        NpsGroups.SEEDS,
         NpsStacks.GLOWING_SEED,
         new ItemStack[]{
             new ItemStack(Material.GLOW_LICHEN),
@@ -375,28 +450,24 @@ public final class NpsItems {
     );
 
     public static final EntitySpawningSeed ETHEREAL_SEED = new EntitySpawningSeed(
-        NpsGroups.SEEDS,
         NpsStacks.ETHEREAL_SEED,
         EntityType.ENDERMAN,
         new GrowthDescription(GrowthStages.VINEY_GREEN, Placements.VORACIOUS_AND_UP, 6, 0.06)
     );
 
     public static final EntitySpawningSeed IGNITED_SEED = new EntitySpawningSeed(
-        NpsGroups.SEEDS,
         NpsStacks.IGNITED_SEED,
         EntityType.BLAZE,
         new GrowthDescription(GrowthStages.VINEY_RED, Placements.VORACIOUS_AND_UP, 8, 0.07)
     );
 
     public static final EntitySpawningSeed BARTERED_SEED = new EntitySpawningSeed(
-        NpsGroups.SEEDS,
         NpsStacks.BARTERED_SEED,
         EntityType.PIGLIN,
         new GrowthDescription(GrowthStages.VINEY_CYAN, Placements.VORACIOUS_AND_UP, 8, 0.06)
     );
 
     public static final DroppingSeed PRISMATIC_SEED = new DroppingSeed(
-        NpsGroups.SEEDS,
         NpsStacks.PRISMATIC_SEED,
         new ItemStack[]{
             new ItemStack(Material.PRISMARINE_SHARD),
@@ -406,31 +477,63 @@ public final class NpsItems {
     );
 
     public static final HarvestableSeed POROUS_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.POROUS_SEED,
         new ItemStack(Material.SPONGE),
         new GrowthDescription(GrowthStages.VINEY_YELLOW, Placements.VORACIOUS_AND_UP, 9, 0.06)
     );
 
     public static final HarvestableSeed LEARNED_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.LEARNED_SEED,
         new ItemStack(Material.EXPERIENCE_BOTTLE),
         new GrowthDescription(GrowthStages.VINEY_ORANGE, Placements.VORACIOUS_AND_UP, 9, 0.06)
     );
 
     public static final GenericTickingSeed OAKENDRAN_SEED = new GenericTickingSeed(
-        NpsGroups.SEEDS,
         NpsStacks.OAKENDRAN_SEED,
         GenericTickingMethods::onTickOakendranSeed,
         new GrowthDescription(GrowthStages.VINEY_ORANGE, Placements.VORACIOUS_AND_UP, 12, 0.04)
     );
 
     public static final HarvestableSeed ADDON_BERRY_SEED = new HarvestableSeed(
-        NpsGroups.SEEDS,
         NpsStacks.ADDON_BERRY_SEED,
         NpsStacks.ADDON_BERRY,
         new GrowthDescription(GrowthStages.VINEY_RED, Placements.NETHER_DIRT_AND_UP, 10, 0.2)
+    );
+
+    public static final EntitySpawningSeed CUTE_SEED = new EntitySpawningSeed(
+        NpsStacks.CUTE_SEED,
+        EntityType.AXOLOTL,
+        new GrowthDescription(GrowthStages.VINEY_BLUE, Placements.NETHER_DIRT_AND_UP, 15, 0.15)
+    );
+
+    public static final HarvestableSeed BUZZING_SEED = new HarvestableSeed(
+        NpsStacks.BUZZING_SEED,
+        new ItemStack(Material.HONEYCOMB),
+        new GrowthDescription(GrowthStages.VINEY_YELLOW, Placements.NETHER_DIRT_AND_UP, 10, 0.2)
+    );
+
+    public static final EntitySpawningSeed TERRIFYING_SEED = new EntitySpawningSeed(
+        NpsStacks.TERRIFYING_SEED,
+        EntityType.WITHER_SKELETON,
+        new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.NETHER_DIRT_AND_UP, 15, 0.1)
+    );
+
+    public static final GenericTickingSeed HATE_FILLED_SEED = new GenericTickingSeed(
+        NpsStacks.HATE_FILLED_SEED,
+        GenericTickingMethods::onTickHateFilledSeed,
+        new GrowthDescription(GrowthStages.VINEY_YELLOW, Placements.NETHER_DIRT_AND_UP, 0, 0.2)
+    );
+
+    public static final GenericTickingSeed PULSING_SEED = new GenericTickingSeed(
+        NpsStacks.PULSING_SEED,
+        GenericTickingMethods::onTickHateFilledSeed,
+        new GrowthDescription(GrowthStages.VINEY_GREEN, Placements.NETHER_DIRT_AND_UP, 20, 0.08)
+    );
+
+    public static final EntitySpawningSeed GATEWAY_SEED = new EntitySpawningSeed(
+        NpsStacks.GATEWAY_SEED,
+        EntityType.VILLAGER,
+        new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.NETHER_DIRT_AND_UP, 20, 0.08)
     );
 
     public static void setup() {
@@ -446,6 +549,7 @@ public final class NpsItems {
         PURIFICATION_BAROMETER.register(plugin);
         PURIFICATION_SCANNER.register(plugin);
         SEED_ANALYSER.register(plugin);
+        CRUX_GATHERER.register(plugin);
         ENDER_CAKE.register(plugin);
 
         // Crux'
@@ -455,17 +559,29 @@ public final class NpsItems {
         NETHER_DIRT.register(plugin);
         NETHER_GRASS.register(plugin);
         JUNGLE_CRUX.register(plugin);
+        BEACH_CRUX.register(plugin);
+        DESERT_CRUX.register(plugin);
+        SNOW_CRUX.register(plugin);
+        STONEY_CRUX.register(plugin);
+        SWAMP_CRUX.register(plugin);
 
         // Seeds
         PURIFICATION_SEED.register(plugin);
         SOUL_SEED.register(plugin);
         SPIRIT_SEED.register(plugin);
         SAINTLY_SEED.register(plugin);
+        EDEN_SEED.register(plugin);
+        JUNGLE_SEED.register(plugin);
+        BEACH_SEED.register(plugin);
+        DESERT_SEED.register(plugin);
+        SNOW_SEED.register(plugin);
+        STONEY_SEED.register(plugin);
+        SWAMP_SEED.register(plugin);
 
         SPINDLE_SEED.register(plugin);
         GRAINY_SEED.register(plugin);
         STRINGY_SEED.register(plugin);
-        STONEY_SEED.register(plugin);
+        COBBLED_SEED.register(plugin);
         DUSTY_SEED.register(plugin);
         SEASIDE_SEED.register(plugin);
         WET_SEED.register(plugin);
@@ -494,5 +610,11 @@ public final class NpsItems {
         OAKENDRAN_SEED.register(plugin);
 
         ADDON_BERRY_SEED.register(plugin);
+        CUTE_SEED.register(plugin);
+        BUZZING_SEED.register(plugin);
+        TERRIFYING_SEED.register(plugin);
+        HATE_FILLED_SEED.register(plugin);
+        PULSING_SEED.register(plugin);
+        GATEWAY_SEED.register(plugin);
     }
 }

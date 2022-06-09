@@ -11,7 +11,6 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.ProtectionUtils;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
@@ -39,12 +38,8 @@ public class PurificationSeed extends NetherSeed {
     private final Set<Material> materials;
 
     @ParametersAreNonnullByDefault
-    public PurificationSeed(ItemGroup group,
-                            SlimefunItemStack item,
-                            ItemStack[] recipe,
-                            GrowthDescription description
-    ) {
-        super(group, item, NpsRecipeTypes.VANILLA_DROP, recipe, null, description);
+    public PurificationSeed(SlimefunItemStack item, ItemStack[] recipe, GrowthDescription description) {
+        super(item, NpsRecipeTypes.VANILLA_DROP, recipe, null, description);
         materials = Set.of(
             Material.NETHERRACK,
             Material.CRIMSON_NYLIUM,

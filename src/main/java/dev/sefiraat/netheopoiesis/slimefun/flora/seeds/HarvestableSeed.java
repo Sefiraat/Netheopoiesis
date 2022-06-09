@@ -2,7 +2,6 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import org.bukkit.inventory.ItemStack;
 
@@ -19,8 +18,8 @@ public class HarvestableSeed extends NetherSeed {
     private final ItemStack harvestItemStack;
 
     @ParametersAreNonnullByDefault
-    public HarvestableSeed(ItemGroup group, SlimefunItemStack item, ItemStack harvest, GrowthDescription description) {
-        super(group, item, description);
+    public HarvestableSeed(SlimefunItemStack item, ItemStack harvest, GrowthDescription description) {
+        super(item, description);
         this.harvestItemStack = harvest;
     }
 

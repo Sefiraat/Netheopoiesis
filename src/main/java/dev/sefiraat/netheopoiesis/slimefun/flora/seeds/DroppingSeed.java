@@ -1,7 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.bukkit.Location;
@@ -20,13 +19,13 @@ public class DroppingSeed extends NetherSeed {
     private final ItemStack[] stacksToDrop;
 
     @ParametersAreNonnullByDefault
-    public DroppingSeed(ItemGroup group, SlimefunItemStack item, ItemStack drop, GrowthDescription description) {
-        this(group, item, new ItemStack[]{drop}, description);
+    public DroppingSeed(SlimefunItemStack item, ItemStack drop, GrowthDescription description) {
+        this(item, new ItemStack[]{drop}, description);
     }
 
     @ParametersAreNonnullByDefault
-    public DroppingSeed(ItemGroup group, SlimefunItemStack item, ItemStack[] drops, GrowthDescription description) {
-        super(group, item, description);
+    public DroppingSeed(SlimefunItemStack item, ItemStack[] drops, GrowthDescription description) {
+        super(item, description);
         this.stacksToDrop = drops;
     }
 

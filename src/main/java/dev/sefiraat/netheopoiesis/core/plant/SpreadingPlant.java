@@ -9,6 +9,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * This interface represents a plant that spreads out into BlockStorage
+ *
  * @see dev.sefiraat.netheopoiesis.slimefun.flora.seeds.CruxSpreadingSeed
  */
 public interface SpreadingPlant {

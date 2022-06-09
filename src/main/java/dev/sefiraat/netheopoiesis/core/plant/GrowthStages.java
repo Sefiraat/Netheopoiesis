@@ -106,7 +106,7 @@ public class GrowthStages {
      * This class is used to store the possible stages of growth a plant can go through
      * starting with a seed to its final step.
      *
-     * @param theme        The {@link Theme} that will be used for particle effects and other appropriate needs
+     * @param theme  The {@link Theme} that will be used for particle effects and other appropriate needs
      * @param stages The {@link List} of Skulls that will be used as textures for each stage
      */
     public GrowthStages(@Nonnull Theme theme, @Nonnull List<Skulls> stages) {

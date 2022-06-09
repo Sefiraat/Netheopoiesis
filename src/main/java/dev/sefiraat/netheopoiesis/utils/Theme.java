@@ -33,6 +33,7 @@ public enum Theme {
     RECIPE_TYPE(ChatColor.of("#ffe89c"), "Recipe Type"),
     MACHINE(ChatColor.of("#3295a8"), "Machine"),
     TOOL(ChatColor.of("#3295a8"), "Tool"),
+    PURIFYING_SEED(ChatColor.of("#a241bf"), "Purifying Seed"),
     SEED(ChatColor.of("#a241bf"), "Seed"),
     CRUX(ChatColor.of("#a241bf"), "Crux"),
     // Seeds

@@ -10,6 +10,7 @@ import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingPair;
 import dev.sefiraat.netheopoiesis.events.PlantBeforeGrowthEvent;
 import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
+import dev.sefiraat.netheopoiesis.slimefun.groups.NpsGroups;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.ParticleUtils;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
@@ -18,7 +19,6 @@ import dev.sefiraat.netheopoiesis.utils.Theme;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -75,29 +75,27 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     private final int purificationValue;
 
     @ParametersAreNonnullByDefault
-    protected NetherSeed(ItemGroup itemGroup, SlimefunItemStack item, GrowthDescription growthDescription) {
-        this(itemGroup, item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], null, growthDescription);
+    protected NetherSeed(SlimefunItemStack item, GrowthDescription growthDescription) {
+        this(item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], null, growthDescription);
     }
 
     @ParametersAreNonnullByDefault
-    protected NetherSeed(ItemGroup itemGroup,
-                         SlimefunItemStack item,
+    protected NetherSeed(SlimefunItemStack item,
                          RecipeType recipeType,
                          ItemStack[] recipe,
                          GrowthDescription growthDescription
     ) {
-        this(itemGroup, item, recipeType, recipe, null, growthDescription);
+        this(item, recipeType, recipe, null, growthDescription);
     }
 
     @ParametersAreNonnullByDefault
-    protected NetherSeed(ItemGroup itemGroup,
-                         SlimefunItemStack item,
+    protected NetherSeed(SlimefunItemStack item,
                          RecipeType recipeType,
                          ItemStack[] recipe,
                          @Nullable ItemStack recipeOutput,
                          GrowthDescription growthDescription
     ) {
-        super(itemGroup, item, recipeType, recipe, recipeOutput);
+        super(NpsGroups.SEEDS, item, recipeType, recipe, recipeOutput);
         this.growthStages = growthDescription.getStages();
         this.placement = growthDescription.getPlacements();
         this.growthRate = growthDescription.getGrowthRate();

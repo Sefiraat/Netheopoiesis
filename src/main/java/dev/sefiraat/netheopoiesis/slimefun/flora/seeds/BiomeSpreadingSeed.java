@@ -2,7 +2,6 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.bukkit.Location;
@@ -14,6 +13,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 /**
  * This seed will spread crux like the CruxSpreadingSeed whilst also setting the spread-to block's
  * biome
+ *
  * @see CruxSpreadingSeed
  */
 public class BiomeSpreadingSeed extends CruxSpreadingSeed {
@@ -21,14 +21,13 @@ public class BiomeSpreadingSeed extends CruxSpreadingSeed {
     private final Biome biome;
 
     @ParametersAreNonnullByDefault
-    public BiomeSpreadingSeed(ItemGroup itemGroup,
-                              SlimefunItemStack item,
+    public BiomeSpreadingSeed(SlimefunItemStack item,
                               double spreadChance,
                               NetherCrux convertTo,
-                              GrowthDescription description,
-                              Biome biome
+                              Biome biome,
+                              GrowthDescription description
     ) {
-        super(itemGroup, item, spreadChance, convertTo, description);
+        super(item, spreadChance, convertTo, description);
         this.biome = biome;
     }
 
@@ -41,6 +40,8 @@ public class BiomeSpreadingSeed extends CruxSpreadingSeed {
     @Override
     @ParametersAreNonnullByDefault
     public void afterSpread(Location sourceLocation, NetherSeed seed, Config data, Block spreadTo) {
-        spreadTo.setBiome(this.biome);
+        for (int i = spreadTo.getY() - 2; i < spreadTo.getY() + 5; i++) {
+            spreadTo.getWorld().setBiome(spreadTo.getX(), i, spreadTo.getZ(), this.biome);
+        }
     }
 }
