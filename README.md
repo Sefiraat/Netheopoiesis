@@ -37,7 +37,9 @@ Nether:
 - Bartering reaps greater rewards the higher the purification value
 - Travel to the end using the Ender Cake
 - Passive healing while in a purified region, increasing with the level of purification
-- In the latter stages, you are able to go beyond just purification being able to create overworld biomes in the Nether
+- In the latter stages, you are able to go beyond just purification being able to:
+  - Create overworld biomes in the Nether
+  - Convert massive lava lakes into water
 
 And more...
 
@@ -60,6 +62,8 @@ seed not initially available in the regular portion of the guide. Breeding requi
 you discover one, so watch out for in-game feedback, for example black particles mean the plants cannot breed, so you
 best stop trying!
 
+With a whopping 65 seeds currently available you'll have to do a lot of experimentation!
+
 *Hint: Breeding a purifying seed with another of the same type is a good way to discover new seeds each time you find a
 new one*
 
@@ -69,10 +73,10 @@ We had a lot of ideas for what we wanted to do here, but needed to keep the scop
 product would be ready for the end of the Jam, so here are a list of our planned features after the results of the Jam:
 
 - A plant or other generation method for every overworld-only item
-- Transformation of lava within the Nether to water
 - Legitimate sky access in the most purified areas
 
 ## Credits
 
 Big thank goes to GentlemanCheesy#2225 who made all the heads used in this addon. He made them in a very short time
 frame and, for those who may not know, each color and each shade as they grow had to be their own texture!
+Even the heads made by me in this addon used his as a base so massive kudos to him :)

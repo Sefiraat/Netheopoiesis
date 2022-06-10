@@ -1,12 +1,14 @@
 package dev.sefiraat.netheopoiesis.runnables;
 
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
+import dev.sefiraat.netheopoiesis.utils.Keys;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.block.Block;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * When trying to swap out a Slimefun Block in BlockStorage, the deletion will happen after a delay removing
@@ -20,10 +22,16 @@ public class UpdateCruxTask extends BukkitRunnable {
     private final Block block;
     @Nonnull
     private final NetherCrux crux;
+    private final int steps;
 
     public UpdateCruxTask(@Nonnull Block block, @Nonnull NetherCrux crux) {
+        this(block, crux, -1);
+    }
+
+    public UpdateCruxTask(@Nonnull Block block, @Nonnull NetherCrux crux, int spreadStepsRemaining) {
         this.block = block;
         this.crux = crux;
+        this.steps = spreadStepsRemaining;
     }
 
     @Override
@@ -35,6 +43,9 @@ public class UpdateCruxTask extends BukkitRunnable {
         // Store the new data then cancel task
         block.setType(crux.getItem().getType());
         BlockStorage.store(block, crux.getId());
+        if (steps > -1) {
+            BlockStorage.addBlockInfo(block, Keys.CRYSTALLINE_STEPS_REMAINING, String.valueOf(this.steps));
+        }
         cancel();
     }
 }

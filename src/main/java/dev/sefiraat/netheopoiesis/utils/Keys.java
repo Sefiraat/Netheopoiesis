@@ -10,6 +10,7 @@ public final class Keys {
     // Region Slimefun BlockStorage Keys
     public static final String SEED_GROWTH_STAGE = "growth-stage";
     public static final String SEED_OWNER = "plant-owner";
+    public static final String CRYSTALLINE_STEPS_REMAINING = "steps-left";
 
     public static final NamespacedKey COOLDOWN = newKey("cooldown");
 

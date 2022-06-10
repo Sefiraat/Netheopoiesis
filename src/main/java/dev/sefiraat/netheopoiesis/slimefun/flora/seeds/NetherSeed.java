@@ -17,6 +17,7 @@ import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.StatisticUtils;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
+import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.bakedlibs.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
@@ -61,6 +62,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
 
+    @Nonnull
     public static final Set<BlockFace> BREEDING_DIRECTIONS = Set.of(
         BlockFace.NORTH,
         BlockFace.SOUTH,
@@ -68,12 +70,14 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         BlockFace.WEST
     );
 
+    @Nonnull
     public final Map<Location, UUID> ownerCache = new HashMap<>();
-
-    private final GrowthStages growthStages;
-    private final Set<String> placement;
-    private final double growthRate;
-    private final int purificationValue;
+    @Nonnull
+    public final GrowthDescription description;
+    @Nonnull
+    public final ItemStack displayPlant;
+    @Nullable
+    public BreedingPair breedingPair;
 
     @ParametersAreNonnullByDefault
     protected NetherSeed(SlimefunItemStack item, GrowthDescription growthDescription) {
@@ -94,13 +98,19 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
                          RecipeType recipeType,
                          ItemStack[] recipe,
                          @Nullable ItemStack recipeOutput,
-                         GrowthDescription growthDescription
+                         GrowthDescription description
     ) {
         super(NpsGroups.SEEDS, item, recipeType, recipe, recipeOutput);
-        this.growthStages = growthDescription.getStages();
-        this.placement = growthDescription.getPlacements();
-        this.growthRate = growthDescription.getGrowthRate();
-        this.purificationValue = growthDescription.getPurificationValue();
+        this.description = description;
+        String[] lore = new String[0];
+        if (this.getItem().getItemMeta().hasLore()) {
+            lore = this.getItem().getItemMeta().getLore().toArray(lore);
+        }
+        this.displayPlant = new CustomItemStack(
+            this.description.getFullyGrownPlant(),
+            this.getItemName(),
+            lore
+        );
     }
 
     @Override
@@ -144,7 +154,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         final Location location = block.getLocation();
         int growthStage = Integer.parseInt(data.getString(Keys.SEED_GROWTH_STAGE));
         onTickAlways(location, seed, data);
-        if (growthStage >= getGrowthDescription().stages()) {
+        if (growthStage >= getGrowthStages().stages()) {
             onTickFullyGrown(location, seed, data);
             tryBreed(block, seed);
         } else {
@@ -156,14 +166,14 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     @ParametersAreNonnullByDefault
     private void tryGrow(Block block, NetherSeed seed, Config data, Location location, int growthStage) {
         final double growthRandom = ThreadLocalRandom.current().nextDouble();
-        if (growthRandom <= getGrowthRate() && getGrowthDescription().stages() > growthStage) {
+        if (growthRandom <= getGrowthRate() && getGrowthStages().stages() > growthStage) {
             PlantBeforeGrowthEvent event = new PlantBeforeGrowthEvent(location, seed, growthStage);
             Bukkit.getPluginManager().callEvent(event);
             if (event.isCancelled()) {
                 return;
             }
             updateGrowthStage(block, growthStage + 1);
-            if (getGrowthDescription().stages() == growthStage + 1) {
+            if (getGrowthStages().stages() == growthStage + 1) {
                 onFullyMatures(location, seed, data);
                 finalGrowthDisplay(location);
             }
@@ -208,7 +218,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     @ParametersAreNonnullByDefault
     private void trySetChildSeed(Location motherLocation, Block cloneBlock, NetherSeed childSeed) {
         cloneBlock.setType(Material.PLAYER_HEAD);
-        PlayerHead.setSkin(cloneBlock, childSeed.getGrowthDescription().get(0).getPlayerSkin(), false);
+        PlayerHead.setSkin(cloneBlock, childSeed.getGrowthStages().get(0).getPlayerSkin(), false);
         PaperLib.getBlockState(cloneBlock, false).getState().update(true, false);
         BlockStorage.store(cloneBlock, childSeed.getId());
         BlockStorage.addBlockInfo(cloneBlock, Keys.SEED_GROWTH_STAGE, "0");
@@ -269,7 +279,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
             return false;
         }
         final int growthStage = Integer.parseInt(stageString);
-        return growthStage >= getGrowthDescription().stages();
+        return growthStage >= getGrowthStages().stages();
     }
 
     public void updateGrowthStage(@Nonnull Location location, int growthStage) {
@@ -278,7 +288,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
 
     public void updateGrowthStage(@Nonnull Block block, int growthStage) {
         if (block.getType() == Material.PLAYER_HEAD || block.getType() == Material.PLAYER_WALL_HEAD) {
-            final Skulls nextTexture = getGrowthDescription().get(growthStage - 1);
+            final Skulls nextTexture = getGrowthStages().get(growthStage - 1);
             PlayerHead.setSkin(block, nextTexture.getPlayerSkin(), false);
             PaperLib.getBlockState(block, false).getState().update(true, false);
             BlockStorage.addBlockInfo(block, Keys.SEED_GROWTH_STAGE, String.valueOf(growthStage));
@@ -317,31 +327,37 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         return this;
     }
 
+    @Nonnull
     @Override
-    public GrowthStages getGrowthDescription() {
-        return growthStages;
+    public GrowthStages getGrowthStages() {
+        return this.description.getStages();
+    }
+
+    @Nonnull
+    public ItemStack getDisplayPlant() {
+        return this.displayPlant;
     }
 
     @Nonnull
     @Override
     public Theme getTheme() {
-        return growthStages.getTheme();
+        return this.description.getStages().getTheme();
     }
 
     @Nonnull
     @Override
     public Set<String> getPlacements() {
-        return this.placement;
+        return this.description.getPlacements();
     }
 
     @Override
     public double getGrowthRate() {
-        return growthRate * Netheopoiesis.GROWTH_RATE_MULTIPLIER;
+        return this.description.getGrowthRate() * Netheopoiesis.GROWTH_RATE_MULTIPLIER;
     }
 
     @Override
     public int getPurificationValue() {
-        return purificationValue * Netheopoiesis.GROWTH_RATE_MULTIPLIER;
+        return this.description.getPurificationValue() * Netheopoiesis.GROWTH_RATE_MULTIPLIER;
     }
 
     private void growthDisplay(@Nonnull Location location) {

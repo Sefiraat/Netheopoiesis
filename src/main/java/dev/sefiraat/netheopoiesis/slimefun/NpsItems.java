@@ -5,6 +5,7 @@ import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.core.plant.Placements;
 import dev.sefiraat.netheopoiesis.listeners.VanillaDropListener;
+import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.CrystallineCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.BiomeSpreadingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.CruxSpreadingSeed;
@@ -13,6 +14,7 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.EntitySpawningSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.GenericTickingMethods;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.GenericTickingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.HarvestableSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.DoNothingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique.PurificationSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique.WetSeed;
 import dev.sefiraat.netheopoiesis.slimefun.groups.NpsGroups;
@@ -28,6 +30,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fox;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -113,6 +116,12 @@ public final class NpsItems {
         NpsGroups.CRUX,
         NpsStacks.SWAMP_CRUX,
         16
+    );
+
+    public static final CrystallineCrux CRYSTALLINE_CRUX = new CrystallineCrux(
+        NpsGroups.CRUX,
+        NpsStacks.CRYSTALLINE_CRUX,
+        1
     );
 
     // endregion
@@ -514,6 +523,12 @@ public final class NpsItems {
         new GrowthDescription(GrowthStages.SPAWNING_BLUE, Placements.NETHER_DIRT_AND_UP, 15, 0.15)
     );
 
+    public static final EntitySpawningSeed BEST_FRIEND_SEED = new EntitySpawningSeed(
+        NpsStacks.BEST_FRIEND_SEED,
+        EntityType.WOLF,
+        new GrowthDescription(GrowthStages.SPAWNING_CYAN, Placements.NETHER_DIRT_AND_UP, 16, 0.10)
+    );
+
     public static final HarvestableSeed BUZZING_SEED = new HarvestableSeed(
         NpsStacks.BUZZING_SEED,
         new ItemStack(Material.HONEYCOMB),
@@ -542,6 +557,11 @@ public final class NpsItems {
         NpsStacks.GATEWAY_SEED,
         EntityType.VILLAGER,
         new GrowthDescription(GrowthStages.SPAWNING_PURPLE, Placements.NETHER_DIRT_AND_UP, 20, 0.08)
+    );
+
+    public static final DoNothingSeed CRYSTALLINE_SEED = new DoNothingSeed(
+        NpsStacks.CRYSTALLINE_SEED,
+        new GrowthDescription(GrowthStages.SPIKEY_ORANGE, Placements.NETHER_GRASS_AND_UP, 0, 0.02)
     );
 
     public static final EntitySpawningSeed BLACK_AND_WHITE_SEED = new EntitySpawningSeed(
@@ -584,6 +604,40 @@ public final class NpsItems {
         new GrowthDescription(GrowthStages.SPIKEY_GREEN, Placements.BEACH_BIOME, 15, 0.06)
     );
 
+    public static final GenericTickingSeed SPINEY_SEED = new GenericTickingSeed(
+        NpsStacks.SPINEY_SEED,
+        GenericTickingMethods::onTickSpineySeed,
+        new GrowthDescription(GrowthStages.SPIKEY_GREEN, Placements.DESERT_BIOME, 10, 0.03)
+    );
+
+    public static final EntitySpawningSeed HUSKY_SEED = new EntitySpawningSeed(
+        NpsStacks.HUSKY_SEED,
+        EntityType.HUSK,
+        new GrowthDescription(GrowthStages.SPAWNING_YELLOW, Placements.DESERT_BIOME, 15, 0.06)
+    );
+
+    public static final EntitySpawningSeed STRAY_SEED = new EntitySpawningSeed(
+        NpsStacks.STRAY_SEED,
+        EntityType.STRAY,
+        new GrowthDescription(GrowthStages.SPAWNING_CYAN, Placements.SNOW_BIOME, 15, 0.06)
+    );
+
+    public static final EntitySpawningSeed POLAR_SEED = new EntitySpawningSeed(
+        NpsStacks.POLAR_SEED,
+        EntityType.POLAR_BEAR,
+        new GrowthDescription(GrowthStages.SPAWNING_YELLOW, Placements.SNOW_BIOME, 12, 0.08)
+    );
+
+    public static final EntitySpawningSeed CHILLY_SEED = new EntitySpawningSeed(
+        NpsStacks.CHILLY_SEED,
+        EntityType.FOX,
+        livingEntity -> {
+            final Fox fox = (Fox) livingEntity;
+            fox.setFoxType(Fox.Type.SNOW);
+        },
+        new GrowthDescription(GrowthStages.SPAWNING_PURPLE, Placements.SNOW_BIOME, 12, 0.08)
+    );
+
     public static void setup() {
         final Netheopoiesis plugin = Netheopoiesis.getInstance();
 
@@ -612,6 +666,7 @@ public final class NpsItems {
         SNOW_CRUX.register(plugin);
         STONEY_CRUX.register(plugin);
         SWAMP_CRUX.register(plugin);
+        CRYSTALLINE_CRUX.register(plugin);
 
         // Seeds
         PURIFICATION_SEED.register(plugin);
@@ -659,11 +714,13 @@ public final class NpsItems {
 
         ADDON_BERRY_SEED.register(plugin);
         CUTE_SEED.register(plugin);
+        BEST_FRIEND_SEED.register(plugin);
         BUZZING_SEED.register(plugin);
         TERRIFYING_SEED.register(plugin);
         HATE_FILLED_SEED.register(plugin);
         PULSING_SEED.register(plugin);
         GATEWAY_SEED.register(plugin);
+        CRYSTALLINE_SEED.register(plugin);
 
         BLACK_AND_WHITE_SEED.register(plugin);
         PARROT_SEED.register(plugin);
@@ -671,5 +728,12 @@ public final class NpsItems {
 
         SHELLED_SEED.register(plugin);
         TREASURED_SEED.register(plugin);
+
+        SPINEY_SEED.register(plugin);
+        HUSKY_SEED.register(plugin);
+
+        STRAY_SEED.register(plugin);
+        POLAR_SEED.register(plugin);
+        CHILLY_SEED.register(plugin);
     }
 }

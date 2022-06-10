@@ -5,7 +5,6 @@ import io.github.bakedlibs.dough.skins.PlayerSkin;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * Stores the hashes for the skulls used in the addon with Methods for generating ItemStacks/Skins
@@ -258,11 +257,12 @@ public enum Skulls {
     // https://mineskin.org/55569926
     SPIKEY_PURPLE_5("472cae47a81cb5af41a2bbe4977d3b6394c29bb9b8e625a8baa09f83a29486fe");
 
-    private static final Skulls[] cachedValues = values();
+    @Nonnull
+    private static final Skulls[] CACHED_VALUES = values();
+    @Nonnull
     private final String hash;
 
-    @ParametersAreNonnullByDefault
-    Skulls(String hash) {
+    Skulls(@Nonnull String hash) {
         this.hash = hash;
     }
 
@@ -274,5 +274,10 @@ public enum Skulls {
     @Nonnull
     public PlayerSkin getPlayerSkin() {
         return PlayerSkin.fromHashCode(hash);
+    }
+
+    @Nonnull
+    public static Skulls[] getCachedValues() {
+        return CACHED_VALUES;
     }
 }

@@ -1,5 +1,8 @@
 package dev.sefiraat.netheopoiesis.core.plant;
 
+import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Set;
 
@@ -9,7 +12,9 @@ import java.util.Set;
  */
 public class GrowthDescription {
 
+    @Nonnull
     private final GrowthStages stages;
+    @Nonnull
     private final Set<String> placements;
     private final int purificationValue;
     private final double growthRate;
@@ -22,10 +27,12 @@ public class GrowthDescription {
         this.growthRate = growthRate;
     }
 
+    @Nonnull
     public GrowthStages getStages() {
         return stages;
     }
 
+    @Nonnull
     public Set<String> getPlacements() {
         return placements;
     }
@@ -36,5 +43,10 @@ public class GrowthDescription {
 
     public double getGrowthRate() {
         return growthRate;
+    }
+
+    @Nonnull
+    public ItemStack getFullyGrownPlant() {
+        return this.stages.getStages().get(this.stages.getStages().size() - 1).getPlayerHead();
     }
 }

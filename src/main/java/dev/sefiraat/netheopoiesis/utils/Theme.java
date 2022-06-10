@@ -45,8 +45,11 @@ public enum Theme {
     SEED_CYAN(ChatColor.of("#1fcccc")),
     SEED_PURPLE(ChatColor.of("#811dc4"));
 
-    private static final Theme[] cachedValues = values();
+    @Nonnull
+    private static final Theme[] CACHED_VALUES = values();
+    @Nonnull
     private final ChatColor color;
+    @Nonnull
     private final String loreLine;
 
     Theme(@Nonnull ChatColor color) {
@@ -85,8 +88,31 @@ public enum Theme {
         return this.color + String.valueOf(value1) + ": " + Theme.PASSIVE + value2;
     }
 
+    @Nonnull
+    public ChatColor getColor() {
+        return color;
+    }
+
+    @Nonnull
+    public Particle.DustOptions getDustOptions(float size) {
+        return new Particle.DustOptions(
+            Color.fromRGB(
+                color.getColor().getRed(),
+                color.getColor().getGreen(),
+                color.getColor().getBlue()
+            ),
+            size
+        );
+    }
+
+    @Override
+    @Nonnull
+    public String toString() {
+        return this.color.toString();
+    }
+
     public static Theme[] getCachedValues() {
-        return cachedValues;
+        return CACHED_VALUES;
     }
 
     /**
@@ -196,10 +222,6 @@ public enum Theme {
         );
     }
 
-    public ChatColor getColor() {
-        return color;
-    }
-
     /**
      * Applies the theme color to a given string
      *
@@ -259,23 +281,5 @@ public enum Theme {
             Theme.applyThemeToString(themeType, name),
             finalLore.toArray(new String[finalLore.size() - 1])
         );
-    }
-
-    @Nonnull
-    public Particle.DustOptions getDustOptions(float size) {
-        return new Particle.DustOptions(
-            Color.fromRGB(
-                color.getColor().getRed(),
-                color.getColor().getGreen(),
-                color.getColor().getBlue()
-            ),
-            size
-        );
-    }
-
-    @Override
-    @Nonnull
-    public String toString() {
-        return this.color.toString();
     }
 }

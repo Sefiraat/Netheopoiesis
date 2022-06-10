@@ -2,6 +2,7 @@ package dev.sefiraat.netheopoiesis.managers;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.listeners.BlockProtectionListener;
+import dev.sefiraat.netheopoiesis.listeners.CrystallineSeedListener;
 import dev.sefiraat.netheopoiesis.listeners.FriendlyMobsListener;
 import dev.sefiraat.netheopoiesis.listeners.MobSpawnListener;
 import dev.sefiraat.netheopoiesis.listeners.PlayerSleepListener;
@@ -30,6 +31,7 @@ public class ListenerManager {
         addListener(new WaterPlaceListener());
         addListener(new FriendlyMobsListener());
         addListener(new BlockProtectionListener());
+        addListener(new CrystallineSeedListener());
     }
 
     private void addListener(@Nonnull Listener listener) {

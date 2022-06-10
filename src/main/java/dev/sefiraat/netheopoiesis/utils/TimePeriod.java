@@ -28,6 +28,8 @@ public enum TimePeriod {
     MOB_SPAWN_CLEAR(13188, 22812),
     MOB_SPAWN_RAIN(12969, 23031);
 
+    @Nonnull
+    private static final TimePeriod[] CACHED_VALUES = values();
     private final long start;
     private final long end;
 
@@ -42,6 +44,11 @@ public enum TimePeriod {
 
     public long getEnd() {
         return end;
+    }
+
+    @Nonnull
+    public static TimePeriod[] getCachedValues() {
+        return CACHED_VALUES;
     }
 
     public static boolean isDay(@Nonnull World world) {

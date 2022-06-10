@@ -143,7 +143,7 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
                 final boolean researched = StatisticUtils.isDiscovered(player, child.getId());
 
                 if (mode == SlimefunGuideMode.CHEAT_MODE || researched) {
-                    menu.replaceExistingItem(slot, new ItemStack(pair.getChildPlant().getItem()));
+                    menu.replaceExistingItem(slot, new ItemStack(pair.getChildPlant().getDisplayPlant()));
                     menu.addMenuClickHandler(slot, (player1, i1, itemStack1, clickAction) -> {
                         displayDetail(player1, profile, mode, menu, page, pair);
                         return false;
@@ -185,7 +185,7 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
         final NetherSeed child = pair.getChildPlant();
 
         // Child
-        menu.replaceExistingItem(CHILD_SLOT, child.getItem());
+        menu.replaceExistingItem(CHILD_SLOT, child.getDisplayPlant());
         menu.addMenuClickHandler(CHILD_SLOT, ChestMenuUtils.getEmptyClickHandler());
         for (int i : CHILD_INFO_SLOT) {
             menu.replaceExistingItem(i, CHILD_INFO);
@@ -193,7 +193,7 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
         }
 
         // Mother
-        menu.replaceExistingItem(MOTHER_SLOT, pair.getMotherSeed().getItem());
+        menu.replaceExistingItem(MOTHER_SLOT, pair.getMotherSeed().getDisplayPlant());
         menu.addMenuClickHandler(MOTHER_SLOT, ChestMenuUtils.getEmptyClickHandler());
         for (int i : MOTHER_INFO_SLOT) {
             menu.replaceExistingItem(i, MOTHER_INFO);
@@ -201,7 +201,7 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
         }
 
         // Father
-        menu.replaceExistingItem(FATHER_SLOT, pair.getFatherSeed().getItem());
+        menu.replaceExistingItem(FATHER_SLOT, pair.getFatherSeed().getDisplayPlant());
         menu.addMenuClickHandler(FATHER_SLOT, ChestMenuUtils.getEmptyClickHandler());
         for (int i : FATHER_INFO_SLOT) {
             menu.replaceExistingItem(i, FATHER_INFO);

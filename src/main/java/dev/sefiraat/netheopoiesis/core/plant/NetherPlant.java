@@ -121,5 +121,5 @@ public interface NetherPlant extends PurifyingObject {
      *
      * @return The list of {@link Skulls} of valid growth stages (including the Seed)
      */
-    GrowthStages getGrowthDescription();
+    GrowthStages getGrowthStages();
 }

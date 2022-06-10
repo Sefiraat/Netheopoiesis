@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Statistic;
 import org.bukkit.TreeType;
+import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -46,6 +47,31 @@ public final class GenericTickingMethods {
                 && parameters.getSeed().getPlacements().contains(crux.getId())
             ) {
                 block.setType(Material.OAK_LOG);
+            }
+        }
+    }
+
+    public static void onTickSpineySeed(@Nonnull TickParameters parameters) {
+        double randomChance = ThreadLocalRandom.current().nextDouble();
+        if (randomChance <= 0.1) {
+            final double randomX = ThreadLocalRandom.current().nextInt(-3, 4);
+            final double randomY = ThreadLocalRandom.current().nextInt(-2, 3);
+            final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
+            final Block block = parameters.getLocation().add(randomX, randomY, randomZ).getBlock();
+
+            // the first block we spawn on needs to be AIR and Biome DESERT
+            if (block.getType() != Material.AIR && block.getBiome() == Biome.DESERT) {
+                return;
+            }
+
+            final Block blockBelow = block.getRelative(BlockFace.DOWN);
+            final SlimefunItem possibleCrux = BlockStorage.check(blockBelow);
+
+            // And the block below must be a valid crux
+            if (possibleCrux instanceof NetherCrux crux
+                && parameters.getSeed().getPlacements().contains(crux.getId())
+            ) {
+                block.setType(Material.CACTUS);
             }
         }
     }

@@ -268,6 +268,14 @@ public enum BreedingPair {
         0.15
     ),
 
+    BEST_FRIEND(
+        NpsItems.BEST_FRIEND_SEED,
+        NpsItems.CUTE_SEED,
+        NpsItems.SPLINTERED_SEED,
+        0.1,
+        0.15
+    ),
+
     BUZZING(
         NpsItems.BUZZING_SEED,
         NpsItems.CUTE_SEED,
@@ -312,6 +320,14 @@ public enum BreedingPair {
         NpsItems.EDEN_SEED,
         NpsItems.GATEWAY_SEED,
         NpsItems.PERFECTION_SEED,
+        0.15,
+        0.2
+    ),
+
+    CRYSTALLINE(
+        NpsItems.CRYSTALLINE_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.WET_SEED,
         0.15,
         0.2
     ),
@@ -402,6 +418,46 @@ public enum BreedingPair {
         NpsItems.SHINY_SEED,
         0.10,
         0.5
+    ),
+
+    SPINEY(
+        NpsItems.SPINEY_SEED,
+        NpsItems.DESERT_SEED,
+        NpsItems.SPINDLE_SEED,
+        0.2,
+        0.2
+    ),
+
+    HUSKY(
+        NpsItems.HUSKY_SEED,
+        NpsItems.DESERT_SEED,
+        NpsItems.ROTTEN_SEED,
+        0.05,
+        0.25
+    ),
+
+    STRAY(
+        NpsItems.STRAY_SEED,
+        NpsItems.SNOW_SEED,
+        NpsItems.SPLINTERED_SEED,
+        0.1,
+        0.25
+    ),
+
+    POLAR(
+        NpsItems.POLAR_SEED,
+        NpsItems.SNOW_SEED,
+        NpsItems.PORKY_SEED,
+        0.05,
+        0.25
+    ),
+
+    CHILLY(
+        NpsItems.CHILLY_SEED,
+        NpsItems.SNOW_SEED,
+        NpsItems.BEST_FRIEND_SEED,
+        0.05,
+        0.1
     );
 
     @Nonnull
@@ -424,10 +480,10 @@ public enum BreedingPair {
      */
     @ParametersAreNonnullByDefault
     BreedingPair(NetherSeed childPlant,
-                 NetherSeed motherSeed,
-                 NetherSeed fatherSeed,
-                 double breedChance,
-                 double spreadChance
+                        NetherSeed motherSeed,
+                        NetherSeed fatherSeed,
+                        double breedChance,
+                        double spreadChance
     ) {
         this.childPlant = childPlant;
         this.motherSeed = motherSeed;

@@ -15,6 +15,7 @@ import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ import java.util.Set;
  * A NetherCrux is a block that allows NetherPlants to grow on top.
  * Each plant has a {@link Set<String>} of id's to specify which Crux's they can be placed on
  *
- * @see {@link dev.sefiraat.netheopoiesis.core.plant.Placements}
+ * @see dev.sefiraat.netheopoiesis.core.plant.Placements
  */
 public class NetherCrux extends SlimefunItem implements PurifyingObject {
 
@@ -31,10 +32,7 @@ public class NetherCrux extends SlimefunItem implements PurifyingObject {
     private final int purificationValue;
     private int tick = 0;
 
-    public NetherCrux(ItemGroup itemGroup,
-                      SlimefunItemStack item,
-                      int purificationValue
-    ) {
+    public NetherCrux(@Nonnull ItemGroup itemGroup, @Nonnull SlimefunItemStack item, int purificationValue) {
         super(itemGroup, item, NpsRecipeTypes.NETHER_PURIFICATION, new ItemStack[0]);
         this.purificationValue = purificationValue;
     }
@@ -48,11 +46,11 @@ public class NetherCrux extends SlimefunItem implements PurifyingObject {
                     // We do not want crux' to be able to drop and placed elsewhere thus gaming the system
                     final Block block = event.getBlock();
                     final ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
-                    if (SlimefunItem.getByItem(heldItem).getId().equals(NpsItems.CRUX_GATHERER.getId())) {
+                    if (!SlimefunItem.getByItem(heldItem).getId().equals(NpsItems.CRUX_GATHERER.getId())) {
                         event.setCancelled(true);
                         block.setType(Material.AIR);
+                        BlockStorage.clearBlockInfo(block);
                     }
-                    BlockStorage.clearBlockInfo(block);
                     removePurificationRegistry(block);
                 }
             },

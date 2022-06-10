@@ -229,6 +229,17 @@ public final class NpsStacks {
         "teeming with life."
     );
 
+    public static final SlimefunItemStack CRYSTALLINE_CRUX = Theme.themedSlimefunItemStack(
+        "NPS_CRYSTALLINE_CRUX",
+        Material.HONEYCOMB_BLOCK,
+        Theme.CRUX,
+        "Crystalline Crux",
+        "This crux is unique in that it",
+        "spreads slowly out to other",
+        "nearby lava, cobblestone, stone",
+        "and obsidian blocks."
+    );
+
     // endregion
 
     // region Seeds
@@ -620,6 +631,15 @@ public final class NpsStacks {
         getCanBePlacedOnLore("Nether Dirt (or better)")
     );
 
+    public static final SlimefunItemStack BEST_FRIEND_SEED = Theme.themedSeed(
+        "NPS_BEST_FRIEND_SEED",
+        Skulls.SEED_CYAN.getPlayerHead(),
+        Theme.SEED,
+        "Best Friend Seed",
+        new String[]{"This seed, when fully grown,", "will sometimes spawn wolves."},
+        getCanBePlacedOnLore("Nether Dirt (or better)")
+    );
+
     public static final SlimefunItemStack BUZZING_SEED = Theme.themedSeed(
         "NPS_BUZZING_SEED",
         Skulls.SEED_YELLOW.getPlayerHead(),
@@ -663,6 +683,15 @@ public final class NpsStacks {
         "Gateway Seed",
         new String[]{"This seed, when fully grown,", "will allow villagers to cross", "over into your new nirvana."},
         getCanBePlacedOnLore("Nether Dirt (or better)")
+    );
+
+    public static final SlimefunItemStack CRYSTALLINE_SEED = Theme.themedSeed(
+        "NPS_CRYSTALLINE_SEED",
+        Skulls.SEED_ORANGE.getPlayerHead(),
+        Theme.SEED,
+        "Crystalline Seed",
+        new String[]{"This seed is different to all others", "it does nothing when planted.", "Try throwing it into lava."},
+        getCanBePlacedOnLore("Nether Grass (or better)")
     );
 
     // endregion
@@ -716,6 +745,59 @@ public final class NpsStacks {
         "Treasured Seed",
         new String[]{"This seed, when fully grown,", "has a -very- small chance to drop", "treasured items."},
         getCanBePlacedOnLore("Beach +")
+    );
+
+    // endregion
+
+    // region Desert
+
+    public static final SlimefunItemStack SPINEY_SEED = Theme.themedSeed(
+        "NPS_SPINEY_SEED",
+        Skulls.SEED_GREEN.getPlayerHead(),
+        Theme.SEED,
+        "Spiney Seed",
+        new String[]{"This seed, when fully grown,", "will slowly grow catci neaby"},
+        getCanBePlacedOnLore("Desert +")
+    );
+
+    public static final SlimefunItemStack HUSKY_SEED = Theme.themedSeed(
+        "NPS_HUSKY_SEED",
+        Skulls.SEED_YELLOW.getPlayerHead(),
+        Theme.SEED,
+        "Husky Seed",
+        new String[]{"This seed, when fully grown,", "will spawn Husks nearby."},
+        getCanBePlacedOnLore("Desert +")
+    );
+
+    // endregion
+
+    // region Snow
+
+    public static final SlimefunItemStack STRAY_SEED = Theme.themedSeed(
+        "NPS_STRAY_SEED",
+        Skulls.SEED_CYAN.getPlayerHead(),
+        Theme.SEED,
+        "Stray Seed",
+        new String[]{"This seed, when fully grown,", "will spawn Stray nearby"},
+        getCanBePlacedOnLore("Snow +")
+    );
+
+    public static final SlimefunItemStack POLAR_SEED = Theme.themedSeed(
+        "NPS_POLAR_SEED",
+        Skulls.SEED_YELLOW.getPlayerHead(),
+        Theme.SEED,
+        "Polar Seed",
+        new String[]{"This seed, when fully grown,", "will spawn Polar Bears nearby."},
+        getCanBePlacedOnLore("Snow +")
+    );
+
+    public static final SlimefunItemStack CHILLY_SEED = Theme.themedSeed(
+        "NPS_CHILLY_SEED",
+        Skulls.SEED_PURPLE.getPlayerHead(),
+        Theme.SEED,
+        "Chilly Seed",
+        new String[]{"This seed, when fully grown,", "will spawn Snow Foxes nearby."},
+        getCanBePlacedOnLore("Snow +")
     );
 
     // endregion
