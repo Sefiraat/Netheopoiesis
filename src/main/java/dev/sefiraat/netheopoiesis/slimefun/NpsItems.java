@@ -341,6 +341,30 @@ public final class NpsItems {
         new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.ALL, 1, 0.09)
     );
 
+    public static final HarvestableSeed VOLCANIC_SEED = new HarvestableSeed(
+        NpsStacks.VOLCANIC_SEED,
+        new ItemStack(Material.GRANITE),
+        new GrowthDescription(GrowthStages.FUNGAL_RED, Placements.ALL, 1, 0.09)
+    );
+
+    public static final HarvestableSeed IGNEOUS_SEED = new HarvestableSeed(
+        NpsStacks.IGNEOUS_SEED,
+        new ItemStack(Material.ANDESITE),
+        new GrowthDescription(GrowthStages.FUNGAL_CYAN, Placements.ALL, 1, 0.09)
+    );
+
+    public static final HarvestableSeed FELDSPAR_SEED = new HarvestableSeed(
+        NpsStacks.FELDSPAR_SEED,
+        new ItemStack(Material.DIORITE),
+        new GrowthDescription(GrowthStages.FUNGAL_YELLOW, Placements.ALL, 1, 0.09)
+    );
+
+    public static final HarvestableSeed DEEPSLATE_SEED = new HarvestableSeed(
+        NpsStacks.DEEPSLATE_SEED,
+        new ItemStack(Material.COBBLED_DEEPSLATE),
+        new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.ALL, 1, 0.09)
+    );
+
     public static final HarvestableSeed DUSTY_SEED = new HarvestableSeed(
         NpsStacks.DUSTY_SEED,
         new ItemStack(Material.GRAVEL),

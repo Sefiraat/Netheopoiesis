@@ -385,6 +385,42 @@ public final class NpsStacks {
         getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
     );
 
+    public static final SlimefunItemStack VOLCANIC_SEED = Theme.themedSeed(
+        "NPS_VOLCANIC_SEED",
+        Skulls.SEED_RED.getPlayerHead(),
+        Theme.SEED,
+        "Volcanic Seed",
+        new String[]{"This seed, when fully grown,", "can be harvested for Granite."},
+        getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
+    );
+
+    public static final SlimefunItemStack IGNEOUS_SEED = Theme.themedSeed(
+        "NPS_IGNEOUS_SEED",
+        Skulls.SEED_CYAN.getPlayerHead(),
+        Theme.SEED,
+        "Igneous Seed",
+        new String[]{"This seed, when fully grown,", "can be harvested for Andesite."},
+        getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
+    );
+
+    public static final SlimefunItemStack FELDSPAR_SEED = Theme.themedSeed(
+        "NPS_FELDSPAR_SEED",
+        Skulls.SEED_YELLOW.getPlayerHead(),
+        Theme.SEED,
+        "Feldspar Seed",
+        new String[]{"This seed, when fully grown,", "can be harvested for Diorite."},
+        getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
+    );
+
+    public static final SlimefunItemStack DEEPSLATE_SEED = Theme.themedSeed(
+        "NPS_DEEPSLATE_SEED",
+        Skulls.SEED_PURPLE.getPlayerHead(),
+        Theme.SEED,
+        "Deepslate Seed",
+        new String[]{"This seed, when fully grown,", "can be harvested for Cobbled", "deepslate."},
+        getCanBePlacedOnLore("Basic Purified Netherrack (or better)")
+    );
+
     public static final SlimefunItemStack DUSTY_SEED = Theme.themedSeed(
         "NPS_DUSTY_SEED",
         Skulls.SEED_CYAN.getPlayerHead(),

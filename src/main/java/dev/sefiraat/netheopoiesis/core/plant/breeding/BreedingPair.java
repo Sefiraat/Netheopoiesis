@@ -12,28 +12,60 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public enum BreedingPair {
 
-    SPINDLE(
+    ADDON_BERRY(
+        NpsItems.ADDON_BERRY_SEED,
+        NpsItems.SAINTLY_SEED,
+        NpsItems.SAINTLY_SEED,
+        0.1,
+        0.15
+    ),
+
+    BARTERED(
+        NpsItems.BARTERED_SEED,
+        NpsItems.IGNITED_SEED,
+        NpsItems.PORKY_SEED,
+        0.2,
+        0.25
+    ),
+
+    BEACH(
+        NpsItems.BEACH_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.EDEN_SEED,
+        0.05,
+        0.05
+    ),
+
+    BEST_FRIEND(
+        NpsItems.BEST_FRIEND_SEED,
+        NpsItems.CUTE_SEED,
+        NpsItems.SPLINTERED_SEED,
+        0.1,
+        0.15
+    ),
+
+    BLACK_AND_WHITE(
+        NpsItems.BLACK_AND_WHITE_SEED,
+        NpsItems.JUNGLE_SEED,
+        NpsItems.PORKY_SEED,
+        0.01,
+        0.05
+    ),
+
+    BUZZING(
+        NpsItems.BUZZING_SEED,
+        NpsItems.CUTE_SEED,
         NpsItems.SPINDLE_SEED,
-        NpsItems.PURIFICATION_SEED,
-        NpsItems.PURIFICATION_SEED,
-        0.1,
+        0.15,
         0.2
     ),
 
-    GRAINY(
-        NpsItems.GRAINY_SEED,
-        NpsItems.PURIFICATION_SEED,
-        NpsItems.PURIFICATION_SEED,
-        0.1,
-        0.2
-    ),
-
-    STRINGY(
-        NpsItems.STRINGY_SEED,
-        NpsItems.PURIFICATION_SEED,
-        NpsItems.PURIFICATION_SEED,
-        0.1,
-        0.2
+    CHILLY(
+        NpsItems.CHILLY_SEED,
+        NpsItems.SNOW_SEED,
+        NpsItems.BEST_FRIEND_SEED,
+        0.05,
+        0.1
     ),
 
     COBBLED(
@@ -41,94 +73,6 @@ public enum BreedingPair {
         NpsItems.SPINDLE_SEED,
         NpsItems.GRAINY_SEED,
         0.1,
-        0.2
-    ),
-
-    DUSTY(
-        NpsItems.DUSTY_SEED,
-        NpsItems.COBBLED_SEED,
-        NpsItems.GRAINY_SEED,
-        0.1,
-        0.2
-    ),
-
-    SEASIDE(
-        NpsItems.SEASIDE_SEED,
-        NpsItems.SPINDLE_SEED,
-        NpsItems.DUSTY_SEED,
-        0.05,
-        0.2
-    ),
-
-    MOLDABLE(
-        NpsItems.MOLDABLE_SEED,
-        NpsItems.SEASIDE_SEED,
-        NpsItems.COBBLED_SEED,
-        0.05,
-        0.2
-    ),
-
-    WET(
-        NpsItems.WET_SEED,
-        NpsItems.SEASIDE_SEED,
-        NpsItems.MOLDABLE_SEED,
-        0.1,
-        0.1
-    ),
-
-    SPLINTERED(
-        NpsItems.SPLINTERED_SEED,
-        NpsItems.SPINDLE_SEED,
-        NpsItems.STRINGY_SEED,
-        0.05,
-        0.2
-    ),
-
-    ROTTEN(
-        NpsItems.ROTTEN_SEED,
-        NpsItems.SPLINTERED_SEED,
-        NpsItems.DUSTY_SEED,
-        0.05,
-        0.2
-    ),
-
-    SOUL(
-        NpsItems.SOUL_SEED,
-        NpsItems.ROTTEN_SEED,
-        NpsItems.PURIFICATION_SEED,
-        0.05,
-        0.2
-    ),
-
-    METALLIC(
-        NpsItems.METALLIC_SEED,
-        NpsItems.SOUL_SEED,
-        NpsItems.SOUL_SEED,
-        0.05,
-        0.2
-    ),
-
-    SHINY(
-        NpsItems.SHINY_SEED,
-        NpsItems.SOUL_SEED,
-        NpsItems.SOUL_SEED,
-        0.05,
-        0.2
-    ),
-
-    SMOOTH(
-        NpsItems.SMOOTH_SEED,
-        NpsItems.SOUL_SEED,
-        NpsItems.SOUL_SEED,
-        0.05,
-        0.2
-    ),
-
-    ENCHANTED(
-        NpsItems.ENCHANTED_SEED,
-        NpsItems.SHINY_SEED,
-        NpsItems.SOUL_SEED,
-        0.05,
         0.2
     ),
 
@@ -140,58 +84,58 @@ public enum BreedingPair {
         0.2
     ),
 
-    PROTECTIVE(
-        NpsItems.PROTECTIVE_SEED,
-        NpsItems.METALLIC_SEED,
-        NpsItems.SOUL_SEED,
-        0.02,
-        0.1
-    ),
-
-    PORKY(
-        NpsItems.PORKY_SEED,
-        NpsItems.SPINDLE_SEED,
-        NpsItems.SOUL_SEED,
-        0.07,
-        0.1
-    ),
-
-    VALUABLE(
-        NpsItems.VALUABLE_SEED,
-        NpsItems.SHINY_SEED,
-        NpsItems.ENCHANTED_SEED,
-        0.05,
+    CRYSTALLINE(
+        NpsItems.CRYSTALLINE_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.WET_SEED,
+        0.15,
         0.2
     ),
 
-    PERFECTION(
+    CUTE(
+        NpsItems.CUTE_SEED,
+        NpsItems.SAINTLY_SEED,
+        NpsItems.SAINTLY_SEED,
+        0.1,
+        0.15
+    ),
+
+    DEEPSLATE(
+        NpsItems.DEEPSLATE_SEED,
+        NpsItems.COBBLED_SEED,
+        NpsItems.COBBLED_SEED,
+        0.1,
+        0.2
+    ),
+
+    DESERT(
+        NpsItems.DESERT_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.EDEN_SEED,
+        0.05,
+        0.05
+    ),
+
+    DUSTY(
+        NpsItems.DUSTY_SEED,
+        NpsItems.COBBLED_SEED,
+        NpsItems.GRAINY_SEED,
+        0.1,
+        0.2
+    ),
+
+    EDEN(
+        NpsItems.EDEN_SEED,
+        NpsItems.GATEWAY_SEED,
         NpsItems.PERFECTION_SEED,
+        0.15,
+        0.2
+    ),
+
+    ENCHANTED(
+        NpsItems.ENCHANTED_SEED,
         NpsItems.SHINY_SEED,
-        NpsItems.VALUABLE_SEED,
-        0.05,
-        0.2
-    ),
-
-    RAINBOW(
-        NpsItems.RAINBOW_SEED,
-        NpsItems.SPIRIT_SEED,
-        NpsItems.SPIRIT_SEED,
-        0.05,
-        0.2
-    ),
-
-    GLOWING(
-        NpsItems.GLOWING_SEED,
-        NpsItems.SPIRIT_SEED,
-        NpsItems.SPIRIT_SEED,
-        0.05,
-        0.2
-    ),
-
-    GLISTENING(
-        NpsItems.GLISTENING_SEED,
-        NpsItems.GLOWING_SEED,
-        NpsItems.METALLIC_SEED,
+        NpsItems.SOUL_SEED,
         0.05,
         0.2
     ),
@@ -204,6 +148,78 @@ public enum BreedingPair {
         0.1
     ),
 
+    FELDSPAR(
+        NpsItems.FELDSPAR_SEED,
+        NpsItems.COBBLED_SEED,
+        NpsItems.COBBLED_SEED,
+        0.1,
+        0.2
+    ),
+
+    GATEWAY(
+        NpsItems.GATEWAY_SEED,
+        NpsItems.PULSING_SEED,
+        NpsItems.BARTERED_SEED,
+        0.15,
+        0.2
+    ),
+
+    GLISTENING(
+        NpsItems.GLISTENING_SEED,
+        NpsItems.GLOWING_SEED,
+        NpsItems.METALLIC_SEED,
+        0.05,
+        0.2
+    ),
+
+    GLOWING(
+        NpsItems.GLOWING_SEED,
+        NpsItems.SPIRIT_SEED,
+        NpsItems.SPIRIT_SEED,
+        0.05,
+        0.2
+    ),
+
+    GRAINY(
+        NpsItems.GRAINY_SEED,
+        NpsItems.PURIFICATION_SEED,
+        NpsItems.PURIFICATION_SEED,
+        0.1,
+        0.2
+    ),
+
+    HATE_FILLED(
+        NpsItems.HATE_FILLED_SEED,
+        NpsItems.TERRIFYING_SEED,
+        NpsItems.PROTECTIVE_SEED,
+        0.2,
+        0.05
+    ),
+
+    HEXED(
+        NpsItems.HEXED_SEED,
+        NpsItems.SWAMP_SEED,
+        NpsItems.ENCHANTED_SEED,
+        0.03,
+        0.1
+    ),
+
+    HUSKY(
+        NpsItems.HUSKY_SEED,
+        NpsItems.DESERT_SEED,
+        NpsItems.ROTTEN_SEED,
+        0.05,
+        0.25
+    ),
+
+    IGNEOUS(
+        NpsItems.IGNEOUS_SEED,
+        NpsItems.COBBLED_SEED,
+        NpsItems.COBBLED_SEED,
+        0.1,
+        0.2
+    ),
+
     IGNITED(
         NpsItems.IGNITED_SEED,
         NpsItems.ETHEREAL_SEED,
@@ -212,26 +228,10 @@ public enum BreedingPair {
         0.25
     ),
 
-    BARTERED(
-        NpsItems.BARTERED_SEED,
-        NpsItems.IGNITED_SEED,
-        NpsItems.PORKY_SEED,
-        0.2,
-        0.25
-    ),
-
-    PRISMATIC(
-        NpsItems.PRISMATIC_SEED,
-        NpsItems.RAINBOW_SEED,
-        NpsItems.SPLINTERED_SEED,
-        0.1,
-        0.15
-    ),
-
-    POROUS(
-        NpsItems.POROUS_SEED,
-        NpsItems.PRISMATIC_SEED,
-        NpsItems.SEASIDE_SEED,
+    JUNGLE(
+        NpsItems.JUNGLE_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.EDEN_SEED,
         0.05,
         0.05
     ),
@@ -244,156 +244,28 @@ public enum BreedingPair {
         0.15
     ),
 
+    METALLIC(
+        NpsItems.METALLIC_SEED,
+        NpsItems.SOUL_SEED,
+        NpsItems.SOUL_SEED,
+        0.05,
+        0.2
+    ),
+
+    MOLDABLE(
+        NpsItems.MOLDABLE_SEED,
+        NpsItems.SEASIDE_SEED,
+        NpsItems.COBBLED_SEED,
+        0.05,
+        0.2
+    ),
+
     OAKENDRAN(
         NpsItems.OAKENDRAN_SEED,
         NpsItems.ETHEREAL_SEED,
         NpsItems.SPINDLE_SEED,
         0.1,
         0.15
-    ),
-
-    SAINTLY(
-        NpsItems.SAINTLY_SEED,
-        NpsItems.OAKENDRAN_SEED,
-        NpsItems.SPIRIT_SEED,
-        0.1,
-        0.15
-    ),
-
-    ADDON_BERRY(
-        NpsItems.ADDON_BERRY_SEED,
-        NpsItems.SAINTLY_SEED,
-        NpsItems.SAINTLY_SEED,
-        0.1,
-        0.15
-    ),
-
-    CUTE(
-        NpsItems.CUTE_SEED,
-        NpsItems.SAINTLY_SEED,
-        NpsItems.SAINTLY_SEED,
-        0.1,
-        0.15
-    ),
-
-    BEST_FRIEND(
-        NpsItems.BEST_FRIEND_SEED,
-        NpsItems.CUTE_SEED,
-        NpsItems.SPLINTERED_SEED,
-        0.1,
-        0.15
-    ),
-
-    BUZZING(
-        NpsItems.BUZZING_SEED,
-        NpsItems.CUTE_SEED,
-        NpsItems.SPINDLE_SEED,
-        0.15,
-        0.2
-    ),
-
-    TERRIFYING(
-        NpsItems.TERRIFYING_SEED,
-        NpsItems.SAINTLY_SEED,
-        NpsItems.SAINTLY_SEED,
-        0.10,
-        0.3
-    ),
-
-    HATE_FILLED(
-        NpsItems.HATE_FILLED_SEED,
-        NpsItems.TERRIFYING_SEED,
-        NpsItems.PROTECTIVE_SEED,
-        0.2,
-        0.05
-    ),
-
-    PULSING(
-        NpsItems.PULSING_SEED,
-        NpsItems.HATE_FILLED_SEED,
-        NpsItems.GLOWING_SEED,
-        0.15,
-        0.2
-    ),
-
-    GATEWAY(
-        NpsItems.GATEWAY_SEED,
-        NpsItems.PULSING_SEED,
-        NpsItems.BARTERED_SEED,
-        0.15,
-        0.2
-    ),
-
-    EDEN(
-        NpsItems.EDEN_SEED,
-        NpsItems.GATEWAY_SEED,
-        NpsItems.PERFECTION_SEED,
-        0.15,
-        0.2
-    ),
-
-    CRYSTALLINE(
-        NpsItems.CRYSTALLINE_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.WET_SEED,
-        0.15,
-        0.2
-    ),
-
-    JUNGLE(
-        NpsItems.JUNGLE_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.EDEN_SEED,
-        0.05,
-        0.05
-    ),
-
-    BEACH(
-        NpsItems.BEACH_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.EDEN_SEED,
-        0.05,
-        0.05
-    ),
-
-    DESERT(
-        NpsItems.DESERT_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.EDEN_SEED,
-        0.05,
-        0.05
-    ),
-
-    SNOW(
-        NpsItems.SNOW_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.EDEN_SEED,
-        0.05,
-        0.05
-    ),
-
-    STONE(
-        NpsItems.STONEY_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.EDEN_SEED,
-        0.05,
-        0.05
-    ),
-
-    SWAMP(
-        NpsItems.SWAMP_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.EDEN_SEED,
-        0.05,
-        0.05
-    ),
-
-    BLACK_AND_WHITE(
-        NpsItems.BLACK_AND_WHITE_SEED,
-        NpsItems.JUNGLE_SEED,
-        NpsItems.PORKY_SEED,
-        0.01,
-        0.05
     ),
 
     PARROT(
@@ -404,52 +276,12 @@ public enum BreedingPair {
         0.15
     ),
 
-    WILD(
-        NpsItems.WILD_SEED,
-        NpsItems.JUNGLE_SEED,
-        NpsItems.CUTE_SEED,
-        0.05,
-        0.15
-    ),
-
-    SHELLED(
-        NpsItems.SHELLED_SEED,
-        NpsItems.BEACH_SEED,
-        NpsItems.PROTECTIVE_SEED,
-        0.05,
-        0.15
-    ),
-
-    TREASURED(
-        NpsItems.TREASURED_SEED,
-        NpsItems.BEACH_SEED,
+    PERFECTION(
+        NpsItems.PERFECTION_SEED,
         NpsItems.SHINY_SEED,
-        0.10,
-        0.5
-    ),
-
-    SPINEY(
-        NpsItems.SPINEY_SEED,
-        NpsItems.DESERT_SEED,
-        NpsItems.SPINDLE_SEED,
-        0.2,
-        0.2
-    ),
-
-    HUSKY(
-        NpsItems.HUSKY_SEED,
-        NpsItems.DESERT_SEED,
-        NpsItems.ROTTEN_SEED,
+        NpsItems.VALUABLE_SEED,
         0.05,
-        0.25
-    ),
-
-    STRAY(
-        NpsItems.STRAY_SEED,
-        NpsItems.SNOW_SEED,
-        NpsItems.SPLINTERED_SEED,
-        0.1,
-        0.25
+        0.2
     ),
 
     POLAR(
@@ -460,20 +292,92 @@ public enum BreedingPair {
         0.25
     ),
 
-    CHILLY(
-        NpsItems.CHILLY_SEED,
-        NpsItems.SNOW_SEED,
-        NpsItems.BEST_FRIEND_SEED,
-        0.05,
+    PORKY(
+        NpsItems.PORKY_SEED,
+        NpsItems.SPINDLE_SEED,
+        NpsItems.SOUL_SEED,
+        0.07,
         0.1
     ),
 
-    HEXED(
-        NpsItems.HEXED_SEED,
-        NpsItems.SWAMP_SEED,
-        NpsItems.ENCHANTED_SEED,
-        0.03,
+    POROUS(
+        NpsItems.POROUS_SEED,
+        NpsItems.PRISMATIC_SEED,
+        NpsItems.SEASIDE_SEED,
+        0.05,
+        0.05
+    ),
+
+    PRISMATIC(
+        NpsItems.PRISMATIC_SEED,
+        NpsItems.RAINBOW_SEED,
+        NpsItems.SPLINTERED_SEED,
+        0.1,
+        0.15
+    ),
+
+    PROTECTIVE(
+        NpsItems.PROTECTIVE_SEED,
+        NpsItems.METALLIC_SEED,
+        NpsItems.SOUL_SEED,
+        0.02,
         0.1
+    ),
+
+    PULSING(
+        NpsItems.PULSING_SEED,
+        NpsItems.HATE_FILLED_SEED,
+        NpsItems.GLOWING_SEED,
+        0.15,
+        0.2
+    ),
+
+    RAINBOW(
+        NpsItems.RAINBOW_SEED,
+        NpsItems.SPIRIT_SEED,
+        NpsItems.SPIRIT_SEED,
+        0.05,
+        0.2
+    ),
+
+    ROTTEN(
+        NpsItems.ROTTEN_SEED,
+        NpsItems.SPLINTERED_SEED,
+        NpsItems.DUSTY_SEED,
+        0.05,
+        0.2
+    ),
+
+    SAINTLY(
+        NpsItems.SAINTLY_SEED,
+        NpsItems.OAKENDRAN_SEED,
+        NpsItems.SPIRIT_SEED,
+        0.1,
+        0.15
+    ),
+
+    SEASIDE(
+        NpsItems.SEASIDE_SEED,
+        NpsItems.SPINDLE_SEED,
+        NpsItems.DUSTY_SEED,
+        0.05,
+        0.2
+    ),
+
+    SHELLED(
+        NpsItems.SHELLED_SEED,
+        NpsItems.BEACH_SEED,
+        NpsItems.PROTECTIVE_SEED,
+        0.05,
+        0.15
+    ),
+
+    SHINY(
+        NpsItems.SHINY_SEED,
+        NpsItems.SOUL_SEED,
+        NpsItems.SOUL_SEED,
+        0.05,
+        0.2
     ),
 
     SLIMY(
@@ -482,6 +386,134 @@ public enum BreedingPair {
         NpsItems.GLISTENING_SEED,
         0.05,
         0.1
+    ),
+
+    SMOOTH(
+        NpsItems.SMOOTH_SEED,
+        NpsItems.SOUL_SEED,
+        NpsItems.SOUL_SEED,
+        0.05,
+        0.2
+    ),
+
+    SNOW(
+        NpsItems.SNOW_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.EDEN_SEED,
+        0.05,
+        0.05
+    ),
+
+    SOUL(
+        NpsItems.SOUL_SEED,
+        NpsItems.ROTTEN_SEED,
+        NpsItems.PURIFICATION_SEED,
+        0.05,
+        0.2
+    ),
+
+    SPINDLE(
+        NpsItems.SPINDLE_SEED,
+        NpsItems.PURIFICATION_SEED,
+        NpsItems.PURIFICATION_SEED,
+        0.1,
+        0.2
+    ),
+
+    SPINEY(
+        NpsItems.SPINEY_SEED,
+        NpsItems.DESERT_SEED,
+        NpsItems.SPINDLE_SEED,
+        0.2,
+        0.2
+    ),
+
+    SPLINTERED(
+        NpsItems.SPLINTERED_SEED,
+        NpsItems.SPINDLE_SEED,
+        NpsItems.STRINGY_SEED,
+        0.05,
+        0.2
+    ),
+
+    STONE(
+        NpsItems.STONEY_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.EDEN_SEED,
+        0.05,
+        0.05
+    ),
+
+    STRAY(
+        NpsItems.STRAY_SEED,
+        NpsItems.SNOW_SEED,
+        NpsItems.SPLINTERED_SEED,
+        0.1,
+        0.25
+    ),
+
+    STRINGY(
+        NpsItems.STRINGY_SEED,
+        NpsItems.PURIFICATION_SEED,
+        NpsItems.PURIFICATION_SEED,
+        0.1,
+        0.2
+    ),
+
+    SWAMP(
+        NpsItems.SWAMP_SEED,
+        NpsItems.EDEN_SEED,
+        NpsItems.EDEN_SEED,
+        0.05,
+        0.05
+    ),
+
+    TERRIFYING(
+        NpsItems.TERRIFYING_SEED,
+        NpsItems.SAINTLY_SEED,
+        NpsItems.SAINTLY_SEED,
+        0.10,
+        0.3
+    ),
+
+    TREASURED(
+        NpsItems.TREASURED_SEED,
+        NpsItems.BEACH_SEED,
+        NpsItems.SHINY_SEED,
+        0.10,
+        0.5
+    ),
+
+    VALUABLE(
+        NpsItems.VALUABLE_SEED,
+        NpsItems.SHINY_SEED,
+        NpsItems.ENCHANTED_SEED,
+        0.05,
+        0.2
+    ),
+
+    VOLCANIC(
+        NpsItems.VOLCANIC_SEED,
+        NpsItems.COBBLED_SEED,
+        NpsItems.COBBLED_SEED,
+        0.1,
+        0.2
+    ),
+
+    WET(
+        NpsItems.WET_SEED,
+        NpsItems.SEASIDE_SEED,
+        NpsItems.MOLDABLE_SEED,
+        0.1,
+        0.1
+    ),
+
+    WILD(
+        NpsItems.WILD_SEED,
+        NpsItems.JUNGLE_SEED,
+        NpsItems.CUTE_SEED,
+        0.05,
+        0.15
     );
 
     @Nonnull
