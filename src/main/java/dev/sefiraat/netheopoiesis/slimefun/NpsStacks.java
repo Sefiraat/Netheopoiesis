@@ -546,6 +546,15 @@ public final class NpsStacks {
         getCanBePlacedOnLore("Voracious Dirt (or better)")
     );
 
+    public static final SlimefunItemStack GLISTENING_SEED = Theme.themedSeed(
+        "NPS_GLISTENING_SEED",
+        Skulls.SEED_ORANGE.getPlayerHead(),
+        Theme.SEED,
+        "Glistening Seed",
+        new String[]{"This seed, when fully grown,", "can be harvested for some food."},
+        getCanBePlacedOnLore("Voracious Dirt (or better)")
+    );
+
     public static final SlimefunItemStack ETHEREAL_SEED = Theme.themedSeed(
         "NPS_ETHEREAL_SEED",
         Skulls.SEED_GREEN.getPlayerHead(),
@@ -660,7 +669,7 @@ public final class NpsStacks {
 
     public static final SlimefunItemStack HATE_FILLED_SEED = Theme.themedSeed(
         "NPS_HATE_FILLED_SEED",
-        Skulls.SEED_YELLOW.getPlayerHead(),
+        Skulls.SEED_ORANGE.getPlayerHead(),
         Theme.SEED,
         "Hate-Filled Seed",
         new String[]{"This seed, when fully grown,", "can only cause bad things", "to occur. Be sure to place", "wisely!"},
@@ -798,6 +807,33 @@ public final class NpsStacks {
         "Chilly Seed",
         new String[]{"This seed, when fully grown,", "will spawn Snow Foxes nearby."},
         getCanBePlacedOnLore("Snow +")
+    );
+
+    // endregion
+
+    // region Stoney
+
+
+    // endregion
+
+    // region Swamp
+
+    public static final SlimefunItemStack HEXED_SEED = Theme.themedSeed(
+        "NPS_HEXED_SEED",
+        Skulls.SEED_PURPLE.getPlayerHead(),
+        Theme.SEED,
+        "Hexed Seed",
+        new String[]{"This seed, when fully grown,", "will spawn Witches nearby"},
+        getCanBePlacedOnLore("Swamp +")
+    );
+
+    public static final SlimefunItemStack SLIMY_SEED = Theme.themedSeed(
+        "NPS_SLIMY_SEED",
+        Skulls.SEED_GREEN.getPlayerHead(),
+        Theme.SEED,
+        "Slimy Seed",
+        new String[]{"This seed, when fully grown,", "will spawn Slime nearby."},
+        getCanBePlacedOnLore("Swamp +")
     );
 
     // endregion

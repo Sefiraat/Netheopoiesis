@@ -9,12 +9,12 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.CrystallineCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.BiomeSpreadingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.CruxSpreadingSeed;
+import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.DoNothingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.DroppingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.EntitySpawningSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.GenericTickingMethods;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.GenericTickingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.HarvestableSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.DoNothingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique.PurificationSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique.WetSeed;
 import dev.sefiraat.netheopoiesis.slimefun.groups.NpsGroups;
@@ -356,7 +356,7 @@ public final class NpsItems {
     public static final HarvestableSeed MOLDABLE_SEED = new HarvestableSeed(
         NpsStacks.MOLDABLE_SEED,
         new ItemStack(Material.CLAY_BALL),
-        new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.ALL, 1, 0.09)
+        new GrowthDescription(GrowthStages.FUNGAL_PURPLE, Placements.ALL, 1, 0.09)
     );
 
     public static final WetSeed WET_SEED = new WetSeed(
@@ -427,7 +427,7 @@ public final class NpsItems {
     public static final HarvestableSeed PERFECTION_SEED = new HarvestableSeed(
         NpsStacks.PERFECTION_SEED,
         new ItemStack(Material.DIAMOND),
-        new GrowthDescription(GrowthStages.VINEY_BLUE, Placements.PURIFIED_AND_UP, 5, 0.07)
+        new GrowthDescription(GrowthStages.FUNGAL_BLUE, Placements.PURIFIED_AND_UP, 5, 0.07)
     );
 
     public static final DroppingSeed RAINBOW_SEED = new DroppingSeed(
@@ -462,7 +462,13 @@ public final class NpsItems {
             new ItemStack(Material.GLOW_INK_SAC)
         },
         0.08,
-        new GrowthDescription(GrowthStages.VINEY_RED, Placements.VORACIOUS_AND_UP, 8, 0.06)
+        new GrowthDescription(GrowthStages.FUNGAL_RED, Placements.VORACIOUS_AND_UP, 8, 0.06)
+    );
+
+    public static final HarvestableSeed GLISTENING_SEED = new HarvestableSeed(
+        NpsStacks.GLISTENING_SEED,
+        new ItemStack(Material.GLISTERING_MELON_SLICE),
+        new GrowthDescription(GrowthStages.SPIKEY_ORANGE, Placements.VORACIOUS_AND_UP, 5, 0.07)
     );
 
     public static final EntitySpawningSeed ETHEREAL_SEED = new EntitySpawningSeed(
@@ -496,7 +502,7 @@ public final class NpsItems {
     public static final HarvestableSeed POROUS_SEED = new HarvestableSeed(
         NpsStacks.POROUS_SEED,
         new ItemStack(Material.SPONGE),
-        new GrowthDescription(GrowthStages.VINEY_YELLOW, Placements.VORACIOUS_AND_UP, 9, 0.06)
+        new GrowthDescription(GrowthStages.FUNGAL_YELLOW, Placements.VORACIOUS_AND_UP, 9, 0.06)
     );
 
     public static final HarvestableSeed LEARNED_SEED = new HarvestableSeed(
@@ -544,12 +550,12 @@ public final class NpsItems {
     public static final GenericTickingSeed HATE_FILLED_SEED = new GenericTickingSeed(
         NpsStacks.HATE_FILLED_SEED,
         GenericTickingMethods::onTickHateFilledSeed,
-        new GrowthDescription(GrowthStages.VINEY_YELLOW, Placements.NETHER_DIRT_AND_UP, 0, 0.2)
+        new GrowthDescription(GrowthStages.FUNGAL_ORANGE, Placements.NETHER_DIRT_AND_UP, 0, 0.2)
     );
 
     public static final GenericTickingSeed PULSING_SEED = new GenericTickingSeed(
         NpsStacks.PULSING_SEED,
-        GenericTickingMethods::onTickHateFilledSeed,
+        GenericTickingMethods::onTickPulsingSeed,
         new GrowthDescription(GrowthStages.VINEY_GREEN, Placements.NETHER_DIRT_AND_UP, 20, 0.08)
     );
 
@@ -638,6 +644,18 @@ public final class NpsItems {
         new GrowthDescription(GrowthStages.SPAWNING_PURPLE, Placements.SNOW_BIOME, 12, 0.08)
     );
 
+    public static final EntitySpawningSeed HEXED_SEED = new EntitySpawningSeed(
+        NpsStacks.HEXED_SEED,
+        EntityType.WITCH,
+        new GrowthDescription(GrowthStages.SPAWNING_PURPLE, Placements.SWAMP_BIOME, 12, 0.04)
+    );
+
+    public static final EntitySpawningSeed SLIMY_SEED = new EntitySpawningSeed(
+        NpsStacks.SLIMY_SEED,
+        EntityType.SLIME,
+        new GrowthDescription(GrowthStages.SPAWNING_GREEN, Placements.SWAMP_BIOME, 12, 0.08)
+    );
+
     public static void setup() {
         final Netheopoiesis plugin = Netheopoiesis.getInstance();
 
@@ -704,6 +722,7 @@ public final class NpsItems {
 
         RAINBOW_SEED.register(plugin);
         GLOWING_SEED.register(plugin);
+        GLISTENING_SEED.register(plugin);
         ETHEREAL_SEED.register(plugin);
         IGNITED_SEED.register(plugin);
         BARTERED_SEED.register(plugin);
@@ -735,5 +754,8 @@ public final class NpsItems {
         STRAY_SEED.register(plugin);
         POLAR_SEED.register(plugin);
         CHILLY_SEED.register(plugin);
+
+        HEXED_SEED.register(plugin);
+        SLIMY_SEED.register(plugin);
     }
 }

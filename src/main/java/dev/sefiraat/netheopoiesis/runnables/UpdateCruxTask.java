@@ -8,7 +8,6 @@ import org.bukkit.block.Block;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * When trying to swap out a Slimefun Block in BlockStorage, the deletion will happen after a delay removing

@@ -188,6 +188,14 @@ public enum BreedingPair {
         0.2
     ),
 
+    GLISTENING(
+        NpsItems.GLISTENING_SEED,
+        NpsItems.GLOWING_SEED,
+        NpsItems.METALLIC_SEED,
+        0.05,
+        0.2
+    ),
+
     ETHEREAL(
         NpsItems.ETHEREAL_SEED,
         NpsItems.SPIRIT_SEED,
@@ -458,6 +466,22 @@ public enum BreedingPair {
         NpsItems.BEST_FRIEND_SEED,
         0.05,
         0.1
+    ),
+
+    HEXED(
+        NpsItems.HEXED_SEED,
+        NpsItems.SWAMP_SEED,
+        NpsItems.ENCHANTED_SEED,
+        0.03,
+        0.1
+    ),
+
+    SLIMY(
+        NpsItems.SLIMY_SEED,
+        NpsItems.SWAMP_SEED,
+        NpsItems.GLISTENING_SEED,
+        0.05,
+        0.1
     );
 
     @Nonnull
@@ -480,10 +504,10 @@ public enum BreedingPair {
      */
     @ParametersAreNonnullByDefault
     BreedingPair(NetherSeed childPlant,
-                        NetherSeed motherSeed,
-                        NetherSeed fatherSeed,
-                        double breedChance,
-                        double spreadChance
+                 NetherSeed motherSeed,
+                 NetherSeed fatherSeed,
+                 double breedChance,
+                 double spreadChance
     ) {
         this.childPlant = childPlant;
         this.motherSeed = motherSeed;

@@ -102,7 +102,7 @@ public enum Skulls {
     VINEY_PURPLE_4("6892e85b05a02e28d85cdec359547919d31fb71b9f70af89bb0ef0c710e9dddb"),
     // https://minesk.in/2112413733
     VINEY_PURPLE_5("93ee8ff4259fb10ea229399c0bc4b12e3c393d3dc94a0c4610a6bc2ec11940f9"),
-    
+
     // https://mineskin.org/184506748
     SPAWNING_RED_1("f994c09cea8dbeaad2e6ef99ef111f4e9d95bb3becf9d7c5b48e3cfd8d4deaf"),
     // https://mineskin.org/897984990
@@ -255,7 +255,84 @@ public enum Skulls {
     // https://mineskin.org/1297434347
     SPIKEY_PURPLE_4("c92caaca509041e1b4997d53f6d5c12e45203847817bcfdad0a9cba2f73bd405"),
     // https://mineskin.org/55569926
-    SPIKEY_PURPLE_5("472cae47a81cb5af41a2bbe4977d3b6394c29bb9b8e625a8baa09f83a29486fe");
+    SPIKEY_PURPLE_5("472cae47a81cb5af41a2bbe4977d3b6394c29bb9b8e625a8baa09f83a29486fe"),
+
+    // https://mineskin.org/1283189774
+    FUNGAL_RED_1("e5b482e148ea851380d74d04072ece4c0c892fd2b217350522b93db355fb561f"),
+    // https://mineskin.org/1045011111
+    FUNGAL_RED_2("e5ab927ea02d5f08bcdc51f5c09292e777f3ff50dac703078d9fc4d904f3f1f0"),
+    // https://mineskin.org/1783862491
+    FUNGAL_RED_3("5e7d330785f79365de04030208a4ab59ba78435116ffa6ad4036aa15524425dd"),
+    // https://mineskin.org/943427451
+    FUNGAL_RED_4("519bddfb0263abc57ab94091c09edbec0216bbd6674e6911497efe469cf01c65"),
+    // https://mineskin.org/658819405
+    FUNGAL_RED_5("42d66c718e4896940c385505ea3a4c49b51d4a3c038b8ca00df47fa1d79ee48a"),
+
+    // https://mineskin.org/1180783531
+    FUNGAL_ORANGE_1("aaf15f9c4daa0ad03f916abfa1ccf5fd5c31baddeb844568d6afbb4d78325071"),
+    // https://mineskin.org/278333955
+    FUNGAL_ORANGE_2("cccde42494c6f326181a638578e6f655773fa8e4587b8969d8917899b4d10cc5"),
+    // https://mineskin.org/548592195
+    FUNGAL_ORANGE_3("c9a04527d709a61d01196befbb5e52c03b67fe9c99c10abb74e1489ff2498dcd"),
+    // https://mineskin.org/548592195
+    FUNGAL_ORANGE_4("c9a04527d709a61d01196befbb5e52c03b67fe9c99c10abb74e1489ff2498dcd"),
+    // https://mineskin.org/715555449
+    FUNGAL_ORANGE_5("20337051d8ff712e34017b0e460378f471780776093f62f6e35bf6da47364d8e"),
+
+    // https://mineskin.org/299031039
+    FUNGAL_YELLOW_1("3de68c31890daf37bd7fcb91fe84cd55d151298b2a624291fd3b606135913780"),
+    // https://mineskin.org/1607824377
+    FUNGAL_YELLOW_2("4cfa7c6146fb68405e707dbd316b4d3dfb67f82d3c6fb81cec3ff5fbe96e905e"),
+    // https://mineskin.org/941953563
+    FUNGAL_YELLOW_3("2abfd7bafd90c554e874f8f8e54d20da3c358191bfda20ca091879c74975eb79"),
+    // https://mineskin.org/96221545
+    FUNGAL_YELLOW_4("7bd5f0f66ea609d937684de6a845d04b902978f98191534fd1f3ba9f1b71b3d8"),
+    // https://mineskin.org/1203897481
+    FUNGAL_YELLOW_5("3f338ebad1e7888a903ce5ab3a9822807c08d13ee63ab4591a702f70ceb98d47"),
+
+    // https://mineskin.org/1881918250
+    FUNGAL_GREEN_1("3921c1e5c379df0bb70553a8d8c3be6a3ca2c341709b27a75a4ab0a058a4c14f"),
+    // https://mineskin.org/161208475
+    FUNGAL_GREEN_2("a78e04368b00747fdfe8d60c26acc1305637d28e2e3f4c5d067516d19c598c18"),
+    // https://mineskin.org/1607246239
+    FUNGAL_GREEN_3("78027459a99b7aba466ed8dc449bda8d48832f95ec869371a40bb141345115e1"),
+    // https://mineskin.org/1015406641
+    FUNGAL_GREEN_4("9092959c15502549e78d4093898ee2e4ca3cd079753e561587d0c378a602011d"),
+    // https://mineskin.org/1790471513
+    FUNGAL_GREEN_5("4b45396c1a2eea8c0e4f8ceb76d93a4a512872f1db51cfb715571f554f737a37"),
+
+    // https://mineskin.org/224433163
+    FUNGAL_BLUE_1("57ebacb7ca1cf9b804cd01bc016321d46e1b4a69e7f153d5d42d1e0907f206ec"),
+    // https://mineskin.org/1789304330
+    FUNGAL_BLUE_2("473858df02aef4293b085b4b729c96ec904e8266cb17c744efa51925eb9a510e"),
+    // https://mineskin.org/938021330
+    FUNGAL_BLUE_3("7d64b0737c0e38e1ceffbaaa096106cda0557b74cc8f5e3c14f7073fee3a8ed"),
+    // https://mineskin.org/1524730967
+    FUNGAL_BLUE_4("68eb1a9f3326140e58d7bb82271e3fc8e3eb04808dc06bab5d85aec60b371dcb"),
+    // https://mineskin.org/1910715016
+    FUNGAL_BLUE_5("626f9f0eb480b96ab59303c8758d77e7584412b0e387838ac3b84eb5626c271"),
+
+    // https://mineskin.org/1647832452
+    FUNGAL_CYAN_1("d1846150771bb931dc1c3d67319537c905b446ccab2489936b4c63eee12fa530"),
+    // https://mineskin.org/1593275010
+    FUNGAL_CYAN_2("4923653c81f0be89804a4383360b098347fb5dd9ae5c9123e16713e53d13f423"),
+    // https://mineskin.org/1560991918
+    FUNGAL_CYAN_3("6e3ba06d7ce964a083b5c1c3dcc82256af4e08d1ce222dcd5a9d6327f773603b"),
+    // https://mineskin.org/274642306
+    FUNGAL_CYAN_4("fd363bca2524c2ba2a79b963877e5ed7d19b7e63e72157ebe303bf7b1c24c8c0"),
+    // https://mineskin.org/1400920450
+    FUNGAL_CYAN_5("a0186448ba098e3a4c832aa015bc93dd27be7c457928e7d236779c6dc264c804"),
+
+    // https://mineskin.org/1818851028
+    FUNGAL_PURPLE_1("c6808d0852aaa158d20e9b3e75b22a1a322d98d72e4bdb3f61ee63b325f7d1f5"),
+    // https://mineskin.org/754417933
+    FUNGAL_PURPLE_2("fc30c19f5b02fbce43550afc3094d1e79cd964e83a0e7e4759f6402eada21ef0"),
+    // https://mineskin.org/2002929855
+    FUNGAL_PURPLE_3("5740108f44a9250e725badd357f983e36818e934d3b77f8f459ad7d02606e8fe"),
+    // https://mineskin.org/1599199672
+    FUNGAL_PURPLE_4("6c899c4db1199c773f4f0c90e83e57384ae0e87f21009d97f5141fb73304ef72"),
+    // https://mineskin.org/536929978
+    FUNGAL_PURPLE_5("fc15c73a48d15942aa7a1861ae4fd088f0d0cab75b8dd1e9ad98b2851f5986bc");
 
     @Nonnull
     private static final Skulls[] CACHED_VALUES = values();

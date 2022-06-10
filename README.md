@@ -38,8 +38,8 @@ Nether:
 - Travel to the end using the Ender Cake
 - Passive healing while in a purified region, increasing with the level of purification
 - In the latter stages, you are able to go beyond just purification being able to:
-  - Create overworld biomes in the Nether
-  - Convert massive lava lakes into water
+    - Create overworld biomes in the Nether
+    - Convert massive lava lakes into water
 
 And more...
 
@@ -77,6 +77,7 @@ product would be ready for the end of the Jam, so here are a list of our planned
 
 ## Credits
 
-Big thank goes to GentlemanCheesy#2225 who made all the heads used in this addon. He made them in a very short time
-frame and, for those who may not know, each color and each shade as they grow had to be their own texture!
-Even the heads made by me in this addon used his as a base so massive kudos to him :)
+Big thank goes to GentlemanCheesy#2225 who made both the Viney and Spiney texture sets used for some plants within this
+addon. He made them in a very short time frame and, for those who may not know, each color and each shade as they grow
+had to be their own texture!
+Even the Spawning heads made by me in this addon used his as a base so massive kudos to him :)

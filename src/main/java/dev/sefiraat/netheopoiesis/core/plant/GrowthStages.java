@@ -95,7 +95,7 @@ public class GrowthStages {
             Skulls.VINEY_PURPLE_5
         )
     );
-    
+
     public static final GrowthStages SPAWNING_RED = new GrowthStages(
         Theme.SEED_RED,
         List.of(
@@ -179,7 +179,7 @@ public class GrowthStages {
             Skulls.SPAWNING_PURPLE_5
         )
     );
-    
+
     public static final GrowthStages SPIKEY_RED = new GrowthStages(
         Theme.SEED_RED,
         List.of(
@@ -261,6 +261,91 @@ public class GrowthStages {
             Skulls.SPIKEY_PURPLE_3,
             Skulls.SPIKEY_PURPLE_4,
             Skulls.SPIKEY_PURPLE_5
+        )
+    );
+
+
+    public static final GrowthStages FUNGAL_RED = new GrowthStages(
+        Theme.SEED_RED,
+        List.of(
+            Skulls.SEED_RED,
+            Skulls.FUNGAL_RED_1,
+            Skulls.FUNGAL_RED_2,
+            Skulls.FUNGAL_RED_3,
+            Skulls.FUNGAL_RED_4,
+            Skulls.FUNGAL_RED_5
+        )
+    );
+
+    public static final GrowthStages FUNGAL_ORANGE = new GrowthStages(
+        Theme.SEED_ORANGE,
+        List.of(
+            Skulls.SEED_ORANGE,
+            Skulls.FUNGAL_ORANGE_1,
+            Skulls.FUNGAL_ORANGE_2,
+            Skulls.FUNGAL_ORANGE_3,
+            Skulls.FUNGAL_ORANGE_4,
+            Skulls.FUNGAL_ORANGE_5
+        )
+    );
+
+    public static final GrowthStages FUNGAL_YELLOW = new GrowthStages(
+        Theme.SEED_YELLOW,
+        List.of(
+            Skulls.SEED_YELLOW,
+            Skulls.FUNGAL_YELLOW_1,
+            Skulls.FUNGAL_YELLOW_2,
+            Skulls.FUNGAL_YELLOW_3,
+            Skulls.FUNGAL_YELLOW_4,
+            Skulls.FUNGAL_YELLOW_5
+        )
+    );
+
+    public static final GrowthStages FUNGAL_GREEN = new GrowthStages(
+        Theme.SEED_GREEN,
+        List.of(
+            Skulls.SEED_GREEN,
+            Skulls.FUNGAL_GREEN_1,
+            Skulls.FUNGAL_GREEN_2,
+            Skulls.FUNGAL_GREEN_3,
+            Skulls.FUNGAL_GREEN_4,
+            Skulls.FUNGAL_GREEN_5
+        )
+    );
+
+    public static final GrowthStages FUNGAL_BLUE = new GrowthStages(
+        Theme.SEED_BLUE,
+        List.of(
+            Skulls.SEED_BLUE,
+            Skulls.FUNGAL_BLUE_1,
+            Skulls.FUNGAL_BLUE_2,
+            Skulls.FUNGAL_BLUE_3,
+            Skulls.FUNGAL_BLUE_4,
+            Skulls.FUNGAL_BLUE_5
+        )
+    );
+
+    public static final GrowthStages FUNGAL_CYAN = new GrowthStages(
+        Theme.SEED_CYAN,
+        List.of(
+            Skulls.SEED_CYAN,
+            Skulls.FUNGAL_CYAN_1,
+            Skulls.FUNGAL_CYAN_2,
+            Skulls.FUNGAL_CYAN_3,
+            Skulls.FUNGAL_CYAN_4,
+            Skulls.FUNGAL_CYAN_5
+        )
+    );
+
+    public static final GrowthStages FUNGAL_PURPLE = new GrowthStages(
+        Theme.SEED_PURPLE,
+        List.of(
+            Skulls.SEED_PURPLE,
+            Skulls.FUNGAL_PURPLE_1,
+            Skulls.FUNGAL_PURPLE_2,
+            Skulls.FUNGAL_PURPLE_3,
+            Skulls.FUNGAL_PURPLE_4,
+            Skulls.FUNGAL_PURPLE_5
         )
     );
 
