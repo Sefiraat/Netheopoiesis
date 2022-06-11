@@ -1,13 +1,14 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
-import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
+import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.bukkit.Location;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
@@ -18,17 +19,11 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 public class BiomeSpreadingSeed extends CruxSpreadingSeed {
 
-    private final Biome biome;
+    @Nullable
+    private Biome biome;
 
-    @ParametersAreNonnullByDefault
-    public BiomeSpreadingSeed(SlimefunItemStack item,
-                              double spreadChance,
-                              NetherCrux convertTo,
-                              Biome biome,
-                              GrowthDescription description
-    ) {
-        super(item, spreadChance, convertTo, description);
-        this.biome = biome;
+    public BiomeSpreadingSeed(@Nonnull SlimefunItemStack item) {
+        super(item);
     }
 
     @Override
@@ -40,8 +35,30 @@ public class BiomeSpreadingSeed extends CruxSpreadingSeed {
     @Override
     @ParametersAreNonnullByDefault
     public void afterSpread(Location sourceLocation, NetherSeed seed, Config data, Block spreadTo) {
-        for (int i = spreadTo.getY() - 2; i < spreadTo.getY() + 5; i++) {
-            spreadTo.getWorld().setBiome(spreadTo.getX(), i, spreadTo.getZ(), this.biome);
+        if (this.biome != null) {
+            for (int i = spreadTo.getY() - 2; i < spreadTo.getY() + 5; i++) {
+                spreadTo.getWorld().setBiome(spreadTo.getX(), i, spreadTo.getZ(), this.biome);
+            }
         }
+    }
+
+    @Nonnull
+    public BiomeSpreadingSeed setBiome(@Nonnull Biome biome) {
+        this.biome = biome;
+        return this;
+    }
+
+    @Nullable
+    public Biome getBiome() {
+        return this.biome;
+    }
+
+    @Override
+    protected boolean validateSeed() {
+        if (this.biome == null) {
+            Netheopoiesis.logWarning(this.getId() + " has not has it's Biome set, will not be registered.");
+            return false;
+        }
+        return super.validateSeed();
     }
 }

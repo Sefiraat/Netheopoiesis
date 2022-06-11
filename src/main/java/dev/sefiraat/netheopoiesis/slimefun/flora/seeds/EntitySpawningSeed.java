@@ -1,10 +1,9 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -13,7 +12,9 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.OverridingMethodsMustInvokeSuper;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
@@ -23,24 +24,13 @@ import java.util.function.Consumer;
  */
 public class EntitySpawningSeed extends NetherSeed {
 
-    private final EntityType entityType;
-    private final Consumer<LivingEntity> callback;
+    @Nullable
+    private EntityType entityType;
+    @Nullable
+    private Consumer<LivingEntity> callback;
 
-    @ParametersAreNonnullByDefault
-    public EntitySpawningSeed(SlimefunItemStack item, EntityType type, GrowthDescription description) {
-        this(item, type, null, description);
-    }
-
-    @ParametersAreNonnullByDefault
-    public EntitySpawningSeed(SlimefunItemStack item,
-                              EntityType type,
-                              @Nullable Consumer<LivingEntity> callback,
-                              GrowthDescription description
-    ) {
-        super(item, description);
-        Validate.isTrue(type.isAlive(), "Must provide a valid LivingEntity type");
-        this.entityType = type;
-        this.callback = callback;
+    public EntitySpawningSeed(@Nonnull SlimefunItemStack item) {
+        super(item);
     }
 
     @Override
@@ -58,8 +48,9 @@ public class EntitySpawningSeed extends NetherSeed {
             final Block blockBelow = block.getRelative(BlockFace.DOWN);
 
             // And we need a solid floor and finally not too many nearby mobs
-            if (blockBelow.getType() == Material.AIR
-                && block.getWorld().getNearbyEntities(block.getLocation(), 10, 10, 10).size() > 6
+            if (this.entityType == null
+                || !blockBelow.getType().isSolid()
+                || block.getWorld().getNearbyEntities(block.getLocation(), 10, 10, 10).size() > 6
             ) {
                 return;
             }
@@ -76,11 +67,38 @@ public class EntitySpawningSeed extends NetherSeed {
         }
     }
 
+    @Nonnull
+    public EntitySpawningSeed setEntityType(@Nonnull EntityType entityType) {
+        this.entityType = entityType;
+        return this;
+    }
+
+    @Nonnull
     public EntityType getEntityType() {
         return entityType;
     }
 
+    @Nonnull
+    public EntitySpawningSeed setCallback(@Nonnull Consumer<LivingEntity> callback) {
+        this.callback = callback;
+        return this;
+    }
+
+    @Nullable
     public Consumer<LivingEntity> getCallback() {
         return callback;
+    }
+
+    @Override
+    @OverridingMethodsMustInvokeSuper
+    protected boolean validateSeed() {
+        if (this.entityType == null) {
+            Netheopoiesis.logWarning(this.getId() + " has no EntityType, it will not be registered.");
+            return false;
+        } else if (!this.entityType.isAlive() || !this.entityType.isSpawnable()) {
+            Netheopoiesis.logWarning(this.getId() + " EntityType must be both Living and Spawnable.");
+            return false;
+        }
+        return true;
     }
 }

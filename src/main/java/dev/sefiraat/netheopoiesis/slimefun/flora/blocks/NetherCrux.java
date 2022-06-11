@@ -1,8 +1,8 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.blocks;
 
 import dev.sefiraat.netheopoiesis.core.purification.PurifyingObject;
-import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
-import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
+import dev.sefiraat.netheopoiesis.slimefun.RecipeTypes;
+import dev.sefiraat.netheopoiesis.slimefun.Stacks;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -33,7 +33,7 @@ public class NetherCrux extends SlimefunItem implements PurifyingObject {
     private int tick = 0;
 
     public NetherCrux(@Nonnull ItemGroup itemGroup, @Nonnull SlimefunItemStack item, int purificationValue) {
-        super(itemGroup, item, NpsRecipeTypes.NETHER_PURIFICATION, new ItemStack[0]);
+        super(itemGroup, item, RecipeTypes.NETHER_PURIFICATION, new ItemStack[0]);
         this.purificationValue = purificationValue;
     }
 
@@ -46,7 +46,7 @@ public class NetherCrux extends SlimefunItem implements PurifyingObject {
                     // We do not want crux' to be able to drop and placed elsewhere thus gaming the system
                     final Block block = event.getBlock();
                     final ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
-                    if (!SlimefunItem.getByItem(heldItem).getId().equals(NpsItems.CRUX_GATHERER.getId())) {
+                    if (!SlimefunItem.getByItem(heldItem).getId().equals(Stacks.CRUX_GATHERER.getItemId())) {
                         event.setCancelled(true);
                         block.setType(Material.AIR);
                         BlockStorage.clearBlockInfo(block);

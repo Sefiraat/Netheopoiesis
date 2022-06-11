@@ -344,6 +344,11 @@ public enum Skulls {
     }
 
     @Nonnull
+    public String getHash() {
+        return hash;
+    }
+
+    @Nonnull
     public ItemStack getPlayerHead() {
         return PlayerHead.getItemStack(PlayerSkin.fromHashCode(hash));
     }

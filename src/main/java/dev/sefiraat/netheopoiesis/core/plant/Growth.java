@@ -10,7 +10,7 @@ import java.util.Set;
  * This class collates the various classes used to describe the way a plant grows
  * and/or interacts with the world.
  */
-public class GrowthDescription {
+public class Growth {
 
     @Nonnull
     private final GrowthStages stages;
@@ -20,7 +20,7 @@ public class GrowthDescription {
     private final double growthRate;
 
     @ParametersAreNonnullByDefault
-    public GrowthDescription(GrowthStages stages, Set<String> places, int purificationValue, double growthRate) {
+    public Growth(GrowthStages stages, Set<String> places, int purificationValue, double growthRate) {
         this.stages = stages;
         this.placements = places;
         this.purificationValue = purificationValue;

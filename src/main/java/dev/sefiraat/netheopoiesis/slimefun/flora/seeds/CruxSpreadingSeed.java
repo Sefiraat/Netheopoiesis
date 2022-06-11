@@ -2,7 +2,6 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.Purification;
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.core.plant.SpreadingPlant;
 import dev.sefiraat.netheopoiesis.runnables.UpdateCruxTask;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
@@ -15,6 +14,9 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.annotation.OverridingMethodsMustInvokeSuper;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -23,18 +25,12 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class CruxSpreadingSeed extends NetherSeed implements SpreadingPlant {
 
-    private final NetherCrux convertTo;
-    private final double spreadChance;
+    private SlimefunItemStack convertTo;
+    private double spreadChance = 0.1;
 
     @ParametersAreNonnullByDefault
-    public CruxSpreadingSeed(SlimefunItemStack item,
-                             double spreadChance,
-                             NetherCrux convertTo,
-                             GrowthDescription description
-    ) {
-        super(item, description);
-        this.convertTo = convertTo;
-        this.spreadChance = spreadChance;
+    public CruxSpreadingSeed(@Nonnull SlimefunItemStack item) {
+        super(item);
     }
 
     @Override
@@ -48,7 +44,7 @@ public class CruxSpreadingSeed extends NetherSeed implements SpreadingPlant {
     public void spread(Location sourceLocation, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
 
-        if (randomChance > (this.spreadChance * Netheopoiesis.CRUX_SPREAD_MULTIPLIER)) {
+        if (randomChance <= (this.spreadChance * Netheopoiesis.CRUX_SPREAD_MULTIPLIER)) {
             // Fails chance roll
             return;
         }
@@ -71,5 +67,32 @@ public class CruxSpreadingSeed extends NetherSeed implements SpreadingPlant {
             task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);
             afterSpread(sourceLocation, seed, data, block);
         }
+    }
+
+    @Nonnull
+    public CruxSpreadingSeed setSpreadChance(double spreadChance) {
+        this.spreadChance = spreadChance;
+        return this;
+    }
+
+    @Nonnull
+    public CruxSpreadingSeed setCrux(@Nonnull SlimefunItemStack crux) {
+        this.convertTo = crux;
+        return this;
+    }
+
+    @Nullable
+    public SlimefunItemStack getCrux() {
+        return this.convertTo;
+    }
+
+    @Override
+    @OverridingMethodsMustInvokeSuper
+    protected boolean validateSeed() {
+        if (this.convertTo == null) {
+            Netheopoiesis.logWarning(this.getId() + " has not has it's Crux set, will not be registered.");
+            return false;
+        }
+        return true;
     }
 }

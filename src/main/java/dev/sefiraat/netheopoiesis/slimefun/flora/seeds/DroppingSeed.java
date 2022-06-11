@@ -1,11 +1,14 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.Netheopoiesis;
+import io.github.bakedlibs.dough.collections.RandomizedSet;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
+import javax.annotation.OverridingMethodsMustInvokeSuper;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -16,19 +19,11 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class DroppingSeed extends NetherSeed {
 
-    private final ItemStack[] stacksToDrop;
-    private final double chance;
+    private final RandomizedSet<ItemStack> stacksToDrop = new RandomizedSet<>();
+    private double chance = 0.1;
 
-    @ParametersAreNonnullByDefault
-    public DroppingSeed(SlimefunItemStack item, ItemStack drop, double chance, GrowthDescription description) {
-        this(item, new ItemStack[]{drop}, chance, description);
-    }
-
-    @ParametersAreNonnullByDefault
-    public DroppingSeed(SlimefunItemStack item, ItemStack[] drops, double chance, GrowthDescription description) {
-        super(item, description);
-        this.stacksToDrop = drops;
-        this.chance = chance;
+    public DroppingSeed(@Nonnull SlimefunItemStack item) {
+        super(item);
     }
 
     @Override
@@ -36,12 +31,34 @@ public class DroppingSeed extends NetherSeed {
     public void onTickFullyGrown(Location location, NetherSeed seed, Config data) {
         double randomChance = ThreadLocalRandom.current().nextDouble();
         if (randomChance <= chance) {
-            final int random = ThreadLocalRandom.current().nextInt(this.stacksToDrop.length);
-            location.getWorld().dropItem(location, this.stacksToDrop[random]);
+            location.getWorld().dropItem(location, this.stacksToDrop.getRandom());
         }
     }
 
-    public ItemStack[] getStacksToDrop() {
+    @Nonnull
+    public DroppingSeed setTriggerChance(double chance) {
+        this.chance = chance;
+        return this;
+    }
+
+    @Nonnull
+    public DroppingSeed addDrop(@Nonnull ItemStack stack, int weight) {
+        this.stacksToDrop.add(stack, weight);
+        return this;
+    }
+
+    @Nonnull
+    public RandomizedSet<ItemStack> getPossibleDrops() {
         return stacksToDrop;
+    }
+
+    @Override
+    @OverridingMethodsMustInvokeSuper
+    protected boolean validateSeed() {
+        if (this.stacksToDrop.isEmpty()) {
+            Netheopoiesis.logWarning(this.getId() + " has no drops, item will not be registered.");
+            return false;
+        }
+        return true;
     }
 }

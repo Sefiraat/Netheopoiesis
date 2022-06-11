@@ -1,10 +1,12 @@
 package dev.sefiraat.netheopoiesis.slimefun.groups;
 
+import dev.sefiraat.netheopoiesis.PlantRegistry;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingPair;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.StatisticUtils;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.bakedlibs.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.FlexItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.player.PlayerProfile;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuide;
@@ -20,7 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.text.DecimalFormat;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -109,13 +111,13 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
 
     @ParametersAreNonnullByDefault
     private void setupPage(Player player, PlayerProfile profile, SlimefunGuideMode mode, ChestMenu menu, int page) {
-        final List<BreedingPair> breedingPairs = Arrays.asList(BreedingPair.getCachedValues());
+        final List<BreedingPair> breedingPairs = new ArrayList<>(PlantRegistry.getInstance().getBreedingPairs());
         final int amount = breedingPairs.size();
         final int totalPages = (int) Math.ceil(amount / (double) PAGE_SIZE);
         final int start = (page - 1) * PAGE_SIZE;
         final int end = Math.min(start + PAGE_SIZE, breedingPairs.size());
 
-        breedingPairs.sort(Comparator.comparing(pair -> pair.getChildPlant().getId()));
+        breedingPairs.sort(Comparator.comparing(pair -> pair.getChild().getId()));
 
         final List<BreedingPair> pairSubList = breedingPairs.subList(start, end);
 
@@ -139,11 +141,11 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
 
             if (i + 1 <= pairSubList.size()) {
                 final BreedingPair pair = pairSubList.get(i);
-                final NetherSeed child = pair.getChildPlant();
+                final NetherSeed child = pair.getChild();
                 final boolean researched = StatisticUtils.isDiscovered(player, child.getId());
 
                 if (mode == SlimefunGuideMode.CHEAT_MODE || researched) {
-                    menu.replaceExistingItem(slot, new ItemStack(pair.getChildPlant().getDisplayPlant()));
+                    menu.replaceExistingItem(slot, new ItemStack(pair.getChild().getDisplayPlant()));
                     menu.addMenuClickHandler(slot, (player1, i1, itemStack1, clickAction) -> {
                         displayDetail(player1, profile, mode, menu, page, pair);
                         return false;
@@ -182,7 +184,9 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
 
         clearDisplay(menu);
 
-        final NetherSeed child = pair.getChildPlant();
+        final NetherSeed child = pair.getChild();
+        final NetherSeed mother = (NetherSeed) SlimefunItem.getById(pair.getMotherId());
+        final NetherSeed father = (NetherSeed) SlimefunItem.getById(pair.getFatherId());
 
         // Child
         menu.replaceExistingItem(CHILD_SLOT, child.getDisplayPlant());
@@ -193,7 +197,7 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
         }
 
         // Mother
-        menu.replaceExistingItem(MOTHER_SLOT, pair.getMotherSeed().getDisplayPlant());
+        menu.replaceExistingItem(MOTHER_SLOT, mother.getDisplayPlant());
         menu.addMenuClickHandler(MOTHER_SLOT, ChestMenuUtils.getEmptyClickHandler());
         for (int i : MOTHER_INFO_SLOT) {
             menu.replaceExistingItem(i, MOTHER_INFO);
@@ -201,7 +205,7 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
         }
 
         // Father
-        menu.replaceExistingItem(FATHER_SLOT, pair.getFatherSeed().getDisplayPlant());
+        menu.replaceExistingItem(FATHER_SLOT, father.getDisplayPlant());
         menu.addMenuClickHandler(FATHER_SLOT, ChestMenuUtils.getEmptyClickHandler());
         for (int i : FATHER_INFO_SLOT) {
             menu.replaceExistingItem(i, FATHER_INFO);

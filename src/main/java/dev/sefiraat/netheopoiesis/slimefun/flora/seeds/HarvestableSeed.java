@@ -1,12 +1,13 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+import javax.annotation.OverridingMethodsMustInvokeSuper;
 
 /**
  * This plant can be harvested by right-clicking with a {@link dev.sefiraat.netheopoiesis.slimefun.tools.HarvestingTool}
@@ -15,12 +16,17 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 public class HarvestableSeed extends NetherSeed {
 
-    private final ItemStack harvestItemStack;
+    @Nullable
+    private ItemStack harvestItemStack;
 
-    @ParametersAreNonnullByDefault
-    public HarvestableSeed(SlimefunItemStack item, ItemStack harvest, GrowthDescription description) {
-        super(item, description);
-        this.harvestItemStack = harvest;
+    public HarvestableSeed(@Nonnull SlimefunItemStack item) {
+        super(item);
+    }
+
+    @Nonnull
+    public HarvestableSeed setHarvestingResult(@Nonnull ItemStack harvestStack) {
+        this.harvestItemStack = harvestStack;
+        return this;
     }
 
     @Nullable
@@ -29,5 +35,13 @@ public class HarvestableSeed extends NetherSeed {
         return this.harvestItemStack;
     }
 
-
+    @Override
+    @OverridingMethodsMustInvokeSuper
+    protected boolean validateSeed() {
+        if (this.harvestItemStack == null) {
+            Netheopoiesis.logWarning(this.getId() + " has no ItemStack, it will not be registered.");
+            return false;
+        }
+        return true;
+    }
 }

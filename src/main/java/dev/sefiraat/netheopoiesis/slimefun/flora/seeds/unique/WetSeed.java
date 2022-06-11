@@ -1,6 +1,5 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -17,8 +16,8 @@ import java.util.Optional;
  */
 public class WetSeed extends NetherSeed {
 
-    public WetSeed(@Nonnull SlimefunItemStack item, @Nonnull GrowthDescription description) {
-        super(item, description);
+    public WetSeed(@Nonnull SlimefunItemStack item) {
+        super(item);
     }
 
     @Override
@@ -41,5 +40,10 @@ public class WetSeed extends NetherSeed {
             updateGrowthStage(block, 0);
             heldStack.setType(Material.WATER_BUCKET);
         }
+    }
+
+    @Override
+    protected boolean validateSeed() {
+        return true;
     }
 }

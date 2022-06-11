@@ -1,6 +1,5 @@
 package dev.sefiraat.netheopoiesis.core.plant.breeding;
 
-import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 
 import javax.annotation.Nonnull;
@@ -10,636 +9,68 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * This Enum holds the possible breeding possibilities available in the addon
  */
-public enum BreedingPair {
-
-    ADDON_BERRY(
-        NpsItems.ADDON_BERRY_SEED,
-        NpsItems.SAINTLY_SEED,
-        NpsItems.SAINTLY_SEED,
-        0.1,
-        0.15
-    ),
-
-    BARTERED(
-        NpsItems.BARTERED_SEED,
-        NpsItems.IGNITED_SEED,
-        NpsItems.PORKY_SEED,
-        0.2,
-        0.25
-    ),
-
-    BEACH(
-        NpsItems.BEACH_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.EDEN_SEED,
-        0.05,
-        0.05
-    ),
-
-    BEST_FRIEND(
-        NpsItems.BEST_FRIEND_SEED,
-        NpsItems.CUTE_SEED,
-        NpsItems.SPLINTERED_SEED,
-        0.1,
-        0.15
-    ),
-
-    MATH(
-        NpsItems.MATH_SEED,
-        NpsItems.BEST_FRIEND_SEED,
-        NpsItems.PERFECTION_SEED,
-        0.1,
-        0.15
-    ),
-
-    BLACK_AND_WHITE(
-        NpsItems.BLACK_AND_WHITE_SEED,
-        NpsItems.JUNGLE_SEED,
-        NpsItems.PORKY_SEED,
-        0.01,
-        0.05
-    ),
-
-    BUZZING(
-        NpsItems.BUZZING_SEED,
-        NpsItems.CUTE_SEED,
-        NpsItems.SPINDLE_SEED,
-        0.15,
-        0.2
-    ),
-
-    CHILLY(
-        NpsItems.CHILLY_SEED,
-        NpsItems.SNOW_SEED,
-        NpsItems.BEST_FRIEND_SEED,
-        0.05,
-        0.1
-    ),
-
-    COBBLED(
-        NpsItems.COBBLED_SEED,
-        NpsItems.SPINDLE_SEED,
-        NpsItems.GRAINY_SEED,
-        0.1,
-        0.2
-    ),
-
-    COMBUSTIBLE(
-        NpsItems.COMBUSTIBLE_SEED,
-        NpsItems.SMOOTH_SEED,
-        NpsItems.SPLINTERED_SEED,
-        0.05,
-        0.2
-    ),
-
-    CRYSTALLINE(
-        NpsItems.CRYSTALLINE_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.WET_SEED,
-        0.15,
-        0.2
-    ),
-
-    CUTE(
-        NpsItems.CUTE_SEED,
-        NpsItems.SAINTLY_SEED,
-        NpsItems.SAINTLY_SEED,
-        0.1,
-        0.15
-    ),
-
-    DEEPSLATE(
-        NpsItems.DEEPSLATE_SEED,
-        NpsItems.COBBLED_SEED,
-        NpsItems.COBBLED_SEED,
-        0.1,
-        0.2
-    ),
-
-    DESERT(
-        NpsItems.DESERT_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.EDEN_SEED,
-        0.05,
-        0.05
-    ),
-
-    DUSTY(
-        NpsItems.DUSTY_SEED,
-        NpsItems.COBBLED_SEED,
-        NpsItems.GRAINY_SEED,
-        0.1,
-        0.2
-    ),
-
-    EDEN(
-        NpsItems.EDEN_SEED,
-        NpsItems.GATEWAY_SEED,
-        NpsItems.PERFECTION_SEED,
-        0.15,
-        0.2
-    ),
-
-    ENCHANTED(
-        NpsItems.ENCHANTED_SEED,
-        NpsItems.SHINY_SEED,
-        NpsItems.SOUL_SEED,
-        0.05,
-        0.2
-    ),
-
-    ETHEREAL(
-        NpsItems.ETHEREAL_SEED,
-        NpsItems.SPIRIT_SEED,
-        NpsItems.SPIRIT_SEED,
-        0.1,
-        0.1
-    ),
-
-    FELDSPAR(
-        NpsItems.FELDSPAR_SEED,
-        NpsItems.COBBLED_SEED,
-        NpsItems.COBBLED_SEED,
-        0.1,
-        0.2
-    ),
-
-    GATEWAY(
-        NpsItems.GATEWAY_SEED,
-        NpsItems.PULSING_SEED,
-        NpsItems.BARTERED_SEED,
-        0.15,
-        0.2
-    ),
-
-    GLISTENING(
-        NpsItems.GLISTENING_SEED,
-        NpsItems.GLOWING_SEED,
-        NpsItems.METALLIC_SEED,
-        0.05,
-        0.2
-    ),
-
-    GLOWING(
-        NpsItems.GLOWING_SEED,
-        NpsItems.SPIRIT_SEED,
-        NpsItems.SPIRIT_SEED,
-        0.05,
-        0.2
-    ),
-
-    GRAINY(
-        NpsItems.GRAINY_SEED,
-        NpsItems.PURIFICATION_SEED,
-        NpsItems.PURIFICATION_SEED,
-        0.1,
-        0.2
-    ),
-
-    HATE_FILLED(
-        NpsItems.HATE_FILLED_SEED,
-        NpsItems.TERRIFYING_SEED,
-        NpsItems.PROTECTIVE_SEED,
-        0.2,
-        0.05
-    ),
-
-    HEXED(
-        NpsItems.HEXED_SEED,
-        NpsItems.SWAMP_SEED,
-        NpsItems.ENCHANTED_SEED,
-        0.03,
-        0.1
-    ),
-
-    HUSKY(
-        NpsItems.HUSKY_SEED,
-        NpsItems.DESERT_SEED,
-        NpsItems.ROTTEN_SEED,
-        0.05,
-        0.25
-    ),
-
-    IGNEOUS(
-        NpsItems.IGNEOUS_SEED,
-        NpsItems.COBBLED_SEED,
-        NpsItems.COBBLED_SEED,
-        0.1,
-        0.2
-    ),
-
-    IGNITED(
-        NpsItems.IGNITED_SEED,
-        NpsItems.ETHEREAL_SEED,
-        NpsItems.COMBUSTIBLE_SEED,
-        0.2,
-        0.25
-    ),
-
-    JUNGLE(
-        NpsItems.JUNGLE_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.EDEN_SEED,
-        0.05,
-        0.05
-    ),
-
-    LEARNED(
-        NpsItems.LEARNED_SEED,
-        NpsItems.ETHEREAL_SEED,
-        NpsItems.ENCHANTED_SEED,
-        0.1,
-        0.15
-    ),
-
-    BUSY(
-        NpsItems.BUSY_SEED,
-        NpsItems.LEARNED_SEED,
-        NpsItems.SWEET_SEED,
-        0.1,
-        0.15
-    ),
-
-    METALLIC(
-        NpsItems.METALLIC_SEED,
-        NpsItems.SOUL_SEED,
-        NpsItems.SOUL_SEED,
-        0.05,
-        0.2
-    ),
-
-    TARNISHED(
-        NpsItems.TARNISHED_SEED,
-        NpsItems.METALLIC_SEED,
-        NpsItems.DUSTY_SEED,
-        0.05,
-        0.2
-    ),
-
-    MOLDABLE(
-        NpsItems.MOLDABLE_SEED,
-        NpsItems.SEASIDE_SEED,
-        NpsItems.COBBLED_SEED,
-        0.05,
-        0.2
-    ),
-
-    OAKENDRAN(
-        NpsItems.OAKENDRAN_SEED,
-        NpsItems.ETHEREAL_SEED,
-        NpsItems.SPINDLE_SEED,
-        0.1,
-        0.15
-    ),
-
-    PARROT(
-        NpsItems.PARROT_SEED,
-        NpsItems.JUNGLE_SEED,
-        NpsItems.RAINBOW_SEED,
-        0.09,
-        0.15
-    ),
-
-    PERFECTION(
-        NpsItems.PERFECTION_SEED,
-        NpsItems.SHINY_SEED,
-        NpsItems.VALUABLE_SEED,
-        0.05,
-        0.2
-    ),
-
-    POLAR(
-        NpsItems.POLAR_SEED,
-        NpsItems.SNOW_SEED,
-        NpsItems.PORKY_SEED,
-        0.05,
-        0.25
-    ),
-
-    PORKY(
-        NpsItems.PORKY_SEED,
-        NpsItems.SPINDLE_SEED,
-        NpsItems.SOUL_SEED,
-        0.07,
-        0.1
-    ),
-
-    POROUS(
-        NpsItems.POROUS_SEED,
-        NpsItems.PRISMATIC_SEED,
-        NpsItems.SEASIDE_SEED,
-        0.05,
-        0.05
-    ),
-
-    PRISMATIC(
-        NpsItems.PRISMATIC_SEED,
-        NpsItems.RAINBOW_SEED,
-        NpsItems.SPLINTERED_SEED,
-        0.1,
-        0.15
-    ),
-
-    PROTECTIVE(
-        NpsItems.PROTECTIVE_SEED,
-        NpsItems.METALLIC_SEED,
-        NpsItems.SOUL_SEED,
-        0.02,
-        0.1
-    ),
-
-    PULSING(
-        NpsItems.PULSING_SEED,
-        NpsItems.HATE_FILLED_SEED,
-        NpsItems.GLOWING_SEED,
-        0.15,
-        0.2
-    ),
-
-    RAINBOW(
-        NpsItems.RAINBOW_SEED,
-        NpsItems.SPIRIT_SEED,
-        NpsItems.SPIRIT_SEED,
-        0.05,
-        0.2
-    ),
-
-    ROTTEN(
-        NpsItems.ROTTEN_SEED,
-        NpsItems.SPLINTERED_SEED,
-        NpsItems.DUSTY_SEED,
-        0.05,
-        0.2
-    ),
-
-    SAINTLY(
-        NpsItems.SAINTLY_SEED,
-        NpsItems.OAKENDRAN_SEED,
-        NpsItems.SPIRIT_SEED,
-        0.1,
-        0.15
-    ),
-
-    SEASIDE(
-        NpsItems.SEASIDE_SEED,
-        NpsItems.SPINDLE_SEED,
-        NpsItems.DUSTY_SEED,
-        0.05,
-        0.2
-    ),
-
-    NORI(
-        NpsItems.NORI_SEED,
-        NpsItems.SEASIDE_SEED,
-        NpsItems.GRASS_SEED,
-        0.05,
-        0.2
-    ),
-
-    SHELLED(
-        NpsItems.SHELLED_SEED,
-        NpsItems.BEACH_SEED,
-        NpsItems.PROTECTIVE_SEED,
-        0.05,
-        0.15
-    ),
-
-    SHINY(
-        NpsItems.SHINY_SEED,
-        NpsItems.SOUL_SEED,
-        NpsItems.SOUL_SEED,
-        0.05,
-        0.2
-    ),
-
-    SLIMY(
-        NpsItems.SLIMY_SEED,
-        NpsItems.SWAMP_SEED,
-        NpsItems.GLISTENING_SEED,
-        0.05,
-        0.1
-    ),
-
-    BLOB(
-        NpsItems.BLOB_SEED,
-        NpsItems.SLIMY_SEED,
-        NpsItems.BEST_FRIEND_SEED,
-        0.05,
-        0.1
-    ),
-
-    SMOOTH(
-        NpsItems.SMOOTH_SEED,
-        NpsItems.SOUL_SEED,
-        NpsItems.SOUL_SEED,
-        0.05,
-        0.2
-    ),
-
-    SEEDY(
-        NpsItems.SEEDY_SEED,
-        NpsItems.SMOOTH_SEED,
-        NpsItems.GRASS_SEED,
-        0.05,
-        0.2
-    ),
-
-    SWEET(
-        NpsItems.SWEET_SEED,
-        NpsItems.SEEDY_SEED,
-        NpsItems.SEASIDE_SEED,
-        0.05,
-        0.2
-    ),
-
-    SNOW(
-        NpsItems.SNOW_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.EDEN_SEED,
-        0.05,
-        0.05
-    ),
-
-    SOUL(
-        NpsItems.SOUL_SEED,
-        NpsItems.ROTTEN_SEED,
-        NpsItems.PURIFICATION_SEED,
-        0.05,
-        0.2
-    ),
-
-    SPINDLE(
-        NpsItems.SPINDLE_SEED,
-        NpsItems.PURIFICATION_SEED,
-        NpsItems.PURIFICATION_SEED,
-        0.1,
-        0.2
-    ),
-
-    SPINEY(
-        NpsItems.SPINEY_SEED,
-        NpsItems.DESERT_SEED,
-        NpsItems.SPINDLE_SEED,
-        0.2,
-        0.2
-    ),
-
-    SPLINTERED(
-        NpsItems.SPLINTERED_SEED,
-        NpsItems.SPINDLE_SEED,
-        NpsItems.STRINGY_SEED,
-        0.05,
-        0.2
-    ),
-
-    STONE(
-        NpsItems.STONEY_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.EDEN_SEED,
-        0.05,
-        0.05
-    ),
-
-    STRAY(
-        NpsItems.STRAY_SEED,
-        NpsItems.SNOW_SEED,
-        NpsItems.SPLINTERED_SEED,
-        0.1,
-        0.25
-    ),
-
-    STRINGY(
-        NpsItems.STRINGY_SEED,
-        NpsItems.PURIFICATION_SEED,
-        NpsItems.PURIFICATION_SEED,
-        0.1,
-        0.2
-    ),
-
-    GRASS(
-        NpsItems.GRASS_SEED,
-        NpsItems.SPINDLE_SEED,
-        NpsItems.STRINGY_SEED,
-        0.1,
-        0.2
-    ),
-
-    SWAMP(
-        NpsItems.SWAMP_SEED,
-        NpsItems.EDEN_SEED,
-        NpsItems.EDEN_SEED,
-        0.05,
-        0.05
-    ),
-
-    TERRIFYING(
-        NpsItems.TERRIFYING_SEED,
-        NpsItems.SAINTLY_SEED,
-        NpsItems.SAINTLY_SEED,
-        0.10,
-        0.3
-    ),
-
-    TREASURED(
-        NpsItems.TREASURED_SEED,
-        NpsItems.BEACH_SEED,
-        NpsItems.SHINY_SEED,
-        0.10,
-        0.5
-    ),
-
-    VALUABLE(
-        NpsItems.VALUABLE_SEED,
-        NpsItems.SHINY_SEED,
-        NpsItems.ENCHANTED_SEED,
-        0.05,
-        0.2
-    ),
-
-    VOLCANIC(
-        NpsItems.VOLCANIC_SEED,
-        NpsItems.COBBLED_SEED,
-        NpsItems.COBBLED_SEED,
-        0.1,
-        0.2
-    ),
-
-    WET(
-        NpsItems.WET_SEED,
-        NpsItems.SEASIDE_SEED,
-        NpsItems.MOLDABLE_SEED,
-        0.1,
-        0.1
-    ),
-
-    WILD(
-        NpsItems.WILD_SEED,
-        NpsItems.JUNGLE_SEED,
-        NpsItems.CUTE_SEED,
-        0.05,
-        0.15
-    );
+public class BreedingPair {
 
     @Nonnull
-    private static final BreedingPair[] CACHED_VALUES = values();
-
-    private final NetherSeed childPlant;
-    private final NetherSeed motherSeed;
-    private final NetherSeed fatherSeed;
+    private final NetherSeed childId;
+    @Nonnull
+    private final String motherId;
+    @Nonnull
+    private final String fatherId;
     private final double breedChance;
     private final double spreadChance;
 
     /**
      * This class defines a possible breeding pair, the chance of success or spread
      *
-     * @param childPlant   The {@link NetherSeed} that will grow as a result of a successful breed
-     * @param motherSeed   The {@link NetherSeed} representing one of the parents (the one initiating the breed)
-     * @param fatherSeed   The {@link NetherSeed} representing the other parent
+     * @param childId      The {@link NetherSeed}'s ID that will grow as a result of a successful breed
+     * @param motherId     The {@link NetherSeed}'s ID representing one of the parents (the one initiating the breed)
+     * @param fatherId     The {@link NetherSeed}'s ID representing the other parent
      * @param breedChance  The chance for the breed to be successful (spawning a child)
      * @param spreadChance The chance that, should a true breed fail, a spread can occur (spawning a copy of the mother)
      */
     @ParametersAreNonnullByDefault
-    BreedingPair(NetherSeed childPlant,
-                 NetherSeed motherSeed,
-                 NetherSeed fatherSeed,
-                 double breedChance,
-                 double spreadChance
+    public BreedingPair(NetherSeed childId,
+                        String motherId,
+                        String fatherId,
+                        double breedChance,
+                        double spreadChance
     ) {
-        this.childPlant = childPlant;
-        this.motherSeed = motherSeed;
-        this.fatherSeed = fatherSeed;
+        this.childId = childId;
+        this.motherId = motherId;
+        this.fatherId = fatherId;
         this.breedChance = breedChance;
         this.spreadChance = spreadChance;
     }
 
-    public NetherSeed getChildPlant() {
-        return childPlant;
+    @Nonnull
+    public NetherSeed getChild() {
+        return childId;
     }
 
-    public NetherSeed getMotherSeed() {
-        return motherSeed;
+    @Nonnull
+    public String getMotherId() {
+        return motherId;
     }
 
-    public NetherSeed getFatherSeed() {
-        return fatherSeed;
+    @Nonnull
+    public String getFatherId() {
+        return fatherId;
     }
 
     /**
      * Checks if the two given seeds can breed regardless of chance.
      * No need to call this if you will also be rolling
      *
-     * @param seed1 The first {@link NetherSeed} to check for breeding
-     * @param seed2 The partner {@link NetherSeed} to check against the first.
+     * @param seed1 The first {@link NetherSeed}'s ID to check for breeding
+     * @param seed2 The partner {@link NetherSeed}'s ID to check against the first.
      * @return True if the plants can breed
      */
-    public boolean isBreedPossible(@Nonnull NetherSeed seed1, @Nonnull NetherSeed seed2) {
-        final String id1 = seed1.getId();
-        final String id2 = seed2.getId();
-
-        if (id1.equals(motherSeed.getId())) {
-            return id2.equals(fatherSeed.getId());
-        } else if (id1.equals(fatherSeed.getId())) {
-            return id2.equals(motherSeed.getId());
+    public boolean isBreedPossible(@Nonnull String seed1, @Nonnull String seed2) {
+        if (seed1.equals(motherId)) {
+            return seed2.equals(fatherId);
+        } else if (seed1.equals(fatherId)) {
+            return seed2.equals(motherId);
         }
         return false;
     }
@@ -652,7 +83,8 @@ public enum BreedingPair {
      * @param seed2 The partner {@link NetherSeed} to check against the first.
      * @return The {@link BreedResultType} of the breed attampt
      */
-    public BreedResultType testBreed(@Nonnull NetherSeed seed1, @Nonnull NetherSeed seed2) {
+    @Nonnull
+    public BreedResultType testBreed(@Nonnull String seed1, @Nonnull String seed2) {
         if (isBreedPossible(seed1, seed2)) {
             final double chance = ThreadLocalRandom.current().nextDouble();
             if (chance <= getBreedChance()) {
@@ -672,26 +104,5 @@ public enum BreedingPair {
 
     public double getSpreadBreedChance() {
         return spreadChance;
-    }
-
-    @Nonnull
-    public static BreedResult getBreedResult(@Nonnull NetherSeed seed1, @Nonnull NetherSeed seed2) {
-        int matches = 0;
-        for (BreedingPair pair : CACHED_VALUES) {
-            final BreedResultType result = pair.testBreed(seed1, seed2);
-            if (result != BreedResultType.NOT_PAIR) {
-                if (result != BreedResultType.FAIL) {
-                    return new BreedResult(pair, result);
-                } else {
-                    matches++;
-                }
-            }
-        }
-        return new BreedResult(CACHED_VALUES[0], matches == 0 ? BreedResultType.NO_PAIRS : BreedResultType.FAIL);
-    }
-
-    @Nonnull
-    public static BreedingPair[] getCachedValues() {
-        return CACHED_VALUES;
     }
 }

@@ -15,9 +15,9 @@ import java.util.stream.Stream;
 /**
  * Final class used to store and initialise the {@link SlimefunItemStack}s used in the addon
  */
-public final class NpsStacks {
+public final class Stacks {
 
-    private NpsStacks() {
+    private Stacks() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -322,7 +322,7 @@ public final class NpsStacks {
         "NPS_SNOW_SEED",
         Skulls.SEED_CYAN.getPlayerHead(),
         Theme.PURIFYING_SEED,
-        "Desert Seed",
+        "Snow Seed",
         new String[]{"This seed, when fully grown,", "will begin the process of creating a", "cold wonderland."},
         getCanBePlacedOnLore("Nether Grass (or better)")
     );

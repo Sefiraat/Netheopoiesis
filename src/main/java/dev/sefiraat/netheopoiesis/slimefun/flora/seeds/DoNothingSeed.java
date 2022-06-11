@@ -1,8 +1,8 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
+import javax.annotation.OverridingMethodsMustInvokeSuper;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
@@ -12,7 +12,13 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class DoNothingSeed extends NetherSeed {
 
     @ParametersAreNonnullByDefault
-    public DoNothingSeed(SlimefunItemStack item, GrowthDescription description) {
-        super(item, description);
+    public DoNothingSeed(SlimefunItemStack item) {
+        super(item);
+    }
+
+    @Override
+    @OverridingMethodsMustInvokeSuper
+    protected boolean validateSeed() {
+        return true;
     }
 }

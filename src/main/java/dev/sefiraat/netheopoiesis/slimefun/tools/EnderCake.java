@@ -1,7 +1,7 @@
 package dev.sefiraat.netheopoiesis.slimefun.tools;
 
 import dev.sefiraat.netheopoiesis.Purification;
-import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
+import dev.sefiraat.netheopoiesis.slimefun.Stacks;
 import dev.sefiraat.netheopoiesis.utils.ParticleUtils;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
@@ -69,7 +69,7 @@ public class EnderCake extends SlimefunItem {
         if (block.getType() == Material.CAKE) {
             final Optional<SlimefunItem> slimefunItem = event.getSlimefunBlock();
             if (slimefunItem.isPresent()
-                && slimefunItem.get().getId().equals(NpsItems.ENDER_CAKE.getId())
+                && slimefunItem.get().getId().equals(Stacks.ENDER_CAKE.getItemId())
                 && Bukkit.getAllowEnd()
             ) {
                 final World end = Bukkit.getWorlds().get(2);

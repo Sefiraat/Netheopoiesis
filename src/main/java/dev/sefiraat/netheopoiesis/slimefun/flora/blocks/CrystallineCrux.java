@@ -3,7 +3,7 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.blocks;
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.Purification;
 import dev.sefiraat.netheopoiesis.runnables.UpdateCruxTask;
-import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
+import dev.sefiraat.netheopoiesis.slimefun.Stacks;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -61,7 +61,7 @@ public class CrystallineCrux extends NetherCrux {
                     // We do not want crux' to be able to drop and placed elsewhere thus gaming the system
                     final Block block = event.getBlock();
                     final ItemStack heldItem = event.getPlayer().getInventory().getItemInMainHand();
-                    if (SlimefunItem.getByItem(heldItem).getId().equals(NpsItems.CRUX_GATHERER.getId())) {
+                    if (SlimefunItem.getByItem(heldItem).getId().equals(Stacks.CRUX_GATHERER.getItemId())) {
                         event.setCancelled(true);
                         block.setType(Material.AIR);
                     }
@@ -99,15 +99,16 @@ public class CrystallineCrux extends NetherCrux {
             final Block testBlock = block.getRelative(validFace);
             if (VALID_MATERIALS.contains(testBlock.getType())) {
                 final double chance = ThreadLocalRandom.current().nextDouble();
+                final double required = 0.05 * Netheopoiesis.CRYSTALLINE_SPREAD_MULTIPLIER;
 
                 canTransform = false;
-                if (chance <= (0.05 * Netheopoiesis.CRYSTALLINE_SPREAD_MULTIPLIER)) {
+                if (chance <= required) {
                     BlockStorage.clearBlockInfo(testBlock);
                     Purification.removeValue(testBlock);
                     // Schedule a task to ensure the new block storage happens only AFTER deletion
                     final UpdateCruxTask task = new UpdateCruxTask(
                         testBlock,
-                        NpsItems.CRYSTALLINE_CRUX,
+                        Stacks.CRYSTALLINE_CRUX,
                         stepsLeft - 1
                     );
                     task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);

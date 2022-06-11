@@ -1,14 +1,16 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
+import dev.sefiraat.netheopoiesis.PlantRegistry;
+import dev.sefiraat.netheopoiesis.core.plant.Growth;
 import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.core.plant.NetherPlant;
+import dev.sefiraat.netheopoiesis.core.plant.Placements;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResult;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResultType;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingPair;
 import dev.sefiraat.netheopoiesis.events.PlantBeforeGrowthEvent;
-import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
+import dev.sefiraat.netheopoiesis.slimefun.RecipeTypes;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.slimefun.groups.NpsGroups;
 import dev.sefiraat.netheopoiesis.utils.Keys;
@@ -49,8 +51,10 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.OverridingMethodsMustInvokeSuper;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -71,46 +75,34 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     );
 
     @Nonnull
-    public final Map<Location, UUID> ownerCache = new HashMap<>();
-    @Nonnull
-    public final GrowthDescription description;
-    @Nonnull
-    public final ItemStack displayPlant;
+    protected final Map<Location, UUID> ownerCache = new HashMap<>();
     @Nullable
-    public BreedingPair breedingPair;
+    protected Growth description;
+    @Nullable
+    protected ItemStack displayPlant;
+    @Nonnull
+    protected Set<BreedingPair> breedingPairs = new HashSet<>();
 
     @ParametersAreNonnullByDefault
-    protected NetherSeed(SlimefunItemStack item, GrowthDescription growthDescription) {
-        this(item, NpsRecipeTypes.PLANT_BREEDING, new ItemStack[0], null, growthDescription);
+    protected NetherSeed(SlimefunItemStack item) {
+        this(item, RecipeTypes.PLANT_BREEDING, new ItemStack[0], null);
     }
 
     @ParametersAreNonnullByDefault
     protected NetherSeed(SlimefunItemStack item,
                          RecipeType recipeType,
-                         ItemStack[] recipe,
-                         GrowthDescription growthDescription
+                         ItemStack[] recipe
     ) {
-        this(item, recipeType, recipe, null, growthDescription);
+        this(item, recipeType, recipe, null);
     }
 
     @ParametersAreNonnullByDefault
     protected NetherSeed(SlimefunItemStack item,
                          RecipeType recipeType,
                          ItemStack[] recipe,
-                         @Nullable ItemStack recipeOutput,
-                         GrowthDescription description
+                         @Nullable ItemStack recipeOutput
     ) {
         super(NpsGroups.SEEDS, item, recipeType, recipe, recipeOutput);
-        this.description = description;
-        String[] lore = new String[0];
-        if (this.getItem().getItemMeta().hasLore()) {
-            lore = this.getItem().getItemMeta().getLore().toArray(lore);
-        }
-        this.displayPlant = new CustomItemStack(
-            this.description.getFullyGrownPlant(),
-            this.getItemName(),
-            lore
-        );
     }
 
     @Override
@@ -197,14 +189,14 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
             final SlimefunItem mateItem = BlockStorage.check(potentialMate);
 
             if (mateItem instanceof NetherSeed mate) {
-                final BreedResult result = BreedingPair.getBreedResult(mother, mate);
+                final BreedResult result = PlantRegistry.getInstance().getBreedResult(mother.getId(), mate.getId());
 
                 if (result.getResultType() == BreedResultType.NO_PAIRS) {
                     // No matching breeding pairs, lets feedback to the player then move to the next direction
                     breedInvalidDisplay(middleBlock.getLocation());
                 } else if (result.getResultType() == BreedResultType.SUCCESS) {
                     // Breed was a success - spawn child, log discovery
-                    final NetherSeed child = result.getMatchedPair().getChildPlant();
+                    final NetherSeed child = result.getMatchedPair().getChild();
                     trySetChildSeed(motherBlock.getLocation(), middleBlock, child);
                     StatisticUtils.unlockDiscovery(getOwner(motherBlock.getLocation()), child.getId());
                 } else if (result.getResultType() == BreedResultType.SPREAD) {
@@ -322,42 +314,109 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
         event.setCancelled(true);
     }
 
-    public NetherSeed registerSeed(@Nonnull SlimefunAddon addon) {
-        register(addon);
+    /**
+     * This method should validate a seed's fields have been initialised correctly
+     * before it's registered. This will also set the Display plant used.
+     * Be sure to call super() if extending further
+     */
+    @OverridingMethodsMustInvokeSuper
+    protected abstract boolean validateSeed();
+
+    /**
+     * Sets the {@link Growth} of the plant
+     *
+     * @param growth The required {@link Growth}
+     */
+    @Nonnull
+    public NetherSeed setGrowth(@Nonnull Growth growth) {
+        this.description = growth;
+        String[] lore = new String[0];
+        if (this.getItem().getItemMeta().hasLore()) {
+            lore = this.getItem().getItemMeta().getLore().toArray(lore);
+        }
+        this.displayPlant = new CustomItemStack(
+            this.description.getFullyGrownPlant(),
+            this.getItemName(),
+            lore
+        );
         return this;
+    }
+
+    /**
+     * Adds a possible BreedingPair that will result in this seed as a child.
+     * Can have multiple pairs resulting in the same child.
+     *
+     * @param mother       The ID of the potential Mother
+     * @param father       The ID of the potential Mother
+     * @param breedChance  The chance for the breed to return this seed
+     * @param spreadChance The chance that the Mother will spread
+     * @return Returns self
+     */
+    @Nonnull
+    @ParametersAreNonnullByDefault
+    public NetherSeed addBreedingPair(String mother, String father, double breedChance, double spreadChance) {
+        this.breedingPairs.add(new BreedingPair(this, mother, father, breedChance, spreadChance));
+        return this;
+    }
+
+    /**
+     * Gets all the possible ways this plant can be bred
+     *
+     * @return The {@link Set} of {@link BreedingPair}s this plant can be bred from
+     */
+    @Nonnull
+    public Set<BreedingPair> getBreedingPairs() {
+        return this.breedingPairs;
+    }
+
+    /**
+     * Tries to register the seed (if it passes validation) first into the PlantRegistry, then its
+     * breeding pairs and finally with Slimefun.
+     *
+     * @param addon The addon registering this Seed
+     */
+    public void tryRegister(@Nonnull SlimefunAddon addon) {
+        if (validateSeed()) {
+            if (this.description == null) {
+                Netheopoiesis.logWarning(this.getId() + " has no Growth, it will not be registered.");
+            } else {
+                PlantRegistry.getInstance().addPlant(this);
+                register(addon);
+            }
+        }
     }
 
     @Nonnull
     @Override
     public GrowthStages getGrowthStages() {
-        return this.description.getStages();
+        return description == null ? GrowthStages.VINEY_RED : description.getStages();
     }
 
-    @Nonnull
+    @Nullable
     public ItemStack getDisplayPlant() {
-        return this.displayPlant;
+        return displayPlant;
     }
 
     @Nonnull
     @Override
     public Theme getTheme() {
-        return this.description.getStages().getTheme();
+        return description == null ? Theme.SEED : description.getStages().getTheme();
     }
 
     @Nonnull
     @Override
     public Set<String> getPlacements() {
-        return this.description.getPlacements();
+        return description == null ? Placements.NULL : description.getPlacements();
     }
 
     @Override
     public double getGrowthRate() {
-        return this.description.getGrowthRate() * Netheopoiesis.GROWTH_RATE_MULTIPLIER;
+        return (description == null ? 0.05 : description.getGrowthRate()) * Netheopoiesis.GROWTH_RATE_MULTIPLIER;
     }
 
     @Override
     public int getPurificationValue() {
-        return this.description.getPurificationValue() * Netheopoiesis.GROWTH_RATE_MULTIPLIER;
+        return (description == null ? 0 : description.getPurificationValue());
     }
 
     private void growthDisplay(@Nonnull Location location) {

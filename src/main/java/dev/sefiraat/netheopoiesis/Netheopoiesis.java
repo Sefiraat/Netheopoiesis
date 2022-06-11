@@ -5,7 +5,7 @@ import dev.sefiraat.netheopoiesis.managers.ConfigManager;
 import dev.sefiraat.netheopoiesis.managers.ListenerManager;
 import dev.sefiraat.netheopoiesis.managers.RunnableManager;
 import dev.sefiraat.netheopoiesis.managers.SupportedPluginManager;
-import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
+import dev.sefiraat.netheopoiesis.slimefun.Items;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import org.bstats.bukkit.Metrics;
@@ -27,11 +27,12 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
     private final String repo;
     private final String branch;
 
-    private SupportedPluginManager supportedPluginManager;
     private ConfigManager configManager;
+    private SupportedPluginManager supportedPluginManager;
     private ListenerManager listenerManager;
     private RunnableManager runnableManager;
     private Purification purification;
+    private PlantRegistry plantRegistry;
 
     public Netheopoiesis() {
         this.username = "Sefiraat";
@@ -55,8 +56,9 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
         this.listenerManager = new ListenerManager();
         this.runnableManager = new RunnableManager();
         this.purification = new Purification();
+        this.plantRegistry = new PlantRegistry();
 
-        NpsItems.setup();
+        Items.setup(this);
 
         setupStats();
     }
@@ -96,6 +98,18 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
         return Netheopoiesis.instance;
     }
 
+    public static void logError(@Nonnull String string) {
+        instance.getLogger().severe(string);
+    }
+
+    public static void logWarning(@Nonnull String string) {
+        instance.getLogger().warning(string);
+    }
+
+    public static void logInfo(@Nonnull String string) {
+        instance.getLogger().info(string);
+    }
+
     @Nonnull
     public static PluginManager getPluginManager() {
         return Netheopoiesis.getInstance().getServer().getPluginManager();
@@ -119,5 +133,9 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
 
     public static Purification getPurificationMemory() {
         return Netheopoiesis.getInstance().purification;
+    }
+
+    public static PlantRegistry getPlantRegistry() {
+        return Netheopoiesis.getInstance().plantRegistry;
     }
 }

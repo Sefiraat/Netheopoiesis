@@ -2,10 +2,9 @@ package dev.sefiraat.netheopoiesis.slimefun.flora.seeds.unique;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.Purification;
-import dev.sefiraat.netheopoiesis.core.plant.GrowthDescription;
 import dev.sefiraat.netheopoiesis.runnables.UpdateCruxTask;
-import dev.sefiraat.netheopoiesis.slimefun.NpsItems;
-import dev.sefiraat.netheopoiesis.slimefun.NpsRecipeTypes;
+import dev.sefiraat.netheopoiesis.slimefun.RecipeTypes;
+import dev.sefiraat.netheopoiesis.slimefun.Stacks;
 import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Keys;
@@ -38,8 +37,8 @@ public class PurificationSeed extends NetherSeed {
     private final Set<Material> materials;
 
     @ParametersAreNonnullByDefault
-    public PurificationSeed(SlimefunItemStack item, ItemStack[] recipe, GrowthDescription description) {
-        super(item, NpsRecipeTypes.VANILLA_DROP, recipe, null, description);
+    public PurificationSeed(SlimefunItemStack item, ItemStack[] recipe) {
+        super(item, RecipeTypes.VANILLA_DROP, recipe, null);
         materials = Set.of(
             Material.NETHERRACK,
             Material.CRIMSON_NYLIUM,
@@ -71,7 +70,7 @@ public class PurificationSeed extends NetherSeed {
             BlockStorage.clearBlockInfo(block);
             Purification.removeValue(block);
             // Schedule a task to ensure the new block storage happens only AFTER deletion
-            UpdateCruxTask task = new UpdateCruxTask(block, NpsItems.BASIC_PURIFIED_NETHERRACK);
+            UpdateCruxTask task = new UpdateCruxTask(block, Stacks.BASIC_PURIFIED_NETHERRACK);
             task.runTaskTimer(Netheopoiesis.getInstance(), 1, 20);
         }
     }
@@ -95,5 +94,10 @@ public class PurificationSeed extends NetherSeed {
         } else {
             event.setCancelled(true);
         }
+    }
+
+    @Override
+    protected boolean validateSeed() {
+        return true;
     }
 }
