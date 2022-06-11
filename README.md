@@ -18,6 +18,9 @@ This addon has three main aims:
 - Seed growth rate is multiplied 5x to speed up the process for judges
 - Nether Crux spread rate is multiplied 5x also
 
+A more detailed description of mechanics and details on plants can be found in my documentation
+wiki [here](https://docs.sefiraat.dev/netheopoiesis/purification)
+
 ## Purification
 
 The primary mechanic of this addon is the Purification system. When you place/grow certain items from this addon in the
