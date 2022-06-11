@@ -45,6 +45,11 @@ public class Purification {
     public static final int REGEN_2 = 1500;
     public static final int REGEN_3 = 2500;
 
+    // Particles
+    public static final int PARTICLES_1 = 1000;
+    public static final int PARTICLES_2 = 2000;
+    public static final int PARTICLES_3 = 3000;
+
     private static Purification instance;
 
     private final Map<BlockPosition, Integer> purifyingObjectValues = new HashMap<>();

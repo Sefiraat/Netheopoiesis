@@ -2,7 +2,7 @@ package dev.sefiraat.netheopoiesis.managers;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.runnables.MobSpawnsRunnable;
-import dev.sefiraat.netheopoiesis.runnables.RegenerationRunnable;
+import dev.sefiraat.netheopoiesis.runnables.PurificationEffects;
 import dev.sefiraat.netheopoiesis.runnables.SaveConfigRunnable;
 import org.apache.commons.lang.Validate;
 
@@ -13,7 +13,7 @@ public class RunnableManager {
 
     private static RunnableManager instance;
 
-    private final RegenerationRunnable regenerationRunnable;
+    private final PurificationEffects regenerationRunnable;
     private final MobSpawnsRunnable spawnsRunnable;
     private final SaveConfigRunnable saveConfigRunnable;
 
@@ -22,7 +22,7 @@ public class RunnableManager {
         instance = this;
         final Netheopoiesis plugin = Netheopoiesis.getInstance();
 
-        regenerationRunnable = new RegenerationRunnable();
+        regenerationRunnable = new PurificationEffects();
         regenerationRunnable.runTaskTimer(plugin, 0, 40);
 
         spawnsRunnable = new MobSpawnsRunnable();
@@ -32,7 +32,7 @@ public class RunnableManager {
         saveConfigRunnable.runTaskTimer(plugin, 0, 12000);
     }
 
-    public RegenerationRunnable getRegenerationRunnable() {
+    public PurificationEffects getRegenerationRunnable() {
         return regenerationRunnable;
     }
 
