@@ -44,6 +44,14 @@ public enum BreedingPair {
         0.15
     ),
 
+    MATH(
+        NpsItems.MATH_SEED,
+        NpsItems.BEST_FRIEND_SEED,
+        NpsItems.PERFECTION_SEED,
+        0.1,
+        0.15
+    ),
+
     BLACK_AND_WHITE(
         NpsItems.BLACK_AND_WHITE_SEED,
         NpsItems.JUNGLE_SEED,
@@ -244,10 +252,26 @@ public enum BreedingPair {
         0.15
     ),
 
+    BUSY(
+        NpsItems.BUSY_SEED,
+        NpsItems.LEARNED_SEED,
+        NpsItems.SWEET_SEED,
+        0.1,
+        0.15
+    ),
+
     METALLIC(
         NpsItems.METALLIC_SEED,
         NpsItems.SOUL_SEED,
         NpsItems.SOUL_SEED,
+        0.05,
+        0.2
+    ),
+
+    TARNISHED(
+        NpsItems.TARNISHED_SEED,
+        NpsItems.METALLIC_SEED,
+        NpsItems.DUSTY_SEED,
         0.05,
         0.2
     ),
@@ -364,6 +388,14 @@ public enum BreedingPair {
         0.2
     ),
 
+    NORI(
+        NpsItems.NORI_SEED,
+        NpsItems.SEASIDE_SEED,
+        NpsItems.GRASS_SEED,
+        0.05,
+        0.2
+    ),
+
     SHELLED(
         NpsItems.SHELLED_SEED,
         NpsItems.BEACH_SEED,
@@ -388,10 +420,34 @@ public enum BreedingPair {
         0.1
     ),
 
+    BLOB(
+        NpsItems.BLOB_SEED,
+        NpsItems.SLIMY_SEED,
+        NpsItems.BEST_FRIEND_SEED,
+        0.05,
+        0.1
+    ),
+
     SMOOTH(
         NpsItems.SMOOTH_SEED,
         NpsItems.SOUL_SEED,
         NpsItems.SOUL_SEED,
+        0.05,
+        0.2
+    ),
+
+    SEEDY(
+        NpsItems.SEEDY_SEED,
+        NpsItems.SMOOTH_SEED,
+        NpsItems.GRASS_SEED,
+        0.05,
+        0.2
+    ),
+
+    SWEET(
+        NpsItems.SWEET_SEED,
+        NpsItems.SEEDY_SEED,
+        NpsItems.SEASIDE_SEED,
         0.05,
         0.2
     ),
@@ -456,6 +512,14 @@ public enum BreedingPair {
         NpsItems.STRINGY_SEED,
         NpsItems.PURIFICATION_SEED,
         NpsItems.PURIFICATION_SEED,
+        0.1,
+        0.2
+    ),
+
+    GRASS(
+        NpsItems.GRASS_SEED,
+        NpsItems.SPINDLE_SEED,
+        NpsItems.STRINGY_SEED,
         0.1,
         0.2
     ),

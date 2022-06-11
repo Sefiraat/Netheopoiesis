@@ -323,21 +323,33 @@ public final class NpsItems {
     public static final DroppingSeed GRAINY_SEED = new DroppingSeed(
         NpsStacks.GRAINY_SEED,
         new ItemStack(Material.REDSTONE),
-        0.10,
+        0.05,
         new GrowthDescription(GrowthStages.VINEY_RED, Placements.ALL, 1, 0.09)
     );
 
     public static final DroppingSeed STRINGY_SEED = new DroppingSeed(
         NpsStacks.STRINGY_SEED,
         new ItemStack(Material.STRING),
-        0.10,
+        0.05,
+        new GrowthDescription(GrowthStages.VINEY_GREEN, Placements.ALL, 1, 0.09)
+    );
+
+    public static final DroppingSeed GRASS_SEED = new DroppingSeed(
+        NpsStacks.GRASS_SEED,
+        new ItemStack[] {
+            new ItemStack(Material.GRASS),
+            new ItemStack(Material.TALL_GRASS),
+            new ItemStack(Material.SEAGRASS),
+            new ItemStack(Material.TALL_SEAGRASS)
+        },
+        0.05,
         new GrowthDescription(GrowthStages.VINEY_GREEN, Placements.ALL, 1, 0.09)
     );
 
     public static final DroppingSeed COBBLED_SEED = new DroppingSeed(
         NpsStacks.COBBLED_SEED,
         new ItemStack(Material.COBBLESTONE),
-        0.15,
+        0.05,
         new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.ALL, 1, 0.09)
     );
 
@@ -377,6 +389,12 @@ public final class NpsItems {
         new GrowthDescription(GrowthStages.SPIKEY_YELLOW, Placements.ALL, 1, 0.09)
     );
 
+    public static final HarvestableSeed NORI_SEED = new HarvestableSeed(
+        NpsStacks.NORI_SEED,
+        new ItemStack(Material.KELP),
+        new GrowthDescription(GrowthStages.SPIKEY_GREEN, Placements.ALL, 1, 0.09)
+    );
+
     public static final HarvestableSeed MOLDABLE_SEED = new HarvestableSeed(
         NpsStacks.MOLDABLE_SEED,
         new ItemStack(Material.CLAY_BALL),
@@ -406,6 +424,12 @@ public final class NpsItems {
         new GrowthDescription(GrowthStages.VINEY_RED, Placements.PURIFIED_AND_UP, 2, 0.08)
     );
 
+    public static final HarvestableSeed TARNISHED_SEED = new HarvestableSeed(
+        NpsStacks.TARNISHED_SEED,
+        new ItemStack(Material.RAW_COPPER),
+        new GrowthDescription(GrowthStages.VINEY_ORANGE, Placements.PURIFIED_AND_UP, 2, 0.08)
+    );
+
     public static final HarvestableSeed SHINY_SEED = new HarvestableSeed(
         NpsStacks.SHINY_SEED,
         new ItemStack(Material.GOLD_NUGGET),
@@ -416,6 +440,24 @@ public final class NpsItems {
         NpsStacks.SMOOTH_SEED,
         new ItemStack(Material.AMETHYST_SHARD),
         new GrowthDescription(GrowthStages.VINEY_PURPLE, Placements.PURIFIED_AND_UP, 2, 0.08)
+    );
+
+    public static final DroppingSeed SEEDY_SEED = new DroppingSeed(
+        NpsStacks.SEEDY_SEED,
+        new ItemStack[]{
+            new ItemStack(Material.WHEAT_SEEDS),
+            new ItemStack(Material.MELON_SEEDS),
+            new ItemStack(Material.BEETROOT_SEEDS),
+            new ItemStack(Material.PUMPKIN_SEEDS)
+        },
+        0.05,
+        new GrowthDescription(GrowthStages.FUNGAL_YELLOW, Placements.PURIFIED_AND_UP, 2, 0.08)
+    );
+
+    public static final GenericTickingSeed SWEET_SEED = new GenericTickingSeed(
+        NpsStacks.SWEET_SEED,
+        GenericTickingMethods::onTickSweetSeed,
+        new GrowthDescription(GrowthStages.SPIKEY_CYAN, Placements.PURIFIED_AND_UP, 3, 0.07)
     );
 
     public static final HarvestableSeed ENCHANTED_SEED = new HarvestableSeed(
@@ -535,6 +577,12 @@ public final class NpsItems {
         new GrowthDescription(GrowthStages.VINEY_ORANGE, Placements.VORACIOUS_AND_UP, 9, 0.06)
     );
 
+    public static final HarvestableSeed BUSY_SEED = new HarvestableSeed(
+        NpsStacks.BUSY_SEED,
+        new ItemStack(Material.COOKIE),
+        new GrowthDescription(GrowthStages.SPIKEY_RED, Placements.VORACIOUS_AND_UP, 9, 0.06)
+    );
+
     public static final GenericTickingSeed OAKENDRAN_SEED = new GenericTickingSeed(
         NpsStacks.OAKENDRAN_SEED,
         GenericTickingMethods::onTickOakendranSeed,
@@ -557,6 +605,12 @@ public final class NpsItems {
         NpsStacks.BEST_FRIEND_SEED,
         EntityType.WOLF,
         new GrowthDescription(GrowthStages.SPAWNING_CYAN, Placements.NETHER_DIRT_AND_UP, 16, 0.10)
+    );
+
+    public static final GenericTickingSeed MATH_SEED = new GenericTickingSeed(
+        NpsStacks.MATH_SEED,
+        GenericTickingMethods::onAlessioTeach,
+        new GrowthDescription(GrowthStages.SPIKEY_BLUE, Placements.NETHER_DIRT_AND_UP, 16, 0.10)
     );
 
     public static final HarvestableSeed BUZZING_SEED = new HarvestableSeed(
@@ -680,6 +734,12 @@ public final class NpsItems {
         new GrowthDescription(GrowthStages.SPAWNING_GREEN, Placements.SWAMP_BIOME, 12, 0.08)
     );
 
+    public static final GenericTickingSeed BLOB_SEED = new GenericTickingSeed(
+        NpsStacks.BLOB_SEED,
+        GenericTickingMethods::onWalshyIsMad,
+        new GrowthDescription(GrowthStages.FUNGAL_YELLOW, Placements.SWAMP_BIOME, 12, 0.08)
+    );
+
     public static void setup() {
         final Netheopoiesis plugin = Netheopoiesis.getInstance();
 
@@ -726,17 +786,22 @@ public final class NpsItems {
         SPINDLE_SEED.register(plugin);
         GRAINY_SEED.register(plugin);
         STRINGY_SEED.register(plugin);
+        GRASS_SEED.register(plugin);
         COBBLED_SEED.register(plugin);
         DUSTY_SEED.register(plugin);
         SEASIDE_SEED.register(plugin);
+        NORI_SEED.register(plugin);
         WET_SEED.register(plugin);
         MOLDABLE_SEED.register(plugin);
         SPLINTERED_SEED.register(plugin);
         ROTTEN_SEED.register(plugin);
 
         METALLIC_SEED.register(plugin);
+        TARNISHED_SEED.register(plugin);
         SHINY_SEED.register(plugin);
         SMOOTH_SEED.register(plugin);
+        SEEDY_SEED.register(plugin);
+        SWEET_SEED.register(plugin);
         ENCHANTED_SEED.register(plugin);
         COMBUSTIBLE_SEED.register(plugin);
         PROTECTIVE_SEED.register(plugin);
@@ -753,11 +818,13 @@ public final class NpsItems {
         PRISMATIC_SEED.register(plugin);
         POROUS_SEED.register(plugin);
         LEARNED_SEED.register(plugin);
+        BUSY_SEED.register(plugin);
         OAKENDRAN_SEED.register(plugin);
 
         ADDON_BERRY_SEED.register(plugin);
         CUTE_SEED.register(plugin);
         BEST_FRIEND_SEED.register(plugin);
+        MATH_SEED.register(plugin);
         BUZZING_SEED.register(plugin);
         TERRIFYING_SEED.register(plugin);
         HATE_FILLED_SEED.register(plugin);
@@ -781,5 +848,6 @@ public final class NpsItems {
 
         HEXED_SEED.register(plugin);
         SLIMY_SEED.register(plugin);
+        BLOB_SEED.register(plugin);
     }
 }
