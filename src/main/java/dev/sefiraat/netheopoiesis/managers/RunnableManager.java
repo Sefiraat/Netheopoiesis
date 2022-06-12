@@ -1,10 +1,10 @@
 package dev.sefiraat.netheopoiesis.managers;
 
+import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.runnables.MobSpawnsRunnable;
 import dev.sefiraat.netheopoiesis.runnables.PurificationEffects;
 import dev.sefiraat.netheopoiesis.runnables.SaveConfigRunnable;
-import org.apache.commons.lang.Validate;
 
 /**
  * This class is used to run Runnables from one place
@@ -18,7 +18,7 @@ public class RunnableManager {
     private final SaveConfigRunnable saveConfigRunnable;
 
     public RunnableManager() {
-        Validate.isTrue(instance == null, "Cannot create a new instance of the ListenerManager");
+        Preconditions.checkNotNull(instance == null, "Cannot create a new instance of the ListenerManager");
         instance = this;
         final Netheopoiesis plugin = Netheopoiesis.getInstance();
 

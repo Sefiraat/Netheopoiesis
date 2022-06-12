@@ -1,7 +1,7 @@
 package dev.sefiraat.netheopoiesis.core.spawning;
 
+import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.Purification;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
@@ -76,8 +76,8 @@ public class RandomSpawn {
                        boolean randomize,
                        Predicate<Location> predicate
     ) {
-        Validate.isTrue(type.isAlive(), "Only LivingEntities can be RandomSpawns");
-        Validate.isTrue(type.isSpawnable(), "Specified type is not spawnable");
+        Preconditions.checkNotNull(type.isAlive(), "Only LivingEntities can be RandomSpawns");
+        Preconditions.checkNotNull(type.isSpawnable(), "Specified type is not spawnable");
         this.type = type;
         this.requiredPurification = requiredValue;
         this.chance = chance;

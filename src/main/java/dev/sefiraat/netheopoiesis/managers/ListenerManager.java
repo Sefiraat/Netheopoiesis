@@ -1,5 +1,6 @@
 package dev.sefiraat.netheopoiesis.managers;
 
+import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.listeners.BlockProtectionListener;
 import dev.sefiraat.netheopoiesis.listeners.CrystallineSeedListener;
@@ -9,7 +10,6 @@ import dev.sefiraat.netheopoiesis.listeners.MobSpawnListener;
 import dev.sefiraat.netheopoiesis.listeners.PlayerSleepListener;
 import dev.sefiraat.netheopoiesis.listeners.SeedPlacementListener;
 import dev.sefiraat.netheopoiesis.listeners.WaterPlaceListener;
-import org.apache.commons.lang.Validate;
 import org.bukkit.event.Listener;
 
 import javax.annotation.Nonnull;
@@ -22,7 +22,7 @@ public class ListenerManager {
     private static ListenerManager instance;
 
     public ListenerManager() {
-        Validate.isTrue(instance == null, "Cannot create a new instance of the ListenerManager");
+        Preconditions.checkNotNull(instance == null, "Cannot create a new instance of the ListenerManager");
         instance = this;
         addListener(new DropListener());
         addListener(new SeedPlacementListener());
