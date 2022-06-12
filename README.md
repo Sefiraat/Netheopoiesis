@@ -13,11 +13,6 @@ This addon has three main aims:
   should they choose to
 - To make the nether a place suitable (and safe!) place to call home
 
-***Notes for the Addon Jam specifically***
-
-- Seed growth rate is multiplied 5x to speed up the process for judges
-- Nether Crux spread rate is multiplied 5x also
-
 A more detailed description of mechanics and details on plants can be found in my documentation
 wiki [here](https://docs.sefiraat.dev/netheopoiesis/purification)
 
