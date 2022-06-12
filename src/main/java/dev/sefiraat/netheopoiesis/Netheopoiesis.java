@@ -17,9 +17,10 @@ import javax.annotation.Nullable;
 import java.text.MessageFormat;
 
 public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
-    public static final int CRUX_SPREAD_MULTIPLIER = 5;
-    public static final int CRYSTALLINE_SPREAD_MULTIPLIER = 3;
-    public static final int GROWTH_RATE_MULTIPLIER = 5;
+    // Todo replace with config
+    public static final int CRUX_SPREAD_MULTIPLIER = 1;
+    public static final int CRYSTALLINE_SPREAD_MULTIPLIER = 1;
+    public static final int GROWTH_RATE_MULTIPLIER = 1;
 
     private static Netheopoiesis instance;
 
