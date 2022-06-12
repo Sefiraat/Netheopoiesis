@@ -47,8 +47,13 @@ public final class RecipeTypes {
             Theme.RECIPE_TYPE,
             "Plant Breeding",
             "This seed is found via breeding.",
+            "You breed plants by placing",
+            "two plants down with an air block",
+            "between them.",
+            "",
             "The breeding dictionary can be used",
             "to track your discoveries.",
+            "",
             "Hint: Black particles mean the",
             "two plants CANNOT breed."
         )
