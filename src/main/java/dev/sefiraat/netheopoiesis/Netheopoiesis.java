@@ -5,7 +5,7 @@ import dev.sefiraat.netheopoiesis.managers.ConfigManager;
 import dev.sefiraat.netheopoiesis.managers.ListenerManager;
 import dev.sefiraat.netheopoiesis.managers.RunnableManager;
 import dev.sefiraat.netheopoiesis.managers.SupportedPluginManager;
-import dev.sefiraat.netheopoiesis.slimefun.Items;
+import dev.sefiraat.netheopoiesis.implementation.Items;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import org.bstats.bukkit.Metrics;

@@ -1,16 +1,16 @@
 package dev.sefiraat.netheopoiesis;
 
 import com.google.common.base.Preconditions;
-import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResult;
-import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResultType;
-import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingPair;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.BiomeSpreadingSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.CruxSpreadingSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.DroppingSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.EntitySpawningSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.GenericTickingSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.HarvestableSeed;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
+import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedResult;
+import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedResultType;
+import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedingPair;
+import dev.sefiraat.netheopoiesis.api.items.BiomeSpreadingSeed;
+import dev.sefiraat.netheopoiesis.api.items.CruxSpreadingSeed;
+import dev.sefiraat.netheopoiesis.api.items.DroppingSeed;
+import dev.sefiraat.netheopoiesis.api.items.EntitySpawningSeed;
+import dev.sefiraat.netheopoiesis.api.items.GenericTickingSeed;
+import dev.sefiraat.netheopoiesis.api.items.HarvestableSeed;
+import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.TextUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
@@ -34,7 +34,7 @@ public class PlantRegistry {
     private final List<BreedingPair> breedingPairs = new ArrayList<>();
 
     public PlantRegistry() {
-        Preconditions.checkNotNull(instance == null, "Cannot create a new instance of the PlantRegistry");
+        Preconditions.checkArgument(instance == null, "Cannot create a new instance of the PlantRegistry");
         instance = this;
     }
 

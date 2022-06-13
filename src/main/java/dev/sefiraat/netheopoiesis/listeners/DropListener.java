@@ -1,6 +1,6 @@
 package dev.sefiraat.netheopoiesis.listeners;
 
-import dev.sefiraat.netheopoiesis.slimefun.RecipeTypes;
+import dev.sefiraat.netheopoiesis.api.RecipeTypes;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;

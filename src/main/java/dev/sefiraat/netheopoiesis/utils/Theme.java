@@ -263,11 +263,7 @@ public enum Theme {
      */
     @Nonnull
     @ParametersAreNonnullByDefault
-    public static ItemStack themedItemStack(Material material,
-                                            Theme themeType,
-                                            String name,
-                                            String... lore
-    ) {
+    public static ItemStack themedItemStack(Material material, Theme themeType, String name, String... lore) {
         ChatColor passiveColor = Theme.PASSIVE.getColor();
         List<String> finalLore = new ArrayList<>();
         finalLore.add("");

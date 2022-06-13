@@ -1,7 +1,7 @@
 package dev.sefiraat.netheopoiesis.listeners;
 
-import dev.sefiraat.netheopoiesis.slimefun.Stacks;
-import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.CrystallineCrux;
+import dev.sefiraat.netheopoiesis.implementation.Stacks;
+import dev.sefiraat.netheopoiesis.implementation.flora.CrystallineCrux;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;

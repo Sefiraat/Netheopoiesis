@@ -1,6 +1,8 @@
 package dev.sefiraat.netheopoiesis.core.plant;
 
-import dev.sefiraat.netheopoiesis.slimefun.Stacks;
+import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
+import dev.sefiraat.netheopoiesis.api.plant.Growth;
+import dev.sefiraat.netheopoiesis.implementation.Stacks;
 
 import java.util.Collections;
 import java.util.Set;
@@ -9,7 +11,7 @@ import java.util.Set;
  * This class is used to contain the most common combinations of possible placements for plants
  *
  * @see Growth
- * @see dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed
+ * @see NetherSeed
  * TODO Replace with a crux tier system (how to deal with fringes?)
  */
 public final class Placements {
