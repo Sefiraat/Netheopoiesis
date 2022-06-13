@@ -1,5 +1,6 @@
 package dev.sefiraat.netheopoiesis;
 
+import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResult;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedResultType;
 import dev.sefiraat.netheopoiesis.core.plant.breeding.BreedingPair;
@@ -10,8 +11,7 @@ import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.EntitySpawningSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.GenericTickingSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.HarvestableSeed;
 import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
-import org.apache.commons.lang.Validate;
-import org.apache.commons.lang.WordUtils;
+import dev.sefiraat.netheopoiesis.utils.TextUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 
@@ -34,7 +34,7 @@ public class PlantRegistry {
     private final List<BreedingPair> breedingPairs = new ArrayList<>();
 
     public PlantRegistry() {
-        Validate.isTrue(instance == null, "Cannot create a new instance of the PlantRegistry");
+        Preconditions.checkNotNull(instance == null, "Cannot create a new instance of the PlantRegistry");
         instance = this;
     }
 
@@ -96,12 +96,12 @@ public class PlantRegistry {
 
             for (String s : seed.getPlacements()) {
                 places.append("- ")
-                      .append(toTitleCase(ChatColor.stripColor(s.replace("NPS_", ""))))
+                      .append(TextUtils.toTitleCase(ChatColor.stripColor(s.replace("NPS_", ""))))
                       .append("\n");
             }
 
             String output = template;
-            output = output.replace("{NAME}", toTitleCase(ChatColor.stripColor(seed.getItemName())));
+            output = output.replace("{NAME}", TextUtils.toTitleCase(ChatColor.stripColor(seed.getItemName())));
             output = output.replace("{PLACEMENT_LIST}", places.toString());
             output = output.replace("{GROWTH_RATE_PERCENTAGE}", format.format(seed.getGrowthRate() * 100));
             output = output.replace("{PURIFICATION_VALUE}", String.valueOf(seed.getPurificationValue()));
@@ -116,7 +116,7 @@ public class PlantRegistry {
                 final ItemStack itemStack = harvestable.getHarvestingResult();
                 final String itemName = itemStack.getItemMeta().hasDisplayName() ?
                                         ChatColor.stripColor(itemStack.getItemMeta().getDisplayName()) :
-                                        toTitleCase(itemStack.getType().name());
+                                        TextUtils.toTitleCase(itemStack.getType().name());
                 output = output.replace("{TYPE_FEATURE}", "Harvesting Tool Output");
                 output = output.replace("{TYPE_DESC}", "When harvested, this plant will drop: " + itemName);
             } else if (seed instanceof GenericTickingSeed ticking) {
@@ -124,14 +124,14 @@ public class PlantRegistry {
                 output = output.replace("{TYPE_DESC}", "");
             } else if (seed instanceof EntitySpawningSeed spawning) {
                 output = output.replace("{TYPE_FEATURE}", "Spawns Mob");
-                output = output.replace("{TYPE_DESC}", toTitleCase(spawning.getEntityType().name()));
+                output = output.replace("{TYPE_DESC}", TextUtils.toTitleCase(spawning.getEntityType().name()));
             } else if (seed instanceof DroppingSeed dropping) {
                 final StringBuilder drops = new StringBuilder();
 
                 dropping.getPossibleDrops().forEach(itemStack -> {
                     final String itemName = itemStack.getItemMeta().hasDisplayName() ?
                                             ChatColor.stripColor(itemStack.getItemMeta().getDisplayName()) :
-                                            toTitleCase(itemStack.getType().name());
+                                            TextUtils.toTitleCase(itemStack.getType().name());
                     drops.append("- ")
                          .append(itemName)
                          .append("\n");
@@ -162,12 +162,6 @@ public class PlantRegistry {
                 e.printStackTrace();
             }
         }
-    }
-
-    @Nonnull
-    private String toTitleCase(String string) {
-        final char[] delimiters = {' ', '_'};
-        return WordUtils.capitalizeFully(string, delimiters).replace("_", " ");
     }
 
     public static PlantRegistry getInstance() {

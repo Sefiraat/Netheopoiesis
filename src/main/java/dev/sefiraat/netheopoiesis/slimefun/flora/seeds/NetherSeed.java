@@ -1,5 +1,6 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
+import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.PlantRegistry;
 import dev.sefiraat.netheopoiesis.core.plant.Growth;
@@ -35,7 +36,6 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -253,7 +253,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     public UUID getOwner(@Nonnull Location location) {
         UUID uuid = ownerCache.get(location);
         // Owner cannot be null if called correctly
-        Validate.notNull(uuid, "Owner is null, has this been called correctly");
+        Preconditions.checkNotNull(uuid, "Owner is null, has this been called correctly");
         return uuid;
     }
 

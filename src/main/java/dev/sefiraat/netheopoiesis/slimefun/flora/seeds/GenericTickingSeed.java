@@ -1,9 +1,9 @@
 package dev.sefiraat.netheopoiesis.slimefun.flora.seeds;
 
+import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 
 import javax.annotation.Nonnull;
@@ -34,7 +34,7 @@ public class GenericTickingSeed extends NetherSeed {
             seed,
             data
         );
-        Validate.notNull(this.consumer);
+        Preconditions.checkNotNull(this.consumer);
         this.consumer.accept(tickParameters);
     }
 

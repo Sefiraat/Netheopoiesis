@@ -1,9 +1,9 @@
 package dev.sefiraat.netheopoiesis;
 
+import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.blocks.BlockPosition;
 import io.github.bakedlibs.dough.blocks.ChunkPosition;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.block.Block;
@@ -56,7 +56,7 @@ public class Purification {
     private final Map<ChunkPosition, Integer> chunkValues = new HashMap<>();
 
     public Purification() {
-        Validate.isTrue(instance == null, "Cannot create a new instance of Purification");
+        Preconditions.checkNotNull(instance == null, "Cannot create a new instance of Purification");
         instance = this;
         Bukkit.getScheduler().runTaskTimer(Netheopoiesis.getInstance(), this::collateChunkValues, 1, 100);
     }

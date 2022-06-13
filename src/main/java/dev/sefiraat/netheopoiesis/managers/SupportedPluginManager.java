@@ -1,6 +1,6 @@
 package dev.sefiraat.netheopoiesis.managers;
 
-import org.apache.commons.lang.Validate;
+import com.google.common.base.Preconditions;
 
 /**
  * This class is used to check, register and manage/provide supported plugins
@@ -10,7 +10,7 @@ public class SupportedPluginManager {
     private static SupportedPluginManager instance;
 
     public SupportedPluginManager() {
-        Validate.isTrue(instance == null, "Cannot create a new instance of the SupportedPluginManager");
+        Preconditions.checkNotNull(instance == null, "Cannot create a new instance of the SupportedPluginManager");
         instance = this;
         setup();
     }
