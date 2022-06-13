@@ -53,7 +53,7 @@ public class HarvestingTool extends LimitedUseItem {
             final SlimefunItem slimefunItem = BlockStorage.check(block);
             if (slimefunItem instanceof HarvestableSeed seed && canHarvest(seed, block, e.getPlayer())) {
                 final ItemStack stackToDrop = seed.getHarvestingResult();
-                seed.updateGrowthStage(block, 0);
+                seed.updateGrowthStage(block, 1);
                 block.getWorld().dropItem(block.getLocation(), stackToDrop);
                 damageItem(e.getPlayer(), e.getItem());
             }

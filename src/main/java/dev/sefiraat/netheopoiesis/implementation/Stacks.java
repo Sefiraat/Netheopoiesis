@@ -215,7 +215,7 @@ public final class Stacks {
         "NPS_STONEY_CRUX",
         Material.STONE,
         Theme.CRUX,
-        "Snowy Crux",
+        "Stoney Crux",
         "While not suitable for plants",
         "there is a reason for everything."
     );
