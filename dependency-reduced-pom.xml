@@ -55,6 +55,10 @@
           </filters>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version>
+      </plugin>
     </plugins>
   </build>
   <repositories>
