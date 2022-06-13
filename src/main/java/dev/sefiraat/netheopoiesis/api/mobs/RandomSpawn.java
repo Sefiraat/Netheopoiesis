@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.core.spawning;
+package dev.sefiraat.netheopoiesis.api.mobs;
 
 import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.Purification;

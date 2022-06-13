@@ -1,7 +1,7 @@
 package dev.sefiraat.netheopoiesis.api.items;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
-import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
+import dev.sefiraat.netheopoiesis.implementation.plant.GrowthStages;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import org.bukkit.inventory.ItemStack;
 

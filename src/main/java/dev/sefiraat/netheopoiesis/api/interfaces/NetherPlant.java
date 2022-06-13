@@ -1,6 +1,6 @@
 package dev.sefiraat.netheopoiesis.api.interfaces;
 
-import dev.sefiraat.netheopoiesis.core.plant.GrowthStages;
+import dev.sefiraat.netheopoiesis.implementation.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.api.items.NetherCrux;
 import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Skulls;

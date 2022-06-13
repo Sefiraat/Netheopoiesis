@@ -3,6 +3,7 @@ package dev.sefiraat.netheopoiesis.api.items;
 import dev.sefiraat.netheopoiesis.api.interfaces.PurifyingObject;
 import dev.sefiraat.netheopoiesis.api.RecipeTypes;
 import dev.sefiraat.netheopoiesis.implementation.Stacks;
+import dev.sefiraat.netheopoiesis.implementation.plant.Placements;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -24,7 +25,7 @@ import java.util.Set;
  * A NetherCrux is a block that allows NetherPlants to grow on top.
  * Each plant has a {@link Set<String>} of id's to specify which Crux's they can be placed on
  *
- * @see dev.sefiraat.netheopoiesis.core.plant.Placements
+ * @see Placements
  */
 public class NetherCrux extends SlimefunItem implements PurifyingObject {
 

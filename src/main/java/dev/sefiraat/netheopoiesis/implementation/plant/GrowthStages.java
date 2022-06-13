@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.core.plant;
+package dev.sefiraat.netheopoiesis.implementation.plant;
 
 import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
