@@ -160,7 +160,7 @@ public final class Items {
                 oakPlank, oakPlank, null,
             },
             25
-        );
+        ).register(addon);
 
         new HarvestingTool(
             NpsGroups.TOOLS,
@@ -172,7 +172,7 @@ public final class Items {
                 ironIngot, ironIngot, null,
             },
             150
-        );
+        ).register(addon);
 
         new PurificationBarometer(
             NpsGroups.TOOLS,
@@ -183,7 +183,7 @@ public final class Items {
                 glass, redstone, glass,
                 SlimefunItems.ZINC_INGOT, glass, SlimefunItems.ZINC_INGOT,
             }
-        );
+        ).register(addon);
 
         new PurificationScanner(
             NpsGroups.TOOLS,
@@ -194,9 +194,9 @@ public final class Items {
                 glass, Stacks.PURIFICATION_BAROMETER, glass,
                 SlimefunItems.BILLON_INGOT, glass, SlimefunItems.BILLON_INGOT,
             }
-        );
+        ).register(addon);
 
-        new Analyser(
+        new SlimefunItem(
             NpsGroups.TOOLS,
             Stacks.CRUX_GATHERER,
             RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -205,7 +205,7 @@ public final class Items {
                 null, glass, null,
                 null, glass, null,
             }
-        );
+        ).register(addon);
 
         new Analyser(
             NpsGroups.TOOLS,
@@ -216,7 +216,7 @@ public final class Items {
                 SlimefunItems.BRASS_INGOT, glass, SlimefunItems.BRASS_INGOT,
                 SlimefunItems.DAMASCUS_STEEL_INGOT, redstone, SlimefunItems.DAMASCUS_STEEL_INGOT,
             }
-        );
+        ).register(addon);
 
         new EnderCake(
             NpsGroups.TOOLS,
@@ -227,7 +227,7 @@ public final class Items {
                 Stacks.ADDON_JAM, Stacks.ADDON_JAM, Stacks.ADDON_JAM,
                 wheat, wheat, wheat,
             }
-        );
+        ).register(addon);
 
         // endregion
 
