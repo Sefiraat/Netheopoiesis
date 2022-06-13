@@ -87,14 +87,14 @@ public class CruxSpreadingSeed extends NetherSeed implements SpreadingPlant {
 
     @Nonnull
     public CruxSpreadingSeed setSpreadChance(double spreadChance) {
-        final SlimefunItem slimefunItem = SlimefunItem.getByItem(convertTo);
-        Preconditions.checkArgument(slimefunItem instanceof NetherCrux, "Set Crux MUST be a NetherCrux");
         this.spreadChance = spreadChance;
         return this;
     }
 
     @Nonnull
     public CruxSpreadingSeed setCrux(@Nonnull SlimefunItemStack crux) {
+        final SlimefunItem slimefunItem = SlimefunItem.getByItem(crux);
+        Preconditions.checkArgument(slimefunItem instanceof NetherCrux, "Set Crux MUST be a NetherCrux");
         this.convertTo = crux;
         return this;
     }
