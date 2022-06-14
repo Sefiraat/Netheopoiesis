@@ -71,7 +71,7 @@ public class CruxSpreadEvent extends Event implements Cancellable {
      * @return The crux type that will be spread
      */
     @Nonnull
-    public NetherCrux getGrowthStage() {
+    public NetherCrux getCrux() {
         return crux;
     }
 }
