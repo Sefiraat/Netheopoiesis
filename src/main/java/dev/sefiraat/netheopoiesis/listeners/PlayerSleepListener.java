@@ -11,9 +11,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * The purpose of this listener is to allow players to sleep and set their respawn point whilst
@@ -26,11 +28,7 @@ public class PlayerSleepListener implements Listener {
         final Player player = event.getPlayer();
         final World world = player.getWorld();
         final Block block = event.getClickedBlock();
-        if (WorldUtils.inNether(world)
-            && block != null
-            && SlimefunTag.BEDS.isTagged(block.getType())
-            && Purification.getValue(block.getChunk()) >= 250
-        ) {
+        if (block != null && validSleepEvent(event.getAction(), world, block)) {
             event.setCancelled(true);
             if (TimePeriod.isNight(world)) {
                 player.sleep(block.getLocation(), true);
@@ -41,5 +39,13 @@ public class PlayerSleepListener implements Listener {
             }
 
         }
+    }
+
+    @ParametersAreNonnullByDefault
+    private boolean validSleepEvent(Action action, World world, Block block) {
+        return action == Action.RIGHT_CLICK_BLOCK
+            && WorldUtils.inNether(world)
+            && SlimefunTag.BEDS.isTagged(block.getType())
+            && Purification.getValue(block.getChunk()) >= 250;
     }
 }
