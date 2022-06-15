@@ -36,8 +36,8 @@ public class ManagedMobListener {
     @EventHandler
     public void onChunkUnload(@Nonnull ChunkUnloadEvent event) {
         for (Entity entity : event.getChunk().getEntities()) {
-            if (entity instanceof LivingEntity livingEntity && MobManager.getInstance()
-                                                                         .isMobManaged(entity.getUniqueId())
+            if (entity instanceof LivingEntity livingEntity
+                && MobManager.getInstance().isMobManaged(entity.getUniqueId())
             ) {
                 MobManager.getInstance().removeMob(livingEntity, true);
             }
