@@ -45,7 +45,12 @@ public class RandomSpawn {
      * @param chance        The chance for the mob to spawn successfully
      * @param randomize     Defines if the mob's data should be randomized (default = true)
      */
-    public RandomSpawn(@Nonnull EntityType type, @Nonnull MobCapType mobCapType, int requiredValue, double chance, boolean randomize) {
+    public RandomSpawn(@Nonnull EntityType type,
+                       @Nonnull MobCapType mobCapType,
+                       int requiredValue,
+                       double chance,
+                       boolean randomize
+    ) {
         this(type, mobCapType, requiredValue, chance, randomize, location -> true);
     }
 
@@ -58,7 +63,12 @@ public class RandomSpawn {
      * @param predicate     This predicate is used to determine if the mob can spawn. Use for additional spawn
      *                      requirements, e.g. Location being in water
      */
-    public RandomSpawn(@Nonnull EntityType type, @Nonnull MobCapType mobCapType, int requiredValue, double chance, Predicate<Location> predicate) {
+    public RandomSpawn(@Nonnull EntityType type,
+                       @Nonnull MobCapType mobCapType,
+                       int requiredValue,
+                       double chance,
+                       Predicate<Location> predicate
+    ) {
         this(type, mobCapType, requiredValue, chance, true, predicate);
     }
 
@@ -140,9 +150,12 @@ public class RandomSpawn {
         if (purificationLevel >= this.requiredPurification) {
             final double random = ThreadLocalRandom.current().nextDouble();
             if (random <= this.chance && this.predicate.test(location) && hasEnoughSpace(location)) {
-
-
-                LivingEntity livingEntity = MobManager.getInstance().spawnMob(mobCapType, type, location, randomize);
+                final LivingEntity livingEntity = MobManager.getInstance().spawnMob(
+                    mobCapType,
+                    type,
+                    location,
+                    randomize
+                );
 
                 if (livingEntity != null) {
                     livingEntity.setRemoveWhenFarAway(true);
