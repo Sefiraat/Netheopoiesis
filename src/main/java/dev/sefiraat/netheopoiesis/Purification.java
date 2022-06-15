@@ -56,7 +56,7 @@ public class Purification {
     private final Map<ChunkPosition, Integer> chunkValues = new HashMap<>();
 
     public Purification() {
-        Preconditions.checkNotNull(instance == null, "Cannot create a new instance of Purification");
+        Preconditions.checkArgument(instance == null, "Cannot create a new instance of Purification");
         instance = this;
         Bukkit.getScheduler().runTaskTimer(Netheopoiesis.getInstance(), this::collateChunkValues, 1, 100);
     }

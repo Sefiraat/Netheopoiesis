@@ -22,7 +22,7 @@ public class ListenerManager {
     private static ListenerManager instance;
 
     public ListenerManager() {
-        Preconditions.checkNotNull(instance == null, "Cannot create a new instance of the ListenerManager");
+        Preconditions.checkArgument(instance == null, "Cannot create a new instance of the ListenerManager");
         instance = this;
         addListener(new DropListener());
         addListener(new SeedPlacementListener());

@@ -18,7 +18,7 @@ public class RunnableManager {
     private final SaveConfigRunnable saveConfigRunnable;
 
     public RunnableManager() {
-        Preconditions.checkNotNull(instance == null, "Cannot create a new instance of the ListenerManager");
+        Preconditions.checkArgument(instance == null, "Cannot create a new instance of the ListenerManager");
         instance = this;
         final Netheopoiesis plugin = Netheopoiesis.getInstance();
 

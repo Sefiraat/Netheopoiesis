@@ -10,7 +10,7 @@ public class SupportedPluginManager {
     private static SupportedPluginManager instance;
 
     public SupportedPluginManager() {
-        Preconditions.checkNotNull(instance == null, "Cannot create a new instance of the SupportedPluginManager");
+        Preconditions.checkArgument(instance == null, "Cannot create a new instance of the SupportedPluginManager");
         instance = this;
         setup();
     }

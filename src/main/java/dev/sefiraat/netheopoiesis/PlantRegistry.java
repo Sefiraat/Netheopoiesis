@@ -34,7 +34,7 @@ public class PlantRegistry {
     private final List<BreedingPair> breedingPairs = new ArrayList<>();
 
     public PlantRegistry() {
-        Preconditions.checkNotNull(instance == null, "Cannot create a new instance of the PlantRegistry");
+        Preconditions.checkArgument(instance == null, "Cannot create a new instance of the PlantRegistry");
         instance = this;
     }
 
