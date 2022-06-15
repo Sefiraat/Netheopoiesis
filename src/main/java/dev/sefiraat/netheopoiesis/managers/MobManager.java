@@ -1,12 +1,15 @@
 package dev.sefiraat.netheopoiesis.managers;
 
 import com.google.common.base.Preconditions;
+import dev.sefiraat.netheopoiesis.Netheopoiesis;
+import dev.sefiraat.netheopoiesis.api.mobs.MobCap;
+import dev.sefiraat.netheopoiesis.api.mobs.MobCapType;
+import dev.sefiraat.netheopoiesis.implementation.tasks.MobRemovalTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Unmodifiable;
 
 import javax.annotation.Nonnull;
@@ -14,150 +17,135 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 public class MobManager {
 
-    private static final int MOBS_PER_PLAYER = 20;
     private static MobManager instance;
 
-    private final Map<UUID, PlayerMobs> mobPlayerMap = new HashMap<>();
+    private final Map<MobCapType, MobCap> mobCaps = new EnumMap<>(MobCapType.class);
 
     public MobManager() {
         Preconditions.checkArgument(instance == null, "Cannot create a new instance of the MobManager");
         instance = this;
+
+        mobCaps.put(MobCapType.WATER_AMBIENT, MobCap.WATER_AMBIENT);
+        mobCaps.put(MobCapType.WATER_ANIMAL, MobCap.WATER_ANIMAL);
+        mobCaps.put(MobCapType.WATER_HOSTILE, MobCap.WATER_HOSTILE);
+        mobCaps.put(MobCapType.LAND_AMBIENT, MobCap.LAND_AMBIENT);
+        mobCaps.put(MobCapType.LAND_ANIMAL, MobCap.LAND_ANIMAL);
+        mobCaps.put(MobCapType.LAND_HOSTILE, MobCap.LAND_HOSTILE);
+        mobCaps.put(MobCapType.VILLAGER, MobCap.VILLAGER);
+        mobCaps.put(MobCapType.PIGLIN_TRADER, MobCap.PIGLIN_TRADER);
+        mobCaps.put(MobCapType.WANDERING_TRADER, MobCap.WANDERING_TRADER);
+
+        new MobRemovalTask().runTaskTimer(Netheopoiesis.getInstance(), 1200, 1200);
     }
 
     @Nonnull
-    @Unmodifiable
-    public static List<UUID> getPlayerMobs(@Nonnull Player player) {
-        return getPlayerMobs(player.getUniqueId());
-    }
-
-    @Nonnull
-    @Unmodifiable
-    public static List<UUID> getPlayerMobs(@Nonnull UUID playerUuid) {
-        return instance.mobPlayerMap.get(playerUuid).getMobs();
-    }
-
-    public static int getPlayerMobCount(@Nonnull Player player) {
-        return getPlayerMobCount(player.getUniqueId());
-    }
-
-    public static int getPlayerMobCount(@Nonnull UUID playerUuid) {
-        return instance.mobPlayerMap.get(playerUuid).size();
-    }
-
-    public static void addMob(@Nonnull LivingEntity entity, @Nonnull Player player) {
-        addMob(entity, player.getUniqueId());
-    }
-
-    public static void addMob(@Nonnull LivingEntity entity, @Nonnull UUID player) {
-        addMob(entity.getUniqueId(), player);
-    }
-
-    public static void addMob(@Nonnull UUID mobUuid, @Nonnull Player player) {
-        addMob(mobUuid, player.getUniqueId());
-    }
-
-    public static void addMob(@Nonnull UUID mobUuid, @Nonnull UUID playerUuid) {
-        final PlayerMobs playerMobs = instance.mobPlayerMap.getOrDefault(playerUuid, new PlayerMobs(playerUuid));
-        playerMobs.addMob(mobUuid);
-    }
-
-    public static void removeMob(@Nonnull LivingEntity entity, @Nonnull Player player) {
-        removeMob(entity, player.getUniqueId());
-    }
-
-    public static void removeMob(@Nonnull LivingEntity entity, @Nonnull UUID player) {
-        removeMob(entity.getUniqueId(), player);
-    }
-
-    public static void removeMob(@Nonnull UUID mobUuid, @Nonnull Player player) {
-        removeMob(mobUuid, player.getUniqueId());
-    }
-
-    public static void removeMob(@Nonnull UUID mobUuid, @Nonnull UUID playerUuid) {
-        final PlayerMobs playerMobs = instance.mobPlayerMap.getOrDefault(playerUuid, new PlayerMobs(playerUuid));
-        playerMobs.removeMob(mobUuid);
+    public MobCap getMobCap(@Nonnull MobCapType type) {
+        return mobCaps.get(type);
     }
 
     @Nullable
-    @ParametersAreNonnullByDefault
-    public static LivingEntity spawnMob(EntityType type, Player player, Location spawnLocation, boolean rand) {
-        if (type.isAlive() && type.isSpawnable()) {
-            int mobCount = getPlayerMobCount(player);
-            if (mobCount < MOBS_PER_PLAYER) {
-                // Unchecked casting fine due to .isAlive()
-                return (LivingEntity) spawnLocation.getWorld().spawnEntity(spawnLocation, type, rand);
+    public MobCap containedWithin(@Nonnull UUID mobUuid) {
+        for (MobCap boundMobList : mobCaps.values()) {
+            if (boundMobList.contains(mobUuid)) {
+                return boundMobList;
             }
         }
         return null;
     }
-    
-    public void shutdown() {
-        for (PlayerMobs mobs : mobPlayerMap.values()) {
-            mobs.killAllMobs();
+
+    @Nonnull
+    @Unmodifiable
+    public List<UUID> getAllMobs() {
+        List<UUID> list = new ArrayList<>();
+        for (MobCap mobCap : mobCaps.values()) {
+            list.addAll(mobCap.getMobs());
+        }
+        return Collections.unmodifiableList(list);
+    }
+
+    public int getMobCount() {
+        int count = 0;
+        for (MobCap mobCap : mobCaps.values()) {
+            count += mobCap.count();
+        }
+        return count;
+    }
+
+    public int getMobCountByMobCapType(@Nonnull MobCapType type) {
+        return mobCaps.get(type).count();
+    }
+
+    public boolean mobCapHasSpace(@Nonnull MobCapType type) {
+        return mobCaps.get(type).hasSpace();
+    }
+
+    public boolean isMobManaged(@Nonnull LivingEntity livingEntity) {
+        return isMobManaged(livingEntity.getUniqueId());
+    }
+
+    public boolean isMobManaged(@Nonnull UUID mobUuid) {
+        for (MobCap mobCap : mobCaps.values()) {
+            if (mobCap.contains(mobUuid)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addMob(@Nonnull MobCapType type, @Nonnull UUID mobUuid) {
+        if (mobCapHasSpace(type)) {
+            final MobCap mobCap = mobCaps.get(type);
+            mobCap.addMob(mobUuid);
+            mobCaps.put(type, mobCap);
         }
     }
 
-    private static class PlayerMobs {
-        @Nonnull
-        private final UUID playerUuid;
-        @Nonnull
-        private final List<UUID> mobs = new ArrayList<>();
+    public void removeMob(@Nonnull LivingEntity livingEntity, boolean kill) {
+        removeMob(livingEntity.getUniqueId(), kill);
+    }
 
-        public PlayerMobs(@Nonnull UUID playerUuid) {
-            this.playerUuid = playerUuid;
+    public void removeMob(@Nonnull UUID mobUuid, boolean kill) {
+        final MobCap mobCap = containedWithin(mobUuid);
+        if (mobCap != null) {
+            mobCap.removeMob(mobUuid);
         }
-
-        public int size() {
-            return mobs.size();
-        }
-
-        public boolean contains(@Nonnull UUID mobUuid) {
-            return mobs.contains(mobUuid);
-        }
-
-        public void addMob(@Nonnull UUID mobUuid) {
-            mobs.add(mobUuid);
-        }
-
-        public void removeMob(@Nonnull UUID mobUuid) {
-            mobs.remove(mobUuid);
-        }
-
-        public void killMob(@Nonnull UUID mobUuid) {
-            mobs.remove(mobUuid);
+        if (kill) {
             final Entity entity = Bukkit.getEntity(mobUuid);
-            if (entity != null) {
+            if (entity != null && entity.isValid()) {
                 entity.remove();
             }
         }
+    }
 
-        public void killAllMobs() {
-            for (UUID mob : mobs) {
-                final Entity entity = Bukkit.getEntity(mob);
-                if (entity != null) {
-                    entity.remove();
-                }
+    @Nullable
+    @ParametersAreNonnullByDefault
+    public LivingEntity spawnMob(MobCapType capType, EntityType entityType, Location spawnLoc, boolean rand) {
+        if (entityType.isAlive() && entityType.isSpawnable()) {
+            final MobCap cap = getMobCap(capType);
+            if (cap.hasSpace()) {
+                // Unchecked casting fine due to .isAlive()
+                LivingEntity livingEntity = (LivingEntity) spawnLoc.getWorld().spawnEntity(spawnLoc, entityType, rand);
+                cap.addMob(livingEntity.getUniqueId());
+                return livingEntity;
             }
-            mobs.clear();
         }
+        return null;
+    }
 
-        @Nonnull
-        public UUID getPlayerUuid() {
-            return playerUuid;
-        }
-
-        @Nonnull
-        @Unmodifiable
-        public List<UUID> getMobs() {
-            return Collections.unmodifiableList(mobs);
+    public void shutdown() {
+        for (MobCap cap : mobCaps.values()) {
+            cap.killAllMobs();
         }
     }
 
+    public static MobManager getInstance() {
+        return instance;
+    }
 }
