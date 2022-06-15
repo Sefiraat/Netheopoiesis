@@ -1,6 +1,6 @@
 package dev.sefiraat.netheopoiesis.listeners;
 
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
+import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

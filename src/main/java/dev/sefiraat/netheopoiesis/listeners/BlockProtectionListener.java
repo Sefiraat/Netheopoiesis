@@ -1,7 +1,7 @@
 package dev.sefiraat.netheopoiesis.listeners;
 
-import dev.sefiraat.netheopoiesis.slimefun.flora.blocks.NetherCrux;
-import dev.sefiraat.netheopoiesis.slimefun.flora.seeds.NetherSeed;
+import dev.sefiraat.netheopoiesis.api.items.NetherCrux;
+import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
