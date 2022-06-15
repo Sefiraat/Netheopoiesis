@@ -1,6 +1,7 @@
 package dev.sefiraat.netheopoiesis.implementation.tasks;
 
 import dev.sefiraat.netheopoiesis.Purification;
+import dev.sefiraat.netheopoiesis.api.mobs.MobCapType;
 import dev.sefiraat.netheopoiesis.api.mobs.RandomSpawn;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.collections.RandomizedSet;
@@ -25,6 +26,7 @@ public class MobSpawnTask extends BukkitRunnable {
 
     private static final RandomSpawn SQUID = new RandomSpawn(
         EntityType.SQUID,
+        MobCapType.WATER_ANIMAL,
         Purification.SPAWN_SQUID,
         0.5,
         MobSpawnTask::isWater
@@ -32,6 +34,7 @@ public class MobSpawnTask extends BukkitRunnable {
 
     private static final RandomSpawn SALMON = new RandomSpawn(
         EntityType.SALMON,
+        MobCapType.WATER_AMBIENT,
         Purification.SPAWN_SALMON,
         0.5,
         MobSpawnTask::isWater
@@ -39,6 +42,7 @@ public class MobSpawnTask extends BukkitRunnable {
 
     private static final RandomSpawn COD = new RandomSpawn(
         EntityType.COD,
+        MobCapType.WATER_AMBIENT,
         Purification.SPAWN_COD,
         0.5,
         MobSpawnTask::isWater
@@ -46,6 +50,7 @@ public class MobSpawnTask extends BukkitRunnable {
 
     private static final RandomSpawn PUFFER_FISH = new RandomSpawn(
         EntityType.PUFFERFISH,
+        MobCapType.WATER_AMBIENT,
         Purification.SPAWN_PUFFER_FISH,
         0.4,
         MobSpawnTask::isWater
@@ -53,6 +58,7 @@ public class MobSpawnTask extends BukkitRunnable {
 
     private static final RandomSpawn TROPICAL_FISH = new RandomSpawn(
         EntityType.TROPICAL_FISH,
+        MobCapType.WATER_AMBIENT,
         Purification.SPAWN_TROPICAL_FISH,
         0.4,
         MobSpawnTask::isWater
@@ -60,6 +66,7 @@ public class MobSpawnTask extends BukkitRunnable {
 
     private static final RandomSpawn AXOLOTL = new RandomSpawn(
         EntityType.AXOLOTL,
+        MobCapType.WATER_ANIMAL,
         Purification.SPAWN_AXOLOTL,
         0.2,
         MobSpawnTask::isWater
@@ -68,6 +75,7 @@ public class MobSpawnTask extends BukkitRunnable {
     // Todo work out how to also spawn Llamas + leads (all for jeff)
     private static final RandomSpawn WANDERING_TRADER = new RandomSpawn(
         EntityType.WANDERING_TRADER,
+        MobCapType.WANDERING_TRADER,
         Purification.WANDERING_TRADER,
         0.1,
         MobSpawnTask::isSafeGround
@@ -94,7 +102,7 @@ public class MobSpawnTask extends BukkitRunnable {
                 return;
             }
 
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 20; i++) {
                 final Location randomLocation = WorldUtils.randomLocation(player.getLocation(), 15);
                 possibleSpawns.getRandom().trySpawn(randomLocation);
             }

@@ -2,6 +2,7 @@ package dev.sefiraat.netheopoiesis.api.mobs;
 
 import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.Purification;
+import dev.sefiraat.netheopoiesis.managers.MobManager;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
@@ -19,6 +20,7 @@ import java.util.function.Predicate;
 public class RandomSpawn {
 
     private final EntityType type;
+    private final MobCapType mobCapType;
     private final int requiredPurification;
     private final double chance;
     private final Predicate<Location> predicate;
@@ -31,8 +33,8 @@ public class RandomSpawn {
      * @param requiredValue The required Purification level in the chunk for the spawn to be attempted
      * @param chance        The chance for the mob to spawn successfully
      */
-    public RandomSpawn(@Nonnull EntityType type, int requiredValue, double chance) {
-        this(type, requiredValue, chance, true, location -> true);
+    public RandomSpawn(@Nonnull EntityType type, @Nonnull MobCapType mobCapType, int requiredValue, double chance) {
+        this(type, mobCapType, requiredValue, chance, true, location -> true);
     }
 
     /**
@@ -43,8 +45,13 @@ public class RandomSpawn {
      * @param chance        The chance for the mob to spawn successfully
      * @param randomize     Defines if the mob's data should be randomized (default = true)
      */
-    public RandomSpawn(@Nonnull EntityType type, int requiredValue, double chance, boolean randomize) {
-        this(type, requiredValue, chance, randomize, location -> true);
+    public RandomSpawn(@Nonnull EntityType type,
+                       @Nonnull MobCapType mobCapType,
+                       int requiredValue,
+                       double chance,
+                       boolean randomize
+    ) {
+        this(type, mobCapType, requiredValue, chance, randomize, location -> true);
     }
 
     /**
@@ -56,8 +63,13 @@ public class RandomSpawn {
      * @param predicate     This predicate is used to determine if the mob can spawn. Use for additional spawn
      *                      requirements, e.g. Location being in water
      */
-    public RandomSpawn(@Nonnull EntityType type, int requiredValue, double chance, Predicate<Location> predicate) {
-        this(type, requiredValue, chance, true, predicate);
+    public RandomSpawn(@Nonnull EntityType type,
+                       @Nonnull MobCapType mobCapType,
+                       int requiredValue,
+                       double chance,
+                       Predicate<Location> predicate
+    ) {
+        this(type, mobCapType, requiredValue, chance, true, predicate);
     }
 
     /**
@@ -71,14 +83,16 @@ public class RandomSpawn {
      *                      requirements, e.g. Location being in water
      */
     public RandomSpawn(@Nonnull EntityType type,
+                       @Nonnull MobCapType mobCapType,
                        int requiredValue,
                        double chance,
                        boolean randomize,
                        Predicate<Location> predicate
     ) {
-        Preconditions.checkNotNull(type.isAlive(), "Only LivingEntities can be RandomSpawns");
-        Preconditions.checkNotNull(type.isSpawnable(), "Specified type is not spawnable");
+        Preconditions.checkArgument(type.isAlive(), "Only LivingEntities can be RandomSpawns");
+        Preconditions.checkArgument(type.isSpawnable(), "Specified type is not spawnable");
         this.type = type;
+        this.mobCapType = mobCapType;
         this.requiredPurification = requiredValue;
         this.chance = chance;
         this.randomize = randomize;
@@ -136,16 +150,18 @@ public class RandomSpawn {
         if (purificationLevel >= this.requiredPurification) {
             final double random = ThreadLocalRandom.current().nextDouble();
             if (random <= this.chance && this.predicate.test(location) && hasEnoughSpace(location)) {
-
-
-                LivingEntity livingEntity = (LivingEntity) location.getWorld().spawnEntity(
+                final LivingEntity livingEntity = MobManager.getInstance().spawnMob(
+                    mobCapType,
+                    type,
                     location,
-                    this.type,
-                    this.randomize
+                    randomize
                 );
-                livingEntity.setRemoveWhenFarAway(true);
-                livingEntity.setNoDamageTicks(20);
-                return true;
+
+                if (livingEntity != null) {
+                    livingEntity.setRemoveWhenFarAway(true);
+                    livingEntity.setNoDamageTicks(20);
+                    return true;
+                }
             }
         }
         return false;

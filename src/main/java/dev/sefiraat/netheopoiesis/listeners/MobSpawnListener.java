@@ -1,6 +1,8 @@
 package dev.sefiraat.netheopoiesis.listeners;
 
 import dev.sefiraat.netheopoiesis.Purification;
+import dev.sefiraat.netheopoiesis.api.mobs.MobCapType;
+import dev.sefiraat.netheopoiesis.managers.MobManager;
 import dev.sefiraat.netheopoiesis.utils.TimePeriod;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.collections.RandomizedSet;
@@ -75,24 +77,37 @@ public class MobSpawnListener implements Listener {
             final int requiredValue = MAP.getOrDefault(entity.getType(), -1);
             final Location location = entity.getLocation();
             final int value = Purification.getValue(location.getChunk());
+
             if (requiredValue == -1 || value < requiredValue) {
                 // Either the mob cannot be replaced or the chunk is not purified enough
                 return;
             }
             event.setCancelled(true);
 
+            final MobManager manager = MobManager.getInstance();
             final boolean isDay = TimePeriod.isDay(world);
+
             if (entity.getType() == EntityType.GHAST) {
                 // Special case for ghasts to replace only with flying mobs
-                world.spawnEntity(location, isDay ? EntityType.BAT : EntityType.PHANTOM);
+                if (isDay) {
+                    manager.spawnMob(MobCapType.LAND_AMBIENT, EntityType.BAT, location, false);
+                } else {
+                    manager.spawnMob(MobCapType.LAND_HOSTILE, EntityType.PHANTOM, location, false);
+                }
             } else if (hasEnoughSpace(location)) {
                 // Try to replace the spawn with a relevant type
-                final LivingEntity spawned = (LivingEntity) world.spawnEntity(
-                    location,
-                    isDay ? PASSIVE_MOBS.getRandom() : HOSTILE_MOBS.getRandom()
-                );
-                spawned.setRemoveWhenFarAway(true);
-                spawned.setNoDamageTicks(20);
+                LivingEntity spawned = null;
+
+                if (isDay) {
+                    spawned = manager.spawnMob(MobCapType.LAND_ANIMAL, PASSIVE_MOBS.getRandom(), location, true);
+                } else {
+                    spawned = manager.spawnMob(MobCapType.LAND_HOSTILE, HOSTILE_MOBS.getRandom(), location, true);
+                }
+
+                if (spawned != null) {
+                    spawned.setRemoveWhenFarAway(true);
+                    spawned.setNoDamageTicks(20);
+                }
             }
         }
     }

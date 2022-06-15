@@ -1,11 +1,11 @@
 package dev.sefiraat.netheopoiesis;
 
-
+import dev.sefiraat.netheopoiesis.implementation.Items;
 import dev.sefiraat.netheopoiesis.managers.ConfigManager;
 import dev.sefiraat.netheopoiesis.managers.ListenerManager;
+import dev.sefiraat.netheopoiesis.managers.MobManager;
 import dev.sefiraat.netheopoiesis.managers.RunnableManager;
 import dev.sefiraat.netheopoiesis.managers.SupportedPluginManager;
-import dev.sefiraat.netheopoiesis.implementation.Items;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import org.bstats.bukkit.Metrics;
@@ -32,6 +32,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
     private SupportedPluginManager supportedPluginManager;
     private ListenerManager listenerManager;
     private RunnableManager runnableManager;
+    private MobManager mobManager;
     private Purification purification;
     private PlantRegistry plantRegistry;
 
@@ -56,6 +57,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
         this.supportedPluginManager = new SupportedPluginManager();
         this.listenerManager = new ListenerManager();
         this.runnableManager = new RunnableManager();
+        this.mobManager = new MobManager();
         this.purification = new Purification();
         this.plantRegistry = new PlantRegistry();
 
@@ -66,6 +68,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onDisable() {
+        this.mobManager.shutdown();
         this.configManager.saveAll();
     }
 
@@ -130,6 +133,10 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
 
     public static RunnableManager getRunnableManager() {
         return Netheopoiesis.getInstance().runnableManager;
+    }
+
+    public static MobManager getMobManager() {
+        return Netheopoiesis.getInstance().mobManager;
     }
 
     public static Purification getPurificationMemory() {
