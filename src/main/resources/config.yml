@@ -1,2 +1,16 @@
 auto-update: true
 debug-messages: false
+spawning:
+  player-cap-water-ambient: 15
+  player-cap-water-animal: 5
+  player-cap-water-hostile: 10
+  player-cap-land-ambient: 5
+  player-cap-land-animal: 10
+  player-cap-land-hostile: 10
+  player-cap-villager: 5
+  player-cap-piglin-trader: 1
+  player-cap-wandering-trader: 1
+speed:
+  speed-multiplier-crux-spread: 1
+  speed-crystalline-crux-spread: 1
+  speed-plant-growth-rate: 1

@@ -51,9 +51,9 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
         getLogger().info("########################################");
 
         saveDefaultConfig();
+        this.configManager = new ConfigManager();
         tryUpdate();
 
-        this.configManager = new ConfigManager();
         this.supportedPluginManager = new SupportedPluginManager();
         this.listenerManager = new ListenerManager();
         this.runnableManager = new RunnableManager();
@@ -73,9 +73,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
     }
 
     public void tryUpdate() {
-        if (getConfig().getBoolean("auto-update")
-            && getDescription().getVersion().startsWith("DEV")
-        ) {
+        if (configManager.isAutoUpdate() && getDescription().getVersion().startsWith("DEV")) {
             String updateLocation = MessageFormat.format("{0}/{1}/{2}", this.username, this.repo, this.branch);
             GitHubBuildsUpdater updater = new GitHubBuildsUpdater(this, getFile(), updateLocation);
             updater.start();
