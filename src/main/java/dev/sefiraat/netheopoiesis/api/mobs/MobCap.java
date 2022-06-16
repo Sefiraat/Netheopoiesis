@@ -1,5 +1,6 @@
 package dev.sefiraat.netheopoiesis.api.mobs;
 
+import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.Unmodifiable;
@@ -12,15 +13,50 @@ import java.util.UUID;
 
 public class MobCap {
 
-    public static final MobCap WATER_AMBIENT = new MobCap(MobCapType.WATER_AMBIENT, 15);
-    public static final MobCap WATER_ANIMAL = new MobCap(MobCapType.WATER_ANIMAL, 5);
-    public static final MobCap WATER_HOSTILE = new MobCap(MobCapType.WATER_HOSTILE, 10);
-    public static final MobCap LAND_AMBIENT = new MobCap(MobCapType.WATER_AMBIENT, 5);
-    public static final MobCap LAND_ANIMAL = new MobCap(MobCapType.LAND_ANIMAL, 10);
-    public static final MobCap LAND_HOSTILE = new MobCap(MobCapType.LAND_HOSTILE, 10);
-    public static final MobCap VILLAGER = new MobCap(MobCapType.VILLAGER, 5);
-    public static final MobCap PIGLIN_TRADER = new MobCap(MobCapType.PIGLIN_TRADER, 1);
-    public static final MobCap WANDERING_TRADER = new MobCap(MobCapType.WANDERING_TRADER, 1);
+    public static final MobCap WATER_AMBIENT = new MobCap(
+        MobCapType.WATER_AMBIENT,
+        Netheopoiesis.getConfigManager().getPlayerMobCapWaterAmbient()
+    );
+
+    public static final MobCap WATER_ANIMAL = new MobCap(
+        MobCapType.WATER_ANIMAL,
+        Netheopoiesis.getConfigManager().getPlayerMobCapWaterAnimal()
+    );
+
+    public static final MobCap WATER_HOSTILE = new MobCap(
+        MobCapType.WATER_HOSTILE,
+        Netheopoiesis.getConfigManager().getPlayerMobCapWaterHostile()
+    );
+
+    public static final MobCap LAND_AMBIENT = new MobCap(
+        MobCapType.WATER_AMBIENT,
+        Netheopoiesis.getConfigManager().getPlayerMobCapLandAmbient()
+    );
+
+    public static final MobCap LAND_ANIMAL = new MobCap(
+        MobCapType.LAND_ANIMAL,
+        Netheopoiesis.getConfigManager().getPlayerMobCapLandAnimal()
+    );
+
+    public static final MobCap LAND_HOSTILE = new MobCap(
+        MobCapType.LAND_HOSTILE,
+        Netheopoiesis.getConfigManager().getPlayerMobCapLandHostile()
+    );
+
+    public static final MobCap VILLAGER = new MobCap(
+        MobCapType.VILLAGER,
+        Netheopoiesis.getConfigManager().getPlayerMobCapVillager()
+    );
+
+    public static final MobCap PIGLIN_TRADER = new MobCap(
+        MobCapType.PIGLIN_TRADER,
+        Netheopoiesis.getConfigManager().getPlayerMobCapPiglinTrader()
+    );
+
+    public static final MobCap WANDERING_TRADER = new MobCap(
+        MobCapType.WANDERING_TRADER,
+        Netheopoiesis.getConfigManager().getPlayerMobCapWanderingTrader()
+    );
 
     private final int amountPerPlayer;
     @Nonnull
@@ -35,6 +71,7 @@ public class MobCap {
 
     /**
      * Gets the number of mobs currently held in this cap
+     *
      * @return The number of mobs currently held in this cap
      */
     public int count() {
@@ -43,6 +80,7 @@ public class MobCap {
 
     /**
      * Checks if there is space in this cap for another mob
+     *
      * @return true if there is space
      */
     public boolean hasSpace() {
@@ -51,6 +89,7 @@ public class MobCap {
 
     /**
      * Checks if a given {@link UUID} is contained in this cap
+     *
      * @param mobUuid The {@link UUID} for the mob being checked
      * @return true if contained in the cap
      */
@@ -61,6 +100,7 @@ public class MobCap {
     /**
      * Adds a new mob to this cap. Does not check for space and can be forced if required.
      * Check hasSpace() first!
+     *
      * @param mobUuid The {@link UUID} of the mob to add
      */
     public void addMob(@Nonnull UUID mobUuid) {
@@ -69,6 +109,7 @@ public class MobCap {
 
     /**
      * Removes a mob from this cap if possible
+     *
      * @param mobUuid The {@link UUID} of the mob to remove
      */
     public void removeMob(@Nonnull UUID mobUuid) {
@@ -77,6 +118,7 @@ public class MobCap {
 
     /**
      * Kills a mob whilst also removing them from the cap
+     *
      * @param mobUuid The {@link UUID} of the mob to kill/remove
      */
     public void killMob(@Nonnull UUID mobUuid) {
@@ -102,6 +144,7 @@ public class MobCap {
 
     /**
      * Gets the maximum number of spawns, per player, for this cap.
+     *
      * @return The max number of mobs
      */
     public int getMaxAmountPerPlayer() {
@@ -110,6 +153,7 @@ public class MobCap {
 
     /**
      * Gets the maximum number of spawns for this cap (includes the multiplier per-player)
+     *
      * @return The max number of mobs
      */
     public int getMaxAmount() {
@@ -118,6 +162,7 @@ public class MobCap {
 
     /**
      * The {@link MobCapType} for this cap
+     *
      * @return The {@link MobCapType} for this cap
      */
     @Nonnull
@@ -127,6 +172,7 @@ public class MobCap {
 
     /**
      * Gets an immutable list of all mobs contained within this cap
+     *
      * @return An immutable list of all mobs contained within this cap
      */
     @Nonnull
