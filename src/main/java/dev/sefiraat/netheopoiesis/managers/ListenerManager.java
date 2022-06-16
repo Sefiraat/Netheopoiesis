@@ -3,6 +3,7 @@ package dev.sefiraat.netheopoiesis.managers;
 import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.listeners.BlockProtectionListener;
+import dev.sefiraat.netheopoiesis.listeners.CrushingListener;
 import dev.sefiraat.netheopoiesis.listeners.CrystallineSeedListener;
 import dev.sefiraat.netheopoiesis.listeners.DropListener;
 import dev.sefiraat.netheopoiesis.listeners.FriendlyMobsListener;
@@ -34,6 +35,7 @@ public class ListenerManager {
         addListener(new BlockProtectionListener());
         addListener(new CrystallineSeedListener());
         addListener(new ManagedMobListener());
+        addListener(new CrushingListener());
     }
 
     private void addListener(@Nonnull Listener listener) {

@@ -1,5 +1,6 @@
 package dev.sefiraat.netheopoiesis;
 
+import dev.sefiraat.netheopoiesis.api.plant.netheos.NetheoBalls;
 import dev.sefiraat.netheopoiesis.implementation.Items;
 import dev.sefiraat.netheopoiesis.managers.ConfigManager;
 import dev.sefiraat.netheopoiesis.managers.ListenerManager;
@@ -62,6 +63,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
         this.plantRegistry = new PlantRegistry();
 
         Items.setup(this);
+        NetheoBalls.setup();
 
         setupStats();
     }

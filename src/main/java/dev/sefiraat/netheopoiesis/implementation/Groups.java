@@ -52,6 +52,22 @@ public final class Groups {
         )
     );
 
+    public static final DummyItemGroup PASTES = new DummyItemGroup(
+        Keys.newKey("pastes"),
+        new CustomItemStack(
+            new ItemStack(Material.GLOWSTONE_DUST),
+            Theme.MAIN.color("Netheopoiesis Seed Pastes")
+        )
+    );
+
+    public static final DummyItemGroup BALLS = new DummyItemGroup(
+        Keys.newKey("netheo-balls"),
+        new CustomItemStack(
+            new ItemStack(Material.SNOWBALL),
+            Theme.MAIN.color("Netheopoiesis Netheo Balls")
+        )
+    );
+
     public static final DummyItemGroup CRUX = new DummyItemGroup(
         Keys.newKey("crux"),
         new CustomItemStack(
@@ -64,7 +80,7 @@ public final class Groups {
         Keys.newKey("discoveries"),
         new CustomItemStack(
             new ItemStack(Material.WHEAT_SEEDS),
-            Theme.MAIN.color("Breeding Discoveries'")
+            Theme.MAIN.color("Breeding Discoveries")
         )
     );
 

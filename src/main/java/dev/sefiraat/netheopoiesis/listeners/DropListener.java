@@ -17,12 +17,13 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * The purpose of this listener is to drop registered items when breaking the specified vanilla
  * block.
- * Recipes should be registered using {@link DropListener#createRecipe(ItemStack, ItemStack, double)}
+ * Recipes should be registered using {@link RecipeTypes#createWorldDropRecipe(ItemStack, ItemStack, double)}
  * which returns an ItemStack array used for Slimefun's recipe
  * {@link RecipeTypes#VANILLA_DROP}
  */
 public class DropListener implements Listener {
 
+    @Nonnull
     private static final Map<Material, BlockDrop> DROP_MAP = new EnumMap<>(Material.class);
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
@@ -33,29 +34,6 @@ public class DropListener implements Listener {
             return;
         }
         blockDrop.rollDrop(event);
-    }
-
-    /**
-     * This method both registers the drop and returns an ItemStack array that can be used
-     * for Slimefun's recipe system. {@link RecipeTypes#VANILLA_DROP}
-     *
-     * @param stackToDrop The {@link ItemStack} to drop in the world
-     * @param dropFrom    The {@link ItemStack} to drop from (#getType() is used) and the stack is used in the recipe.
-     * @param dropChance  The chance (0-1) for the drop to occur
-     * @return A {@link ItemStack[]} used for Slimefun's Recipe registration with the dropFrom item in the middle.
-     */
-    @Nonnull
-    public static ItemStack[] createRecipe(@Nonnull ItemStack stackToDrop,
-                                           @Nonnull ItemStack dropFrom,
-                                           double dropChance
-    ) {
-        final Material material = dropFrom.getType();
-        DROP_MAP.put(material, new BlockDrop(stackToDrop, material, dropChance));
-        return new ItemStack[]{
-            null, null, null,
-            null, dropFrom, null,
-            null, null, null
-        };
     }
 
     /**
@@ -95,5 +73,10 @@ public class DropListener implements Listener {
                 location.getWorld().dropItem(location, drop);
             }
         }
+    }
+
+    @Nonnull
+    public static Map<Material, BlockDrop> getDropMap() {
+        return DROP_MAP;
     }
 }
