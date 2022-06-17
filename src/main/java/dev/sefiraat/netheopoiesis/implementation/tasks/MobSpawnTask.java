@@ -8,9 +8,11 @@ import io.github.bakedlibs.dough.collections.RandomizedSet;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -81,6 +83,24 @@ public class MobSpawnTask extends BukkitRunnable {
         MobSpawnTask::isSafeGround
     );
 
+    private static final RandomSpawn WANDERING_PIGLIN = new RandomSpawn(
+        EntityType.PIGLIN,
+        MobCapType.PIGLIN_TRADER,
+        Purification.WANDERING_PIGLIN,
+        1,
+        false,
+        MobSpawnTask::isSafeGround,
+        livingEntity -> {
+            final Location location = livingEntity.getLocation();
+            final World world = location.getWorld();
+            final LivingEntity strider1 = (LivingEntity) world.spawnEntity(location, EntityType.STRIDER, false);
+            final LivingEntity strider2 = (LivingEntity) world.spawnEntity(location, EntityType.STRIDER, false);
+
+            strider1.setLeashHolder(livingEntity);
+            strider2.setLeashHolder(livingEntity);
+        }
+    );
+
     private final RandomizedSet<RandomSpawn> possibleSpawns = new RandomizedSet<>();
 
     public MobSpawnTask() {
@@ -91,6 +111,7 @@ public class MobSpawnTask extends BukkitRunnable {
         possibleSpawns.add(SQUID, 1);
         possibleSpawns.add(AXOLOTL, 1);
         possibleSpawns.add(WANDERING_TRADER, 1);
+        possibleSpawns.add(WANDERING_PIGLIN, 1000);
     }
 
     @Override
@@ -116,6 +137,6 @@ public class MobSpawnTask extends BukkitRunnable {
     private static boolean isSafeGround(@Nonnull Location location) {
         final Block block = location.getBlock();
         final Block blockBelow = block.getRelative(BlockFace.DOWN);
-        return blockBelow.getType().isAir() && blockBelow.getType().isSolid();
+        return block.getType().isAir() && blockBelow.getType().isSolid();
     }
 }

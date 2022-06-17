@@ -58,8 +58,8 @@ public class Paste extends SlimefunItem {
         addItemHandler(new ItemConsumptionHandler() {
             @Override
             @ParametersAreNonnullByDefault
-            public void onConsume(PlayerItemConsumeEvent e, Player p, ItemStack item) {
-                e.setCancelled(true);
+            public void onConsume(PlayerItemConsumeEvent event, Player player, ItemStack item) {
+                event.setCancelled(true);
             }
         });
     }

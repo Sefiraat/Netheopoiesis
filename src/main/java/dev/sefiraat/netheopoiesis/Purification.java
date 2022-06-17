@@ -39,6 +39,7 @@ public class Purification {
     public static final int SPAWN_TROPICAL_FISH = 1000;
     public static final int SPAWN_AXOLOTL = 1000;
     public static final int WANDERING_TRADER = 1500;
+    public static final int WANDERING_PIGLIN = 1500;
 
     // Regeneration
     public static final int REGEN_1 = 500;

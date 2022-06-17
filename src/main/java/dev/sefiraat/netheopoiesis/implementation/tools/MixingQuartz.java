@@ -54,9 +54,9 @@ public class MixingQuartz extends LimitedUseItem {
     }
 
     // Todo cognitive
-    private void onUse(@Nonnull PlayerRightClickEvent e) {
-        e.cancel();
-        final Player player = e.getPlayer();
+    private void onUse(@Nonnull PlayerRightClickEvent event) {
+        event.cancel();
+        final Player player = event.getPlayer();
         final World world = player.getWorld();
         final Location location = player.getLocation().add(player.getEyeLocation().getDirection().multiply(1.5));
         final Collection<Entity> entities = world.getNearbyEntities(location, 1.5, 1.5, 1.5);
@@ -112,7 +112,7 @@ public class MixingQuartz extends LimitedUseItem {
             for (Item item : validItems) {
                 item.getItemStack().setAmount(item.getItemStack().getAmount() - 1);
             }
-            damageItem(player, e.getItem());
+            damageItem(player, event.getItem());
         }
     }
 
