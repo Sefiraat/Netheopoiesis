@@ -88,7 +88,7 @@ public class MobSpawnTask extends BukkitRunnable {
         EntityType.PIGLIN,
         MobCapType.PIGLIN_TRADER,
         Purification.WANDERING_PIGLIN,
-        1,
+        0.1,
         false,
         MobSpawnTask::isSafeGround,
         livingEntity -> {
@@ -115,7 +115,7 @@ public class MobSpawnTask extends BukkitRunnable {
         possibleSpawns.add(SQUID, 1);
         possibleSpawns.add(AXOLOTL, 1);
         possibleSpawns.add(WANDERING_TRADER, 1);
-        possibleSpawns.add(WANDERING_PIGLIN, 1000);
+        possibleSpawns.add(WANDERING_PIGLIN, 1);
     }
 
     @Override
