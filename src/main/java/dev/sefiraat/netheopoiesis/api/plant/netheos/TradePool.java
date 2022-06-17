@@ -1,12 +1,14 @@
 package dev.sefiraat.netheopoiesis.api.plant.netheos;
 
 import dev.sefiraat.netheopoiesis.Registry;
+import dev.sefiraat.netheopoiesis.implementation.netheos.NetheoBall;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.collections.RandomizedSet;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -314,9 +316,12 @@ public class TradePool {
 
     @Nonnull
     private final RandomizedSet<Trade> trades = new RandomizedSet<>();
+    @Nullable
+    private NetheoBall tradeItem;
 
     public TradePool addTrade(@Nonnull ItemStack itemStack, int requiredFlavour) {
         final Trade trade = new Trade(itemStack, requiredFlavour);
+        trade.setTradePool(this);
         this.trades.add(trade, 1);
         Registry.getInstance().addTrade(trade);
         return this;
@@ -333,5 +338,14 @@ public class TradePool {
                                              .filter(trade -> trade.getRequiredFlavour() <= flavour)
                                              .collect(Collectors.toSet());
         return new RandomizedSet<>(validTrades).getRandom();
+    }
+
+    @Nullable
+    public NetheoBall getTradeItem() {
+        return tradeItem;
+    }
+
+    public void setTradeItem(@Nonnull NetheoBall tradeItem) {
+        this.tradeItem = tradeItem;
     }
 }

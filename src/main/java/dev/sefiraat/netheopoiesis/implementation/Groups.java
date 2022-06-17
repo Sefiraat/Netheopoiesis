@@ -5,6 +5,7 @@ import dev.sefiraat.netheopoiesis.implementation.groups.DiscoveriesFlexGroup;
 import dev.sefiraat.netheopoiesis.implementation.groups.DummyItemGroup;
 import dev.sefiraat.netheopoiesis.implementation.groups.MainFlexGroup;
 import dev.sefiraat.netheopoiesis.implementation.groups.PurificationFlexGroup;
+import dev.sefiraat.netheopoiesis.implementation.groups.TradesFlexGroup;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
@@ -81,6 +82,14 @@ public final class Groups {
         new CustomItemStack(
             new ItemStack(Material.WHEAT_SEEDS),
             Theme.MAIN.color("Breeding Discoveries")
+        )
+    );
+
+    public static final TradesFlexGroup TRADES = new TradesFlexGroup(
+        Keys.newKey("trades"),
+        new CustomItemStack(
+            new ItemStack(Material.GOLD_INGOT),
+            Theme.MAIN.color("Wandering Piglin Trades")
         )
     );
 

@@ -346,6 +346,7 @@ public class NetheoBalls {
             this,
             tradePool
         );
+        tradePool.setTradeItem(ball);
         ball.register(Netheopoiesis.getInstance());
     }
 

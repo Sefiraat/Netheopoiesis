@@ -1,9 +1,11 @@
 package dev.sefiraat.netheopoiesis.implementation.tasks;
 
 import dev.sefiraat.netheopoiesis.api.mobs.MobCapType;
+import dev.sefiraat.netheopoiesis.api.plant.netheos.Trade;
 import dev.sefiraat.netheopoiesis.implementation.netheos.NetheoBall;
 import dev.sefiraat.netheopoiesis.managers.MobManager;
 import dev.sefiraat.netheopoiesis.utils.Keys;
+import dev.sefiraat.netheopoiesis.utils.StatisticUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import org.bukkit.Bukkit;
@@ -19,6 +21,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.UUID;
 
 public class WanderingPiglinTask extends BukkitRunnable {
+
+    private static final long TRADE_COOLDOWN = 3000;
 
     @Override
     public void run() {
@@ -44,9 +48,22 @@ public class WanderingPiglinTask extends BukkitRunnable {
                 if (slimefunItem instanceof NetheoBall ball) {
                     final ItemMeta itemMeta = itemStack.getItemMeta();
                     final int flavour = PersistentDataAPI.getInt(itemMeta, Keys.FLAVOUR, 0);
+                    final Trade trade = ball.getTradePool().getRandomTrade(flavour);
+                    final ItemStack stackToDrop = trade.getItem();
+
+                    final String owner = PersistentDataAPI.getString(item, Keys.DROPPED_PLAYER);
+
+                    if (owner != null) {
+                        StatisticUtils.unlockTrade(UUID.fromString(owner), trade.getTradeId());
+                    }
+
                     itemStack.setAmount(itemStack.getAmount() - 1);
-                    final ItemStack stackToDrop = ball.getTradePool().getRandomTrade(flavour).getItem();
                     world.dropItem(item.getLocation(), stackToDrop);
+                    PersistentDataAPI.setLong(
+                        piglin,
+                        Keys.TRADE_COOLDOWN,
+                        System.currentTimeMillis() + TRADE_COOLDOWN
+                    );
                     break;
                 }
             }

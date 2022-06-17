@@ -29,7 +29,8 @@ public class MainFlexGroup extends FlexItemGroup {
     private static final int BALLS = 13;
     private static final int CRUX = 14;
     private static final int DISCOVERIES = 15;
-    private static final int GUIDE = 16;
+    private static final int TRADES = 16;
+    private static final int GUIDE = 17;
 
     private static final int[] HEADER = new int[]{
         0, 1, 2, 3, 4, 5, 6, 7, 8
@@ -122,13 +123,19 @@ public class MainFlexGroup extends FlexItemGroup {
             openPage(profile, Groups.CRUX, mode, 1)
         );
 
-        // Crux'
+        // Discoveries
         menu.replaceExistingItem(DISCOVERIES, Groups.DISCOVERIES.getItem(player));
         menu.addMenuClickHandler(DISCOVERIES, (player1, i1, itemStack1, clickAction) ->
             openPage(profile, Groups.DISCOVERIES, mode, 1)
         );
 
-        // Guide'
+        // Trades
+        menu.replaceExistingItem(TRADES, Groups.TRADES.getItem(player));
+        menu.addMenuClickHandler(TRADES, (player1, i1, itemStack1, clickAction) ->
+            openPage(profile, Groups.TRADES, mode, 1)
+        );
+
+        // Guide
         menu.replaceExistingItem(GUIDE, Groups.GUIDE.getItem(player));
         menu.addMenuClickHandler(GUIDE, (player1, i1, itemStack1, clickAction) ->
             openPage(profile, Groups.GUIDE, mode, 1)
