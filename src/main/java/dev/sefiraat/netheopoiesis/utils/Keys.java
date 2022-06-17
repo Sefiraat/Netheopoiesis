@@ -13,6 +13,9 @@ public final class Keys {
     public static final String CRYSTALLINE_STEPS_REMAINING = "steps-left";
 
     public static final NamespacedKey COOLDOWN = newKey("cooldown");
+    public static final NamespacedKey TRADE_COOLDOWN = newKey("trade-cooldown");
+    public static final NamespacedKey DROPPED_PLAYER = newKey("dropped-player");
+    public static final NamespacedKey FLAVOUR = newKey("flavour");
 
     private Keys() {
         throw new IllegalStateException("Utility class");

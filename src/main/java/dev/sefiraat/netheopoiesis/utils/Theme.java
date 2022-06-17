@@ -35,6 +35,8 @@ public enum Theme {
     TOOL(ChatColor.of("#3295a8"), "Tool"),
     PURIFYING_SEED(ChatColor.of("#cde06c"), "Purifying Seed"),
     SEED(ChatColor.of("#a241bf"), "Seed"),
+    PASTE(ChatColor.of("#999343"), "Seed Powder"),
+    NETHEO_BALL(ChatColor.of("#6384b8"), "Netheo Ball"),
     CRUX(ChatColor.of("#4287f5"), "Crux"),
     // Seeds
     SEED_RED(ChatColor.of("#c41d1d")),

@@ -5,19 +5,21 @@ import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.implementation.tasks.MobSpawnTask;
 import dev.sefiraat.netheopoiesis.implementation.tasks.PurificationEffectsTask;
 import dev.sefiraat.netheopoiesis.implementation.tasks.SaveConfigTask;
+import dev.sefiraat.netheopoiesis.implementation.tasks.WanderingPiglinTask;
 
 /**
  * This class is used to run Runnables from one place
  */
-public class RunnableManager {
+public class TaskManager {
 
-    private static RunnableManager instance;
+    private static TaskManager instance;
 
     private final PurificationEffectsTask regenerationRunnable;
     private final MobSpawnTask spawnsRunnable;
     private final SaveConfigTask saveConfigRunnable;
+    private final WanderingPiglinTask wanderingPiglinTask;
 
-    public RunnableManager() {
+    public TaskManager() {
         Preconditions.checkArgument(instance == null, "Cannot create a new instance of the ListenerManager");
         instance = this;
         final Netheopoiesis plugin = Netheopoiesis.getInstance();
@@ -30,6 +32,9 @@ public class RunnableManager {
 
         saveConfigRunnable = new SaveConfigTask();
         saveConfigRunnable.runTaskTimer(plugin, 0, 12000);
+
+        wanderingPiglinTask = new WanderingPiglinTask();
+        wanderingPiglinTask.runTaskTimer(plugin, 0, 20);
     }
 
     public PurificationEffectsTask getRegenerationRunnable() {
@@ -44,7 +49,7 @@ public class RunnableManager {
         return saveConfigRunnable;
     }
 
-    public static RunnableManager getInstance() {
+    public static TaskManager getInstance() {
         return instance;
     }
 }

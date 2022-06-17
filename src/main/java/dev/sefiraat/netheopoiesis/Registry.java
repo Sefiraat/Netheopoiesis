@@ -1,9 +1,6 @@
 package dev.sefiraat.netheopoiesis;
 
 import com.google.common.base.Preconditions;
-import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedResult;
-import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedResultType;
-import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedingPair;
 import dev.sefiraat.netheopoiesis.api.items.BiomeSpreadingSeed;
 import dev.sefiraat.netheopoiesis.api.items.CruxSpreadingSeed;
 import dev.sefiraat.netheopoiesis.api.items.DroppingSeed;
@@ -11,8 +8,13 @@ import dev.sefiraat.netheopoiesis.api.items.EntitySpawningSeed;
 import dev.sefiraat.netheopoiesis.api.items.GenericTickingSeed;
 import dev.sefiraat.netheopoiesis.api.items.HarvestableSeed;
 import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
+import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedResult;
+import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedResultType;
+import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedingPair;
+import dev.sefiraat.netheopoiesis.api.plant.netheos.Trade;
 import dev.sefiraat.netheopoiesis.utils.TextUtils;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Piglin;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -23,24 +25,35 @@ import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+import java.util.UUID;
 
-public class PlantRegistry {
+public class Registry {
 
-    private static PlantRegistry instance;
+    private static Registry instance;
 
+    @Nonnull
     private final List<NetherSeed> registeredPlants = new ArrayList<>();
+    @Nonnull
     private final List<BreedingPair> breedingPairs = new ArrayList<>();
+    @Nonnull
+    private final List<Trade> trades = new ArrayList<>();
 
-    public PlantRegistry() {
-        Preconditions.checkArgument(instance == null, "Cannot create a new instance of the PlantRegistry");
+    public Registry() {
+        Preconditions.checkArgument(instance == null, "Cannot create a new instance of the Registry");
         instance = this;
     }
 
     public void addPlant(@Nonnull NetherSeed netherSeed) {
         this.registeredPlants.add(netherSeed);
         this.breedingPairs.addAll(netherSeed.getBreedingPairs());
+    }
+
+    public void addTrade(@Nonnull Trade trade) {
+        this.trades.add(trade);
     }
 
     @Nonnull
@@ -67,6 +80,11 @@ public class PlantRegistry {
     @Nonnull
     public List<BreedingPair> getBreedingPairs() {
         return Collections.unmodifiableList(breedingPairs);
+    }
+
+    @Nonnull
+    public List<Trade> getTrades() {
+        return trades;
     }
 
     /**
@@ -164,7 +182,7 @@ public class PlantRegistry {
         }
     }
 
-    public static PlantRegistry getInstance() {
+    public static Registry getInstance() {
         return instance;
     }
 }

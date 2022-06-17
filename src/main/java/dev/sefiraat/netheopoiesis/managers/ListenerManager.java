@@ -3,6 +3,7 @@ package dev.sefiraat.netheopoiesis.managers;
 import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.listeners.BlockProtectionListener;
+import dev.sefiraat.netheopoiesis.listeners.CrushingListener;
 import dev.sefiraat.netheopoiesis.listeners.CrystallineSeedListener;
 import dev.sefiraat.netheopoiesis.listeners.DropListener;
 import dev.sefiraat.netheopoiesis.listeners.FriendlyMobsListener;
@@ -10,6 +11,7 @@ import dev.sefiraat.netheopoiesis.listeners.ManagedMobListener;
 import dev.sefiraat.netheopoiesis.listeners.MobSpawnListener;
 import dev.sefiraat.netheopoiesis.listeners.PlayerSleepListener;
 import dev.sefiraat.netheopoiesis.listeners.SeedPlacementListener;
+import dev.sefiraat.netheopoiesis.listeners.WanderingPiglinListener;
 import dev.sefiraat.netheopoiesis.listeners.WaterPlaceListener;
 import org.bukkit.event.Listener;
 
@@ -34,6 +36,8 @@ public class ListenerManager {
         addListener(new BlockProtectionListener());
         addListener(new CrystallineSeedListener());
         addListener(new ManagedMobListener());
+        addListener(new CrushingListener());
+        addListener(new WanderingPiglinListener());
     }
 
     private void addListener(@Nonnull Listener listener) {

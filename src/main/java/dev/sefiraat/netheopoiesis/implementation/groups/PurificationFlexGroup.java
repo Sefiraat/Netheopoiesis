@@ -110,7 +110,8 @@ public class PurificationFlexGroup extends FlexItemGroup {
         Theme.CLICK_INFO.asTitle("Pufferfish", Purification.SPAWN_PUFFER_FISH),
         Theme.CLICK_INFO.asTitle("Tropical Fish", Purification.SPAWN_TROPICAL_FISH),
         Theme.CLICK_INFO.asTitle("Axolotl", Purification.SPAWN_AXOLOTL),
-        Theme.CLICK_INFO.asTitle("Wandering Trader", Purification.WANDERING_TRADER)
+        Theme.CLICK_INFO.asTitle("Wandering Trader", Purification.WANDERING_TRADER),
+        Theme.CLICK_INFO.asTitle("Wandering Piglin", Purification.WANDERING_PIGLIN)
     );
 
     private static final ItemStack PIGLIN_STACK = new CustomItemStack(

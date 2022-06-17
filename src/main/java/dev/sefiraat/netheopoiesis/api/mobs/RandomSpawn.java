@@ -9,7 +9,9 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
@@ -19,12 +21,17 @@ import java.util.function.Predicate;
  */
 public class RandomSpawn {
 
+    @Nonnull
     private final EntityType type;
+    @Nonnull
     private final MobCapType mobCapType;
     private final int requiredPurification;
     private final double chance;
+    @Nonnull
     private final Predicate<Location> predicate;
     private final boolean randomize;
+    @Nullable
+    private final Consumer<LivingEntity> callback;
 
     /**
      * Creates a new RandomSpawn
@@ -89,6 +96,28 @@ public class RandomSpawn {
                        boolean randomize,
                        Predicate<Location> predicate
     ) {
+        this(type, mobCapType, requiredValue, chance, randomize, predicate, null);
+    }
+
+    /**
+     * Creates a new RandomSpawn
+     *
+     * @param type          The {@link EntityType} that will spawn
+     * @param requiredValue The required Purification level in the chunk for the spawn to be attempted
+     * @param chance        The chance for the mob to spawn successfully
+     * @param randomize     Defines if the mob's data should be randomized (default = true)
+     * @param predicate     This predicate is used to determine if the mob can spawn. Use for additional spawn
+     *                      requirements, e.g. Location being in water
+     * @param callback      The {@link Consumer} that will be accepted after the mob has been spawned
+     */
+    public RandomSpawn(@Nonnull EntityType type,
+                       @Nonnull MobCapType mobCapType,
+                       int requiredValue,
+                       double chance,
+                       boolean randomize,
+                       Predicate<Location> predicate,
+                       @Nullable Consumer<LivingEntity> callback
+    ) {
         Preconditions.checkArgument(type.isAlive(), "Only LivingEntities can be RandomSpawns");
         Preconditions.checkArgument(type.isSpawnable(), "Specified type is not spawnable");
         this.type = type;
@@ -97,6 +126,7 @@ public class RandomSpawn {
         this.chance = chance;
         this.randomize = randomize;
         this.predicate = predicate;
+        this.callback = callback;
     }
 
     /**
@@ -124,6 +154,25 @@ public class RandomSpawn {
      */
     public double getChance() {
         return chance;
+    }
+
+    @Nonnull
+    public MobCapType getMobCapType() {
+        return mobCapType;
+    }
+
+    @Nonnull
+    public Predicate<Location> getPredicate() {
+        return predicate;
+    }
+
+    public boolean isRandomize() {
+        return randomize;
+    }
+
+    @Nullable
+    public Consumer<LivingEntity> getCallback() {
+        return callback;
     }
 
     /**
@@ -158,6 +207,9 @@ public class RandomSpawn {
                 );
 
                 if (livingEntity != null) {
+                    if (callback != null) {
+                        callback.accept(livingEntity);
+                    }
                     livingEntity.setRemoveWhenFarAway(true);
                     livingEntity.setNoDamageTicks(20);
                     return true;

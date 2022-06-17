@@ -112,6 +112,18 @@ public final class Stacks {
         "Does NOT change biomes."
     );
 
+    public static final SlimefunItemStack MIXING_QUARTZ = Theme.themedSlimefunItemStack(
+        "NPS_MIXING_QUARTZ_1",
+        Material.QUARTZ,
+        Theme.TOOL,
+        "Mixing Quartz",
+        "Drop 3 Netheo Paste on the ground",
+        "and right click with this mixing",
+        "quartz to form a Netheo Ball",
+        "The type and flavour depends on the",
+        "pastes dropped."
+    );
+
     public static final SlimefunItemStack ENDER_CAKE = Theme.themedSlimefunItemStack(
         "NPS_ENDER_CAKE",
         Material.CAKE,

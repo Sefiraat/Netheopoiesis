@@ -2,15 +2,18 @@ package dev.sefiraat.netheopoiesis.api.items;
 
 import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
-import dev.sefiraat.netheopoiesis.PlantRegistry;
+import dev.sefiraat.netheopoiesis.Registry;
+import dev.sefiraat.netheopoiesis.api.RecipeTypes;
+import dev.sefiraat.netheopoiesis.api.events.PlantBeforeGrowthEvent;
+import dev.sefiraat.netheopoiesis.api.interfaces.NetherPlant;
+import dev.sefiraat.netheopoiesis.api.interfaces.SeedPaste;
 import dev.sefiraat.netheopoiesis.api.plant.Growth;
 import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedResult;
 import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedResultType;
 import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedingPair;
-import dev.sefiraat.netheopoiesis.api.interfaces.NetherPlant;
-import dev.sefiraat.netheopoiesis.api.events.PlantBeforeGrowthEvent;
-import dev.sefiraat.netheopoiesis.api.RecipeTypes;
+import dev.sefiraat.netheopoiesis.api.plant.netheos.FlavourProfile;
 import dev.sefiraat.netheopoiesis.implementation.Groups;
+import dev.sefiraat.netheopoiesis.implementation.netheos.Paste;
 import dev.sefiraat.netheopoiesis.implementation.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.implementation.plant.Placements;
 import dev.sefiraat.netheopoiesis.utils.Keys;
@@ -36,6 +39,7 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -63,7 +67,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * This class is used to define a Seed item that will grow as a {@link NetherPlant}
  */
-public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
+public abstract class NetherSeed extends SlimefunItem implements NetherPlant, SeedPaste {
 
     @Nonnull
     public static final Set<BlockFace> BREEDING_DIRECTIONS = Set.of(
@@ -81,6 +85,11 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     protected ItemStack displayPlant;
     @Nonnull
     protected Set<BreedingPair> breedingPairs = new HashSet<>();
+
+    @Nullable
+    protected ItemStack crushingDrop;
+    @Nullable
+    protected FlavourProfile flavourProfile;
 
     @ParametersAreNonnullByDefault
     protected NetherSeed(SlimefunItemStack item) {
@@ -188,7 +197,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
             final SlimefunItem mateItem = BlockStorage.check(potentialMate);
 
             if (mateItem instanceof NetherSeed mate) {
-                final BreedResult result = PlantRegistry.getInstance().getBreedResult(mother.getId(), mate.getId());
+                final BreedResult result = Registry.getInstance().getBreedResult(mother.getId(), mate.getId());
 
                 if (result.getResultType() == BreedResultType.NO_PAIRS) {
                     // No matching breeding pairs, lets feedback to the player then move to the next direction
@@ -369,20 +378,95 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant {
     }
 
     /**
-     * Tries to register the seed (if it passes validation) first into the PlantRegistry, then its
+     * Adds a flavour profile to this seed. When registered, a NetherSeed with a FlavourProfile
+     * will register its paste version
+     *
+     * @param sweet  The sweetness of this seed
+     * @param sour   The sourness of this seed
+     * @param salty  The saltiness of this seed
+     * @param bitter The bitterness of this seed
+     * @param umami  The unamai(ness?) of this seed
+     * @return Returns self
+     */
+    @Nonnull
+    @ParametersAreNonnullByDefault
+    public NetherSeed addFlavourProfile(int sweet, int sour, int salty, int bitter, int umami) {
+        this.flavourProfile = new FlavourProfile(sweet, sour, salty, bitter, umami);
+        return this;
+    }
+
+    /**
+     * Adds a flavour profile to this seed. When registered, a NetherSeed with a FlavourProfile
+     * will register it's powdered version as well its paste version
+     *
+     * @param flavourProfile The {@link FlavourProfile} for this item
+     * @return Returns self
+     */
+    @Nonnull
+    @ParametersAreNonnullByDefault
+    public NetherSeed addFlavourProfile(@Nonnull FlavourProfile flavourProfile) {
+        this.flavourProfile = flavourProfile;
+        return this;
+    }
+
+    @Override
+    @Nullable
+    public FlavourProfile getFlavourProfile() {
+        return this.flavourProfile;
+    }
+
+    /**
+     * Tries to register the seed (if it passes validation) first into the Registry, then its
      * breeding pairs and finally with Slimefun.
      *
      * @param addon The addon registering this Seed
      */
     public void tryRegister(@Nonnull SlimefunAddon addon) {
         if (validateSeed()) {
+            if (this.flavourProfile != null) {
+                registerPaste();
+            }
             if (this.description == null) {
                 Netheopoiesis.logWarning(this.getId() + " has no Growth, it will not be registered.");
             } else {
-                PlantRegistry.getInstance().addPlant(this);
+                Registry.getInstance().addPlant(this);
                 register(addon);
             }
         }
+    }
+
+    private void registerPaste() {
+        final SlimefunItemStack stack = Theme.themedSlimefunItemStack(
+            "NPS_PASTE_" + this.getId().replace("NPS_", ""),
+            Material.RABBIT_STEW,
+            Theme.PASTE,
+            "Netheo Paste: " + ChatColor.stripColor(this.getItemName()),
+            "This paste is highly nutritious and",
+            "loved by Piglins. Can be formed into",
+            "tasty Netheo Balls.",
+            "",
+            Theme.CLICK_INFO.asTitle("Sweet", this.flavourProfile.getSweet()),
+            Theme.CLICK_INFO.asTitle("Sour", this.flavourProfile.getSour()),
+            Theme.CLICK_INFO.asTitle("Salty", this.flavourProfile.getSalty()),
+            Theme.CLICK_INFO.asTitle("Bitter", this.flavourProfile.getBitter()),
+            Theme.CLICK_INFO.asTitle("Umami", this.flavourProfile.getUmami())
+        );
+        this.crushingDrop = stack;
+
+        final Paste paste = new Paste(
+            Groups.PASTES,
+            stack,
+            RecipeTypes.CRUSHING,
+            RecipeTypes.createCrushingRecipe(this),
+            this.flavourProfile
+        );
+        paste.register(Netheopoiesis.getInstance());
+    }
+
+    @Nullable
+    @Override
+    public ItemStack crushingDrop() {
+        return this.crushingDrop;
     }
 
     @Nonnull

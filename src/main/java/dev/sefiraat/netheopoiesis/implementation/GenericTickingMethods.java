@@ -1,8 +1,8 @@
 package dev.sefiraat.netheopoiesis.implementation;
 
 import dev.sefiraat.netheopoiesis.api.items.GenericTickingSeed;
-import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
 import dev.sefiraat.netheopoiesis.api.items.NetherCrux;
+import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -184,9 +184,9 @@ public final class GenericTickingMethods {
         final World world = location.getWorld();
         final Collection<Entity> entities = world.getNearbyEntities(location, 10, 10, 10);
         final String message = set.stream()
-                            .skip(ThreadLocalRandom.current().nextInt(set.size()))
-                            .findFirst()
-                            .orElse("");
+                                  .skip(ThreadLocalRandom.current().nextInt(set.size()))
+                                  .findFirst()
+                                  .orElse("");
 
         for (Entity entity : entities) {
             if (entity instanceof Player player) {
