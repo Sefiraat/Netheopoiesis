@@ -6,7 +6,6 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 public class Trade {
 
@@ -17,8 +16,7 @@ public class Trade {
     @Nullable
     private TradePool tradePool;
 
-    @ParametersAreNonnullByDefault
-    public Trade(ItemStack item, Integer requiredFlavour) {
+    public Trade(@Nonnull ItemStack item, @Nonnull Integer requiredFlavour) {
         this.tradePair = new Pair<>(item, requiredFlavour);
         final SlimefunItem slimefunItem = SlimefunItem.getByItem(item);
         this.tradeId = slimefunItem == null ? item.getType().name() : slimefunItem.getId();
@@ -53,8 +51,7 @@ public class Trade {
     }
 
     @Nonnull
-    @ParametersAreNonnullByDefault
-    public static Trade of(ItemStack item, Integer requiredFlavour) {
+    public static Trade of(@Nonnull ItemStack item, @Nonnull Integer requiredFlavour) {
         return new Trade(item, requiredFlavour);
     }
 }
