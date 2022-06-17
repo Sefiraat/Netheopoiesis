@@ -219,17 +219,17 @@ public class NetheoBalls {
         Flavour.UMAMI
     );
     public static final NetheoBalls FUNGI = new NetheoBalls(
-            "FUNGI",
-            Flavour.BITTER,
-            Flavour.UMAMI,
-            Flavour.UMAMI
-        );
+        "FUNGI",
+        Flavour.BITTER,
+        Flavour.UMAMI,
+        Flavour.UMAMI
+    );
     public static final NetheoBalls SAVOURY = new NetheoBalls(
-            "SAVOURY",
-            Flavour.UMAMI,
-            Flavour.UMAMI,
-            Flavour.UMAMI
-        );
+        "SAVOURY",
+        Flavour.UMAMI,
+        Flavour.UMAMI,
+        Flavour.UMAMI
+    );
 
     private static final Set<NetheoBalls> CACHED_VALUES = Set.of(
         SWEET,

@@ -2,12 +2,12 @@ package dev.sefiraat.netheopoiesis.implementation.flora;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.Purification;
-import dev.sefiraat.netheopoiesis.api.events.CruxSpreadEvent;
-import dev.sefiraat.netheopoiesis.implementation.tasks.UpdateCruxTask;
 import dev.sefiraat.netheopoiesis.api.RecipeTypes;
-import dev.sefiraat.netheopoiesis.implementation.Stacks;
+import dev.sefiraat.netheopoiesis.api.events.CruxSpreadEvent;
 import dev.sefiraat.netheopoiesis.api.items.NetherCrux;
 import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
+import dev.sefiraat.netheopoiesis.implementation.Stacks;
+import dev.sefiraat.netheopoiesis.implementation.tasks.UpdateCruxTask;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.ProtectionUtils;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;

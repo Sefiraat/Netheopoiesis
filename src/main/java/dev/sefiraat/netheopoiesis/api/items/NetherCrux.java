@@ -1,7 +1,7 @@
 package dev.sefiraat.netheopoiesis.api.items;
 
-import dev.sefiraat.netheopoiesis.api.interfaces.PurifyingObject;
 import dev.sefiraat.netheopoiesis.api.RecipeTypes;
+import dev.sefiraat.netheopoiesis.api.interfaces.PurifyingObject;
 import dev.sefiraat.netheopoiesis.implementation.Stacks;
 import dev.sefiraat.netheopoiesis.implementation.plant.Placements;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;

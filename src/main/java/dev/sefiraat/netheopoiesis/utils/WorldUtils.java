@@ -89,9 +89,9 @@ public final class WorldUtils {
      * Picks a random location within a given range around a point
      *
      * @param centreLocation The {@link Location} which acts as the centre of the random check
-     * @param rangeX          The range in blocks in which to spread out from on the X axis
-     * @param rangeY          The range in blocks in which to spread out from on the Y axis
-     * @param rangeZ          The range in blocks in which to spread out from on the Z axis
+     * @param rangeX         The range in blocks in which to spread out from on the X axis
+     * @param rangeY         The range in blocks in which to spread out from on the Y axis
+     * @param rangeZ         The range in blocks in which to spread out from on the Z axis
      * @return The {@link Location} randomly selected
      */
     @Nonnull
