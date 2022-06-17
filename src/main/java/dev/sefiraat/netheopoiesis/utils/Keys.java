@@ -13,6 +13,7 @@ public final class Keys {
     public static final String CRYSTALLINE_STEPS_REMAINING = "steps-left";
 
     public static final NamespacedKey COOLDOWN = newKey("cooldown");
+    public static final NamespacedKey TRADE_COOLDOWN = newKey("trade_cooldown");
     public static final NamespacedKey FLAVOUR = newKey("flavour");
 
     private Keys() {

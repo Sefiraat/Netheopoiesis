@@ -2,7 +2,7 @@ package dev.sefiraat.netheopoiesis.api.items;
 
 import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
-import dev.sefiraat.netheopoiesis.PlantRegistry;
+import dev.sefiraat.netheopoiesis.Registry;
 import dev.sefiraat.netheopoiesis.api.RecipeTypes;
 import dev.sefiraat.netheopoiesis.api.events.PlantBeforeGrowthEvent;
 import dev.sefiraat.netheopoiesis.api.interfaces.NetherPlant;
@@ -197,7 +197,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant, Se
             final SlimefunItem mateItem = BlockStorage.check(potentialMate);
 
             if (mateItem instanceof NetherSeed mate) {
-                final BreedResult result = PlantRegistry.getInstance().getBreedResult(mother.getId(), mate.getId());
+                final BreedResult result = Registry.getInstance().getBreedResult(mother.getId(), mate.getId());
 
                 if (result.getResultType() == BreedResultType.NO_PAIRS) {
                     // No matching breeding pairs, lets feedback to the player then move to the next direction
@@ -416,7 +416,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant, Se
     }
 
     /**
-     * Tries to register the seed (if it passes validation) first into the PlantRegistry, then its
+     * Tries to register the seed (if it passes validation) first into the Registry, then its
      * breeding pairs and finally with Slimefun.
      *
      * @param addon The addon registering this Seed
@@ -429,7 +429,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant, Se
             if (this.description == null) {
                 Netheopoiesis.logWarning(this.getId() + " has no Growth, it will not be registered.");
             } else {
-                PlantRegistry.getInstance().addPlant(this);
+                Registry.getInstance().addPlant(this);
                 register(addon);
             }
         }

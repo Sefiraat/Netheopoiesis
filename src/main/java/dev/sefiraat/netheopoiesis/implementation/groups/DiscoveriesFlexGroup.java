@@ -1,6 +1,6 @@
 package dev.sefiraat.netheopoiesis.implementation.groups;
 
-import dev.sefiraat.netheopoiesis.PlantRegistry;
+import dev.sefiraat.netheopoiesis.Registry;
 import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
 import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedingPair;
 import dev.sefiraat.netheopoiesis.implementation.Groups;
@@ -112,7 +112,7 @@ public class DiscoveriesFlexGroup extends FlexItemGroup {
 
     @ParametersAreNonnullByDefault
     private void setupPage(Player player, PlayerProfile profile, SlimefunGuideMode mode, ChestMenu menu, int page) {
-        final List<BreedingPair> breedingPairs = new ArrayList<>(PlantRegistry.getInstance().getBreedingPairs());
+        final List<BreedingPair> breedingPairs = new ArrayList<>(Registry.getInstance().getBreedingPairs());
         final int amount = breedingPairs.size();
         final int totalPages = (int) Math.ceil(amount / (double) PAGE_SIZE);
         final int start = (page - 1) * PAGE_SIZE;
