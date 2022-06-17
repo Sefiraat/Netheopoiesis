@@ -200,7 +200,7 @@ public class NetheoBalls {
         Flavour.SALTY,
         Flavour.SALTY,
         Flavour.SALTY,
-         TradePool.SALTY
+        TradePool.SALTY
     );
     public static final NetheoBalls NASTY = new NetheoBalls(
         "NASTY",
