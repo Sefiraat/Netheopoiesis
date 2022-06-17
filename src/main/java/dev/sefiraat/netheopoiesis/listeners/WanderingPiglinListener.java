@@ -1,6 +1,7 @@
 package dev.sefiraat.netheopoiesis.listeners;
 
 import dev.sefiraat.netheopoiesis.api.plant.netheos.NetheoBalls;
+import dev.sefiraat.netheopoiesis.api.plant.netheos.Trades;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
@@ -13,7 +14,7 @@ import java.util.Map;
  */
 public class WanderingPiglinListener implements Listener {
 
-    private Map<NetheoBalls,>
+    private Map<NetheoBalls, Trades.TradePool> possibleTrades;
 
     public void onPlayerDropItem(@Nonnull PlayerDropItemEvent event) {
 
