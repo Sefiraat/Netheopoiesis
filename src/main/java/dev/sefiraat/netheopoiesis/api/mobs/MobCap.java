@@ -58,6 +58,11 @@ public class MobCap {
         Netheopoiesis.getConfigManager().getPlayerMobCapWanderingTrader()
     );
 
+    public static final MobCap MISC = new MobCap(
+        MobCapType.MISC,
+        0
+    );
+
     private final int amountPerPlayer;
     @Nonnull
     private final MobCapType type;

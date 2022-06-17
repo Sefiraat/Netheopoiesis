@@ -45,6 +45,7 @@ public class MobManager {
         mobCaps.put(MobCapType.VILLAGER, MobCap.VILLAGER);
         mobCaps.put(MobCapType.PIGLIN_TRADER, MobCap.PIGLIN_TRADER);
         mobCaps.put(MobCapType.WANDERING_TRADER, MobCap.WANDERING_TRADER);
+        mobCaps.put(MobCapType.MISC, MobCap.MISC);
 
         new MobRemovalTask().runTaskTimer(Netheopoiesis.getInstance(), 1200, 1200);
     }
@@ -173,11 +174,33 @@ public class MobManager {
     /**
      * Adds a specific mob manually to the specified mob cap. Should be used only if spawnMob() isn't suitable
      *
+     * @param type         The {@link MobCapType} to add the mob to
+     * @param livingEntity The {@link LivingEntity} being added
+     * @param bypassCap True if the mob should be added regardless of a cap
+     */
+    public void addMob(@Nonnull MobCapType type, @Nonnull LivingEntity livingEntity, boolean bypassCap) {
+        addMob(type, livingEntity.getUniqueId(), bypassCap);
+    }
+
+    /**
+     * Adds a specific mob manually to the specified mob cap. Should be used only if spawnMob() isn't suitable
+     *
      * @param type    The {@link MobCapType} to add the mob to
      * @param mobUuid The {@link UUID} of the mob being added
      */
     public void addMob(@Nonnull MobCapType type, @Nonnull UUID mobUuid) {
-        if (mobCapHasSpace(type)) {
+        addMob(type, mobUuid, false);
+    }
+
+    /**
+     * Adds a specific mob manually to the specified mob cap. Should be used only if spawnMob() isn't suitable
+     *
+     * @param type      The {@link MobCapType} to add the mob to
+     * @param mobUuid   The {@link UUID} of the mob being added
+     * @param bypassCap True if the mob should be added regardless of a cap
+     */
+    public void addMob(@Nonnull MobCapType type, @Nonnull UUID mobUuid, boolean bypassCap) {
+        if (mobCapHasSpace(type) || bypassCap) {
             final MobCap mobCap = mobCaps.get(type);
             mobCap.addMob(mobUuid);
             mobCaps.put(type, mobCap);

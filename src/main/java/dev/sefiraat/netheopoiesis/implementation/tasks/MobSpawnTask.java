@@ -3,6 +3,7 @@ package dev.sefiraat.netheopoiesis.implementation.tasks;
 import dev.sefiraat.netheopoiesis.Purification;
 import dev.sefiraat.netheopoiesis.api.mobs.MobCapType;
 import dev.sefiraat.netheopoiesis.api.mobs.RandomSpawn;
+import dev.sefiraat.netheopoiesis.managers.MobManager;
 import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import io.github.bakedlibs.dough.collections.RandomizedSet;
 import org.bukkit.Bukkit;
@@ -98,6 +99,9 @@ public class MobSpawnTask extends BukkitRunnable {
 
             strider1.setLeashHolder(livingEntity);
             strider2.setLeashHolder(livingEntity);
+
+            MobManager.getInstance().addMob(MobCapType.MISC, strider1, true);
+            MobManager.getInstance().addMob(MobCapType.MISC, strider2, true);
         }
     );
 

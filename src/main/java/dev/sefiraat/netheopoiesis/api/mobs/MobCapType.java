@@ -9,5 +9,6 @@ public enum MobCapType {
     LAND_HOSTILE,
     VILLAGER,
     PIGLIN_TRADER,
-    WANDERING_TRADER
+    WANDERING_TRADER,
+    MISC
 }

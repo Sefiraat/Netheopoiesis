@@ -43,13 +43,4 @@ public class ManagedMobListener implements Listener {
             }
         }
     }
-
-    @EventHandler
-    public void onPlayerDropItem(@Nonnull PlayerDropItemEvent event) {
-        PersistentDataAPI.setString(
-            event.getItemDrop(),
-            Keys.DROPPED_PLAYER,
-            event.getPlayer().getUniqueId().toString()
-        );
-    }
 }

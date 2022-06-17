@@ -11,6 +11,7 @@ import dev.sefiraat.netheopoiesis.listeners.ManagedMobListener;
 import dev.sefiraat.netheopoiesis.listeners.MobSpawnListener;
 import dev.sefiraat.netheopoiesis.listeners.PlayerSleepListener;
 import dev.sefiraat.netheopoiesis.listeners.SeedPlacementListener;
+import dev.sefiraat.netheopoiesis.listeners.WanderingPiglinListener;
 import dev.sefiraat.netheopoiesis.listeners.WaterPlaceListener;
 import org.bukkit.event.Listener;
 
@@ -36,6 +37,7 @@ public class ListenerManager {
         addListener(new CrystallineSeedListener());
         addListener(new ManagedMobListener());
         addListener(new CrushingListener());
+        addListener(new WanderingPiglinListener());
     }
 
     private void addListener(@Nonnull Listener listener) {
