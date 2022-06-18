@@ -1,7 +1,6 @@
 package dev.sefiraat.netheopoiesis.implementation.groups;
 
 import dev.sefiraat.netheopoiesis.Registry;
-import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
 import dev.sefiraat.netheopoiesis.api.plant.netheos.Trade;
 import dev.sefiraat.netheopoiesis.implementation.Groups;
 import dev.sefiraat.netheopoiesis.utils.StatisticUtils;
@@ -19,9 +18,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 

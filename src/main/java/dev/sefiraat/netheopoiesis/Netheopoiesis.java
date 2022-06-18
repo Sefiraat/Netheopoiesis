@@ -3,10 +3,11 @@ package dev.sefiraat.netheopoiesis;
 import dev.sefiraat.netheopoiesis.api.plant.netheos.NetheoBalls;
 import dev.sefiraat.netheopoiesis.implementation.Items;
 import dev.sefiraat.netheopoiesis.managers.ConfigManager;
+import dev.sefiraat.netheopoiesis.managers.DispatchManager;
 import dev.sefiraat.netheopoiesis.managers.ListenerManager;
 import dev.sefiraat.netheopoiesis.managers.MobManager;
-import dev.sefiraat.netheopoiesis.managers.TaskManager;
 import dev.sefiraat.netheopoiesis.managers.SupportedPluginManager;
+import dev.sefiraat.netheopoiesis.managers.TaskManager;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import org.bstats.bukkit.Metrics;
@@ -34,6 +35,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
     private ListenerManager listenerManager;
     private TaskManager taskManager;
     private MobManager mobManager;
+    private DispatchManager dispatchManager;
     private Purification purification;
     private Registry registry;
 
@@ -59,6 +61,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
         this.listenerManager = new ListenerManager();
         this.taskManager = new TaskManager();
         this.mobManager = new MobManager();
+        this.dispatchManager = new DispatchManager(this);
         this.purification = new Purification();
         this.registry = new Registry();
 

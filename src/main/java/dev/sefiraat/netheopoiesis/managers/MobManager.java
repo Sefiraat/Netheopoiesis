@@ -176,7 +176,7 @@ public class MobManager {
      *
      * @param type         The {@link MobCapType} to add the mob to
      * @param livingEntity The {@link LivingEntity} being added
-     * @param bypassCap True if the mob should be added regardless of a cap
+     * @param bypassCap    True if the mob should be added regardless of a cap
      */
     public void addMob(@Nonnull MobCapType type, @Nonnull LivingEntity livingEntity, boolean bypassCap) {
         addMob(type, livingEntity.getUniqueId(), bypassCap);
