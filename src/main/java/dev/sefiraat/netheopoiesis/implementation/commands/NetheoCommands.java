@@ -51,10 +51,10 @@ public class NetheoCommands extends BaseCommand {
     @CommandPermission("netheopoiesis.admin.mobcaps")
     @CommandCompletion("@MOB_CAPS")
     public void purgeMobCap(CommandSender sender, String mobCapType) {
-        final MobCap cap = MobManager.getInstance().getMobCap(MobCapType.valueOf(mobCapType));
+        final MobCap mobCap = MobManager.getInstance().getMobCap(MobCapType.valueOf(mobCapType));
         final String message = "Mob Cap Purged";
 
-        cap.killAllMobs();
+       mobCap.killAllMobs();
         if (sender instanceof Player player) {
             player.sendMessage(Theme.SUCCESS.apply(message));
         } else {
