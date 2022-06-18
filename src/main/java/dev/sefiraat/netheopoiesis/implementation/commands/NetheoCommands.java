@@ -3,6 +3,7 @@ package dev.sefiraat.netheopoiesis.implementation.commands;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandCompletion;
+import co.aikar.commands.annotation.CommandPermission;
 import co.aikar.commands.annotation.Default;
 import co.aikar.commands.annotation.Description;
 import co.aikar.commands.annotation.Subcommand;
@@ -26,6 +27,7 @@ public class NetheoCommands extends BaseCommand {
 
     @Subcommand("MobCaps")
     @Description("Displays information about the various MobCaps")
+    @CommandPermission("netheopoiesis.admin.mobcaps")
     public void viewMobCaps(CommandSender sender) {
         if (sender instanceof Player player) {
             String[] messages = new String[MobCapType.values().length];
@@ -42,6 +44,7 @@ public class NetheoCommands extends BaseCommand {
 
     @Subcommand("PurgeMobCap")
     @Description("Kills all mobs from a specific Mob Cap")
+    @CommandPermission("netheopoiesis.admin.mobcaps")
     @CommandCompletion("@MOB_CAPS")
     public void purgeMobCap(CommandSender sender, String mobCapType) {
         if (sender instanceof Player player) {
@@ -53,6 +56,7 @@ public class NetheoCommands extends BaseCommand {
 
     @Subcommand("PurgeAllMobCap")
     @Description("Kills all mobs from all Mob Caps")
+    @CommandPermission("netheopoiesis.admin.mobcaps")
     public void purgeMobCap(CommandSender sender) {
         if (sender instanceof Player player) {
             for (MobCapType type : MobCapType.values()) {
