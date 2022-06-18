@@ -21,29 +21,26 @@ public class NetheoCommands extends BaseCommand {
 
     @Default
     public void onDefault(CommandSender sender) {
-        if (sender instanceof Player) {
-            sender.sendMessage(Theme.ERROR + "Please provide a valid subcommand.");
-        }
+        sender.sendMessage(Theme.ERROR + "Please provide a valid subcommand.");
     }
 
     @Subcommand("MobCaps")
     @Description("Displays information about the various MobCaps")
     @CommandPermission("netheopoiesis.admin.mobcaps")
     public void viewMobCaps(CommandSender sender) {
-        final String[] messages = new String[MobCapType.values().length];
+        final MobCapType[] mobCapTypes = MobCapType.values();
+        final String[] messages = new String[mobCapTypes.length];
 
-        for (int i = 0; i < MobCapType.values().length; i++) {
-            final MobCapType type = MobCapType.values()[i];
+        for (int i = 0; i < mobCapTypes.length; i++) {
+            final MobCapType type = mobCapTypes[i];
             final MobCap mobCap = MobManager.getInstance().getMobCap(type);
             messages[i] = TextUtils.toTitleCase(type.name()) + ": " + mobCap.count() + "/" + mobCap.getMaxAmount();
         }
 
-        if (sender instanceof Player player) {
-            for (String message : messages) {
+        for (String message : messages) {
+            if (sender instanceof Player player) {
                 player.sendMessage(Theme.CLICK_INFO.apply(message));
-            }
-        } else {
-            for (String message : messages) {
+            } else {
                 Netheopoiesis.logInfo(message);
             }
         }
