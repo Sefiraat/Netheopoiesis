@@ -2,6 +2,7 @@ package dev.sefiraat.netheopoiesis.implementation;
 
 import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.api.RecipeTypes;
+import dev.sefiraat.netheopoiesis.api.items.BeaconSiphoningBlock;
 import dev.sefiraat.netheopoiesis.api.items.BiomeSpreadingSeed;
 import dev.sefiraat.netheopoiesis.api.items.CruxSpreadingSeed;
 import dev.sefiraat.netheopoiesis.api.items.DoNothingSeed;
@@ -9,6 +10,7 @@ import dev.sefiraat.netheopoiesis.api.items.DroppingSeed;
 import dev.sefiraat.netheopoiesis.api.items.EntitySpawningSeed;
 import dev.sefiraat.netheopoiesis.api.items.GenericTickingSeed;
 import dev.sefiraat.netheopoiesis.api.items.HarvestableSeed;
+import dev.sefiraat.netheopoiesis.api.items.NetherBeacon;
 import dev.sefiraat.netheopoiesis.api.items.NetherCrux;
 import dev.sefiraat.netheopoiesis.api.plant.Growth;
 import dev.sefiraat.netheopoiesis.implementation.flora.CrystallineCrux;
@@ -239,6 +241,46 @@ public final class Items {
                 Stacks.ADDON_JAM, Stacks.ADDON_JAM, Stacks.ADDON_JAM,
                 wheat, wheat, wheat,
             }
+        ).register(addon);
+
+        new NetherBeacon(
+            Groups.TOOLS,
+            Stacks.NETHER_BEACON,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[0],
+            0,
+            20,
+            1
+        ).register(addon);
+
+        new BeaconSiphoningBlock(
+            Groups.TOOLS,
+            Stacks.NETHER_BEACON_BASE_1,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[0],
+            1,
+            10,
+            1
+        ).register(addon);
+
+        new BeaconSiphoningBlock(
+            Groups.TOOLS,
+            Stacks.NETHER_BEACON_BASE_2,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[0],
+            2,
+            15,
+            1
+        ).register(addon);
+
+        new BeaconSiphoningBlock(
+            Groups.TOOLS,
+            Stacks.NETHER_BEACON_BASE_3,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[0],
+            3,
+            20,
+            1
         ).register(addon);
 
         // endregion

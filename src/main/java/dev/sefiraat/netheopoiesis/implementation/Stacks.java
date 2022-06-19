@@ -136,6 +136,68 @@ public final class Stacks {
         Theme.WARNING + "if you wish to make it back!"
     );
 
+    public static final SlimefunItemStack NETHER_BEACON = Theme.themedSlimefunItemStack(
+        "NPS_BEACON",
+        Material.SHROOMLIGHT,
+        Theme.TOOL,
+        "Nether Beacon",
+        "This beacon will draw nearby",
+        "purification and convert it into power.",
+        "The beacon's beam will slowly",
+        "remove any blocks above this block's",
+        "y-level. The radius depends on the",
+        "power of the whole beacon's structure.",
+        "Place beacon base blocks below this to",
+        "increase the power.",
+        Theme.CLICK_INFO.asTitle("Purification Draw", 20),
+        Theme.CLICK_INFO.asTitle("Cumulative Power", 1)
+    );
+
+    public static final SlimefunItemStack NETHER_BEACON_BASE_1 = Theme.themedSlimefunItemStack(
+        "NPS_BEACON_BASE_1",
+        Material.NETHER_WART_BLOCK,
+        Theme.TOOL,
+        "Nether Beacon Base: Tier 1",
+        "This base will draw purification",
+        "from the surrounding area and convert",
+        "into a form of power.",
+        "Can draw power from other base",
+        "blocks below this if they are",
+        "one tier higher.",
+        Theme.CLICK_INFO.asTitle("Purification Draw", 10),
+        Theme.CLICK_INFO.asTitle("Cumulative Power", 1)
+    );
+
+    public static final SlimefunItemStack NETHER_BEACON_BASE_2 = Theme.themedSlimefunItemStack(
+        "NPS_BEACON_BASE_2",
+        Material.NETHER_BRICKS,
+        Theme.TOOL,
+        "Nether Beacon Base: Tier 2",
+        "This base will draw purification",
+        "from the surrounding area and convert",
+        "into a form of power.",
+        "Can draw power from other base",
+        "blocks below this if they are",
+        "one tier higher.",
+        Theme.CLICK_INFO.asTitle("Purification Draw", 15),
+        Theme.CLICK_INFO.asTitle("Cumulative Power", 1)
+    );
+
+    public static final SlimefunItemStack NETHER_BEACON_BASE_3 = Theme.themedSlimefunItemStack(
+        "NPS_BEACON_BASE_3",
+        Material.RED_CONCRETE,
+        Theme.TOOL,
+        "Nether Beacon Base: Tier 3",
+        "This base will draw purification",
+        "from the surrounding area and convert",
+        "into a form of power.",
+        "Can draw power from other base",
+        "blocks below this if they are",
+        "one tier higher.",
+        Theme.CLICK_INFO.asTitle("Purification Draw", 20),
+        Theme.CLICK_INFO.asTitle("Cumulative Power", 1)
+    );
+
     // endregion
 
     // region Crux'

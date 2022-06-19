@@ -53,7 +53,7 @@ public class Purification {
 
     private static Purification instance;
 
-    private final Map<BlockPosition, Integer> purifyingObjectValues = new HashMap<>();
+    private final Map<BlockPosition, Integer> purificationModifiers = new HashMap<>();
     private final Map<ChunkPosition, Integer> chunkValues = new HashMap<>();
 
     public Purification() {
@@ -64,7 +64,7 @@ public class Purification {
 
     private void collateChunkValues() {
         chunkValues.clear();
-        for (Map.Entry<BlockPosition, Integer> entry : purifyingObjectValues.entrySet()) {
+        for (Map.Entry<BlockPosition, Integer> entry : purificationModifiers.entrySet()) {
             final BlockPosition blockPosition = entry.getKey();
             final ChunkPosition chunkPosition = new ChunkPosition(blockPosition.getChunk());
             final int currentValue = chunkValues.getOrDefault(chunkPosition, 0);
@@ -73,8 +73,8 @@ public class Purification {
         }
     }
 
-    public Map<BlockPosition, Integer> getPurifyingObjectValues() {
-        return purifyingObjectValues;
+    public Map<BlockPosition, Integer> getPurificationModifiers() {
+        return purificationModifiers;
     }
 
     public Map<ChunkPosition, Integer> getChunkValues() {
@@ -83,16 +83,21 @@ public class Purification {
 
     public static void addValue(@Nonnull Block block, int value) {
         final BlockPosition blockPosition = new BlockPosition(block);
-        instance.getPurifyingObjectValues().put(blockPosition, value);
+        instance.getPurificationModifiers().put(blockPosition, value);
+    }
+
+    public static void negateValue(@Nonnull Block block, int value) {
+        final BlockPosition blockPosition = new BlockPosition(block);
+        instance.getPurificationModifiers().put(blockPosition, -value);
     }
 
     public static void removeValue(@Nonnull Block block) {
         final BlockPosition blockPosition = new BlockPosition(block);
-        instance.getPurifyingObjectValues().remove(blockPosition);
+        instance.getPurificationModifiers().remove(blockPosition);
     }
 
     public static int getValue(@Nonnull Block block) {
-        return instance.getPurifyingObjectValues().getOrDefault(new BlockPosition(block), 0);
+        return instance.getPurificationModifiers().getOrDefault(new BlockPosition(block), 0);
     }
 
     public static int getValue(@Nonnull Chunk chunk) {
