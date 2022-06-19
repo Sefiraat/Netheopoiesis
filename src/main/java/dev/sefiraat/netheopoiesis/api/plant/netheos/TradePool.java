@@ -250,7 +250,6 @@ public class TradePool {
         .addTrade(new ItemStack(Material.MUSIC_DISC_WARD), 0)
         .addTrade(new ItemStack(Material.MUSIC_DISC_11), 0)
         .addTrade(new ItemStack(Material.MUSIC_DISC_WAIT), 0)
-        .addTrade(new ItemStack(Material.MUSIC_DISC_5), 0)
         .addTrade(new ItemStack(Material.MUSIC_DISC_PIGSTEP), 40)
         .addTrade(new ItemStack(Material.MUSIC_DISC_OTHERSIDE), 60);
 
