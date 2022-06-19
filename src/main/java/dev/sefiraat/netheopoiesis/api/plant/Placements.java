@@ -1,4 +1,4 @@
-package dev.sefiraat.netheopoiesis.implementation.plant;
+package dev.sefiraat.netheopoiesis.api.plant;
 
 import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
 import dev.sefiraat.netheopoiesis.api.plant.Growth;

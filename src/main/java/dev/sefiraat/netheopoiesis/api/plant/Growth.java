@@ -1,6 +1,5 @@
 package dev.sefiraat.netheopoiesis.api.plant;
 
-import dev.sefiraat.netheopoiesis.implementation.plant.GrowthStages;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
