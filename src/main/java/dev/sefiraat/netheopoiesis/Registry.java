@@ -14,7 +14,6 @@ import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedingPair;
 import dev.sefiraat.netheopoiesis.api.plant.netheos.Trade;
 import dev.sefiraat.netheopoiesis.utils.TextUtils;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Piglin;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -25,11 +24,8 @@ import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
-import java.util.UUID;
 
 public class Registry {
 
