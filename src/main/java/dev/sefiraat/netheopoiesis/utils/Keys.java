@@ -16,6 +16,7 @@ public final class Keys {
     public static final NamespacedKey TRADE_COOLDOWN = newKey("trade-cooldown");
     public static final NamespacedKey DROPPED_PLAYER = newKey("dropped-player");
     public static final NamespacedKey FLAVOUR = newKey("flavour");
+    public static final NamespacedKey MANAGED_FALLING_BLOCK = newKey("managed");
 
     private Keys() {
         throw new IllegalStateException("Utility class");

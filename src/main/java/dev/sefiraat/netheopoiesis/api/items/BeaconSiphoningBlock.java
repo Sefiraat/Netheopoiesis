@@ -42,13 +42,17 @@ import java.util.UUID;
  */
 public class BeaconSiphoningBlock extends SlimefunItem implements PurificationDrain, CustomPlacementBlock {
 
-    private final int purificationDraw;
-    private final int powerPerTick;
+    @Nonnull
+    private static final Map<BlockPosition, Integer> POWER_MAP = new HashMap<>();
+    private static final int TICKS_PER_OPERATION = 5;
     @Nonnull
     protected final Map<Location, UUID> ownerCache = new HashMap<>();
-    @Nonnull
-    protected static final Map<BlockPosition, Integer> POWER_MAP = new HashMap<>();
     protected final int tier;
+
+    private final int purificationDraw;
+    private final int powerPerTick;
+
+    private int currentTick = 0;
 
     @ParametersAreNonnullByDefault
     public BeaconSiphoningBlock(ItemGroup itemGroup,
@@ -78,6 +82,11 @@ public class BeaconSiphoningBlock extends SlimefunItem implements PurificationDr
                 public void tick(Block block, SlimefunItem item, Config data) {
                     onTick(block, item, data);
                 }
+
+                @Override
+                public void uniqueTick() {
+                    onUniqueTick();
+                }
             },
             new BlockBreakHandler(false, false) {
                 @Override
@@ -90,7 +99,13 @@ public class BeaconSiphoningBlock extends SlimefunItem implements PurificationDr
 
     @ParametersAreNonnullByDefault
     @OverridingMethodsMustInvokeSuper
-    protected void onTick(Block block, SlimefunItem item, Config data) {
+    protected boolean onTick(Block block, SlimefunItem item, Config data) {
+
+        // We do not want to operate every single tick
+        if (currentTick != TICKS_PER_OPERATION) {
+            return false;
+        }
+
         int power = 0;
         boolean isSetupCorrectly = true;
 
@@ -99,6 +114,7 @@ public class BeaconSiphoningBlock extends SlimefunItem implements PurificationDr
             power = powerPerTick;
         } else {
             Purification.removeValue(block);
+            return false;
         }
 
         int cumulativePower = 0;
@@ -110,7 +126,7 @@ public class BeaconSiphoningBlock extends SlimefunItem implements PurificationDr
                 if (slimefunItem instanceof BeaconSiphoningBlock siphon
                     && siphon.tier == this.tier + 1
                 ) {
-                    final int blockBelowPower = POWER_MAP.getOrDefault(new BlockPosition(blockBelow), 0);
+                    final int blockBelowPower = getPowerFromMap(blockBelow.getLocation());
                     cumulativePower += blockBelowPower;
                 } else {
                     isSetupCorrectly = false;
@@ -118,7 +134,16 @@ public class BeaconSiphoningBlock extends SlimefunItem implements PurificationDr
             }
         }
 
-        POWER_MAP.put(new BlockPosition(block), isSetupCorrectly ? power + cumulativePower : power);
+        setPowerToMap(block.getLocation(), isSetupCorrectly ? power + cumulativePower : power);
+        return true;
+    }
+
+    protected void onUniqueTick() {
+        if (currentTick >= TICKS_PER_OPERATION) {
+            currentTick = 0;
+        } else {
+            currentTick++;
+        }
     }
 
     /**
@@ -190,6 +215,14 @@ public class BeaconSiphoningBlock extends SlimefunItem implements PurificationDr
     }
 
     public int getCurrentPower(@Nonnull Block block) {
-        return POWER_MAP.get(new BlockPosition(block));
+        return getPowerFromMap(block.getLocation());
+    }
+
+    public static void setPowerToMap(@Nonnull Location location, int power) {
+        POWER_MAP.put(new BlockPosition(location), power);
+    }
+
+    public static int getPowerFromMap(@Nonnull Location location) {
+        return POWER_MAP.getOrDefault(new BlockPosition(location), 0);
     }
 }

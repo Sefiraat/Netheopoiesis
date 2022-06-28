@@ -42,13 +42,13 @@ public class TradesFlexGroup extends FlexItemGroup {
         45, 46, 47, 48, 49, 50, 51, 52, 53
     };
 
-    private static final int TRADE_ITEM_SLOT = 21;
-    private static final int[] TRADE_ITEM_INFO_SLOT = new int[]{12, 30};
+    private static final int TRADE_ITEM_SLOT = 30;
+    private static final int[] TRADE_ITEM_INFO_SLOT = new int[]{21, 39};
 
-    private static final int DROPPED_ITEM_SLOT = 23;
-    private static final int[] DROPPED_ITEM_INFO_SLOT = new int[]{14, 32};
+    private static final int DROPPED_ITEM_SLOT = 32;
+    private static final int[] DROPPED_ITEM_INFO_SLOT = new int[]{23, 41};
 
-    private static final int[] HELD_SLOTS = new int[]{37, 38, 39, 40, 41, 42, 43};
+    private static final int[] HELD_SLOTS = new int[]{19, 28, 37, 25, 34, 43};
 
     private static final ItemStack TRADE_ITEM_INFO = new CustomItemStack(
         Material.LIGHT_BLUE_STAINED_GLASS_PANE,
