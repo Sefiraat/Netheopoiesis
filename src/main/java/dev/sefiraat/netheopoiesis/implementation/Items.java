@@ -12,6 +12,7 @@ import dev.sefiraat.netheopoiesis.api.items.GenericTickingSeed;
 import dev.sefiraat.netheopoiesis.api.items.HarvestableSeed;
 import dev.sefiraat.netheopoiesis.api.items.NetherCrux;
 import dev.sefiraat.netheopoiesis.api.plant.Growth;
+import dev.sefiraat.netheopoiesis.api.plant.netheos.NetheoBalls;
 import dev.sefiraat.netheopoiesis.implementation.blocks.NetherBeacon;
 import dev.sefiraat.netheopoiesis.implementation.flora.CrystallineCrux;
 import dev.sefiraat.netheopoiesis.implementation.flora.PurificationSeed;
@@ -28,11 +29,14 @@ import dev.sefiraat.netheopoiesis.utils.EasterEggUtils;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.UnplaceableBlock;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fox;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Set;
 
 /**
  * Final class used to store and initialise the {@link SlimefunItem}s used in the addon
@@ -148,6 +152,182 @@ public final class Items {
             }
         ).register(addon);
 
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.HARMONISED_CRYSTAL_FIRE,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.HARMONISED_CRYSTAL_FIRE,
+                NetheoBalls.BAD,
+                20
+            )
+        ).register(addon);
+
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.HARMONISED_CRYSTAL_WATER,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.HARMONISED_CRYSTAL_WATER,
+                NetheoBalls.ANCHOVY,
+                20
+            )
+        ).register(addon);
+
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.HARMONISED_CRYSTAL_EARTH,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.HARMONISED_CRYSTAL_EARTH,
+                NetheoBalls.BERRY,
+                20
+            )
+        ).register(addon);
+        
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.HARMONISED_CRYSTAL_AIR,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.HARMONISED_CRYSTAL_AIR,
+                NetheoBalls.ASTRINGENT,
+                20
+            )
+        ).register(addon);
+
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.DISCORDANT_CRYSTAL_FIRE,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.DISCORDANT_CRYSTAL_FIRE,
+                NetheoBalls.BITTERSWEET,
+                20
+            )
+        ).register(addon);
+
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.DISCORDANT_CRYSTAL_WATER,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.DISCORDANT_CRYSTAL_WATER,
+                NetheoBalls.BONITO,
+                20
+            )
+        ).register(addon);
+
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.DISCORDANT_CRYSTAL_EARTH,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.DISCORDANT_CRYSTAL_EARTH,
+                NetheoBalls.BROTHY,
+                20
+            )
+        ).register(addon);
+        
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.DISCORDANT_CRYSTAL_AIR,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.DISCORDANT_CRYSTAL_AIR,
+                NetheoBalls.CANDY,
+                20
+            )
+        ).register(addon);
+
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.DISSONANT_CRYSTAL_FIRE,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.DISSONANT_CRYSTAL_FIRE,
+                NetheoBalls.BITTERSWEET,
+                20
+            )
+        ).register(addon);
+
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.DISSONANT_CRYSTAL_WATER,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.DISSONANT_CRYSTAL_WATER,
+                NetheoBalls.BONITO,
+                20
+            )
+        ).register(addon);
+
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.DISSONANT_CRYSTAL_EARTH,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.DISSONANT_CRYSTAL_EARTH,
+                NetheoBalls.BROTHY,
+                20
+            )
+        ).register(addon);
+        
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.DISSONANT_CRYSTAL_AIR,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.DISSONANT_CRYSTAL_AIR,
+                NetheoBalls.CANDY,
+                20
+            )
+        ).register(addon);
+        
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.ELEMENTAL_CRYSTAL,
+            RecipeType.MAGIC_WORKBENCH,
+            new ItemStack[]{
+                null, Stacks.HARMONISED_CRYSTAL_FIRE, null,
+                Stacks.HARMONISED_CRYSTAL_WATER, new ItemStack(Material.NETHER_STAR), Stacks.HARMONISED_CRYSTAL_EARTH,
+                null, Stacks.HARMONISED_CRYSTAL_AIR, null
+            }
+        ).register(addon);
+        
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.VACUUM_CRYSTAL,
+            RecipeType.MAGIC_WORKBENCH,
+            new ItemStack[]{
+                null, Stacks.DISCORDANT_CRYSTAL_FIRE, null,
+                Stacks.DISCORDANT_CRYSTAL_WATER, Stacks.ELEMENTAL_CRYSTAL, Stacks.DISCORDANT_CRYSTAL_EARTH,
+                null, Stacks.DISCORDANT_CRYSTAL_AIR, null
+            }
+        ).register(addon);
+        
+        new SlimefunItem(
+            Groups.CRAFTING,
+            Stacks.IRREGULAR_CRYSTAL,
+            RecipeType.MAGIC_WORKBENCH,
+            new ItemStack[]{
+                null, Stacks.DISSONANT_CRYSTAL_FIRE, null,
+                Stacks.DISSONANT_CRYSTAL_WATER, Stacks.VACUUM_CRYSTAL, Stacks.DISSONANT_CRYSTAL_EARTH,
+                null, Stacks.DISSONANT_CRYSTAL_AIR, null
+            }
+        ).register(addon);
+
+        new UnplaceableBlock(
+            Groups.CRAFTING,
+            Stacks.QUARTZ_BLANK,
+            RecipeTypes.WANDERING_PIGLIN_TRADE,
+            RecipeTypes.createTradingRecipe(
+                Stacks.QUARTZ_BLANK,
+                NetheoBalls.CITRUS,
+                20
+            )
+        ).register(addon);
+
         // endregion
 
         // region Tools
@@ -221,17 +401,6 @@ public final class Items {
             50
         ).register(addon);
 
-        new Analyser(
-            Groups.TOOLS,
-            Stacks.SEED_ANALYSER,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[]{
-                SlimefunItems.DAMASCUS_STEEL_INGOT, glass, SlimefunItems.DAMASCUS_STEEL_INGOT,
-                SlimefunItems.BRASS_INGOT, glass, SlimefunItems.BRASS_INGOT,
-                SlimefunItems.DAMASCUS_STEEL_INGOT, redstone, SlimefunItems.DAMASCUS_STEEL_INGOT,
-            }
-        ).register(addon);
-
         new EnderCake(
             Groups.TOOLS,
             Stacks.ENDER_CAKE,
@@ -247,7 +416,11 @@ public final class Items {
             Groups.TOOLS,
             Stacks.NETHER_BEACON,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[0],
+            new ItemStack[] {
+                null, null, null,
+                null, Stacks.ELEMENTAL_CRYSTAL, null,
+                null, new ItemStack(Material.BEACON), null
+            },
             0,
             20,
             1
@@ -257,7 +430,11 @@ public final class Items {
             Groups.TOOLS,
             Stacks.NETHER_BEACON_BASE_1,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[0],
+            new ItemStack[] {
+                null, null, null,
+                null, Stacks.ELEMENTAL_CRYSTAL, null,
+                null, Stacks.QUARTZ_BLANK, null
+            },
             1,
             10,
             1
@@ -267,7 +444,11 @@ public final class Items {
             Groups.TOOLS,
             Stacks.NETHER_BEACON_BASE_2,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[0],
+            new ItemStack[] {
+                null, null, null,
+                null, Stacks.VACUUM_CRYSTAL, null,
+                null, Stacks.QUARTZ_BLANK, null
+            },
             2,
             15,
             1
@@ -277,10 +458,42 @@ public final class Items {
             Groups.TOOLS,
             Stacks.NETHER_BEACON_BASE_3,
             RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[0],
+            new ItemStack[] {
+                null, null, null,
+                null, Stacks.IRREGULAR_CRYSTAL, null,
+                null, Stacks.QUARTZ_BLANK, null
+            },
             3,
             20,
             1
+        ).register(addon);
+
+        new Analyser(
+            Groups.TOOLS,
+            Stacks.SEED_ANALYSER,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[]{
+                SlimefunItems.DAMASCUS_STEEL_INGOT, glass, SlimefunItems.DAMASCUS_STEEL_INGOT,
+                SlimefunItems.BRASS_INGOT, glass, SlimefunItems.BRASS_INGOT,
+                SlimefunItems.DAMASCUS_STEEL_INGOT, redstone, SlimefunItems.DAMASCUS_STEEL_INGOT,
+            },
+            Set.of(
+                Analyser.AnalyserType.SEED
+            )
+        ).register(addon);
+
+        new Analyser(
+            Groups.TOOLS,
+            Stacks.SIPHON_ANALYSER,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[]{
+                SlimefunItems.REINFORCED_ALLOY_INGOT, glass, SlimefunItems.REINFORCED_ALLOY_INGOT,
+                SlimefunItems.BRASS_INGOT, Stacks.SEED_ANALYSER, SlimefunItems.BRASS_INGOT,
+                SlimefunItems.REINFORCED_ALLOY_INGOT, redstone, SlimefunItems.REINFORCED_ALLOY_INGOT,
+            },
+            Set.of(
+                Analyser.AnalyserType.SIPHON
+            )
         ).register(addon);
 
         // endregion

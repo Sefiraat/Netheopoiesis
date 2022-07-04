@@ -43,7 +43,7 @@ public final class ItemStackUtils {
      */
     @Nonnull
     public static ItemStack enchantedItemStack(@Nonnull Material material) {
-        return enchantedItemStack(material, false, new Pair<>(Enchantment.LURE, 1));
+        return enchantedItemStack(material, true, new Pair<>(Enchantment.LURE, 1));
     }
 
     /**
@@ -56,7 +56,7 @@ public final class ItemStackUtils {
     public static ItemStack enchantedItemStack(@Nonnull Material material,
                                                @Nonnull Pair<Enchantment, Integer>... enchantments
     ) {
-        return enchantedItemStack(material, false, enchantments);
+        return enchantedItemStack(material, true, enchantments);
     }
 
     /**

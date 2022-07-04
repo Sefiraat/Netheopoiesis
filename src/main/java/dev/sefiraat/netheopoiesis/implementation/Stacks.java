@@ -42,6 +42,162 @@ public final class Stacks {
         "and incomplete."
     );
 
+    public static final SlimefunItemStack HARMONISED_CRYSTAL_FIRE = Theme.themedSlimefunItemStack(
+        "NPS_HARMONISED_CRYSTAL_FIRE",
+        Material.RED_DYE,
+        Theme.CRAFTING,
+        "Harmonised Crystal: Fire",
+        "This crystal has been attuned and",
+        "harmonised with the power of fire."
+    );
+
+    public static final SlimefunItemStack HARMONISED_CRYSTAL_WATER = Theme.themedSlimefunItemStack(
+        "NPS_HARMONISED_CRYSTAL_WATER",
+        Material.CYAN_DYE,
+        Theme.CRAFTING,
+        "Harmonised Crystal: Water",
+        "This crystal has been attuned and",
+        "harmonised with the power of water."
+    );
+
+    public static final SlimefunItemStack HARMONISED_CRYSTAL_AIR = Theme.themedSlimefunItemStack(
+        "NPS_HARMONISED_CRYSTAL_AIR",
+        Material.WHITE_DYE,
+        Theme.CRAFTING,
+        "Harmonised Crystal: Air",
+        "This crystal has been attuned and",
+        "harmonised with the power of air."
+    );
+
+    public static final SlimefunItemStack HARMONISED_CRYSTAL_EARTH = Theme.themedSlimefunItemStack(
+        "NPS_HARMONISED_CRYSTAL_EARTH",
+        Material.BROWN_DYE,
+        Theme.CRAFTING,
+        "Harmonised Crystal: Earth",
+        "This crystal has been attuned and",
+        "harmonised with the power of earth."
+    );
+
+    public static final SlimefunItemStack DISCORDANT_CRYSTAL_FIRE = Theme.themedSlimefunItemStack(
+        "NPS_DISCORDANT_CRYSTAL_FIRE",
+        Material.MAGENTA_DYE,
+        Theme.CRAFTING,
+        "Discordant Crystal: Fire",
+        "This crystal has been attuned",
+        "to the direct vacuum of fire",
+        "element."
+    );
+
+    public static final SlimefunItemStack DISCORDANT_CRYSTAL_WATER = Theme.themedSlimefunItemStack(
+        "NPS_DISCORDANT_CRYSTAL_WATER",
+        Material.LIGHT_BLUE_DYE,
+        Theme.CRAFTING,
+        "Discordant Crystal: Water",
+        "This crystal has been attuned",
+        "to the direct vacuum of water",
+        "element."
+    );
+
+    public static final SlimefunItemStack DISCORDANT_CRYSTAL_EARTH = Theme.themedSlimefunItemStack(
+        "NPS_DISCORDANT_CRYSTAL_EARTH",
+        Material.BLACK_DYE,
+        Theme.CRAFTING,
+        "Discordant Crystal: Water",
+        "This crystal has been attuned",
+        "to the direct vacuum of the earth",
+        "element."
+    );
+
+    public static final SlimefunItemStack DISCORDANT_CRYSTAL_AIR = Theme.themedSlimefunItemStack(
+        "NPS_DISCORDANT_CRYSTAL_AIR",
+        Material.LIGHT_GRAY_DYE,
+        Theme.CRAFTING,
+        "Discordant Crystal: Air",
+        "This crystal has been attuned",
+        "to the direct vacuum of the air",
+        "element."
+    );
+
+    public static final SlimefunItemStack DISSONANT_CRYSTAL_FIRE = Theme.themedSlimefunItemStack(
+        "NPS_DISSONANT_CRYSTAL_FIRE",
+        Material.ORANGE_DYE,
+        Theme.CRAFTING,
+        "Dissonant Crystal: Fire",
+        "This crystal has been attuned",
+        "to the oddities of fire",
+        "element."
+    );
+
+    public static final SlimefunItemStack DISSONANT_CRYSTAL_WATER = Theme.themedSlimefunItemStack(
+        "NPS_DISSONANT_CRYSTAL_WATER",
+        Material.BLUE_DYE,
+        Theme.CRAFTING,
+        "Dissonant Crystal: Water",
+        "This crystal has been attuned",
+        "to the oddities of water",
+        "element."
+    );
+
+    public static final SlimefunItemStack DISSONANT_CRYSTAL_EARTH = Theme.themedSlimefunItemStack(
+        "NPS_DISSONANT_CRYSTAL_EARTH",
+        Material.GREEN_DYE,
+        Theme.CRAFTING,
+        "Dissonant Crystal: Water",
+        "This crystal has been attuned",
+        "to the oddities of the earth",
+        "element."
+    );
+
+    public static final SlimefunItemStack DISSONANT_CRYSTAL_AIR = Theme.themedSlimefunItemStack(
+        "NPS_DISSONANT_CRYSTAL_AIR",
+        Material.GRAY_DYE,
+        Theme.CRAFTING,
+        "Dissonant Crystal: Air",
+        "This crystal has been attuned",
+        "to the oddities of the air",
+        "element."
+    );
+
+    public static final SlimefunItemStack ELEMENTAL_CRYSTAL = Theme.themedSlimefunItemStack(
+        "NPS_ELEMENTAL_CRYSTAL",
+        ItemStackUtils.enchantedItemStack(Material.QUARTZ),
+        Theme.CRAFTING,
+        "Elemental Crystal",
+        "This crystal harnesses the power",
+        "of the four base elements to channel",
+        "purification power."
+    );
+
+    public static final SlimefunItemStack VACUUM_CRYSTAL = Theme.themedSlimefunItemStack(
+        "NPS_VACUUM_CRYSTAL",
+        ItemStackUtils.enchantedItemStack(Material.QUARTZ),
+        Theme.CRAFTING,
+        "Vacuum Crystal",
+        "This crystal harnesses the vacuum",
+        "of power from the base elements to channel",
+        "purification power."
+    );
+
+    public static final SlimefunItemStack IRREGULAR_CRYSTAL = Theme.themedSlimefunItemStack(
+        "NPS_IRREGULAR_CRYSTAL",
+        ItemStackUtils.enchantedItemStack(Material.QUARTZ),
+        Theme.CRAFTING,
+        "Irregular Crystal",
+        "This crystal harnesses the oddities",
+        "of the four base elements to channel",
+        "purification power."
+    );
+
+    public static final SlimefunItemStack QUARTZ_BLANK = Theme.themedSlimefunItemStack(
+        "NPS_QUARTZ_BLANK",
+        Material.QUARTZ_BLOCK,
+        Theme.CRAFTING,
+        "Quartz Blank",
+        "This blank can be filled with",
+        "elemental power and used to focus",
+        "nearby purification energies"
+    );
+
     // endregion
 
     // region Tools
@@ -89,17 +245,6 @@ public final class Stacks {
         "When used on a relevant block or plant,",
         "this tool will tell you what its",
         "purifying effect on the world is."
-    );
-
-    public static final SlimefunItemStack SEED_ANALYSER = Theme.themedSlimefunItemStack(
-        "NPS_SEED_ANALYSER",
-        Material.COMPASS,
-        Theme.TOOL,
-        "Seed Analyser",
-        "When used on a Nether Plant, this",
-        "tool will provide you information",
-        "about it's type, growth and",
-        "purification values."
     );
 
     public static final SlimefunItemStack CRUX_GATHERER = Theme.themedSlimefunItemStack(
@@ -196,6 +341,27 @@ public final class Stacks {
         "one tier higher.",
         Theme.CLICK_INFO.asTitle("Purification Draw", 20),
         Theme.CLICK_INFO.asTitle("Cumulative Power", 1)
+    );
+
+    public static final SlimefunItemStack SEED_ANALYSER = Theme.themedSlimefunItemStack(
+        "NPS_SEED_ANALYSER",
+        Material.COMPASS,
+        Theme.TOOL,
+        "Seed Analyser",
+        "When used on a Nether Plant, this",
+        "tool will provide you information",
+        "about it's type, growth and",
+        "purification values."
+    );
+
+    public static final SlimefunItemStack SIPHON_ANALYSER = Theme.themedSlimefunItemStack(
+        "NPS_SIPHON_ANALYSER",
+        Material.COMPASS,
+        Theme.TOOL,
+        "Siphon Analyser",
+        "When used on a Siphoning block,",
+        "tool will provide you information",
+        "about it's current power and state"
     );
 
     // endregion

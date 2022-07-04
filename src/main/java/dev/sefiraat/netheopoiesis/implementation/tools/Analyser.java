@@ -23,6 +23,7 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -30,9 +31,12 @@ import java.util.UUID;
  */
 public class Analyser extends SlimefunItem {
 
+    private final Set<AnalyserType> types;
+
     @ParametersAreNonnullByDefault
-    public Analyser(ItemGroup group, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public Analyser(ItemGroup group, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, Set<AnalyserType> types) {
         super(group, item, recipeType, recipe);
+        this.types = types;
     }
 
     @Override
@@ -45,7 +49,6 @@ public class Analyser extends SlimefunItem {
         if (optional.isPresent()) {
             final Block block = optional.get();
             final Player player = event.getPlayer();
-
             final ItemStack analyser = event.getItem();
 
             if (!ProtectionUtils.hasPermission(player, block, Interaction.INTERACT_BLOCK)) {
@@ -59,9 +62,9 @@ public class Analyser extends SlimefunItem {
 
             final SlimefunItem slimefunItem = BlockStorage.check(block);
 
-            if (slimefunItem instanceof NetherSeed plant) {
+            if (slimefunItem instanceof NetherSeed plant && types.contains(AnalyserType.SEED)) {
                 onUseSeed(block, plant, player);
-            } else if (slimefunItem instanceof BeaconSiphoningBlock siphon) {
+            } else if (slimefunItem instanceof BeaconSiphoningBlock siphon && types.contains(AnalyserType.SIPHON)) {
                 onUseSiphon(block, siphon, player);
             }
 
@@ -90,8 +93,13 @@ public class Analyser extends SlimefunItem {
     @ParametersAreNonnullByDefault
     private void onUseSiphon(Block block, BeaconSiphoningBlock siphon, Player player) {
         final int currentPower = siphon.getCurrentPower(block);
-
         final String powerMessage = Theme.CLICK_INFO.asTitle("Siphon Power", currentPower);
+
         player.sendMessage(powerMessage);
+    }
+
+    public enum AnalyserType {
+        SEED,
+        SIPHON
     }
 }

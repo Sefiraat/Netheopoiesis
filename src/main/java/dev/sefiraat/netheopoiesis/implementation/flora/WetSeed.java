@@ -37,7 +37,7 @@ public class WetSeed extends NetherSeed {
 
         final Block block = blockOptional.get();
         if (isMature(block)) {
-            updateGrowthStage(block, 0);
+            updateGrowthStage(block, 1);
             heldStack.setType(Material.WATER_BUCKET);
         }
     }

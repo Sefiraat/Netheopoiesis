@@ -2,12 +2,17 @@ package dev.sefiraat.netheopoiesis.api;
 
 import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.api.interfaces.WorldCrushable;
+import dev.sefiraat.netheopoiesis.api.plant.netheos.Flavour;
+import dev.sefiraat.netheopoiesis.api.plant.netheos.NetheoBalls;
+import dev.sefiraat.netheopoiesis.implementation.netheos.NetheoBall;
 import dev.sefiraat.netheopoiesis.listeners.DropListener;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
@@ -102,6 +107,23 @@ public final class RecipeTypes {
         )
     );
 
+    @Nonnull
+    public static final RecipeType WANDERING_PIGLIN_TRADE = new RecipeType(
+        Keys.newKey("piglin-trade"),
+        Theme.themedItemStack(
+            Material.PIGLIN_SPAWN_EGG,
+            Theme.RECIPE_TYPE,
+            "Wandering Piglin Trade",
+            "This item is a chance trade from",
+            "a Wandering Pigling (NOT A NORMAL PIGLIN)",
+            "Wandering Piglins spawn with two",
+            "Striders and offer special trades.",
+            "More information on spawning can",
+            "be found in the purification section",
+            "of the guide."
+        )
+    );
+
     /**
      * This method both registers the drop and returns an ItemStack array that can be used
      * for Slimefun's recipe system. {@link RecipeTypes#VANILLA_DROP}
@@ -141,6 +163,29 @@ public final class RecipeTypes {
         return new ItemStack[]{
             null, null, null,
             null, dropFrom.getItem(), null,
+            null, null, null
+        };
+    }
+
+    /**
+     * This method returns an ItemStack array that can be used for Slimefun's Recipe system
+     *
+     * @param ball The Netheoball type required for the trade
+     * @param minFlavour The minimum flavour required
+     * @return A {@link ItemStack[]} used for Slimefun's Recipe registration with the recipe item in the middle.
+     */
+    @Nonnull
+    public static ItemStack[] createTradingRecipe(@Nonnull ItemStack itemStack, @Nonnull NetheoBalls ball, int minFlavour) {
+        final ItemStack flavourStack = new CustomItemStack(
+            Material.MELON_SEEDS,
+            Theme.MAIN.apply("Required Flavour"),
+            Theme.CLICK_INFO.asTitle("Netheoball Type", ball.getSlimefunItemStack().getDisplayName()),
+            Theme.CLICK_INFO.asTitle("Flavour Amount", minFlavour)
+        );
+        ball.getTradePool().addTrade(itemStack, minFlavour);
+        return new ItemStack[]{
+            null, null, null,
+            null, flavourStack, null,
             null, null, null
         };
     }
