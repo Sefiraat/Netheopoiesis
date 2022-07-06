@@ -99,7 +99,7 @@ public class PurificationSeed extends NetherSeed {
         ) {
             final UUID uuid = event.getPlayer().getUniqueId();
             BlockStorage.addBlockInfo(location, Keys.SEED_GROWTH_STAGE, "0");
-            BlockStorage.addBlockInfo(location, Keys.SEED_OWNER, uuid.toString());
+            BlockStorage.addBlockInfo(location, Keys.BLOCK_OWNER, uuid.toString());
             ownerCache.put(location, uuid);
         } else {
             event.setCancelled(true);

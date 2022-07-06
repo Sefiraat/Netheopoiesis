@@ -9,8 +9,9 @@ import dev.sefiraat.netheopoiesis.listeners.DropListener;
 import dev.sefiraat.netheopoiesis.listeners.FriendlyMobsListener;
 import dev.sefiraat.netheopoiesis.listeners.ManagedMobListener;
 import dev.sefiraat.netheopoiesis.listeners.MobSpawnListener;
+import dev.sefiraat.netheopoiesis.listeners.NetherRoofListener;
 import dev.sefiraat.netheopoiesis.listeners.PlayerSleepListener;
-import dev.sefiraat.netheopoiesis.listeners.SeedPlacementListener;
+import dev.sefiraat.netheopoiesis.listeners.CustomPlacementListener;
 import dev.sefiraat.netheopoiesis.listeners.WanderingPiglinListener;
 import dev.sefiraat.netheopoiesis.listeners.WaterPlaceListener;
 import org.bukkit.event.Listener;
@@ -28,7 +29,7 @@ public class ListenerManager {
         Preconditions.checkArgument(instance == null, "Cannot create a new instance of the ListenerManager");
         instance = this;
         addListener(new DropListener());
-        addListener(new SeedPlacementListener());
+        addListener(new CustomPlacementListener());
         addListener(new MobSpawnListener());
         addListener(new PlayerSleepListener());
         addListener(new WaterPlaceListener());
@@ -38,6 +39,7 @@ public class ListenerManager {
         addListener(new ManagedMobListener());
         addListener(new CrushingListener());
         addListener(new WanderingPiglinListener());
+        addListener(new NetherRoofListener());
     }
 
     private void addListener(@Nonnull Listener listener) {

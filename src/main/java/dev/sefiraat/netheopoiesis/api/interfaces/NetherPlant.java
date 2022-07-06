@@ -2,7 +2,7 @@ package dev.sefiraat.netheopoiesis.api.interfaces;
 
 import dev.sefiraat.netheopoiesis.api.items.NetherCrux;
 import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
-import dev.sefiraat.netheopoiesis.implementation.plant.GrowthStages;
+import dev.sefiraat.netheopoiesis.api.plant.GrowthStages;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
 import dev.sefiraat.netheopoiesis.utils.Theme;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;

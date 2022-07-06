@@ -316,6 +316,8 @@ public class NetheoBalls {
     private final List<Flavour> flavourList;
     @Nonnull
     private final SlimefunItemStack slimefunItemStack;
+    @Nonnull
+    private final TradePool tradePool;
 
     @ParametersAreNonnullByDefault
     NetheoBalls(String name, Flavour flavour1, Flavour flavour2, Flavour flavour3, TradePool tradePool) {
@@ -323,6 +325,7 @@ public class NetheoBalls {
         this.flavour1 = flavour1;
         this.flavour2 = flavour2;
         this.flavour3 = flavour3;
+        this.tradePool = tradePool;
 
         flavourList = List.of(flavour1, flavour2, flavour3);
 
@@ -381,6 +384,16 @@ public class NetheoBalls {
     @Nonnull
     public SlimefunItemStack getSlimefunItemStack() {
         return slimefunItemStack;
+    }
+
+    @Nonnull
+    public List<Flavour> getFlavourList() {
+        return flavourList;
+    }
+
+    @Nonnull
+    public TradePool getTradePool() {
+        return tradePool;
     }
 
     @ParametersAreNonnullByDefault

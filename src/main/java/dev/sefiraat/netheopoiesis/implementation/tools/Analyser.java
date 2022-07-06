@@ -1,5 +1,6 @@
 package dev.sefiraat.netheopoiesis.implementation.tools;
 
+import dev.sefiraat.netheopoiesis.api.items.BeaconSiphoningBlock;
 import dev.sefiraat.netheopoiesis.api.items.NetherSeed;
 import dev.sefiraat.netheopoiesis.utils.ItemStackUtils;
 import dev.sefiraat.netheopoiesis.utils.Keys;
@@ -22,6 +23,7 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -29,9 +31,12 @@ import java.util.UUID;
  */
 public class Analyser extends SlimefunItem {
 
+    private final Set<AnalyserType> types;
+
     @ParametersAreNonnullByDefault
-    public Analyser(ItemGroup group, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+    public Analyser(ItemGroup group, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, Set<AnalyserType> types) {
         super(group, item, recipeType, recipe);
+        this.types = types;
     }
 
     @Override
@@ -44,8 +49,11 @@ public class Analyser extends SlimefunItem {
         if (optional.isPresent()) {
             final Block block = optional.get();
             final Player player = event.getPlayer();
-
             final ItemStack analyser = event.getItem();
+
+            if (!ProtectionUtils.hasPermission(player, block, Interaction.INTERACT_BLOCK)) {
+                return;
+            }
 
             if (ItemStackUtils.isOnCooldown(analyser)) {
                 player.sendMessage(Theme.WARNING + "This item is still on cooldown.");
@@ -54,25 +62,44 @@ public class Analyser extends SlimefunItem {
 
             final SlimefunItem slimefunItem = BlockStorage.check(block);
 
-            if (slimefunItem instanceof NetherSeed plant
-                && ProtectionUtils.hasPermission(player, block, Interaction.INTERACT_BLOCK)
-            ) {
-                final String growthStage = BlockStorage.getLocationInfo(block.getLocation(), Keys.SEED_GROWTH_STAGE);
-                final String ownerString = BlockStorage.getLocationInfo(block.getLocation(), Keys.SEED_OWNER);
-                final UUID uuid = UUID.fromString(ownerString);
-                final OfflinePlayer ownerPlayer = Bukkit.getOfflinePlayer(uuid);
-
-                final String messageType = Theme.CLICK_INFO.asTitle("Seed Type", plant.getItemName());
-                final String messageStage = Theme.CLICK_INFO.asTitle("Growth Stage", growthStage);
-                final String messageOwner = Theme.CLICK_INFO.asTitle("Owner", ownerPlayer.getName());
-                final String messageValue = Theme.CLICK_INFO.asTitle(
-                    "Purification Value",
-                    plant.getPurificationValue()
-                );
-                player.sendMessage(messageType, messageStage, messageOwner, messageValue);
+            if (slimefunItem instanceof NetherSeed plant && types.contains(AnalyserType.SEED)) {
+                onUseSeed(block, plant, player);
+            } else if (slimefunItem instanceof BeaconSiphoningBlock siphon && types.contains(AnalyserType.SIPHON)) {
+                onUseSiphon(block, siphon, player);
             }
+
             // Put item on cooldown to minimise potential BlockStorage spamming
             ItemStackUtils.addCooldown(analyser, 5);
         }
+    }
+
+    @ParametersAreNonnullByDefault
+    private void onUseSeed(Block block, NetherSeed plant, Player player) {
+        final String growthStage = BlockStorage.getLocationInfo(block.getLocation(), Keys.SEED_GROWTH_STAGE);
+        final String ownerString = BlockStorage.getLocationInfo(block.getLocation(), Keys.BLOCK_OWNER);
+        final UUID uuid = UUID.fromString(ownerString);
+        final OfflinePlayer ownerPlayer = Bukkit.getOfflinePlayer(uuid);
+
+        final String messageType = Theme.CLICK_INFO.asTitle("Seed Type", plant.getItemName());
+        final String messageStage = Theme.CLICK_INFO.asTitle("Growth Stage", growthStage);
+        final String messageOwner = Theme.CLICK_INFO.asTitle("Owner", ownerPlayer.getName());
+        final String messageValue = Theme.CLICK_INFO.asTitle(
+            "Purification Value",
+            plant.getPurificationValue()
+        );
+        player.sendMessage(messageType, messageStage, messageOwner, messageValue);
+    }
+
+    @ParametersAreNonnullByDefault
+    private void onUseSiphon(Block block, BeaconSiphoningBlock siphon, Player player) {
+        final int currentPower = siphon.getCurrentPower(block);
+        final String powerMessage = Theme.CLICK_INFO.asTitle("Siphon Power", currentPower);
+
+        player.sendMessage(powerMessage);
+    }
+
+    public enum AnalyserType {
+        SEED,
+        SIPHON
     }
 }

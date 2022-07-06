@@ -5,6 +5,7 @@ import dev.sefiraat.netheopoiesis.Netheopoiesis;
 import dev.sefiraat.netheopoiesis.Registry;
 import dev.sefiraat.netheopoiesis.api.RecipeTypes;
 import dev.sefiraat.netheopoiesis.api.events.PlantBeforeGrowthEvent;
+import dev.sefiraat.netheopoiesis.api.interfaces.CustomPlacementBlock;
 import dev.sefiraat.netheopoiesis.api.interfaces.NetherPlant;
 import dev.sefiraat.netheopoiesis.api.interfaces.SeedPaste;
 import dev.sefiraat.netheopoiesis.api.plant.Growth;
@@ -14,8 +15,9 @@ import dev.sefiraat.netheopoiesis.api.plant.breeding.BreedingPair;
 import dev.sefiraat.netheopoiesis.api.plant.netheos.FlavourProfile;
 import dev.sefiraat.netheopoiesis.implementation.Groups;
 import dev.sefiraat.netheopoiesis.implementation.netheos.Paste;
-import dev.sefiraat.netheopoiesis.implementation.plant.GrowthStages;
-import dev.sefiraat.netheopoiesis.implementation.plant.Placements;
+import dev.sefiraat.netheopoiesis.api.plant.GrowthStages;
+import dev.sefiraat.netheopoiesis.api.plant.Placements;
+import dev.sefiraat.netheopoiesis.listeners.CustomPlacementListener;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.ParticleUtils;
 import dev.sefiraat.netheopoiesis.utils.Skulls;
@@ -67,7 +69,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * This class is used to define a Seed item that will grow as a {@link NetherPlant}
  */
-public abstract class NetherSeed extends SlimefunItem implements NetherPlant, SeedPaste {
+public abstract class NetherSeed extends SlimefunItem implements NetherPlant, SeedPaste, CustomPlacementBlock {
 
     @Nonnull
     public static final Set<BlockFace> BREEDING_DIRECTIONS = Set.of(
@@ -222,7 +224,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant, Se
         PaperLib.getBlockState(cloneBlock, false).getState().update(true, false);
         BlockStorage.store(cloneBlock, childSeed.getId());
         BlockStorage.addBlockInfo(cloneBlock, Keys.SEED_GROWTH_STAGE, "0");
-        BlockStorage.addBlockInfo(cloneBlock, Keys.SEED_OWNER, getOwner(motherLocation).toString());
+        BlockStorage.addBlockInfo(cloneBlock, Keys.BLOCK_OWNER, getOwner(motherLocation).toString());
         breedSuccess(cloneBlock.getLocation());
     }
 
@@ -238,7 +240,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant, Se
 
             @Override
             public void newInstance(@Nonnull BlockMenu menu, @Nonnull Block block) {
-                final String ownerUuidString = BlockStorage.getLocationInfo(block.getLocation(), Keys.SEED_OWNER);
+                final String ownerUuidString = BlockStorage.getLocationInfo(block.getLocation(), Keys.BLOCK_OWNER);
                 if (ownerUuidString != null) {
                     final UUID ownerUuid = UUID.fromString(ownerUuidString);
                     addOwner(block.getLocation(), ownerUuid);
@@ -298,7 +300,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant, Se
 
     /**
      * This method is fired when the block is placed
-     * see {@link dev.sefiraat.netheopoiesis.listeners.SeedPlacementListener}
+     * see {@link CustomPlacementListener}
      *
      * @param event The {@link BlockPlaceEvent} triggered from the block placement
      */
@@ -314,7 +316,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant, Se
         ) {
             final UUID uuid = event.getPlayer().getUniqueId();
             BlockStorage.addBlockInfo(location, Keys.SEED_GROWTH_STAGE, "0");
-            BlockStorage.addBlockInfo(location, Keys.SEED_OWNER, uuid.toString());
+            BlockStorage.addBlockInfo(location, Keys.BLOCK_OWNER, uuid.toString());
             ownerCache.put(location, uuid);
             return;
         }
