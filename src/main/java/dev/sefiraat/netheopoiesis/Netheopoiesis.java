@@ -1,5 +1,6 @@
 package dev.sefiraat.netheopoiesis;
 
+import com.google.common.primitives.Ints;
 import dev.sefiraat.netheopoiesis.api.plant.netheos.NetheoBalls;
 import dev.sefiraat.netheopoiesis.implementation.Items;
 import dev.sefiraat.netheopoiesis.managers.ConfigManager;
@@ -17,6 +18,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.text.MessageFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
     // Todo replace with config
@@ -38,6 +41,7 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
     private DispatchManager dispatchManager;
     private Purification purification;
     private Registry registry;
+    private int versionNumber = 0;
 
     public Netheopoiesis() {
         this.username = "Sefiraat";
@@ -55,7 +59,9 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
 
         saveDefaultConfig();
         this.configManager = new ConfigManager();
+
         tryUpdate();
+        setupVersion();
 
         this.supportedPluginManager = new SupportedPluginManager();
         this.listenerManager = new ListenerManager();
@@ -83,6 +89,18 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
             GitHubBuildsUpdater updater = new GitHubBuildsUpdater(this, getFile(), updateLocation);
             updater.start();
         }
+    }
+
+    private void setupVersion() {
+        final Pattern pattern = Pattern.compile("^[^\\d]*(\\d+)");
+        final Matcher matcher = pattern.matcher(getPluginVersion());
+        if (matcher.find()) {
+            final Integer version = Ints.tryParse(matcher.group(1));
+            this.versionNumber = version == null ? 0 : version;
+        } else {
+            this.versionNumber = 0;
+        }
+        logInfo("Running version: " + (this.versionNumber == 0 ? "MODIFIED" : this.versionNumber));
     }
 
     @Nonnull
@@ -148,5 +166,9 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
 
     public static Registry getPlantRegistry() {
         return Netheopoiesis.getInstance().registry;
+    }
+
+    public static int getVersionNumber() {
+        return Netheopoiesis.getInstance().versionNumber;
     }
 }
