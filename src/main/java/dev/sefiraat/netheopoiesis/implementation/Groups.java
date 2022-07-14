@@ -104,6 +104,8 @@ public final class Groups {
     static {
         final Netheopoiesis plugin = Netheopoiesis.getInstance();
 
+        SEEDS.setCrossAddonItemGroup(true);
+
         // Slimefun Registry
         MAIN.register(plugin);
         CRAFTING.register(plugin);
