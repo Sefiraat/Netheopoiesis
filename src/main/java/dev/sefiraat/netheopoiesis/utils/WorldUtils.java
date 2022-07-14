@@ -112,4 +112,14 @@ public final class WorldUtils {
     public static Location centre(@Nonnull Location location) {
         return location.clone().add(0.5, 0.5, 0.5);
     }
+
+    /**
+     * Checks if the chunk is loaded using location (doesn't load the chunk)
+     * @param location The location to check
+     * @return True if the chunk is loaded.
+     */
+    public static boolean chunkLoaded(@Nonnull Location location) {
+        return location.getWorld().isChunkLoaded(location.getBlockX() / 16, location.getBlockZ() / 16);
+    }
+
 }

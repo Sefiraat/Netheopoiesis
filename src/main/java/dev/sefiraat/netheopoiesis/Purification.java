@@ -65,11 +65,15 @@ public class Purification {
     private void collateChunkValues() {
         chunkValues.clear();
         for (Map.Entry<BlockPosition, Integer> entry : purificationModifiers.entrySet()) {
-            final BlockPosition blockPosition = entry.getKey();
-            final ChunkPosition chunkPosition = new ChunkPosition(blockPosition.getChunk());
-            final int currentValue = chunkValues.getOrDefault(chunkPosition, 0);
+            final BlockPosition blockPos = entry.getKey();
+            final ChunkPosition chunkPos = new ChunkPosition(
+                blockPos.getWorld(),
+                blockPos.getChunkX(),
+                blockPos.getChunkZ()
+            );
+            final int currentValue = chunkValues.getOrDefault(chunkPos, 0);
             final int newValue = currentValue + entry.getValue();
-            chunkValues.put(chunkPosition, newValue);
+            chunkValues.put(chunkPos, newValue);
         }
     }
 

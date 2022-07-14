@@ -65,6 +65,12 @@ public class PurificationSeed extends NetherSeed {
         final double randomZ = ThreadLocalRandom.current().nextInt(-3, 4);
         // For loop to make sure the purification can creep up and down.
 
+        final Location spreadLocation = location.clone().add(randomX, randomY, randomZ);
+
+        if (!WorldUtils.chunkLoaded(spreadLocation)) {
+            return;
+        }
+
         final Block block = location.clone().add(randomX, randomY, randomZ).getBlock();
         if (materials.contains(block.getType())
             && ProtectionUtils.hasPermission(getOwner(location), block, Interaction.BREAK_BLOCK)
