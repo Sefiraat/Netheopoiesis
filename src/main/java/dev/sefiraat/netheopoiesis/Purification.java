@@ -9,8 +9,8 @@ import org.bukkit.Chunk;
 import org.bukkit.block.Block;
 
 import javax.annotation.Nonnull;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Purification {
 
@@ -53,23 +53,27 @@ public class Purification {
 
     private static Purification instance;
 
-    private final Map<BlockPosition, Integer> purificationModifiers = new HashMap<>();
-    private final Map<ChunkPosition, Integer> chunkValues = new HashMap<>();
+    private final Map<BlockPosition, Integer> purificationModifiers = new ConcurrentHashMap<>();
+    private final Map<ChunkPosition, Integer> chunkValues = new ConcurrentHashMap<>();
 
     public Purification() {
         Preconditions.checkArgument(instance == null, "Cannot create a new instance of Purification");
         instance = this;
-        Bukkit.getScheduler().runTaskTimer(Netheopoiesis.getInstance(), this::collateChunkValues, 1, 100);
+        Bukkit.getScheduler().runTaskTimerAsynchronously(Netheopoiesis.getInstance(), this::collateChunkValues, 1, 100);
     }
 
     private void collateChunkValues() {
         chunkValues.clear();
         for (Map.Entry<BlockPosition, Integer> entry : purificationModifiers.entrySet()) {
-            final BlockPosition blockPosition = entry.getKey();
-            final ChunkPosition chunkPosition = new ChunkPosition(blockPosition.getChunk());
-            final int currentValue = chunkValues.getOrDefault(chunkPosition, 0);
+            final BlockPosition blockPos = entry.getKey();
+            final ChunkPosition chunkPos = new ChunkPosition(
+                blockPos.getWorld(),
+                blockPos.getChunkX(),
+                blockPos.getChunkZ()
+            );
+            final int currentValue = chunkValues.getOrDefault(chunkPos, 0);
             final int newValue = currentValue + entry.getValue();
-            chunkValues.put(chunkPosition, newValue);
+            chunkValues.put(chunkPos, newValue);
         }
     }
 
