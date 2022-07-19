@@ -9,8 +9,8 @@ import org.bukkit.Chunk;
 import org.bukkit.block.Block;
 
 import javax.annotation.Nonnull;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Purification {
 
@@ -53,13 +53,13 @@ public class Purification {
 
     private static Purification instance;
 
-    private final Map<BlockPosition, Integer> purificationModifiers = new HashMap<>();
-    private final Map<ChunkPosition, Integer> chunkValues = new HashMap<>();
+    private final Map<BlockPosition, Integer> purificationModifiers = new ConcurrentHashMap<>();
+    private final Map<ChunkPosition, Integer> chunkValues = new ConcurrentHashMap<>();
 
     public Purification() {
         Preconditions.checkArgument(instance == null, "Cannot create a new instance of Purification");
         instance = this;
-        Bukkit.getScheduler().runTaskTimer(Netheopoiesis.getInstance(), this::collateChunkValues, 1, 100);
+        Bukkit.getScheduler().runTaskTimerAsynchronously(Netheopoiesis.getInstance(), this::collateChunkValues, 1, 100);
     }
 
     private void collateChunkValues() {
