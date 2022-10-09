@@ -5,11 +5,13 @@ import dev.sefiraat.netheopoiesis.utils.WorldUtils;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Waterlogged;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import javax.annotation.Nonnull;
@@ -25,23 +27,25 @@ public class WaterPlaceListener implements Listener {
     public void onWaterPlace(@Nonnull PlayerInteractEvent event) {
         final Player player = event.getPlayer();
         final Block clickedBlock = event.getClickedBlock();
-        if (event.getClickedBlock() != null
+        if (clickedBlock != null
             && event.getItem() != null
-            && clickedBlock != null
             && WorldUtils.inNether(player.getWorld())
             && player.getInventory().getItemInMainHand().getType() == Material.WATER_BUCKET
             && Purification.getValue(clickedBlock.getChunk()) >= Purification.PLACE_WATER
+            && event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR
         ) {
             event.setCancelled(true);
-
-            if (clickedBlock.getBlockData() instanceof Waterlogged block
+            final BlockData blockData = clickedBlock.getBlockData();
+            if (blockData instanceof Waterlogged block
                 && !block.isWaterlogged()
                 && !player.isSneaking()
             ) {
                 block.setWaterlogged(true);
-            } else if (clickedBlock.getRelative(event.getBlockFace()).isEmpty()) {
+            } else {
                 clickedBlock.getRelative(event.getBlockFace()).setType(Material.WATER);
             }
+
+            clickedBlock.setBlockData(blockData, true);
 
             if (player.getGameMode() != GameMode.CREATIVE) {
                 event.getItem().setType(Material.BUCKET);
