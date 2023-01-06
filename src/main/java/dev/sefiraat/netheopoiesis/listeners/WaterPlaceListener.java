@@ -23,16 +23,24 @@ import javax.annotation.Nonnull;
  */
 public class WaterPlaceListener implements Listener {
 
+    public boolean isValidClick(@Nonnull PlayerInteractEvent event) {
+        return event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR;
+    }
+
+    public boolean isAllowedToPlaceWater(@Nonnull PlayerInteractEvent event) {
+        return WorldUtils.inNether(event.getPlayer().getWorld())
+            && Purification.getValue(event.getClickedBlock().getChunk()) >= Purification.PLACE_WATER;
+    }
+
     @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
     public void onWaterPlace(@Nonnull PlayerInteractEvent event) {
         final Player player = event.getPlayer();
         final Block clickedBlock = event.getClickedBlock();
         if (clickedBlock != null
             && event.getItem() != null
-            && WorldUtils.inNether(player.getWorld())
             && player.getInventory().getItemInMainHand().getType() == Material.WATER_BUCKET
-            && Purification.getValue(clickedBlock.getChunk()) >= Purification.PLACE_WATER
-            && (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR)
+            && isAllowedToPlaceWater(event)
+            && isValidClick(event)
         ) {
             event.setCancelled(true);
             final BlockData blockData = clickedBlock.getBlockData();
