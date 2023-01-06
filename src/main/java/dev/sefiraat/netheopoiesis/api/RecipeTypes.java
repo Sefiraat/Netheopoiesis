@@ -2,9 +2,7 @@ package dev.sefiraat.netheopoiesis.api;
 
 import com.google.common.base.Preconditions;
 import dev.sefiraat.netheopoiesis.api.interfaces.WorldCrushable;
-import dev.sefiraat.netheopoiesis.api.plant.netheos.Flavour;
 import dev.sefiraat.netheopoiesis.api.plant.netheos.NetheoBalls;
-import dev.sefiraat.netheopoiesis.implementation.netheos.NetheoBall;
 import dev.sefiraat.netheopoiesis.listeners.DropListener;
 import dev.sefiraat.netheopoiesis.utils.Keys;
 import dev.sefiraat.netheopoiesis.utils.Theme;
@@ -12,7 +10,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
