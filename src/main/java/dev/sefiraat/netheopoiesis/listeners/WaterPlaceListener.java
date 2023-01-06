@@ -32,7 +32,7 @@ public class WaterPlaceListener implements Listener {
             && WorldUtils.inNether(player.getWorld())
             && player.getInventory().getItemInMainHand().getType() == Material.WATER_BUCKET
             && Purification.getValue(clickedBlock.getChunk()) >= Purification.PLACE_WATER
-            && event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR
+            && (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR)
         ) {
             event.setCancelled(true);
             final BlockData blockData = clickedBlock.getBlockData();
