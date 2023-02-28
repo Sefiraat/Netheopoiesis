@@ -24,7 +24,8 @@ public class CrushingListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onCrush(@Nonnull EntityDamageEvent event) {
         if (event.getEntity() instanceof Item item
-            && event.getCause() == EntityDamageEvent.DamageCause.FALLING_BLOCK
+            && (event.getCause() == EntityDamageEvent.DamageCause.FALLING_BLOCK
+            || event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK)
         ) {
             final SlimefunItem slimefunItem = SlimefunItem.getByItem(item.getItemStack());
             if (slimefunItem instanceof WorldCrushable crushable) {
