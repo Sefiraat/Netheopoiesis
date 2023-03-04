@@ -35,12 +35,7 @@ public class NetheoBall extends SlimefunItem {
     
     @Override
     public void preRegister() {
-        addItemHandler(new ItemUseHandler() {
-            @Override
-            public void onRightClick(PlayerRightClickEvent event) {
-                event.cancel();
-            }
-        });
+        addItemHandler((ItemUseHandler) PlayerRightClickEvent::cancel);
     }
 
     @Nonnull
