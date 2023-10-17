@@ -11,6 +11,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.MagmaCube;
 import org.bukkit.entity.Monster;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -72,8 +73,7 @@ public class MobSpawnListener implements Listener {
     public void onMobSpawn(@Nonnull EntitySpawnEvent event) {
         final Entity entity = event.getEntity();
         final World world = entity.getWorld();
-        // Check if the spawn is a monster and we're in the Nether
-        if (entity instanceof Monster && WorldUtils.inNether(world)) {
+        if (isValidMob(entity)) {
             final int requiredValue = MAP.getOrDefault(entity.getType(), -1);
             final Location location = entity.getLocation();
             final int value = Purification.getValue(location.getChunk());
@@ -110,6 +110,15 @@ public class MobSpawnListener implements Listener {
                 }
             }
         }
+    }
+
+    private boolean isValidMob(@Nonnull Entity entity) {
+        // Check if the spawn is a monster and we're in the Nether
+        if (!WorldUtils.inNether(entity)) {
+            return false;
+        }
+        // Magma Cube is not a monster, we need to include this as well
+        return entity instanceof Monster || entity instanceof MagmaCube;
     }
 
     // Todo - Add a proper way to detect and manage mob-caps.
