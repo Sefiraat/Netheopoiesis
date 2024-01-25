@@ -125,13 +125,13 @@
         <dependency>
             <groupId>com.github.Slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>b1aae439f3</version>
+            <version>cd3672c3f2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>io.github.baked-libs</groupId>
+            <groupId>com.github.baked-libs.dough</groupId>
             <artifactId>dough-api</artifactId>
-            <version>1.2.0</version>
+            <version>a2364de77c</version>
             <scope>compile</scope>
         </dependency>
 

@@ -9,7 +9,7 @@ import dev.sefiraat.netheopoiesis.managers.MobManager;
 import dev.sefiraat.netheopoiesis.managers.SupportedPluginManager;
 import dev.sefiraat.netheopoiesis.managers.TaskManager;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.BlobBuildUpdater;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -78,9 +78,8 @@ public class Netheopoiesis extends JavaPlugin implements SlimefunAddon {
     }
 
     public void tryUpdate() {
-        if (configManager.isAutoUpdate() && getDescription().getVersion().startsWith("DEV")) {
-            String updateLocation = MessageFormat.format("{0}/{1}/{2}", this.username, this.repo, this.branch);
-            GitHubBuildsUpdater updater = new GitHubBuildsUpdater(this, getFile(), updateLocation);
+        if (configManager.isAutoUpdate() && getDescription().getVersion().startsWith("DEV -")) {
+            BlobBuildUpdater updater = new BlobBuildUpdater(this, getFile(), "DEV");
             updater.start();
         }
     }
