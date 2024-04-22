@@ -50,13 +50,15 @@ public class WaterPlaceListener implements Listener {
             ) {
                 block.setWaterlogged(true);
             } else {
-                clickedBlock.getRelative(event.getBlockFace()).setType(Material.WATER);
-            }
+                if (clickedBlock.getRelative(event.getBlockFace()).getType() == Material.AIR) {
+                    clickedBlock.getRelative(event.getBlockFace()).setType(Material.WATER);
+                }
 
-            clickedBlock.setBlockData(blockData, true);
+                clickedBlock.setBlockData(blockData, true);
 
-            if (player.getGameMode() != GameMode.CREATIVE) {
-                event.getItem().setType(Material.BUCKET);
+                if (player.getGameMode() != GameMode.CREATIVE) {
+                    event.getItem().setType(Material.BUCKET);
+                }
             }
         }
     }
