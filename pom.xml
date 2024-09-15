@@ -131,7 +131,7 @@
         <dependency>
             <groupId>com.github.baked-libs.dough</groupId>
             <artifactId>dough-api</artifactId>
-            <version>a2364de77c</version>
+            <version>f8ff251</version>
             <scope>compile</scope>
         </dependency>
 
