@@ -193,7 +193,7 @@ public abstract class NetherSeed extends SlimefunItem implements NetherPlant, Se
             final Block middleBlock = motherBlock.getRelative(face);
             // There must be space for the new block
             if (middleBlock.getType() != Material.AIR) {
-                return;
+                continue;
             }
             final Block potentialMate = middleBlock.getRelative(face);
             final SlimefunItem mateItem = BlockStorage.check(potentialMate);
